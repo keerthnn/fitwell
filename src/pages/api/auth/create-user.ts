@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
-import { checkIfPostOrSetError } from "../utils";
+import { checkIfPostOrSetError } from "../../../lib/api/utils";
 import { getUserIdOrSetError } from "../../../lib/auth/authUtils";
 
 export default async function handler(
