@@ -1,6 +1,24 @@
-import "fitness/styles/globals.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import { AuthContextProvider } from "fitness/components/context";
+import appTheme from "fitness/theme";
+
+export default function CustomApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Head>
+        <title>Sophize Grow</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+
+      <ThemeProvider theme={appTheme}>
+        <CssBaseline />
+        <AuthContextProvider>
+          <Component {...pageProps} />
+        </AuthContextProvider>
+      </ThemeProvider>
+    </>
+  );
 }

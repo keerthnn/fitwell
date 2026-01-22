@@ -9,8 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.7",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "axios": "^1.13.2",
+    "cookies-next": "^6.1.1",
+    "firebase": "^12.8.0",
+    "firebase-admin": "^13.6.0",
     "next": "16.1.4",
     "pg": "^8.17.2",
     "react": "19.2.3",
