@@ -1,6 +1,15 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { 
+  Box, 
+  Button, 
+  Container, 
+  Paper, 
+  Stack, 
+  TextField, 
+  Typography,
+  Divider,
+} from "@mui/material";
 import { useAuth } from "fitness/components/context";
 import { signInWithEmail, signInWithGoogle } from "../../lib/authUtils";
 
@@ -11,7 +20,11 @@ export default function SignIn() {
   const router = useRouter();
 
   if (loading && !user) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography variant="h6" color="text.secondary">Loading...</Typography>
+      </Box>
+    );
   }
 
   if (!loading && user) {
@@ -37,86 +50,102 @@ export default function SignIn() {
   }
 
   return (
-    <div className="flex justify-center place-items-center w-screen h-screen">
-      {!user && (
-        <div className="border-2 hover:bg-gray-100 text-black w-[30%] rounded-lg p-8 shadow-md">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-2xl">Sign In</h1>
-            <form onSubmit={handleSignIn} className="flex flex-col gap-4">
-              <input
-                type="text"
-                placeholder="Email"
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  border: "2px solid #d1d5db",
-                  borderRadius: "0.5rem",
-                  fontSize: "14px",
-                  background: "#fff",
-                  boxSizing: "border-box",
-                  outline: "none",
-                  transition: "border-color 0.2s",
-                }}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onFocus={(e) => (e.target.style.borderColor = "#3b82f6")}
-                onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
-              />
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        bgcolor: "background.default",
+      }}
+    >
+      <Container maxWidth="sm">
+        {!user && (
+          <Paper
+            elevation={2}
+            sx={{
+              p: { xs: 3, sm: 5 },
+              borderRadius: 3,
+            }}
+          >
+            <Stack spacing={3}>
+              <Box>
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                  Welcome Back
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Sign in to continue your fitness journey
+                </Typography>
+              </Box>
 
-              <input
-                type="password"
-                placeholder="Password"
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  border: "2px solid #d1d5db",
-                  borderRadius: "0.5rem",
-                  fontSize: "14px",
-                  background: "#fff",
-                  boxSizing: "border-box",
-                  outline: "none",
-                  transition: "border-color 0.2s",
-                }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onFocus={(e) => (e.target.style.borderColor = "#3b82f6")}
-                onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
-              />
+              <form onSubmit={handleSignIn}>
+                <Stack spacing={2.5}>
+                  <TextField
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                  />
+
+                  <TextField
+                    label="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    autoComplete="current-password"
+                  />
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    sx={{ mt: 1 }}
+                  >
+                    Sign In
+                  </Button>
+                </Stack>
+              </form>
+
+              <Divider>
+                <Typography variant="body2" color="text.secondary">
+                  or
+                </Typography>
+              </Divider>
 
               <Button
-                type="submit"
-                variant="contained"
-                color="primary"
+                variant="outlined"
+                size="large"
                 fullWidth
-                sx={{ py: 1.5, borderRadius: 2 }}
+                onClick={handleSignInWithGoogle}
               >
-                Sign In
+                Continue with Google
               </Button>
-            </form>
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-4 place-items-center">
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={handleSignInWithGoogle}
-                  sx={{ textDecoration: "underline" }}
-                >
-                  Sign In with Google
-                </Button>
-              </div>
 
-              <Button
-                variant="text"
-                color="primary"
-                onClick={() => router.push("/auth/sign-up")}
-                sx={{ textDecoration: "underline" }}
-              >
-                Don&apos;t have an account? Sign Up
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+              <Box textAlign="center" pt={1}>
+                <Typography variant="body2" color="text.secondary">
+                  Don&apos;t have an account?{" "}
+                  <Button
+                    variant="text"
+                    onClick={() => router.push("/auth/sign-up")}
+                    sx={{ 
+                      textTransform: "none",
+                      fontWeight: 600,
+                      p: 0,
+                      minWidth: "auto",
+                      verticalAlign: "baseline",
+                    }}
+                  >
+                    Sign Up
+                  </Button>
+                </Typography>
+              </Box>
+            </Stack>
+          </Paper>
+        )}
+      </Container>
+    </Box>
   );
 }

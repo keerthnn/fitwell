@@ -2,7 +2,16 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "../../components/context";
 import { signInWithGoogle, signUpUser } from "../../lib/authUtils";
-import { Box, Button, TextField, Typography, Paper, Stack } from "@mui/material";
+import { 
+  Box, 
+  Button, 
+  TextField, 
+  Typography, 
+  Paper, 
+  Stack,
+  Container,
+  Divider,
+} from "@mui/material";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -11,7 +20,11 @@ export default function SignUp() {
   const router = useRouter();
 
   if (loading && !user) {
-    return <Typography variant="h6">Loading...</Typography>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography variant="h6" color="text.secondary">Loading...</Typography>
+      </Box>
+    );
   }
 
   if (!loading && user) {
@@ -37,84 +50,102 @@ export default function SignUp() {
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-      bgcolor="#f5f5f5"
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        bgcolor: "background.default",
+      }}
     >
-      {!user && (
-        <Paper
-          elevation={3}
-          sx={{
-            width: { xs: "90%", sm: "400px" },
-            p: 4,
-            borderRadius: 2,
-          }}
-        >
-          <Stack spacing={3}>
-            <Typography variant="h5" fontWeight="bold">
-              Sign Up
-            </Typography>
+      <Container maxWidth="sm">
+        {!user && (
+          <Paper
+            elevation={2}
+            sx={{
+              p: { xs: 3, sm: 5 },
+              borderRadius: 3,
+            }}
+          >
+            <Stack spacing={3}>
+              <Box>
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                  Create Your Account
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Start tracking your progress today
+                </Typography>
+              </Box>
 
-            <form onSubmit={handleSignUp}>
-              <Stack spacing={2}>
-                <TextField
-                  fullWidth
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                  size="small"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+              <form onSubmit={handleSignUp}>
+                <Stack spacing={2.5}>
+                  <TextField
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                  />
 
-                <TextField
-                  fullWidth
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  size="small"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                  <TextField
+                    label="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    autoComplete="new-password"
+                    helperText="Use at least 8 characters with a mix of letters and numbers"
+                  />
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  sx={{ py: 1.5, borderRadius: 2 }}
-                >
-                  Sign Up
-                </Button>
-              </Stack>
-            </form>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    sx={{ mt: 1 }}
+                  >
+                    Create Account
+                  </Button>
+                </Stack>
+              </form>
 
-            <Stack spacing={1} alignItems="center">
+              <Divider>
+                <Typography variant="body2" color="text.secondary">
+                  or
+                </Typography>
+              </Divider>
+
               <Button
-                variant="text"
-                color="primary"
+                variant="outlined"
+                size="large"
+                fullWidth
                 onClick={handleSignUpWithGoogle}
-                sx={{ textDecoration: "underline" }}
               >
-                Sign Up with Google
+                Continue with Google
               </Button>
 
-              <Button
-                variant="text"
-                color="primary"
-                onClick={() => router.push("/auth/sign-in")}
-                sx={{ textDecoration: "underline" }}
-              >
-                Already have an account? Sign In
-              </Button>
+              <Box textAlign="center" pt={1}>
+                <Typography variant="body2" color="text.secondary">
+                  Already have an account?{" "}
+                  <Button
+                    variant="text"
+                    onClick={() => router.push("/auth/sign-in")}
+                    sx={{ 
+                      textTransform: "none",
+                      fontWeight: 600,
+                      p: 0,
+                      minWidth: "auto",
+                      verticalAlign: "baseline",
+                    }}
+                  >
+                    Sign In
+                  </Button>
+                </Typography>
+              </Box>
             </Stack>
-          </Stack>
-        </Paper>
-      )}
+          </Paper>
+        )}
+      </Container>
     </Box>
   );
 }

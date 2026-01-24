@@ -18,7 +18,28 @@ model User {
   name  String?
   email String  @unique
 
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  profile   UserProfile?
 
+  updatedAt DateTime     @updatedAt
+  createdAt DateTime     @default(now())
 }
+
+model UserProfile {
+  id        String @id @default(uuid())
+  userId    String @unique
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  firstName String
+  lastName  String
+
+  age       Int
+  gender    String
+  heightCm  Int
+  weightKg  Int
+  goal      String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+

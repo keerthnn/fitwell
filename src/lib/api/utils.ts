@@ -21,10 +21,3 @@ function checkIfTypeOrSetError(
   }
   return true;
 }
-
-export function parseQueryParamToArray(param?: string | string[]): string[] {
-  if (!param) return [];
-  if (Array.isArray(param)) return param.flatMap((v) => v.split(",")).filter(Boolean);
-  if (typeof param === "string") return param.split(",").filter(Boolean);
-  return [];
-}
