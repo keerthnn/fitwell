@@ -50,16 +50,12 @@ export const AuthContextProvider = ({
 
   // Redirect decision (wrapper-based)
   useEffect(() => {
-    if (!loading && user) {
+    if (!loading && user && router.pathname === "/") {
       getProfileStatus().then(({ hasProfile }) => {
-        if (hasProfile) {
-          router.push("/dashboard");
-        } else {
-          router.push("/profile");
-        }
+        router.push(hasProfile ? "/dashboard" : "/profile");
       });
     }
-  }, [user, loading]);
+  }, [user, loading, router.pathname]);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
