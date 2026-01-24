@@ -1,5 +1,5 @@
-import { checkIfGetOrSetError } from "fitness/lib/api/utils";
-import { getUserIdOrSetError } from "fitness/lib/auth/authUtils";
+import { checkIfGetOrSetError } from "fitness/lib/api/api-utils";
+import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 

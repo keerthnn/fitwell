@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "fitness/lib/prisma";
-import { getUserIdOrSetError } from "fitness/lib/auth/authUtils";
-import { checkIfPostOrSetError } from "fitness/lib/api/utils";
+import { getUserIdOrSetError } from "fitness/lib/auth/utils";
+import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 
 export default async function handler(
   req: NextApiRequest,
