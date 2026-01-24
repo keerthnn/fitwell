@@ -1,7 +1,7 @@
-import { checkIfPostOrSetError } from "fitness/lib/api/utils";
-import { getUserIdOrSetError } from "fitness/lib/auth/authUtils";
-import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
+import prisma from "fitness/lib/prisma";
+import { getUserIdOrSetError } from "fitness/lib/auth/authUtils";
+import { checkIfPostOrSetError } from "fitness/lib/api/utils";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,21 +15,17 @@ export default async function handler(
   const { firstName, lastName, gender, age, heightCm, weightKg, goal } =
     req.body;
 
-  if (!firstName || !lastName) {
-    return res.status(400).send("First and last name required");
-  }
-
   const existing = await prisma.userProfile.findUnique({
     where: { userId },
   });
 
-  if (existing) {
-    return res.status(409).send("Profile already exists");
+  if (!existing) {
+    return res.status(404).send("Profile does not exist");
   }
 
-  await prisma.userProfile.create({
+  await prisma.userProfile.update({
+    where: { userId },
     data: {
-      userId,
       firstName,
       lastName,
       gender,
