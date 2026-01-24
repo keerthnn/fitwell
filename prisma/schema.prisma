@@ -13,33 +13,126 @@ datasource db {
   provider = "postgresql"
 }
 
+enum EquipmentType {
+  BARBELL
+  DUMBBELL
+  KETTLEBELL
+  MACHINE
+  BODYWEIGHT
+  CABLE
+}
+
+enum MovementType {
+  PUSH
+  PULL
+  SQUAT
+  HINGE
+  LUNGE
+  ROTATION
+  CARRY
+  ISOMETRIC
+}
+
 model User {
   id    String  @id @default(uuid())
   name  String?
   email String  @unique
 
   profile   UserProfile?
-
+  workouts  Workout[]
   updatedAt DateTime     @updatedAt
   createdAt DateTime     @default(now())
 }
 
 model UserProfile {
-  id        String @id @default(uuid())
-  userId    String @unique
-  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   firstName String
   lastName  String
 
-  age       Int
-  gender    String
-  heightCm  Int
-  weightKg  Int
-  goal      String
+  age      Int
+  gender   String
+  heightCm Int
+  weightKg Int
+  goal     String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+model Workout {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  title     String? // e.g. "Push Day", "Legs A"
+  date      DateTime // workout date
+  durationM Int? // total duration in minutes
+  notes     String?
+
+  exercises WorkoutExercise[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, date])
+}
+
+model Exercise {
+  id String @id @default(uuid())
+
+  name      String // "Barbell Bench Press"
+  equipment EquipmentType
+  movement  MovementType
+  category  String // Chest, Back, Legs, Shoulders, Arms, Core
+  region    String? // Upper chest, Lats, Quads, etc.
+
+  isCompound Boolean @default(true)
+
+  workouts WorkoutExercise[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, equipment])
+}
+
+model WorkoutExercise {
+  id         String @id @default(uuid())
+  workoutId  String
+  exerciseId String
+
+  workout  Workout  @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
+
+  order Int // order in workout (1,2,3...)
+
+  sets WorkoutSet[]
+
+  notes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workoutId])
+}
+
+model WorkoutSet {
+  id                String @id @default(uuid())
+  workoutExerciseId String
+
+  workoutExercise WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
+
+  setNumber Int
+  reps      Int?
+  weightKg  Float?
+  durationS Int?
+  distanceM Int?
+  rpe       Float?
+
+  createdAt DateTime @default(now())
+
+  @@index([workoutExerciseId])
+}
