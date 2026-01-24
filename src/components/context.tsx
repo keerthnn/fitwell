@@ -1,9 +1,9 @@
 import { deleteCookie, setCookie } from "cookies-next";
 import { onIdTokenChanged, User } from "firebase/auth";
+import { getProfileStatus } from "fitness/utils/spec";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../lib/firebaseConfig";
-import { getProfileStatus } from "fitness/utils/spec";
 
 interface AuthContextType {
   user: User | null;

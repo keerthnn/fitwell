@@ -1,10 +1,9 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import type { AppProps } from "next/app";
-import Head from "next/head";
-
 import { AuthContextProvider } from "fitness/components/context";
 import Header from "fitness/components/Header";
 import appTheme from "fitness/theme";
+import type { AppProps } from "next/app";
+import Head from "next/head";
 
 export default function CustomApp({ Component, pageProps }: AppProps) {
   return (

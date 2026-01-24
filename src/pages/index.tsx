@@ -1,7 +1,7 @@
-import Head from "next/head";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import { useAuth } from "fitness/components/context";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +11,10 @@ export default function Home() {
     <>
       <Head>
         <title>Fitwell - Track Your Fitness Journey</title>
-        <meta name="description" content="Track workouts, monitor progress, and stay consistent with Fitwell" />
+        <meta
+          name="description"
+          content="Track workouts, monitor progress, and stay consistent with Fitwell"
+        />
       </Head>
 
       <Box
@@ -25,10 +28,10 @@ export default function Home() {
         <Container maxWidth="md">
           <Stack spacing={5} alignItems="center" textAlign="center">
             <Stack spacing={2}>
-              <Typography 
-                variant="h3" 
+              <Typography
+                variant="h3"
                 fontWeight="bold"
-                sx={{ 
+                sx={{
                   color: "text.primary",
                   mb: 1,
                 }}
@@ -36,17 +39,18 @@ export default function Home() {
                 Your Fitness Journey Starts Here
               </Typography>
 
-              <Typography 
-                variant="h6" 
+              <Typography
+                variant="h6"
                 color="text.secondary"
                 sx={{ maxWidth: 600, mx: "auto" }}
               >
-                Track workouts, monitor progress, and build lasting habits with personalized insights
+                Track workouts, monitor progress, and build lasting habits with
+                personalized insights
               </Typography>
             </Stack>
 
-            <Stack 
-              direction={{ xs: "column", sm: "row" }} 
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
               spacing={2}
               sx={{ pt: 2 }}
             >
@@ -83,10 +87,10 @@ export default function Home() {
               )}
             </Stack>
 
-            <Stack 
-              direction="row" 
-              spacing={4} 
-              sx={{ 
+            <Stack
+              direction="row"
+              spacing={4}
+              sx={{
                 pt: 4,
                 flexWrap: "wrap",
                 justifyContent: "center",

@@ -1,17 +1,10 @@
-import {
-  Typography,
-  Container,
-  Box,
-  Paper,
-  Stack,
-} from "@mui/material";
+import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 
 export default function Dashboard() {
   return (
     <Box sx={{ bgcolor: "background.default", minHeight: "100vh", py: 4 }}>
       <Container maxWidth="lg">
         <Stack spacing={4}>
-          {/* Header */}
           <Box>
             <Typography variant="h4" fontWeight={700} gutterBottom>
               Dashboard
@@ -21,7 +14,6 @@ export default function Dashboard() {
             </Typography>
           </Box>
 
-          {/* Summary Cards */}
           <Box
             sx={{
               display: "flex",
@@ -94,7 +86,6 @@ export default function Dashboard() {
             </Paper>
           </Box>
 
-          {/* Detail Section */}
           <Box
             sx={{
               display: "flex",
@@ -142,30 +133,18 @@ export default function Dashboard() {
 
               <Stack spacing={2.5} sx={{ mt: 3 }}>
                 <Box>
-                  <Typography color="text.secondary">
-                    This Month
-                  </Typography>
-                  <Typography fontWeight={600}>
-                    0 workouts
-                  </Typography>
+                  <Typography color="text.secondary">This Month</Typography>
+                  <Typography fontWeight={600}>0 workouts</Typography>
                 </Box>
 
                 <Box>
-                  <Typography color="text.secondary">
-                    Best Streak
-                  </Typography>
-                  <Typography fontWeight={600}>
-                    0 days
-                  </Typography>
+                  <Typography color="text.secondary">Best Streak</Typography>
+                  <Typography fontWeight={600}>0 days</Typography>
                 </Box>
 
                 <Box>
-                  <Typography color="text.secondary">
-                    Average Weekly
-                  </Typography>
-                  <Typography fontWeight={600}>
-                    0 sessions
-                  </Typography>
+                  <Typography color="text.secondary">Average Weekly</Typography>
+                  <Typography fontWeight={600}>0 sessions</Typography>
                 </Box>
               </Stack>
             </Paper>

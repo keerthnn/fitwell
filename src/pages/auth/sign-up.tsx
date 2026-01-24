@@ -1,17 +1,17 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useAuth } from "../../components/context";
-import { signInWithGoogle, signUpUser } from "../../lib/authUtils";
-import { 
-  Box, 
-  Button, 
-  TextField, 
-  Typography, 
-  Paper, 
-  Stack,
+import {
+  Box,
+  Button,
   Container,
   Divider,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
+import { useAuth } from "fitness/components/context";
+import { signInWithGoogle, signUpUser } from "fitness/lib/authUtils";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -21,8 +21,15 @@ export default function SignUp() {
 
   if (loading && !user) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-        <Typography variant="h6" color="text.secondary">Loading...</Typography>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
+        <Typography variant="h6" color="text.secondary">
+          Loading...
+        </Typography>
       </Box>
     );
   }
@@ -130,7 +137,7 @@ export default function SignUp() {
                   <Button
                     variant="text"
                     onClick={() => router.push("/auth/sign-in")}
-                    sx={{ 
+                    sx={{
                       textTransform: "none",
                       fontWeight: 600,
                       p: 0,
