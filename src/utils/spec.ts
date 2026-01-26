@@ -104,3 +104,27 @@ export async function getExercises(search?: string) {
   });
   return data as Exercise[];
 }
+
+export async function adminGetUsers() {
+  const { data } = await axios.get("/api/admin/get-users");
+  return data;
+}
+
+export async function adminCreateExercise(input: Partial<Exercise>) {
+  const { data } = await axios.post("/api/admin/create-exercise", input);
+  return data as Exercise;
+}
+
+export async function adminUpdateExercise(
+  input: Partial<Exercise> & { id: string },
+) {
+  const { data } = await axios.post("/api/admin/update-exercise", input);
+  return data as Exercise;
+}
+
+export async function adminDeleteExercise(id: string) {
+  const { data } = await axios.delete("/api/admin/delete-exercise", {
+    params: { id },
+  });
+  return data as { success: boolean };
+}

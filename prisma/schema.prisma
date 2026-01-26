@@ -38,10 +38,11 @@ model User {
   name  String?
   email String  @unique
 
-  profile   UserProfile?
-  workouts  Workout[]
-  updatedAt DateTime     @updatedAt
-  createdAt DateTime     @default(now())
+  profile     UserProfile?
+  workouts    Workout[]
+  adminAccess AdminAccess?
+  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime     @default(now())
 }
 
 model UserProfile {
@@ -135,4 +136,11 @@ model WorkoutSet {
   createdAt DateTime @default(now())
 
   @@index([workoutExerciseId])
+}
+
+model AdminAccess {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 }
