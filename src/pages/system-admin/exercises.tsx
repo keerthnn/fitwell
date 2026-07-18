@@ -4,6 +4,7 @@ import {
   Checkbox,
   Container,
   FormControlLabel,
+  IconButton,
   Paper,
   Stack,
   Table,
@@ -12,8 +13,10 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 import { AdminLayout } from "fitness/components/AdminLayout";
 import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import {
@@ -107,8 +110,15 @@ export default function AdminExercisesPage() {
   }
 
   async function remove(id: string) {
-    await adminDeleteExercise(id);
-    await load();
+    if (!confirm("Delete this exercise from the library?")) return;
+
+    try {
+      await adminDeleteExercise(id);
+      await load();
+    } catch (error) {
+      console.error("Failed to delete exercise:", error);
+      alert("Failed to delete exercise.");
+    }
   }
 
   const exerciseKey = (exercise: Pick<Exercise, "name" | "equipment">) =>
@@ -277,7 +287,40 @@ export default function AdminExercisesPage() {
                     </Button>
                   ))}
                 </Stack>
-                <Table size="small">
+                <Box sx={{ display: { xs: "block", md: "none" } }}>
+                  <Stack spacing={1}>
+                    {catalogExercises.map((exercise) => {
+                      const key = exerciseKey(exercise);
+                      const alreadyAdded = existingExerciseKeys.has(key);
+
+                      return (
+                        <Paper key={key} variant="outlined" sx={{ p: 2 }}>
+                          <Stack direction="row" spacing={2} alignItems="center">
+                            <Box sx={{ flex: 1, minWidth: 0 }}>
+                              <Typography fontWeight={600}>{exercise.name}</Typography>
+                              <Typography variant="body2" color="text.secondary">
+                                {exercise.category} • {exercise.equipment}
+                              </Typography>
+                            </Box>
+                            <Button
+                              size="small"
+                              variant={alreadyAdded ? "outlined" : "contained"}
+                              disabled={alreadyAdded || addingCatalogExercise === key}
+                              onClick={() => addCatalogExercise(exercise)}
+                            >
+                              {alreadyAdded
+                                ? "Added"
+                                : addingCatalogExercise === key
+                                  ? "Adding..."
+                                  : "Add"}
+                            </Button>
+                          </Stack>
+                        </Paper>
+                      );
+                    })}
+                  </Stack>
+                </Box>
+                <Table size="small" sx={{ display: { xs: "none", md: "table" } }}>
                   <TableHead>
                     <TableRow>
                       <TableCell>Exercise</TableCell>
@@ -318,7 +361,41 @@ export default function AdminExercisesPage() {
               </Paper>
 
               <Paper>
-                <Table>
+                <Box sx={{ display: { xs: "block", md: "none" }, p: 2 }}>
+                  <Stack spacing={1}>
+                    {exercises.map((exercise) => (
+                      <Paper key={exercise.id} variant="outlined" sx={{ p: 2 }}>
+                        <Stack direction="row" spacing={1} alignItems="center">
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography fontWeight={600}>{exercise.name}</Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {exercise.category} • {exercise.equipment} • {exercise.movement}
+                            </Typography>
+                          </Box>
+                          <Tooltip title="Edit exercise">
+                            <IconButton
+                              color="primary"
+                              aria-label={`Edit ${exercise.name}`}
+                              onClick={() => setForm(exercise)}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete exercise">
+                            <IconButton
+                              color="error"
+                              aria-label={`Delete ${exercise.name}`}
+                              onClick={() => remove(exercise.id)}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </Stack>
+                      </Paper>
+                    ))}
+                  </Stack>
+                </Box>
+                <Table sx={{ display: { xs: "none", md: "table" } }}>
                 <TableHead>
                   <TableRow>
                     <TableCell>
@@ -380,16 +457,26 @@ export default function AdminExercisesPage() {
                           spacing={1}
                           justifyContent="flex-end"
                         >
-                          <Button size="small" onClick={() => setForm(e)}>
-                            Edit
-                          </Button>
-                          <Button
-                            size="small"
+                          <Tooltip title="Edit exercise">
+                            <IconButton
+                              size="small"
+                              color="primary"
+                              aria-label={`Edit ${e.name}`}
+                              onClick={() => setForm(e)}
+                            >
+                              <EditIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete exercise">
+                            <IconButton
+                              size="small"
                             color="error"
+                              aria-label={`Delete ${e.name}`}
                             onClick={() => remove(e.id)}
                           >
-                            Delete
-                          </Button>
+                              <DeleteIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
                         </Stack>
                       </TableCell>
                     </TableRow>

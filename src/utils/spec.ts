@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   AddExercisePayload,
+  AdminDashboardStats,
   CreateWorkoutPayload,
   Exercise,
   Profile,
@@ -110,6 +111,11 @@ export async function adminGetUsers() {
   return data;
 }
 
+export async function getAdminDashboardStats() {
+  const { data } = await axios.get("/api/admin/get-dashboard-stats");
+  return data as AdminDashboardStats;
+}
+
 export async function getAdminStatus() {
   const { data } = await axios.get("/api/admin/get-admin-status");
   return data as { isAdmin: true };
@@ -132,4 +138,19 @@ export async function adminDeleteExercise(id: string) {
     params: { id },
   });
   return data as { success: boolean };
+}
+
+export async function adminSetUserAccess(userId: string, isAdmin: boolean) {
+  const { data } = await axios.post("/api/admin/set-admin-access", {
+    userId,
+    isAdmin,
+  });
+  return data as { success: true; isAdmin: boolean };
+}
+
+export async function adminDeleteUser(userId: string) {
+  const { data } = await axios.delete("/api/admin/delete-user", {
+    params: { userId },
+  });
+  return data as { success: true };
 }

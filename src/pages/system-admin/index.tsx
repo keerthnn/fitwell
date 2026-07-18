@@ -2,8 +2,17 @@ import { FitnessCenter, People, TrendingUp } from "@mui/icons-material";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { AdminLayout } from "fitness/components/AdminLayout";
 import { AdminPageGuard } from "fitness/components/AdminPageGuard";
+import { getAdminDashboardStats } from "fitness/utils/spec";
+import { AdminDashboardStats } from "fitness/utils/types";
+import { useEffect, useState } from "react";
 
 export default function SystemAdminDashboard() {
+  const [stats, setStats] = useState<AdminDashboardStats | null>(null);
+
+  useEffect(() => {
+    getAdminDashboardStats().then(setStats).catch(console.error);
+  }, []);
+
   return (
     <AdminPageGuard>
       <AdminLayout>
@@ -46,7 +55,38 @@ export default function SystemAdminDashboard() {
                     <People sx={{ color: "primary.main" }} />
                   </Box>
                   <Typography variant="h3" fontWeight={700}>
-                    —
+                    {stats?.totalUsers ?? "—"}
+                  </Typography>
+                </Paper>
+              </Paper>
+
+              <Paper sx={{ p: 3, flex: 1 }}>
+                <Paper
+                  sx={{
+                    p: 3,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      fontWeight={600}
+                      color="text.secondary"
+                    >
+                      Total Workouts
+                    </Typography>
+                    <FitnessCenter sx={{ color: "secondary.main" }} />
+                  </Box>
+                  <Typography variant="h3" fontWeight={700}>
+                    {stats?.totalWorkouts ?? "—"}
                   </Typography>
                 </Paper>
               </Paper>
@@ -74,41 +114,10 @@ export default function SystemAdminDashboard() {
                     >
                       Exercises
                     </Typography>
-                    <FitnessCenter sx={{ color: "secondary.main" }} />
-                  </Box>
-                  <Typography variant="h3" fontWeight={700}>
-                    —
-                  </Typography>
-                </Paper>
-              </Paper>
-
-              <Paper sx={{ p: 3, flex: 1 }}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      fontWeight={600}
-                      color="text.secondary"
-                    >
-                      Active Sessions
-                    </Typography>
                     <TrendingUp sx={{ color: "success.main" }} />
                   </Box>
                   <Typography variant="h3" fontWeight={700}>
-                    —
+                    {stats?.totalExercises ?? "—"}
                   </Typography>
                 </Paper>
               </Paper>

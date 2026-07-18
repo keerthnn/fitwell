@@ -71,6 +71,12 @@ export interface Exercise {
   isCompound: boolean;
 }
 
+export interface AdminDashboardStats {
+  totalUsers: number;
+  totalWorkouts: number;
+  totalExercises: number;
+}
+
 export interface AddExercisePayload {
   exerciseId: string;
   order: number;

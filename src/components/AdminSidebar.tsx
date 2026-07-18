@@ -49,23 +49,7 @@ export function AdminSidebar({ mobileOpen, onMobileClose }: AdminSidebarProps) {
 
   const drawerContent = (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      {/* Title */}
-      <Box
-        sx={{
-          px: 3,
-          py: 2,
-          borderBottom: 1,
-          borderColor: "divider",
-          fontSize: "1.125rem",
-          fontWeight: 700,
-          letterSpacing: "-0.01em",
-        }}
-      >
-        System Admin
-      </Box>
-
-      {/* Nav */}
-      <List sx={{ px: 2, py: 2, flex: 1 }}>
+      <List sx={{ px: 2, py: 2, flex: 1 }} aria-label="Admin navigation">
         {navItems.map((item) => {
           const active = isActive(item.href);
 

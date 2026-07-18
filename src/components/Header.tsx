@@ -14,17 +14,23 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
+import {
+  AccountCircle,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { signOutUser } from "fitness/lib/authUtils";
+import { getAdminStatus } from "fitness/utils/spec";
 import { useAuth } from "./context";
 
 export const HEADER_HEIGHT = 64;
 
 export default function Header() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
+  const [adminUserId, setAdminUserId] = useState<string | null>(null);
+  const isAdmin = Boolean(user && adminUserId === user.uid);
 
   // Profile menu
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -32,6 +38,24 @@ export default function Header() {
 
   // Mobile drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    if (loading || !user) return;
+
+    let active = true;
+
+    getAdminStatus()
+      .then(() => {
+        if (active) setAdminUserId(user.uid);
+      })
+      .catch(() => {
+        if (active) setAdminUserId(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [loading, user]);
 
   const navigate = (path: string) => {
     setAnchorEl(null);
@@ -108,7 +132,9 @@ export default function Header() {
               <MenuItem onClick={() => navigate("/profile")}>
                 Profile
               </MenuItem>
-              <MenuItem onClick={logout}>Logout</MenuItem>
+              <MenuItem onClick={logout} sx={{ color: "error.main" }}>
+                Logout
+              </MenuItem>
             </>
           ) : (
             <MenuItem onClick={() => navigate("/auth/sign-in")}>
@@ -132,6 +158,12 @@ export default function Header() {
               <ListItemButton onClick={() => navigate("/workouts")}>
                 <ListItemText primary="Workouts" />
               </ListItemButton>
+
+              {isAdmin && (
+                <ListItemButton onClick={() => navigate("/system-admin")}>
+                  <ListItemText primary="Admin" />
+                </ListItemButton>
+              )}
 
               <Divider />
 
