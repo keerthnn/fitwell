@@ -93,16 +93,107 @@ export interface Exercise {
   safetyNotes?: string | null;
 }
 
-export interface AdminDashboardStats {
-  totalUsers: number;
-  totalWorkouts: number;
+export type AdminAnalyticsRange =
+  | "TODAY"
+  | "LAST_7_DAYS"
+  | "LAST_30_DAYS"
+  | "THIS_MONTH"
+  | "THIS_YEAR"
+  | "CUSTOM"
+  | "ALL_TIME";
+export type AdminAnalyticsGrouping = "AUTO" | "DAY" | "WEEK" | "MONTH" | "YEAR";
+export interface AdminAnalyticsQuery {
+  range: AdminAnalyticsRange;
+  start?: string;
+  end?: string;
+  groupBy?: AdminAnalyticsGrouping;
+}
+export interface AdminAnalyticsMetadata {
+  range: AdminAnalyticsRange;
+  grouping: Exclude<AdminAnalyticsGrouping, "AUTO">;
+  start: string;
+  end: string;
+  timezone: string;
+}
+export interface AnalyticsPoint {
+  bucket: string;
+  label: string;
+  [key: string]: string | number;
+}
+export interface DistributionPoint { name: string; value: number }
+export interface RankedAnalyticsItem { name: string; value: number }
+export interface AdminSummaryAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  users: { total: number; active: number; inactive: number; newInPeriod: number };
+  workouts: { total: number; completed: number; incomplete: number; createdInPeriod: number };
+  templates: { total: number; public: number; private: number; unlisted: number; archived: number; createdInPeriod: number };
+  nutrition: { total: number; entriesInPeriod: number; participatingUsers: number };
+  health: { totalInjuries: number; active: number; recovered: number; addedInPeriod: number };
+  weight: { total: number; entriesInPeriod: number; participatingUsers: number };
+  achievements: { totalAwarded: number; awardedInPeriod: number; uniqueUsers: number };
   totalExercises: number;
-  activeUsers?: number;
-  publicTemplates?: number;
-  nutritionEntries?: number;
-  totalTemplates?: number;
-  completedWorkouts?: number;
-  activeInjuries?: number;
+}
+export interface AdminUsersAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["users"];
+  series: AnalyticsPoint[];
+  historyApproximateBefore: string;
+}
+export interface AdminWorkoutsAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["workouts"] & { averagePerActiveUser: number; durationM: number; caloriesBurned: number };
+  series: AnalyticsPoint[];
+  statusDistribution: DistributionPoint[];
+  weekdayFrequency: DistributionPoint[];
+}
+export interface AdminTemplatesAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["templates"] & { active: number; usesInPeriod: number; copiesInPeriod: number };
+  series: AnalyticsPoint[];
+  visibilityDistribution: DistributionPoint[];
+  mostUsed: RankedAnalyticsItem[];
+  mostCopied: RankedAnalyticsItem[];
+}
+export interface AdminNutritionAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["nutrition"] & { averagePerParticipant: number };
+  series: AnalyticsPoint[];
+}
+export interface AdminHealthAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["health"] & { usersWithActiveInjuries: number };
+  series: AnalyticsPoint[];
+}
+export interface AdminWeightAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["weight"] & { averagePerParticipant: number };
+  series: AnalyticsPoint[];
+}
+export interface AdminAchievementsAnalytics {
+  metadata: AdminAnalyticsMetadata;
+  totals: AdminSummaryAnalytics["achievements"];
+  series: AnalyticsPoint[];
+  mostEarned: RankedAnalyticsItem[];
+  leastEarned: RankedAnalyticsItem[];
+}
+
+export interface PersonalAnalyticsDashboard {
+  metadata: AdminAnalyticsMetadata;
+  workouts: {
+    total: number; completed: number; incomplete: number; createdInPeriod: number;
+    durationM: number; caloriesBurned: number; series: AnalyticsPoint[];
+    statusDistribution: DistributionPoint[]; weekdayFrequency: DistributionPoint[];
+  };
+  templates: {
+    total: number; public: number; private: number; unlisted: number; archived: number;
+    active: number; createdInPeriod: number; usesInPeriod: number; copiesInPeriod: number;
+    series: AnalyticsPoint[]; visibilityDistribution: DistributionPoint[];
+    mostUsed: RankedAnalyticsItem[]; mostCopied: RankedAnalyticsItem[];
+  };
+  nutrition: { total: number; entriesInPeriod: number; series: AnalyticsPoint[] };
+  health: { totalInjuries: number; active: number; recovered: number; addedInPeriod: number; series: AnalyticsPoint[] };
+  weight: { total: number; entriesInPeriod: number; series: AnalyticsPoint[] };
+  achievements: { totalAwarded: number; awardedInPeriod: number; series: AnalyticsPoint[]; mostEarned: RankedAnalyticsItem[]; leastEarned: RankedAnalyticsItem[] };
 }
 
 export interface AdminTemplate {

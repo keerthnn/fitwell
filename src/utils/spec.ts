@@ -1,7 +1,16 @@
 import axios from "axios";
 import {
   AddExercisePayload,
-  AdminDashboardStats,
+  AdminAnalyticsQuery,
+  AdminSummaryAnalytics,
+  AdminUsersAnalytics,
+  AdminWorkoutsAnalytics,
+  AdminTemplatesAnalytics,
+  AdminNutritionAnalytics,
+  AdminHealthAnalytics,
+  AdminWeightAnalytics,
+  AdminAchievementsAnalytics,
+  PersonalAnalyticsDashboard,
   CreateWorkoutPayload,
   Exercise,
   Profile,
@@ -123,9 +132,52 @@ export async function adminGetUsers() {
   return data;
 }
 
-export async function getAdminDashboardStats() {
-  const { data } = await axios.get("/api/admin/get-dashboard-stats");
-  return data as AdminDashboardStats;
+const adminAnalyticsParams = (query: AdminAnalyticsQuery) => ({
+  range: query.range,
+  start: query.start,
+  end: query.end,
+  groupBy: query.groupBy ?? "AUTO",
+});
+
+export async function getAdminDashboardSummary(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/summary", { params: adminAnalyticsParams(query) });
+  return data as AdminSummaryAnalytics;
+}
+
+export async function getAdminUsersAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/users", { params: adminAnalyticsParams(query) });
+  return data as AdminUsersAnalytics;
+}
+export async function getAdminWorkoutsAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/workouts", { params: adminAnalyticsParams(query) });
+  return data as AdminWorkoutsAnalytics;
+}
+export async function getAdminTemplatesAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/templates", { params: adminAnalyticsParams(query) });
+  return data as AdminTemplatesAnalytics;
+}
+export async function getAdminNutritionAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/nutrition", { params: adminAnalyticsParams(query) });
+  return data as AdminNutritionAnalytics;
+}
+export async function getAdminHealthAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/health", { params: adminAnalyticsParams(query) });
+  return data as AdminHealthAnalytics;
+}
+export async function getAdminWeightAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/weight", { params: adminAnalyticsParams(query) });
+  return data as AdminWeightAnalytics;
+}
+export async function getAdminAchievementsAnalytics(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/admin/dashboard/achievements", { params: adminAnalyticsParams(query) });
+  return data as AdminAchievementsAnalytics;
+}
+
+export async function getPersonalAnalyticsDashboard(query: AdminAnalyticsQuery) {
+  const { data } = await axios.get("/api/analytics/personal-dashboard", {
+    params: adminAnalyticsParams(query),
+  });
+  return data as PersonalAnalyticsDashboard;
 }
 
 export async function getAdminStatus() {

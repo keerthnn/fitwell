@@ -42,7 +42,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <Box sx={{ display: "flex", width: "100%", maxWidth: "100%", minHeight: "100vh", overflowX: "hidden" }}>
       <AppBar
         position="fixed"
         sx={{
@@ -124,6 +124,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         component="main"
         sx={{
           flexGrow: 1,
+          width: { xs: "100%", md: `calc(100% - ${SIDEBAR_WIDTH}px)` },
+          maxWidth: "100%",
+          minWidth: 0,
+          overflowX: "hidden",
           ml: { md: `${SIDEBAR_WIDTH}px` },
           mt: `${APP_HEADER_HEIGHT}px`,
           minHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px)`,

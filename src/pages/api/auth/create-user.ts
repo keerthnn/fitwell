@@ -1,6 +1,7 @@
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { getDecodedTokenOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
+import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -30,6 +31,7 @@ export default async function handler(
         avatarUrl: token.picture ?? null,
       },
     });
+    await recordUserActivity(user.id, true);
     return res.status(200).json({ userName: user.name ?? "" });
   } catch (err) {
     console.error("Error creating user:", err);

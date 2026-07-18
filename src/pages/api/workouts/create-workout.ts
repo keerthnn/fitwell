@@ -73,10 +73,18 @@ export default async function handler(
       },
     });
     if (template)
-      await tx.workoutTemplate.update({
-        where: { id: template.id },
-        data: { useCount: { increment: 1 } },
-      });
+      await Promise.all([
+        tx.workoutTemplate.update({
+          where: { id: template.id },
+          data: { useCount: { increment: 1 } },
+        }),
+        tx.templateUseEvent.create({
+          data: {
+            templateId: template.id,
+            templateTitleSnapshot: template.title,
+          },
+        }),
+      ]);
     return created;
   });
 
