@@ -5,6 +5,8 @@ import {
   Container,
   FormControlLabel,
   IconButton,
+  Menu,
+  MenuItem,
   Paper,
   Stack,
   Table,
@@ -16,12 +18,13 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
+import { MoreVert as MoreVertIcon } from "@mui/icons-material";
 import { AdminLayout } from "fitness/components/AdminLayout";
 import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import {
   exerciseCatalog,
   exerciseCategories,
+  muscleGroupImageSources,
   type ExerciseCatalogItem,
 } from "fitness/utils/exerciseCatalog";
 import {
@@ -68,6 +71,8 @@ export default function AdminExercisesPage() {
   const [saving, setSaving] = useState(false);
   const [catalogCategory, setCatalogCategory] = useState<string>("All");
   const [addingCatalogExercise, setAddingCatalogExercise] = useState<string | null>(null);
+  const [actionMenuAnchor, setActionMenuAnchor] = useState<HTMLElement | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
 
   async function load() {
     setExercises(await getExercises());
@@ -143,6 +148,32 @@ export default function AdminExercisesPage() {
     }
   }
 
+  const openExerciseActions = (
+    event: React.MouseEvent<HTMLElement>,
+    exercise: Exercise,
+  ) => {
+    setActionMenuAnchor(event.currentTarget);
+    setSelectedExercise(exercise);
+  };
+
+  const closeExerciseActions = () => {
+    setActionMenuAnchor(null);
+    setSelectedExercise(null);
+  };
+
+  const editSelectedExercise = () => {
+    if (!selectedExercise) return;
+    setForm(selectedExercise);
+    closeExerciseActions();
+  };
+
+  const deleteSelectedExercise = () => {
+    if (!selectedExercise) return;
+    const exerciseId = selectedExercise.id;
+    closeExerciseActions();
+    void remove(exerciseId);
+  };
+
   return (
     <AdminPageGuard>
       <AdminLayout>
@@ -171,6 +202,17 @@ export default function AdminExercisesPage() {
                       key={category}
                       size="small"
                       variant={form.category === category ? "contained" : "outlined"}
+                      startIcon={
+                        muscleGroupImageSources[category] ? (
+                          <Box
+                            component="img"
+                            src={muscleGroupImageSources[category]}
+                            alt=""
+                            aria-hidden="true"
+                            sx={{ width: 24, height: 24, objectFit: "contain" }}
+                          />
+                        ) : undefined
+                      }
                       onClick={() => setForm({ ...form, category })}
                     >
                       {category}
@@ -281,6 +323,17 @@ export default function AdminExercisesPage() {
                       key={category}
                       size="small"
                       variant={catalogCategory === category ? "contained" : "outlined"}
+                      startIcon={
+                        muscleGroupImageSources[category] ? (
+                          <Box
+                            component="img"
+                            src={muscleGroupImageSources[category]}
+                            alt=""
+                            aria-hidden="true"
+                            sx={{ width: 24, height: 24, objectFit: "contain" }}
+                          />
+                        ) : undefined
+                      }
                       onClick={() => setCatalogCategory(category)}
                     >
                       {category}
@@ -296,6 +349,15 @@ export default function AdminExercisesPage() {
                       return (
                         <Paper key={key} variant="outlined" sx={{ p: 2 }}>
                           <Stack direction="row" spacing={2} alignItems="center">
+                            {muscleGroupImageSources[exercise.category] && (
+                              <Box
+                                component="img"
+                                src={muscleGroupImageSources[exercise.category]}
+                                alt=""
+                                aria-hidden="true"
+                                sx={{ width: 36, height: 36, objectFit: "contain" }}
+                              />
+                            )}
                             <Box sx={{ flex: 1, minWidth: 0 }}>
                               <Typography fontWeight={600}>{exercise.name}</Typography>
                               <Typography variant="body2" color="text.secondary">
@@ -336,7 +398,20 @@ export default function AdminExercisesPage() {
 
                       return (
                         <TableRow key={key}>
-                          <TableCell>{exercise.name}</TableCell>
+                          <TableCell>
+                            <Stack direction="row" spacing={1} alignItems="center">
+                              {muscleGroupImageSources[exercise.category] && (
+                                <Box
+                                  component="img"
+                                  src={muscleGroupImageSources[exercise.category]}
+                                  alt=""
+                                  aria-hidden="true"
+                                  sx={{ width: 28, height: 28, objectFit: "contain" }}
+                                />
+                              )}
+                              <Typography variant="body2">{exercise.name}</Typography>
+                            </Stack>
+                          </TableCell>
                           <TableCell>{exercise.category}</TableCell>
                           <TableCell>{exercise.equipment}</TableCell>
                           <TableCell align="right">
@@ -366,28 +441,27 @@ export default function AdminExercisesPage() {
                     {exercises.map((exercise) => (
                       <Paper key={exercise.id} variant="outlined" sx={{ p: 2 }}>
                         <Stack direction="row" spacing={1} alignItems="center">
+                          {muscleGroupImageSources[exercise.category] && (
+                            <Box
+                              component="img"
+                              src={muscleGroupImageSources[exercise.category]}
+                              alt=""
+                              aria-hidden="true"
+                              sx={{ width: 36, height: 36, objectFit: "contain" }}
+                            />
+                          )}
                           <Box sx={{ flex: 1, minWidth: 0 }}>
                             <Typography fontWeight={600}>{exercise.name}</Typography>
                             <Typography variant="body2" color="text.secondary">
                               {exercise.category} • {exercise.equipment} • {exercise.movement}
                             </Typography>
                           </Box>
-                          <Tooltip title="Edit exercise">
+                          <Tooltip title="Exercise actions">
                             <IconButton
-                              color="primary"
-                              aria-label={`Edit ${exercise.name}`}
-                              onClick={() => setForm(exercise)}
+                              aria-label={`Actions for ${exercise.name}`}
+                              onClick={(event) => openExerciseActions(event, exercise)}
                             >
-                              <EditIcon />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Delete exercise">
-                            <IconButton
-                              color="error"
-                              aria-label={`Delete ${exercise.name}`}
-                              onClick={() => remove(exercise.id)}
-                            >
-                              <DeleteIcon />
+                              <MoreVertIcon />
                             </IconButton>
                           </Tooltip>
                         </Stack>
@@ -435,7 +509,20 @@ export default function AdminExercisesPage() {
                         },
                       }}
                     >
-                      <TableCell>{e.name}</TableCell>
+                      <TableCell>
+                        <Stack direction="row" spacing={1} alignItems="center">
+                          {muscleGroupImageSources[e.category] && (
+                            <Box
+                              component="img"
+                              src={muscleGroupImageSources[e.category]}
+                              alt=""
+                              aria-hidden="true"
+                              sx={{ width: 28, height: 28, objectFit: "contain" }}
+                            />
+                          )}
+                          <Typography variant="body2">{e.name}</Typography>
+                        </Stack>
+                      </TableCell>
                       <TableCell>
                         <Typography variant="body2" color="text.secondary">
                           {e.equipment}
@@ -457,24 +544,13 @@ export default function AdminExercisesPage() {
                           spacing={1}
                           justifyContent="flex-end"
                         >
-                          <Tooltip title="Edit exercise">
+                          <Tooltip title="Exercise actions">
                             <IconButton
                               size="small"
-                              color="primary"
-                              aria-label={`Edit ${e.name}`}
-                              onClick={() => setForm(e)}
+                              aria-label={`Actions for ${e.name}`}
+                              onClick={(event) => openExerciseActions(event, e)}
                             >
-                              <EditIcon fontSize="small" />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Delete exercise">
-                            <IconButton
-                              size="small"
-                            color="error"
-                              aria-label={`Delete ${e.name}`}
-                            onClick={() => remove(e.id)}
-                          >
-                              <DeleteIcon fontSize="small" />
+                              <MoreVertIcon fontSize="small" />
                             </IconButton>
                           </Tooltip>
                         </Stack>
@@ -484,6 +560,16 @@ export default function AdminExercisesPage() {
                 </TableBody>
                 </Table>
               </Paper>
+              <Menu
+                anchorEl={actionMenuAnchor}
+                open={Boolean(actionMenuAnchor && selectedExercise)}
+                onClose={closeExerciseActions}
+              >
+                <MenuItem onClick={editSelectedExercise}>Edit</MenuItem>
+                <MenuItem onClick={deleteSelectedExercise} sx={{ color: "error.main" }}>
+                  Delete
+                </MenuItem>
+              </Menu>
             </Stack>
           </Container>
         </Box>

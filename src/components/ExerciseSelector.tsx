@@ -1,5 +1,12 @@
 // fitness/components/ExerciseSelector.tsx
 import {
+  muscleGroupImageSources,
+} from "fitness/utils/exerciseCatalog";
+import {
+  SelfImprovement,
+  ViewModule,
+} from "@mui/icons-material";
+import {
   Box,
   Button,
   List,
@@ -21,6 +28,17 @@ interface Props {
   onCancel: () => void;
 }
 
+const muscleGroups = [
+  { label: "All", icon: ViewModule },
+  { label: "Chest", imageSrc: muscleGroupImageSources.Chest },
+  { label: "Back", imageSrc: muscleGroupImageSources.Back },
+  { label: "Legs", imageSrc: muscleGroupImageSources.Legs },
+  { label: "Biceps", imageSrc: muscleGroupImageSources.Biceps },
+  { label: "Triceps", imageSrc: muscleGroupImageSources.Triceps },
+  { label: "Shoulders", imageSrc: muscleGroupImageSources.Shoulders },
+  { label: "Abs", icon: SelfImprovement },
+];
+
 export default function ExerciseSelector({
   workoutId,
   nextOrder,
@@ -29,6 +47,7 @@ export default function ExerciseSelector({
 }: Props) {
   const [search, setSearch] = useState("");
   const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(false);
   const [adding, setAdding] = useState(false);
 
@@ -67,6 +86,11 @@ export default function ExerciseSelector({
     }
   };
 
+  const visibleExercises = exercises.filter(
+    (exercise) =>
+      selectedCategory === "All" || exercise.category === selectedCategory,
+  );
+
   return (
     <Paper sx={{ p: 3, border: "2px solid", borderColor: "primary.main" }}>
       <Typography variant="h6" gutterBottom>
@@ -87,8 +111,45 @@ export default function ExerciseSelector({
         </Button>
       </Box>
 
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(2, minmax(0, 1fr))",
+            sm: "repeat(4, minmax(0, 1fr))",
+          },
+          gap: 1,
+          mb: 2,
+        }}
+      >
+        {muscleGroups.map(({ label, icon: Icon, imageSrc }) => (
+          <Button
+            key={label}
+            size="small"
+            variant={selectedCategory === label ? "contained" : "outlined"}
+            startIcon={
+              imageSrc ? (
+                <Box
+                  component="img"
+                  src={imageSrc}
+                  alt=""
+                  aria-hidden="true"
+                  sx={{ width: 26, height: 26, objectFit: "contain" }}
+                />
+              ) : (
+                Icon && <Icon fontSize="small" />
+              )
+            }
+            onClick={() => setSelectedCategory(label)}
+            sx={{ minWidth: 0, px: 1, justifyContent: "flex-start" }}
+          >
+            {label}
+          </Button>
+        ))}
+      </Box>
+
       <List sx={{ maxHeight: 300, overflow: "auto", mb: 2 }}>
-        {exercises.map((exercise) => (
+        {visibleExercises.map((exercise) => (
           <ListItem key={exercise.id} disablePadding>
             <ListItemButton
               onClick={() => handleSelect(exercise.id)}
@@ -101,6 +162,11 @@ export default function ExerciseSelector({
             </ListItemButton>
           </ListItem>
         ))}
+        {!loading && visibleExercises.length === 0 && (
+          <Typography color="text.secondary" sx={{ py: 2 }}>
+            No exercises found for this muscle group.
+          </Typography>
+        )}
       </List>
 
       <Button variant="text" onClick={onCancel} disabled={adding}>

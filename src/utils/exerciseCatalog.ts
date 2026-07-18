@@ -34,3 +34,12 @@ export const exerciseCatalog: ExerciseCatalogItem[] = [
 ];
 
 export const exerciseCategories = ["Chest", "Biceps", "Triceps", "Shoulders", "Abs", "Legs", "Back"] as const;
+
+export const muscleGroupImageSources: Partial<Record<string, string>> = {
+  Chest: "/muscle-groups/chest.png",
+  Back: "/muscle-groups/back.png",
+  Legs: "/muscle-groups/legs.png",
+  Biceps: "/muscle-groups/biceps.png",
+  Triceps: "/muscle-groups/triceps.png",
+  Shoulders: "/muscle-groups/shoulders.png",
+};

@@ -106,6 +106,11 @@ export default function Header() {
             <Button color="inherit" onClick={() => navigate("/workouts")}>
               Workouts
             </Button>
+            {isAdmin && (
+              <Button color="inherit" onClick={() => navigate("/system-admin")}>
+                Admin
+              </Button>
+            )}
           </Stack>
         </Stack>
 
