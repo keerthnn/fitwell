@@ -1,44 +1,10 @@
 import type { Exercise } from "fitness/utils/types";
-
-export type ExerciseCatalogItem = Omit<Exercise, "id">;
-
-export const exerciseCatalog: ExerciseCatalogItem[] = [
-  { name: "Barbell Bench Press", equipment: "BARBELL", movement: "PUSH", category: "Chest", region: "Mid chest", isCompound: true },
-  { name: "Incline Dumbbell Press", equipment: "DUMBBELL", movement: "PUSH", category: "Chest", region: "Upper chest", isCompound: true },
-  { name: "Push-Up", equipment: "BODYWEIGHT", movement: "PUSH", category: "Chest", region: "Chest", isCompound: true },
-  { name: "Cable Fly", equipment: "CABLE", movement: "PUSH", category: "Chest", region: "Chest", isCompound: false },
-  { name: "Dumbbell Bicep Curl", equipment: "DUMBBELL", movement: "PULL", category: "Biceps", region: "Biceps", isCompound: false },
-  { name: "Hammer Curl", equipment: "DUMBBELL", movement: "PULL", category: "Biceps", region: "Brachialis", isCompound: false },
-  { name: "Barbell Curl", equipment: "BARBELL", movement: "PULL", category: "Biceps", region: "Biceps", isCompound: false },
-  { name: "Cable Bicep Curl", equipment: "CABLE", movement: "PULL", category: "Biceps", region: "Biceps", isCompound: false },
-  { name: "Tricep Pushdown", equipment: "CABLE", movement: "PUSH", category: "Triceps", region: "Triceps", isCompound: false },
-  { name: "Overhead Dumbbell Extension", equipment: "DUMBBELL", movement: "PUSH", category: "Triceps", region: "Long head", isCompound: false },
-  { name: "Skull Crusher", equipment: "BARBELL", movement: "PUSH", category: "Triceps", region: "Triceps", isCompound: false },
-  { name: "Bench Dip", equipment: "BODYWEIGHT", movement: "PUSH", category: "Triceps", region: "Triceps", isCompound: true },
-  { name: "Overhead Press", equipment: "BARBELL", movement: "PUSH", category: "Shoulders", region: "Front delts", isCompound: true },
-  { name: "Dumbbell Lateral Raise", equipment: "DUMBBELL", movement: "PUSH", category: "Shoulders", region: "Side delts", isCompound: false },
-  { name: "Dumbbell Front Raise", equipment: "DUMBBELL", movement: "PUSH", category: "Shoulders", region: "Front delts", isCompound: false },
-  { name: "Face Pull", equipment: "CABLE", movement: "PULL", category: "Shoulders", region: "Rear delts", isCompound: false },
-  { name: "Plank", equipment: "BODYWEIGHT", movement: "ISOMETRIC", category: "Abs", region: "Total Abs", isCompound: false },
-  { name: "Cable Crunch", equipment: "CABLE", movement: "PUSH", category: "Abs", region: "Upper Abs", isCompound: false },
-  { name: "Hanging Leg Raise", equipment: "BODYWEIGHT", movement: "ISOMETRIC", category: "Abs", region: "Lower Abs", isCompound: false },
-  { name: "Russian Twist", equipment: "BODYWEIGHT", movement: "ROTATION", category: "Abs", region: "Obliques", isCompound: false },
-  { name: "Barbell Back Squat", equipment: "BARBELL", movement: "SQUAT", category: "Legs", region: "Quads", isCompound: true },
-  { name: "Romanian Deadlift", equipment: "BARBELL", movement: "HINGE", category: "Legs", region: "Hamstrings", isCompound: true },
-  { name: "Leg Press", equipment: "MACHINE", movement: "SQUAT", category: "Legs", region: "Quads", isCompound: true },
-  { name: "Walking Lunge", equipment: "DUMBBELL", movement: "LUNGE", category: "Legs", region: "Quads and glutes", isCompound: true },
-  { name: "Standing Calf Raise", equipment: "BODYWEIGHT", movement: "PUSH", category: "Legs", region: "Calves", isCompound: false },
-  { name: "Machine Calf Raise", equipment: "MACHINE", movement: "PUSH", category: "Legs", region: "Calves", isCompound: false },
-  { name: "Barbell Hip Thrust", equipment: "BARBELL", movement: "HINGE", category: "Legs", region: "Glutes", isCompound: true },
-  { name: "Cable Glute Kickback", equipment: "CABLE", movement: "HINGE", category: "Legs", region: "Glutes", isCompound: false },
-  { name: "Barbell Row", equipment: "BARBELL", movement: "PULL", category: "Back", region: "Middle Back", isCompound: true },
-  { name: "Lat Pulldown", equipment: "MACHINE", movement: "PULL", category: "Back", region: "Upper Back", isCompound: true },
-  { name: "Seated Cable Row", equipment: "CABLE", movement: "PULL", category: "Back", region: "Middle Back", isCompound: true },
-  { name: "Pull-Up", equipment: "BODYWEIGHT", movement: "PULL", category: "Back", region: "Upper Back", isCompound: true },
-  { name: "Back Extension", equipment: "BODYWEIGHT", movement: "HINGE", category: "Back", region: "Lower Back", isCompound: false },
-];
-
-export const exerciseCategories = ["Chest", "Biceps", "Triceps", "Shoulders", "Abs", "Legs", "Back"] as const;
+export {
+  exerciseCatalog,
+  exerciseCategories,
+  type ExerciseCatalogItem,
+  type ExerciseCategory,
+} from "fitness/utils/workoutCatalog";
 
 export const muscleGroupImageSources: Partial<Record<string, string>> = {
   Chest: "/muscle-groups/chest.png",
@@ -58,6 +24,9 @@ export const muscleGroupImageSources: Partial<Record<string, string>> = {
   "Lower Abs": "/muscle-groups/lower-abs.png",
   Obliques: "/muscle-groups/obliques.png",
   "Total Abs": "/muscle-groups/total-abs.png",
+  Traps: "/muscle-groups/upper-back.png",
+  Forearms: "/muscle-groups/biceps.png",
+  "Full Body": "/muscle-groups/full-body.png",
 };
 
 export interface ExerciseMuscleGroup {
@@ -83,6 +52,9 @@ export const exerciseMuscleGroups: ExerciseMuscleGroup[] = [
   { label: "Lower Abs", category: "Abs", region: "Lower Abs", imageSrc: muscleGroupImageSources["Lower Abs"]! },
   { label: "Obliques", category: "Abs", region: "Obliques", imageSrc: muscleGroupImageSources.Obliques! },
   { label: "Total Abs", category: "Abs", region: "Total Abs", imageSrc: muscleGroupImageSources["Total Abs"]! },
+  { label: "Traps", category: "Traps", region: "Traps", imageSrc: muscleGroupImageSources.Traps! },
+  { label: "Forearms", category: "Forearms", region: "Forearms", imageSrc: muscleGroupImageSources.Forearms! },
+  { label: "Full Body", category: "Full Body", region: "Full Body", imageSrc: muscleGroupImageSources["Full Body"]! },
 ];
 
 function normalized(value?: string | null) {
@@ -93,6 +65,10 @@ export function getExerciseMuscleGroup(exercise: Pick<Exercise, "category" | "re
   const region = normalized(exercise.region);
   const exact = exerciseMuscleGroups.find((group) => normalized(group.region) === region);
   if (exact) return exact;
+  if (exercise.category === "Quadriceps") return exerciseMuscleGroups.find((group) => group.label === "Quads");
+  if (exercise.category === "Hamstrings") return exerciseMuscleGroups.find((group) => group.label === "Hamstrings");
+  if (exercise.category === "Glutes") return exerciseMuscleGroups.find((group) => group.label === "Glutes");
+  if (exercise.category === "Calves") return exerciseMuscleGroups.find((group) => group.label === "Calves");
   if (exercise.category === "Legs") {
     if (region.includes("hamstring")) return exerciseMuscleGroups.find((group) => group.label === "Hamstrings");
     if (region.includes("glute")) return exerciseMuscleGroups.find((group) => group.label === "Glutes");

@@ -7,7 +7,10 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:seed-exercises": "node scripts/seed-exercises.mjs",
+    "db:seed-templates": "node scripts/seed-templates.mjs",
+    "db:seed-all": "pnpm run db:seed-exercises && pnpm run db:seed-templates"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

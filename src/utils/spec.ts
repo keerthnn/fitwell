@@ -219,7 +219,7 @@ export async function adminDeleteUser(userId: string) {
   return data as { success: true };
 }
 
-export async function adminGetTemplates(filters?: { search?: string; visibility?: string; archived?: string }) {
+export async function adminGetTemplates(filters?: { search?: string; visibility?: string; archived?: string; catalogOnly?: string }) {
   const { data } = await axios.get("/api/admin/templates", { params: filters });
   return data as AdminTemplate[];
 }
@@ -232,6 +232,11 @@ export async function adminSetTemplateArchived(id: string, isArchived: boolean) 
 export async function adminDeleteTemplate(id: string) {
   const { data } = await axios.delete("/api/admin/templates", { params: { id } });
   return data as { success: true };
+}
+
+export async function adminAddCatalogTemplate(catalogSlug: string) {
+  const { data } = await axios.post("/api/admin/templates", { catalogSlug });
+  return data as { template: { id: string; title: string }; created: boolean };
 }
 
 export async function completeWorkout(id: string, caloriesBurned?: number) {

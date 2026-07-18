@@ -77,7 +77,7 @@ export default function Header() {
           <IconButton
             edge="start"
             color="inherit"
-            sx={{ display: { xs: "inline-flex", md: "none" } }}
+            sx={{ display: { xs: "inline-flex", lg: "none" } }}
             onClick={() => setDrawerOpen(true)}
           >
             <MenuIcon />
@@ -96,7 +96,7 @@ export default function Header() {
           <Stack
             direction="row"
             spacing={2}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", lg: "flex" } }}
           >
             <Button color="inherit" onClick={() => navigate("/")}>
               Home
@@ -117,6 +117,16 @@ export default function Header() {
             {user && (
               <Button color="inherit" onClick={() => navigate("/analytics")}>
                 Analytics
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/health")}>
+                Health
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/achievements")}>
+                Achievements
               </Button>
             )}
             {isAdmin && (

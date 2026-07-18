@@ -207,6 +207,7 @@ export interface AdminTemplate {
   useCount: number;
   exerciseCount: number;
   workoutCount: number;
+  catalogSlug: string | null;
   owner: { id: string; name: string | null; email: string; avatarUrl: string | null };
   createdAt: string;
   updatedAt: string;

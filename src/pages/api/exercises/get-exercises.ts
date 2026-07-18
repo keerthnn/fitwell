@@ -20,7 +20,6 @@ export default async function handler(
         ? { isArchived: false, name: { contains: search, mode: "insensitive" } }
         : { isArchived: false },
     orderBy: { name: "asc" },
-    take: 100,
   });
 
   return res.json(exercises);

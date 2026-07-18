@@ -1,0 +1,885 @@
+[
+  {
+    "slug": "push-day",
+    "title": "Push Day",
+    "description": "A balanced push workout for chest, shoulders, and triceps.",
+    "goal": "Build upper-body pushing strength and muscle",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 60,
+    "tags": [
+      "push",
+      "chest",
+      "shoulders",
+      "triceps"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Incline Dumbbell Press",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Barbell Overhead Press",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Dumbbell Lateral Raise",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Tricep Pushdown",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Overhead Dumbbell Extension",
+        "equipment": "DUMBBELL",
+        "targetSets": 2,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "pull-day",
+    "title": "Pull Day",
+    "description": "Back, rear-delt, and biceps training with vertical and horizontal pulls.",
+    "goal": "Build pulling strength and upper-back muscle",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 60,
+    "tags": [
+      "pull",
+      "back",
+      "biceps"
+    ],
+    "exercises": [
+      {
+        "name": "Pull-Up",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Barbell Row",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Lat Pulldown",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Seated Cable Row",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Face Pull",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 7,
+        "restSeconds": 60
+      },
+      {
+        "name": "Dumbbell Bicep Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "leg-day",
+    "title": "Leg Day",
+    "description": "A complete leg workout covering quads, hamstrings, glutes, and calves.",
+    "goal": "Build lower-body strength and muscle",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 70,
+    "tags": [
+      "legs",
+      "quads",
+      "hamstrings",
+      "glutes"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Back Squat",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 180
+      },
+      {
+        "name": "Romanian Deadlift",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Leg Press",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Walking Lunge",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Lying Leg Curl",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Standing Machine Calf Raise",
+        "equipment": "MACHINE",
+        "targetSets": 4,
+        "minReps": 12,
+        "maxReps": 20,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "upper-body",
+    "title": "Upper Body",
+    "description": "A complete upper-body session balancing pressing, pulling, shoulders, and arms.",
+    "goal": "Develop balanced upper-body strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 70,
+    "tags": [
+      "upper-body",
+      "strength",
+      "hypertrophy"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Barbell Row",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Incline Dumbbell Press",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Lat Pulldown",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Dumbbell Lateral Raise",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Dumbbell Bicep Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 2,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Tricep Pushdown",
+        "equipment": "CABLE",
+        "targetSets": 2,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "lower-body",
+    "title": "Lower Body",
+    "description": "A lower-body strength session with balanced knee- and hip-dominant work.",
+    "goal": "Build balanced lower-body strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 65,
+    "tags": [
+      "lower-body",
+      "strength",
+      "legs"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Back Squat",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 180
+      },
+      {
+        "name": "Romanian Deadlift",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Dumbbell Bulgarian Split Squat",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Barbell Hip Thrust",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Lying Leg Curl",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Standing Machine Calf Raise",
+        "equipment": "MACHINE",
+        "targetSets": 4,
+        "minReps": 12,
+        "maxReps": 20,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "chest",
+    "title": "Chest",
+    "description": "A chest-focused workout covering upper, middle, and lower pressing patterns.",
+    "goal": "Build chest strength and muscle",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 50,
+    "tags": [
+      "chest",
+      "push",
+      "hypertrophy"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 180
+      },
+      {
+        "name": "Incline Dumbbell Press",
+        "equipment": "DUMBBELL",
+        "targetSets": 4,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Pec Deck Fly",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Cable Fly",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Push-Up",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 2,
+        "minReps": 10,
+        "maxReps": 20,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "back",
+    "title": "Back",
+    "description": "A back-focused workout combining vertical pulls, rows, and lat isolation.",
+    "goal": "Build back width, thickness, and strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 55,
+    "tags": [
+      "back",
+      "pull",
+      "hypertrophy"
+    ],
+    "exercises": [
+      {
+        "name": "Pull-Up",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Barbell Row",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Lat Pulldown",
+        "equipment": "MACHINE",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Seated Cable Row",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Straight-Arm Cable Pulldown",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Face Pull",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 7,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "shoulders",
+    "title": "Shoulders",
+    "description": "A shoulder workout targeting front, side, and rear delts.",
+    "goal": "Build strong, balanced shoulders",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 45,
+    "tags": [
+      "shoulders",
+      "delts",
+      "push"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Overhead Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Arnold Press",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Dumbbell Lateral Raise",
+        "equipment": "DUMBBELL",
+        "targetSets": 4,
+        "minReps": 12,
+        "maxReps": 20,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Dumbbell Rear Delt Fly",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Face Pull",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 7,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "biceps",
+    "title": "Biceps",
+    "description": "A focused biceps routine using varied grips and arm positions.",
+    "goal": "Build biceps size and elbow-flexion strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 35,
+    "tags": [
+      "biceps",
+      "arms",
+      "pull"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Curl",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Dumbbell Bicep Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Hammer Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Dumbbell Preacher Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Concentration Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 2,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "triceps",
+    "title": "Triceps",
+    "description": "A focused triceps routine training all three heads through presses and extensions.",
+    "goal": "Build triceps size and pressing strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 35,
+    "tags": [
+      "triceps",
+      "arms",
+      "push"
+    ],
+    "exercises": [
+      {
+        "name": "Close-Grip Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Barbell Skull Crusher",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 12,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Tricep Pushdown",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Overhead Dumbbell Extension",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Bench Dip",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 2,
+        "minReps": 10,
+        "maxReps": 20,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "arms",
+    "title": "Arms",
+    "description": "A balanced biceps and triceps workout for complete arm development.",
+    "goal": "Build balanced arm size and strength",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 45,
+    "tags": [
+      "arms",
+      "biceps",
+      "triceps"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Curl",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 75
+      },
+      {
+        "name": "Close-Grip Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 90
+      },
+      {
+        "name": "Hammer Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Tricep Pushdown",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Dumbbell Preacher Curl",
+        "equipment": "DUMBBELL",
+        "targetSets": 2,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Overhead Dumbbell Extension",
+        "equipment": "DUMBBELL",
+        "targetSets": 2,
+        "minReps": 12,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      }
+    ]
+  },
+  {
+    "slug": "abs",
+    "title": "Abs",
+    "description": "A complete core workout covering flexion, anti-extension, and rotation.",
+    "goal": "Build core strength and muscular endurance",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 30,
+    "tags": [
+      "abs",
+      "core",
+      "bodyweight"
+    ],
+    "exercises": [
+      {
+        "name": "Plank",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 1,
+        "maxReps": 1,
+        "targetRpe": 7,
+        "restSeconds": 60,
+        "notes": "Hold each set for 30–60 seconds."
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 8,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Cable Crunch",
+        "equipment": "CABLE",
+        "targetSets": 3,
+        "minReps": 10,
+        "maxReps": 15,
+        "targetRpe": 8,
+        "restSeconds": 60
+      },
+      {
+        "name": "Russian Twist",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 16,
+        "maxReps": 24,
+        "targetRpe": 8,
+        "restSeconds": 45
+      },
+      {
+        "name": "Bicycle Crunch",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 16,
+        "maxReps": 24,
+        "targetRpe": 8,
+        "restSeconds": 45
+      },
+      {
+        "name": "Mountain Climber",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 20,
+        "maxReps": 30,
+        "targetRpe": 8,
+        "restSeconds": 45
+      }
+    ]
+  },
+  {
+    "slug": "full-body",
+    "title": "Full Body",
+    "description": "A complete full-body session built around compound movement patterns.",
+    "goal": "Improve total-body strength and conditioning",
+    "difficulty": "INTERMEDIATE",
+    "estimatedDurationM": 65,
+    "tags": [
+      "full-body",
+      "compound",
+      "conditioning"
+    ],
+    "exercises": [
+      {
+        "name": "Barbell Back Squat",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 5,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 180
+      },
+      {
+        "name": "Barbell Bench Press",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 8,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Barbell Row",
+        "equipment": "BARBELL",
+        "targetSets": 4,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Romanian Deadlift",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 150
+      },
+      {
+        "name": "Barbell Overhead Press",
+        "equipment": "BARBELL",
+        "targetSets": 3,
+        "minReps": 6,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Pull-Up",
+        "equipment": "BODYWEIGHT",
+        "targetSets": 3,
+        "minReps": 5,
+        "maxReps": 10,
+        "targetRpe": 8,
+        "restSeconds": 120
+      },
+      {
+        "name": "Suitcase Carry",
+        "equipment": "DUMBBELL",
+        "targetSets": 3,
+        "minReps": 1,
+        "maxReps": 1,
+        "targetRpe": 7,
+        "restSeconds": 60,
+        "notes": "Carry for 30–45 seconds per side."
+      }
+    ]
+  }
+]

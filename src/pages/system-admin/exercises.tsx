@@ -1,7 +1,9 @@
+import { MoreVert as MoreVertIcon } from "@mui/icons-material";
 import {
   Box,
   Button,
   Checkbox,
+  Chip,
   Container,
   FormControlLabel,
   IconButton,
@@ -18,7 +20,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { MoreVert as MoreVertIcon } from "@mui/icons-material";
 import { AdminLayout } from "fitness/components/AdminLayout";
 import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import {
@@ -71,9 +72,18 @@ export default function AdminExercisesPage() {
   const [form, setForm] = useState<Partial<Exercise>>(emptyForm);
   const [saving, setSaving] = useState(false);
   const [catalogCategory, setCatalogCategory] = useState<string>("All");
-  const [addingCatalogExercise, setAddingCatalogExercise] = useState<string | null>(null);
-  const [actionMenuAnchor, setActionMenuAnchor] = useState<HTMLElement | null>(null);
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
+  const [catalogStatus, setCatalogStatus] = useState<
+    "ALL" | "TO_ADD" | "ADDED"
+  >("ALL");
+  const [addingCatalogExercise, setAddingCatalogExercise] = useState<
+    string | null
+  >(null);
+  const [actionMenuAnchor, setActionMenuAnchor] = useState<HTMLElement | null>(
+    null,
+  );
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
+    null,
+  );
 
   async function load() {
     setExercises(await getExercises());
@@ -109,7 +119,9 @@ export default function AdminExercisesPage() {
       await load();
     } catch (error) {
       console.error("Failed to save exercise:", error);
-      alert("Failed to save exercise. It may already exist with this equipment.");
+      alert(
+        "Failed to save exercise. It may already exist with this equipment.",
+      );
     } finally {
       setSaving(false);
     }
@@ -131,11 +143,21 @@ export default function AdminExercisesPage() {
     `${exercise.name}:${exercise.equipment}`;
 
   const existingExerciseKeys = new Set(exercises.map(exerciseKey));
-  const catalogExercises = exerciseCatalog.filter(
-    (exercise) =>
+  const catalogExercises = exerciseCatalog.filter((exercise) => {
+    const categoryMatches =
       catalogCategory === "All" ||
-      getExerciseMuscleGroup(exercise)?.label === catalogCategory,
-  );
+      getExerciseMuscleGroup(exercise)?.label === catalogCategory;
+    const isAdded = existingExerciseKeys.has(exerciseKey(exercise));
+    const statusMatches =
+      catalogStatus === "ALL" ||
+      (catalogStatus === "ADDED" && isAdded) ||
+      (catalogStatus === "TO_ADD" && !isAdded);
+
+    return categoryMatches && statusMatches;
+  });
+  const addedCatalogExerciseCount = exerciseCatalog.filter((exercise) =>
+    existingExerciseKeys.has(exerciseKey(exercise)),
+  ).length;
 
   async function addCatalogExercise(exercise: ExerciseCatalogItem) {
     const key = exerciseKey(exercise);
@@ -190,23 +212,62 @@ export default function AdminExercisesPage() {
                 <Typography variant="body1" color="text.secondary">
                   Add exercises to the shared workout library.
                 </Typography>
+                <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+                  <Chip
+                    color="primary"
+                    label={`${exercises.length} in database`}
+                  />
+                  <Chip
+                    variant="outlined"
+                    label={`${exerciseCatalog.length} in catalog`}
+                  />
+                </Stack>
               </Box>
 
               <Paper sx={{ p: 3 }}>
                 <Typography variant="h6" fontWeight={600} gutterBottom>
                   {form.id ? "Edit Exercise" : "Add Exercise"}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mb: 2 }}
+                >
                   Choose a muscle group first, then enter the exercise details.
                 </Typography>
-                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 3 }}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  useFlexGap
+                  flexWrap="wrap"
+                  sx={{ mb: 3 }}
+                >
                   {exerciseMuscleGroups.map((group) => (
                     <Button
                       key={group.label}
                       size="small"
-                      variant={form.category === group.category && form.region === group.region ? "contained" : "outlined"}
-                      startIcon={<Box component="img" src={group.imageSrc} alt="" aria-hidden="true" sx={{ width: 32, height: 32, objectFit: "contain" }} />}
-                      onClick={() => setForm({ ...form, category: group.category, region: group.region })}
+                      variant={
+                        form.category === group.category &&
+                        form.region === group.region
+                          ? "contained"
+                          : "outlined"
+                      }
+                      startIcon={
+                        <Box
+                          component="img"
+                          src={group.imageSrc}
+                          alt=""
+                          aria-hidden="true"
+                          sx={{ width: 32, height: 32, objectFit: "contain" }}
+                        />
+                      }
+                      onClick={() =>
+                        setForm({
+                          ...form,
+                          category: group.category,
+                          region: group.region,
+                        })
+                      }
                     >
                       {group.label}
                     </Button>
@@ -223,45 +284,49 @@ export default function AdminExercisesPage() {
                     gap: 2,
                   }}
                 >
-                <TextField
-                  label="Exercise name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  required
-                />
-                <TextField
-                  select
-                  label="Equipment"
-                  value={form.equipment}
-                  onChange={(e) =>
-                    setForm({ ...form, equipment: e.target.value })
-                  }
-                  SelectProps={{ native: true }}
-                >
-                  {equipmentOptions.map((equipment) => (
-                    <option key={equipment} value={equipment}>
-                      {equipment.charAt(0) + equipment.slice(1).toLowerCase()}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  select
-                  label="Movement"
-                  value={form.movement}
-                  onChange={(e) => setForm({ ...form, movement: e.target.value })}
-                  SelectProps={{ native: true }}
-                >
-                  {movementOptions.map((movement) => (
-                    <option key={movement} value={movement}>
-                      {movement.charAt(0) + movement.slice(1).toLowerCase()}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  label="Target area (optional)"
-                  value={form.region}
-                  onChange={(e) => setForm({ ...form, region: e.target.value })}
-                />
+                  <TextField
+                    label="Exercise name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    required
+                  />
+                  <TextField
+                    select
+                    label="Equipment"
+                    value={form.equipment}
+                    onChange={(e) =>
+                      setForm({ ...form, equipment: e.target.value })
+                    }
+                    SelectProps={{ native: true }}
+                  >
+                    {equipmentOptions.map((equipment) => (
+                      <option key={equipment} value={equipment}>
+                        {equipment.charAt(0) + equipment.slice(1).toLowerCase()}
+                      </option>
+                    ))}
+                  </TextField>
+                  <TextField
+                    select
+                    label="Movement"
+                    value={form.movement}
+                    onChange={(e) =>
+                      setForm({ ...form, movement: e.target.value })
+                    }
+                    SelectProps={{ native: true }}
+                  >
+                    {movementOptions.map((movement) => (
+                      <option key={movement} value={movement}>
+                        {movement.charAt(0) + movement.slice(1).toLowerCase()}
+                      </option>
+                    ))}
+                  </TextField>
+                  <TextField
+                    label="Target area (optional)"
+                    value={form.region}
+                    onChange={(e) =>
+                      setForm({ ...form, region: e.target.value })
+                    }
+                  />
                 </Box>
                 <FormControlLabel
                   control={
@@ -276,52 +341,141 @@ export default function AdminExercisesPage() {
                   sx={{ mt: 1 }}
                 />
                 <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-                <Button
-                  variant="contained"
-                  onClick={submit}
-                  disabled={saving}
-                  sx={{ minWidth: 120 }}
-                >
-                  {saving ? "Saving..." : form.id ? "Update" : "Add Exercise"}
-                </Button>
-                {form.id && (
                   <Button
-                    variant="outlined"
-                    onClick={() => setForm(emptyForm)}
-                    sx={{ minWidth: 100 }}
+                    variant="contained"
+                    onClick={submit}
+                    disabled={saving}
+                    sx={{ minWidth: 120 }}
                   >
-                    Cancel
+                    {saving ? "Saving..." : form.id ? "Update" : "Add Exercise"}
                   </Button>
-                )}
+                  {form.id && (
+                    <Button
+                      variant="outlined"
+                      onClick={() => setForm(emptyForm)}
+                      sx={{ minWidth: 100 }}
+                    >
+                      Cancel
+                    </Button>
+                  )}
                 </Stack>
               </Paper>
 
               <Paper sx={{ p: 3 }}>
-                <Typography variant="h6" fontWeight={600} gutterBottom>
-                  Workout Exercise Catalog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Choose from the predefined exercise list and add an item to the shared library in one click.
-                </Typography>
-                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 2 }}>
-                  <Button
+                <Stack
+                  direction={{ xs: "column", sm: "row" }}
+                  justifyContent="space-between"
+                  alignItems={{ xs: "flex-start", sm: "center" }}
+                  spacing={1}
+                  sx={{ mb: 0.5 }}
+                >
+                  <Typography variant="h6" fontWeight={600}>
+                    Workout Exercise Catalog
+                  </Typography>
+                  <Chip
                     size="small"
-                    variant={catalogCategory === "All" ? "contained" : "outlined"}
-                    onClick={() => setCatalogCategory("All")}
+                    label={`${catalogExercises.length} shown • ${exerciseCatalog.length} total • ${addedCatalogExerciseCount} added`}
+                  />
+                </Stack>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mb: 2 }}
+                >
+                  Choose from the predefined exercise list and add an item to
+                  the shared library in one click.
+                </Typography>
+                <Stack spacing={1.5} sx={{ mb: 2 }}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    useFlexGap
+                    flexWrap="wrap"
+                    alignItems="center"
                   >
-                    All
-                  </Button>
-                  {exerciseMuscleGroups.map((group) => (
-                    <Button
-                      key={group.label}
-                      size="small"
-                      variant={catalogCategory === group.label ? "contained" : "outlined"}
-                      startIcon={<Box component="img" src={group.imageSrc} alt="" aria-hidden="true" sx={{ width: 32, height: 32, objectFit: "contain" }} />}
-                      onClick={() => setCatalogCategory(group.label)}
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ minWidth: 90 }}
                     >
-                      {group.label}
+                      Add status
+                    </Typography>
+                    <Button
+                      size="small"
+                      variant={
+                        catalogStatus === "ALL" ? "contained" : "outlined"
+                      }
+                      onClick={() => setCatalogStatus("ALL")}
+                    >
+                      All ({exerciseCatalog.length})
                     </Button>
-                  ))}
+                    <Button
+                      size="small"
+                      variant={
+                        catalogStatus === "TO_ADD" ? "contained" : "outlined"
+                      }
+                      onClick={() => setCatalogStatus("TO_ADD")}
+                    >
+                      To Add (
+                      {exerciseCatalog.length - addedCatalogExerciseCount})
+                    </Button>
+                    <Button
+                      size="small"
+                      variant={
+                        catalogStatus === "ADDED" ? "contained" : "outlined"
+                      }
+                      onClick={() => setCatalogStatus("ADDED")}
+                    >
+                      Added ({addedCatalogExerciseCount})
+                    </Button>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    useFlexGap
+                    flexWrap="wrap"
+                    alignItems="center"
+                  >
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ minWidth: 90 }}
+                    >
+                      Muscle group
+                    </Typography>
+                    <Button
+                      size="small"
+                      variant={
+                        catalogCategory === "All" ? "contained" : "outlined"
+                      }
+                      onClick={() => setCatalogCategory("All")}
+                    >
+                      All
+                    </Button>
+                    {exerciseMuscleGroups.map((group) => (
+                      <Button
+                        key={group.label}
+                        size="small"
+                        variant={
+                          catalogCategory === group.label
+                            ? "contained"
+                            : "outlined"
+                        }
+                        startIcon={
+                          <Box
+                            component="img"
+                            src={group.imageSrc}
+                            alt=""
+                            aria-hidden="true"
+                            sx={{ width: 32, height: 32, objectFit: "contain" }}
+                          />
+                        }
+                        onClick={() => setCatalogCategory(group.label)}
+                      >
+                        {group.label}
+                      </Button>
+                    ))}
+                  </Stack>
                 </Stack>
                 <Box sx={{ display: { xs: "block", md: "none" } }}>
                   <Stack spacing={1}>
@@ -331,26 +485,43 @@ export default function AdminExercisesPage() {
 
                       return (
                         <Paper key={key} variant="outlined" sx={{ p: 2 }}>
-                          <Stack direction="row" spacing={2} alignItems="center">
+                          <Stack
+                            direction="row"
+                            spacing={2}
+                            alignItems="center"
+                          >
                             {getMuscleGroupImageSource(exercise) && (
                               <Box
                                 component="img"
                                 src={getMuscleGroupImageSource(exercise)}
                                 alt=""
                                 aria-hidden="true"
-                                sx={{ width: 36, height: 36, objectFit: "contain" }}
+                                sx={{
+                                  width: 36,
+                                  height: 36,
+                                  objectFit: "contain",
+                                }}
                               />
                             )}
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                              <Typography fontWeight={600}>{exercise.name}</Typography>
-                              <Typography variant="body2" color="text.secondary">
-                                {getExerciseMuscleGroup(exercise)?.label ?? exercise.category} • {exercise.equipment}
+                              <Typography fontWeight={600}>
+                                {exercise.name}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                {getExerciseMuscleGroup(exercise)?.label ??
+                                  exercise.category}{" "}
+                                • {exercise.equipment}
                               </Typography>
                             </Box>
                             <Button
                               size="small"
                               variant={alreadyAdded ? "outlined" : "contained"}
-                              disabled={alreadyAdded || addingCatalogExercise === key}
+                              disabled={
+                                alreadyAdded || addingCatalogExercise === key
+                              }
                               onClick={() => addCatalogExercise(exercise)}
                             >
                               {alreadyAdded
@@ -365,7 +536,10 @@ export default function AdminExercisesPage() {
                     })}
                   </Stack>
                 </Box>
-                <Table size="small" sx={{ display: { xs: "none", md: "table" } }}>
+                <Table
+                  size="small"
+                  sx={{ display: { xs: "none", md: "table" } }}
+                >
                   <TableHead>
                     <TableRow>
                       <TableCell>Exercise</TableCell>
@@ -382,26 +556,41 @@ export default function AdminExercisesPage() {
                       return (
                         <TableRow key={key}>
                           <TableCell>
-                            <Stack direction="row" spacing={1} alignItems="center">
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
                               {getMuscleGroupImageSource(exercise) && (
                                 <Box
                                   component="img"
                                   src={getMuscleGroupImageSource(exercise)}
                                   alt=""
                                   aria-hidden="true"
-                                  sx={{ width: 28, height: 28, objectFit: "contain" }}
+                                  sx={{
+                                    width: 28,
+                                    height: 28,
+                                    objectFit: "contain",
+                                  }}
                                 />
                               )}
-                              <Typography variant="body2">{exercise.name}</Typography>
+                              <Typography variant="body2">
+                                {exercise.name}
+                              </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell>{getExerciseMuscleGroup(exercise)?.label ?? exercise.category}</TableCell>
+                          <TableCell>
+                            {getExerciseMuscleGroup(exercise)?.label ??
+                              exercise.category}
+                          </TableCell>
                           <TableCell>{exercise.equipment}</TableCell>
                           <TableCell align="right">
                             <Button
                               size="small"
                               variant={alreadyAdded ? "outlined" : "contained"}
-                              disabled={alreadyAdded || addingCatalogExercise === key}
+                              disabled={
+                                alreadyAdded || addingCatalogExercise === key
+                              }
                               onClick={() => addCatalogExercise(exercise)}
                             >
                               {alreadyAdded
@@ -419,6 +608,21 @@ export default function AdminExercisesPage() {
               </Paper>
 
               <Paper>
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ p: 2, pb: 0 }}
+                >
+                  <Typography variant="h6" fontWeight={600}>
+                    Shared Exercise Library
+                  </Typography>
+                  <Chip
+                    size="small"
+                    color="primary"
+                    label={`${exercises.length} exercises`}
+                  />
+                </Stack>
                 <Box sx={{ display: { xs: "block", md: "none" }, p: 2 }}>
                   <Stack spacing={1}>
                     {exercises.map((exercise) => (
@@ -430,19 +634,29 @@ export default function AdminExercisesPage() {
                               src={getMuscleGroupImageSource(exercise)}
                               alt=""
                               aria-hidden="true"
-                              sx={{ width: 36, height: 36, objectFit: "contain" }}
+                              sx={{
+                                width: 36,
+                                height: 36,
+                                objectFit: "contain",
+                              }}
                             />
                           )}
                           <Box sx={{ flex: 1, minWidth: 0 }}>
-                            <Typography fontWeight={600}>{exercise.name}</Typography>
+                            <Typography fontWeight={600}>
+                              {exercise.name}
+                            </Typography>
                             <Typography variant="body2" color="text.secondary">
-                              {getExerciseMuscleGroup(exercise)?.label ?? exercise.category} • {exercise.equipment} • {exercise.movement}
+                              {getExerciseMuscleGroup(exercise)?.label ??
+                                exercise.category}{" "}
+                              • {exercise.equipment} • {exercise.movement}
                             </Typography>
                           </Box>
                           <Tooltip title="Exercise actions">
                             <IconButton
                               aria-label={`Actions for ${exercise.name}`}
-                              onClick={(event) => openExerciseActions(event, exercise)}
+                              onClick={(event) =>
+                                openExerciseActions(event, exercise)
+                              }
                             >
                               <MoreVertIcon />
                             </IconButton>
@@ -453,94 +667,104 @@ export default function AdminExercisesPage() {
                   </Stack>
                 </Box>
                 <Table sx={{ display: { xs: "none", md: "table" } }}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <Typography variant="body2" fontWeight={600}>
-                        Name
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2" fontWeight={600}>
-                        Equipment
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2" fontWeight={600}>
-                        Movement
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2" fontWeight={600}>
-                        Category
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography variant="body2" fontWeight={600}>
-                        Actions
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {exercises.map((e) => (
-                    <TableRow
-                      key={e.id}
-                      sx={{
-                        "&:hover": {
-                          backgroundColor: "action.hover",
-                        },
-                      }}
-                    >
+                  <TableHead>
+                    <TableRow>
                       <TableCell>
-                        <Stack direction="row" spacing={1} alignItems="center">
-                          {getMuscleGroupImageSource(e) && (
-                            <Box
-                              component="img"
-                              src={getMuscleGroupImageSource(e)}
-                              alt=""
-                              aria-hidden="true"
-                              sx={{ width: 28, height: 28, objectFit: "contain" }}
-                            />
-                          )}
-                          <Typography variant="body2">{e.name}</Typography>
-                        </Stack>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="body2" color="text.secondary">
-                          {e.equipment}
+                        <Typography variant="body2" fontWeight={600}>
+                          Name
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="body2" color="text.secondary">
-                          {e.movement}
+                        <Typography variant="body2" fontWeight={600}>
+                          Equipment
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="body2" color="text.secondary">
-                          {getExerciseMuscleGroup(e)?.label ?? e.category}
+                        <Typography variant="body2" fontWeight={600}>
+                          Movement
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2" fontWeight={600}>
+                          Category
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          justifyContent="flex-end"
-                        >
-                          <Tooltip title="Exercise actions">
-                            <IconButton
-                              size="small"
-                              aria-label={`Actions for ${e.name}`}
-                              onClick={(event) => openExerciseActions(event, e)}
-                            >
-                              <MoreVertIcon fontSize="small" />
-                            </IconButton>
-                          </Tooltip>
-                        </Stack>
+                        <Typography variant="body2" fontWeight={600}>
+                          Actions
+                        </Typography>
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
+                  </TableHead>
+                  <TableBody>
+                    {exercises.map((e) => (
+                      <TableRow
+                        key={e.id}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "action.hover",
+                          },
+                        }}
+                      >
+                        <TableCell>
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            alignItems="center"
+                          >
+                            {getMuscleGroupImageSource(e) && (
+                              <Box
+                                component="img"
+                                src={getMuscleGroupImageSource(e)}
+                                alt=""
+                                aria-hidden="true"
+                                sx={{
+                                  width: 28,
+                                  height: 28,
+                                  objectFit: "contain",
+                                }}
+                              />
+                            )}
+                            <Typography variant="body2">{e.name}</Typography>
+                          </Stack>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="body2" color="text.secondary">
+                            {e.equipment}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="body2" color="text.secondary">
+                            {e.movement}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="body2" color="text.secondary">
+                            {getExerciseMuscleGroup(e)?.label ?? e.category}
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            justifyContent="flex-end"
+                          >
+                            <Tooltip title="Exercise actions">
+                              <IconButton
+                                size="small"
+                                aria-label={`Actions for ${e.name}`}
+                                onClick={(event) =>
+                                  openExerciseActions(event, e)
+                                }
+                              >
+                                <MoreVertIcon fontSize="small" />
+                              </IconButton>
+                            </Tooltip>
+                          </Stack>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
                 </Table>
               </Paper>
               <Menu
@@ -549,7 +773,10 @@ export default function AdminExercisesPage() {
                 onClose={closeExerciseActions}
               >
                 <MenuItem onClick={editSelectedExercise}>Edit</MenuItem>
-                <MenuItem onClick={deleteSelectedExercise} sx={{ color: "error.main" }}>
+                <MenuItem
+                  onClick={deleteSelectedExercise}
+                  sx={{ color: "error.main" }}
+                >
                   Delete
                 </MenuItem>
               </Menu>
