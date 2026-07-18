@@ -8,13 +8,20 @@ import {
   SaveSetsPayload,
   Workout,
   WorkoutListItem,
+  AnalyticsSummary,
+  DashboardSummary,
+  DailyNutritionSummary,
+  Injury,
+  MedicalCondition,
+  NutritionMutationRequest,
+  Paginated,
+  WorkoutTemplateDetail,
+  WorkoutTemplateSummary,
+  AdminTemplate,
 } from "./types";
 
-export async function createUser(email: string, displayName: string) {
-  const { data } = await axios.post("/api/auth/create-user", {
-    email,
-    displayName,
-  });
+export async function createUser() {
+  const { data } = await axios.post("/api/auth/sync-user");
   return data as { userName: string };
 }
 
@@ -40,6 +47,11 @@ export async function updateProfile(input: Profile) {
 
 export async function deleteProfile() {
   const { data } = await axios.delete("/api/user/delete-profile");
+  return data as { success: true };
+}
+
+export async function deleteAccount() {
+  const { data } = await axios.delete("/api/user/delete-account", { params: { confirm: "DELETE" } });
   return data as { success: true };
 }
 
@@ -153,4 +165,106 @@ export async function adminDeleteUser(userId: string) {
     params: { userId },
   });
   return data as { success: true };
+}
+
+export async function adminGetTemplates(filters?: { search?: string; visibility?: string; archived?: string }) {
+  const { data } = await axios.get("/api/admin/templates", { params: filters });
+  return data as AdminTemplate[];
+}
+
+export async function adminSetTemplateArchived(id: string, isArchived: boolean) {
+  const { data } = await axios.patch("/api/admin/templates", { id, isArchived });
+  return data as { id: string; isArchived: boolean };
+}
+
+export async function adminDeleteTemplate(id: string) {
+  const { data } = await axios.delete("/api/admin/templates", { params: { id } });
+  return data as { success: true };
+}
+
+export async function completeWorkout(id: string, caloriesBurned?: number) {
+  const { data } = await axios.post("/api/workouts/complete-workout", { id, caloriesBurned });
+  return data;
+}
+
+export async function duplicateWorkout(id: string) {
+  const { data } = await axios.post("/api/workouts/duplicate-workout", { id });
+  return data as { id: string };
+}
+
+export async function getDashboardSummary() {
+  const { data } = await axios.get("/api/dashboard/summary");
+  return data as DashboardSummary;
+}
+
+export async function getNutritionDay(start: Date, end: Date) {
+  const { data } = await axios.get("/api/nutrition/entries", { params: { start: start.toISOString(), end: end.toISOString() } });
+  return data as DailyNutritionSummary;
+}
+
+export async function saveNutritionEntry(input: NutritionMutationRequest & { id?: string }) {
+  const { data } = await axios.request({ url: "/api/nutrition/entries", method: input.id ? "PATCH" : "POST", data: input });
+  return data;
+}
+
+export async function deleteNutritionEntry(id: string) {
+  await axios.delete("/api/nutrition/entries", { params: { id } });
+}
+
+export async function getHealthRecords() {
+  const { data } = await axios.get("/api/health/records");
+  return data as { conditions: MedicalCondition[]; injuries: Injury[] };
+}
+
+export async function saveHealthRecord(input: Record<string, unknown> & { id?: string }) {
+  const { data } = await axios.request({ url: "/api/health/records", method: input.id ? "PATCH" : "POST", data: input });
+  return data;
+}
+
+export async function deleteHealthRecord(id: string, type: "condition" | "injury") {
+  await axios.delete("/api/health/records", { params: { id, type } });
+}
+
+export async function getTemplates(mode: "mine" | "discover", search = "") {
+  const { data } = await axios.get("/api/templates/templates", { params: { mode, search } });
+  return data as Paginated<WorkoutTemplateSummary>;
+}
+
+export async function getTemplate(id: string) {
+  const { data } = await axios.get("/api/templates/get-template", { params: { id } });
+  return data as WorkoutTemplateDetail;
+}
+
+export async function getSharedTemplate(token: string) {
+  const { data } = await axios.get("/api/templates/shared", { params: { token } });
+  return data as WorkoutTemplateDetail;
+}
+
+export async function saveTemplate(input: Record<string, unknown> & { id?: string }) {
+  const { data } = await axios.request({ url: "/api/templates/templates", method: input.id ? "PATCH" : "POST", data: input });
+  return data;
+}
+
+export async function copyTemplate(id: string, token?: string) {
+  const { data } = await axios.post("/api/templates/copy-template", { id, token });
+  return data as { id: string };
+}
+
+export async function deleteTemplate(id: string) {
+  await axios.delete("/api/templates/templates", { params: { id } });
+}
+
+export async function getAnalytics(start: Date, end: Date) {
+  const { data } = await axios.get("/api/analytics/summary", { params: { start: start.toISOString(), end: end.toISOString() } });
+  return data as AnalyticsSummary;
+}
+
+export async function saveWeightCheckIn(weightKg: number, recordedAt = new Date(), notes?: string) {
+  const { data } = await axios.post("/api/weight/check-ins", { weightKg, recordedAt: recordedAt.toISOString(), notes });
+  return data as { id: string };
+}
+
+export async function getAchievements() {
+  const { data } = await axios.get("/api/achievements/get-achievements");
+  return data as Array<{ id: string; key: string; name: string; description: string; icon: string; earned: boolean; awardedAt: string | null }>;
 }

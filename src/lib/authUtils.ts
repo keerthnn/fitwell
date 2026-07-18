@@ -7,7 +7,6 @@ import {
 } from "firebase/auth";
 
 import { auth, googleProvider } from "./firebaseConfig";
-import { createUser } from "fitness/utils/spec";
 
 export async function signInWithEmail(email: string, password: string) {
   if (!auth) return;
@@ -23,7 +22,6 @@ export async function signInWithGoogle() {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     if (!res.user.email) throw new Error("Email is missing");
-    await createUser(res.user.email, res.user.displayName ?? "");
   } catch (err) {
     console.error(err);
   }
@@ -34,7 +32,6 @@ export async function signUpUser(email: string, password: string) {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     if (!res.user.email) throw new Error("Email is missing");
-    await createUser(res.user.email, res.user.displayName ?? "");
     return res.user;
   } catch (err) {
     console.error(err);

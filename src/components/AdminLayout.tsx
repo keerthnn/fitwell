@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { MouseEvent, ReactNode, useState } from "react";
 import { AdminSidebar, APP_HEADER_HEIGHT, SIDEBAR_WIDTH } from "./AdminSidebar";
 import { useAuth } from "./context";
+import ThemeModeSelector from "./ThemeModeSelector";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -82,6 +83,8 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               System Admin
             </Typography>
           </Stack>
+
+          <ThemeModeSelector />
 
           <IconButton
             color="inherit"

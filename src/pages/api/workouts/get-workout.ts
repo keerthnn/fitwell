@@ -12,8 +12,12 @@ export default async function handler(
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
 
+  const { status, search } = req.query;
   const workouts = await prisma.workout.findMany({
-    where: { userId },
+    where: { userId,
+      ...(typeof status === "string" && ["DRAFT", "IN_PROGRESS", "COMPLETED"].includes(status) ? { status: status as "DRAFT" | "IN_PROGRESS" | "COMPLETED" } : {}),
+      ...(typeof search === "string" && search.trim() ? { title: { contains: search.trim(), mode: "insensitive" as const } } : {}),
+    },
     orderBy: { date: "desc" },
     include: { _count: { select: { exercises: true } } },
   });
@@ -25,6 +29,8 @@ export default async function handler(
       date: w.date.toISOString(),
       durationM: w.durationM,
       exerciseCount: w._count.exercises,
+      status: w.status,
+      caloriesBurned: w.caloriesBurned,
     })),
   );
 }

@@ -106,7 +106,7 @@ export default function SignIn() {
 
                   <Button
                     type="submit"
-                    variant="contained"
+                    variant="outlined"
                     size="large"
                     fullWidth
                     sx={{ mt: 1 }}
@@ -123,7 +123,7 @@ export default function SignIn() {
               </Divider>
 
               <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 fullWidth
                 onClick={handleSignInWithGoogle}

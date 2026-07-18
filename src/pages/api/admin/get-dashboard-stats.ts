@@ -12,11 +12,44 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
 
-  const [totalUsers, totalWorkouts, totalExercises] = await prisma.$transaction([
+  const activeSince = new Date(Date.now() - 30 * 86400000);
+  const [
+    totalUsers,
+    totalWorkouts,
+    totalExercises,
+    activeUsers,
+    publicTemplates,
+    totalTemplates,
+    nutritionEntries,
+    completedWorkouts,
+    activeInjuries,
+  ] = await prisma.$transaction([
     prisma.user.count(),
     prisma.workout.count(),
     prisma.exercise.count(),
+    prisma.user.count({ where: { updatedAt: { gte: activeSince } } }),
+    prisma.workoutTemplate.count({
+      where: { visibility: "PUBLIC", isArchived: false },
+    }),
+    prisma.workoutTemplate.count(),
+    prisma.nutritionEntry.count(),
+    prisma.workout.count({ where: { status: "COMPLETED" } }),
+    prisma.injury.count({
+      where: { status: { in: ["ACTIVE", "RECOVERING"] } },
+    }),
   ]);
 
-  return res.status(200).json({ totalUsers, totalWorkouts, totalExercises });
+  return res
+    .status(200)
+    .json({
+      totalUsers,
+      totalWorkouts,
+      totalExercises,
+      activeUsers,
+      publicTemplates,
+      totalTemplates,
+      nutritionEntries,
+      completedWorkouts,
+      activeInjuries,
+    });
 }

@@ -19,14 +19,21 @@ export default async function handler(
   }
 
   if (userId === adminId) {
-    return res.status(400).json({ error: "You cannot delete your own account" });
+    return res
+      .status(400)
+      .json({ error: "You cannot delete your own account" });
   }
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) return res.status(404).json({ error: "User not found" });
 
   await adminAuth.deleteUser(userId);
-  await prisma.user.delete({ where: { id: userId } });
+  await prisma.$transaction([
+    prisma.adminAuditLog.create({
+      data: { actorId: adminId, action: "DELETE_USER", targetId: userId },
+    }),
+    prisma.user.delete({ where: { id: userId } }),
+  ]);
 
   return res.status(200).json({ success: true });
 }

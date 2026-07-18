@@ -17,8 +17,8 @@ export default async function handler(
   const exercises = await prisma.exercise.findMany({
     where:
       typeof search === "string" && search.length > 0
-        ? { name: { contains: search, mode: "insensitive" } }
-        : {},
+        ? { isArchived: false, name: { contains: search, mode: "insensitive" } }
+        : { isArchived: false },
     orderBy: { name: "asc" },
     take: 100,
   });

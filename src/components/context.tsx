@@ -1,6 +1,6 @@
 import { deleteCookie, setCookie } from "cookies-next";
 import { onIdTokenChanged, User } from "firebase/auth";
-import { getProfileStatus } from "fitness/utils/spec";
+import { createUser, getProfileStatus } from "fitness/utils/spec";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../lib/firebaseConfig";
@@ -41,6 +41,7 @@ export const AuthContextProvider = ({
       setUser(user);
       const token = await user.getIdToken();
       setCookie("idToken", token);
+      await createUser();
       setLoading(false);
     });
 
@@ -54,7 +55,7 @@ export const AuthContextProvider = ({
         router.push(hasProfile ? "/dashboard" : "/profile");
       });
     }
-  }, [user, loading, router.pathname]);
+  }, [user, loading, router]);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>

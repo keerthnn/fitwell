@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { getUserProfile } from "fitness/utils/spec";
+import { deleteAccount, getUserProfile } from "fitness/utils/spec";
 import { type Profile } from "fitness/utils/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -159,6 +159,16 @@ export default function ProfileView() {
                 Your Goal
               </Typography>
               <Typography>{profile.goal || "No goal specified"}</Typography>
+            </Box>
+            <Divider />
+            <Box>
+              <Typography variant="h6" color="error" gutterBottom>Delete account</Typography>
+              <Typography color="text.secondary" mb={2}>Permanently removes your workouts, nutrition, templates, achievements, and private health data.</Typography>
+              <Button color="error" variant="outlined" onClick={async () => {
+                if (!confirm("Permanently delete your FitWell account and all data? This cannot be undone.")) return;
+                await deleteAccount();
+                router.replace("/");
+              }}>Delete my account</Button>
             </Box>
           </Stack>
         </Paper>

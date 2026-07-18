@@ -23,8 +23,9 @@ import { AdminLayout } from "fitness/components/AdminLayout";
 import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import {
   exerciseCatalog,
-  exerciseCategories,
-  muscleGroupImageSources,
+  exerciseMuscleGroups,
+  getExerciseMuscleGroup,
+  getMuscleGroupImageSource,
   type ExerciseCatalogItem,
 } from "fitness/utils/exerciseCatalog";
 import {
@@ -131,7 +132,9 @@ export default function AdminExercisesPage() {
 
   const existingExerciseKeys = new Set(exercises.map(exerciseKey));
   const catalogExercises = exerciseCatalog.filter(
-    (exercise) => catalogCategory === "All" || exercise.category === catalogCategory,
+    (exercise) =>
+      catalogCategory === "All" ||
+      getExerciseMuscleGroup(exercise)?.label === catalogCategory,
   );
 
   async function addCatalogExercise(exercise: ExerciseCatalogItem) {
@@ -197,25 +200,15 @@ export default function AdminExercisesPage() {
                   Choose a muscle group first, then enter the exercise details.
                 </Typography>
                 <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 3 }}>
-                  {exerciseCategories.map((category) => (
+                  {exerciseMuscleGroups.map((group) => (
                     <Button
-                      key={category}
+                      key={group.label}
                       size="small"
-                      variant={form.category === category ? "contained" : "outlined"}
-                      startIcon={
-                        muscleGroupImageSources[category] ? (
-                          <Box
-                            component="img"
-                            src={muscleGroupImageSources[category]}
-                            alt=""
-                            aria-hidden="true"
-                            sx={{ width: 24, height: 24, objectFit: "contain" }}
-                          />
-                        ) : undefined
-                      }
-                      onClick={() => setForm({ ...form, category })}
+                      variant={form.category === group.category && form.region === group.region ? "contained" : "outlined"}
+                      startIcon={<Box component="img" src={group.imageSrc} alt="" aria-hidden="true" sx={{ width: 32, height: 32, objectFit: "contain" }} />}
+                      onClick={() => setForm({ ...form, category: group.category, region: group.region })}
                     >
-                      {category}
+                      {group.label}
                     </Button>
                   ))}
                 </Stack>
@@ -318,25 +311,15 @@ export default function AdminExercisesPage() {
                   >
                     All
                   </Button>
-                  {exerciseCategories.map((category) => (
+                  {exerciseMuscleGroups.map((group) => (
                     <Button
-                      key={category}
+                      key={group.label}
                       size="small"
-                      variant={catalogCategory === category ? "contained" : "outlined"}
-                      startIcon={
-                        muscleGroupImageSources[category] ? (
-                          <Box
-                            component="img"
-                            src={muscleGroupImageSources[category]}
-                            alt=""
-                            aria-hidden="true"
-                            sx={{ width: 24, height: 24, objectFit: "contain" }}
-                          />
-                        ) : undefined
-                      }
-                      onClick={() => setCatalogCategory(category)}
+                      variant={catalogCategory === group.label ? "contained" : "outlined"}
+                      startIcon={<Box component="img" src={group.imageSrc} alt="" aria-hidden="true" sx={{ width: 32, height: 32, objectFit: "contain" }} />}
+                      onClick={() => setCatalogCategory(group.label)}
                     >
-                      {category}
+                      {group.label}
                     </Button>
                   ))}
                 </Stack>
@@ -349,10 +332,10 @@ export default function AdminExercisesPage() {
                       return (
                         <Paper key={key} variant="outlined" sx={{ p: 2 }}>
                           <Stack direction="row" spacing={2} alignItems="center">
-                            {muscleGroupImageSources[exercise.category] && (
+                            {getMuscleGroupImageSource(exercise) && (
                               <Box
                                 component="img"
-                                src={muscleGroupImageSources[exercise.category]}
+                                src={getMuscleGroupImageSource(exercise)}
                                 alt=""
                                 aria-hidden="true"
                                 sx={{ width: 36, height: 36, objectFit: "contain" }}
@@ -361,7 +344,7 @@ export default function AdminExercisesPage() {
                             <Box sx={{ flex: 1, minWidth: 0 }}>
                               <Typography fontWeight={600}>{exercise.name}</Typography>
                               <Typography variant="body2" color="text.secondary">
-                                {exercise.category} • {exercise.equipment}
+                                {getExerciseMuscleGroup(exercise)?.label ?? exercise.category} • {exercise.equipment}
                               </Typography>
                             </Box>
                             <Button
@@ -400,10 +383,10 @@ export default function AdminExercisesPage() {
                         <TableRow key={key}>
                           <TableCell>
                             <Stack direction="row" spacing={1} alignItems="center">
-                              {muscleGroupImageSources[exercise.category] && (
+                              {getMuscleGroupImageSource(exercise) && (
                                 <Box
                                   component="img"
-                                  src={muscleGroupImageSources[exercise.category]}
+                                  src={getMuscleGroupImageSource(exercise)}
                                   alt=""
                                   aria-hidden="true"
                                   sx={{ width: 28, height: 28, objectFit: "contain" }}
@@ -412,7 +395,7 @@ export default function AdminExercisesPage() {
                               <Typography variant="body2">{exercise.name}</Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell>{exercise.category}</TableCell>
+                          <TableCell>{getExerciseMuscleGroup(exercise)?.label ?? exercise.category}</TableCell>
                           <TableCell>{exercise.equipment}</TableCell>
                           <TableCell align="right">
                             <Button
@@ -441,10 +424,10 @@ export default function AdminExercisesPage() {
                     {exercises.map((exercise) => (
                       <Paper key={exercise.id} variant="outlined" sx={{ p: 2 }}>
                         <Stack direction="row" spacing={1} alignItems="center">
-                          {muscleGroupImageSources[exercise.category] && (
+                          {getMuscleGroupImageSource(exercise) && (
                             <Box
                               component="img"
-                              src={muscleGroupImageSources[exercise.category]}
+                              src={getMuscleGroupImageSource(exercise)}
                               alt=""
                               aria-hidden="true"
                               sx={{ width: 36, height: 36, objectFit: "contain" }}
@@ -453,7 +436,7 @@ export default function AdminExercisesPage() {
                           <Box sx={{ flex: 1, minWidth: 0 }}>
                             <Typography fontWeight={600}>{exercise.name}</Typography>
                             <Typography variant="body2" color="text.secondary">
-                              {exercise.category} • {exercise.equipment} • {exercise.movement}
+                              {getExerciseMuscleGroup(exercise)?.label ?? exercise.category} • {exercise.equipment} • {exercise.movement}
                             </Typography>
                           </Box>
                           <Tooltip title="Exercise actions">
@@ -511,10 +494,10 @@ export default function AdminExercisesPage() {
                     >
                       <TableCell>
                         <Stack direction="row" spacing={1} alignItems="center">
-                          {muscleGroupImageSources[e.category] && (
+                          {getMuscleGroupImageSource(e) && (
                             <Box
                               component="img"
-                              src={muscleGroupImageSources[e.category]}
+                              src={getMuscleGroupImageSource(e)}
                               alt=""
                               aria-hidden="true"
                               sx={{ width: 28, height: 28, objectFit: "contain" }}
@@ -535,7 +518,7 @@ export default function AdminExercisesPage() {
                       </TableCell>
                       <TableCell>
                         <Typography variant="body2" color="text.secondary">
-                          {e.category}
+                          {getExerciseMuscleGroup(e)?.label ?? e.category}
                         </Typography>
                       </TableCell>
                       <TableCell align="right">

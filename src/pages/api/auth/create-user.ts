@@ -1,5 +1,5 @@
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
-import { getUserIdOrSetError } from "fitness/lib/auth/utils";
+import { getDecodedTokenOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,30 +9,28 @@ export default async function handler(
 ) {
   if (!checkIfPostOrSetError(req, res)) return;
 
-  const { email, displayName } = req.body;
-  const userId = await getUserIdOrSetError(req, res);
-  if (!userId) return;
+  const token = await getDecodedTokenOrSetError(req, res);
+  if (!token) return;
+  const email = token.email;
+  if (!email)
+    return res.status(400).json({ error: "Firebase account has no email" });
 
   try {
-    const isUser = await prisma.user.findFirst({
-      where: {
-        OR: [{ email }, { id: userId }],
-      },
-    });
-
-    if (isUser) {
-      return res.status(400).send("attempt create user, but it already exists");
-    }
-
-    await prisma.user.create({
-      data: {
-        id: userId,
+    const user = await prisma.user.upsert({
+      where: { id: token.uid },
+      update: {
         email,
-        name: displayName,
+        name: token.name ?? undefined,
+        avatarUrl: token.picture ?? undefined,
+      },
+      create: {
+        id: token.uid,
+        email,
+        name: token.name ?? "",
+        avatarUrl: token.picture ?? null,
       },
     });
-
-    return res.status(200).json({ userName: displayName });
+    return res.status(200).json({ userName: user.name ?? "" });
   } catch (err) {
     console.error("Error creating user:", err);
     return res.status(500).send("Internal Server Error");

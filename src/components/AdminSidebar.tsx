@@ -1,4 +1,10 @@
 import {
+  Dashboard as DashboardIcon,
+  FitnessCenter as FitnessCenterIcon,
+  ListAlt as ListAltIcon,
+  People as PeopleIcon,
+} from "@mui/icons-material";
+import {
   Box,
   Drawer,
   List,
@@ -9,11 +15,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import {
-  Dashboard as DashboardIcon,
-  People as PeopleIcon,
-  FitnessCenter as FitnessCenterIcon,
-} from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -29,7 +30,16 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/system-admin", icon: <DashboardIcon /> },
   { label: "Users", href: "/system-admin/users", icon: <PeopleIcon /> },
-  { label: "Exercises", href: "/system-admin/exercises", icon: <FitnessCenterIcon /> },
+  {
+    label: "Exercises",
+    href: "/system-admin/exercises",
+    icon: <FitnessCenterIcon />,
+  },
+  {
+    label: "Templates",
+    href: "/system-admin/templates",
+    icon: <ListAltIcon />,
+  },
 ];
 
 interface AdminSidebarProps {
@@ -66,18 +76,14 @@ export function AdminSidebar({ mobileOpen, onMobileClose }: AdminSidebarProps) {
                   color: active ? "primary.main" : "text.secondary",
                   backgroundColor: active ? "primary.light" : "transparent",
                   "&:hover": {
-                    backgroundColor: active
-                      ? "primary.light"
-                      : "action.hover",
+                    backgroundColor: active ? "primary.light" : "action.hover",
                   },
                   "& .MuiListItemIcon-root": {
                     color: active ? "primary.main" : "text.secondary",
                   },
                 }}
               >
-                <ListItemIcon sx={{ minWidth: 40 }}>
-                  {item.icon}
-                </ListItemIcon>
+                <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
                 <ListItemText
                   primary={item.label}
                   primaryTypographyProps={{

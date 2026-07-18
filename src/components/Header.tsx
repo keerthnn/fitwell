@@ -1,28 +1,26 @@
+import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
 import {
   AppBar,
   Box,
+  Button,
   Divider,
+  Drawer,
   IconButton,
+  List,
+  ListItemButton,
+  ListItemText,
   Menu,
   MenuItem,
   Stack,
   Toolbar,
   Typography,
-  Button,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemText,
 } from "@mui/material";
-import {
-  AccountCircle,
-  Menu as MenuIcon,
-} from "@mui/icons-material";
-import { useRouter } from "next/router";
-import { MouseEvent, useEffect, useState } from "react";
 import { signOutUser } from "fitness/lib/authUtils";
 import { getAdminStatus } from "fitness/utils/spec";
+import { useRouter } from "next/router";
+import { MouseEvent, useEffect, useState } from "react";
 import { useAuth } from "./context";
+import ThemeModeSelector from "./ThemeModeSelector";
 
 export const HEADER_HEIGHT = 64;
 
@@ -106,6 +104,21 @@ export default function Header() {
             <Button color="inherit" onClick={() => navigate("/workouts")}>
               Workouts
             </Button>
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/templates")}>
+                Templates
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/nutrition")}>
+                Nutrition
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/analytics")}>
+                Analytics
+              </Button>
+            )}
             {isAdmin && (
               <Button color="inherit" onClick={() => navigate("/system-admin")}>
                 Admin
@@ -115,11 +128,10 @@ export default function Header() {
         </Stack>
 
         {/* RIGHT SECTION */}
+        <ThemeModeSelector />
         <IconButton
           color="inherit"
-          onClick={(e: MouseEvent<HTMLElement>) =>
-            setAnchorEl(e.currentTarget)
-          }
+          onClick={(e: MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget)}
         >
           <AccountCircle />
         </IconButton>
@@ -134,17 +146,13 @@ export default function Header() {
         >
           {user ? (
             <>
-              <MenuItem onClick={() => navigate("/profile")}>
-                Profile
-              </MenuItem>
+              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
               <MenuItem onClick={logout} sx={{ color: "error.main" }}>
                 Logout
               </MenuItem>
             </>
           ) : (
-            <MenuItem onClick={() => navigate("/auth/sign-in")}>
-              Login
-            </MenuItem>
+            <MenuItem onClick={() => navigate("/auth/sign-in")}>Login</MenuItem>
           )}
         </Menu>
 
@@ -163,6 +171,26 @@ export default function Header() {
               <ListItemButton onClick={() => navigate("/workouts")}>
                 <ListItemText primary="Workouts" />
               </ListItemButton>
+
+              {user && (
+                <>
+                  <ListItemButton onClick={() => navigate("/templates")}>
+                    <ListItemText primary="Templates" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/nutrition")}>
+                    <ListItemText primary="Nutrition" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/analytics")}>
+                    <ListItemText primary="Analytics" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/achievements")}>
+                    <ListItemText primary="Achievements" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/health")}>
+                    <ListItemText primary="Health" />
+                  </ListItemButton>
+                </>
+              )}
 
               {isAdmin && (
                 <ListItemButton onClick={() => navigate("/system-admin")}>
