@@ -110,6 +110,11 @@ export async function adminGetUsers() {
   return data;
 }
 
+export async function getAdminStatus() {
+  const { data } = await axios.get("/api/admin/get-admin-status");
+  return data as { isAdmin: true };
+}
+
 export async function adminCreateExercise(input: Partial<Exercise>) {
   const { data } = await axios.post("/api/admin/create-exercise", input);
   return data as Exercise;

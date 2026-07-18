@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { AdminLayout } from "fitness/components/AdminLayout";
+import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import {
   adminCreateExercise,
   adminDeleteExercise,
@@ -68,8 +69,9 @@ export default function AdminExercisesPage() {
   }
 
   return (
-    <AdminLayout>
-      <Box sx={{ py: 4 }}>
+    <AdminPageGuard>
+      <AdminLayout>
+        <Box sx={{ py: 4 }}>
         <Container maxWidth="lg">
           <Stack spacing={3}>
             <Box>
@@ -204,7 +206,8 @@ export default function AdminExercisesPage() {
             </Paper>
           </Stack>
         </Container>
-      </Box>
-    </AdminLayout>
+        </Box>
+      </AdminLayout>
+    </AdminPageGuard>
   );
 }

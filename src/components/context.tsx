@@ -39,10 +39,9 @@ export const AuthContextProvider = ({
       }
 
       setUser(user);
-      setLoading(false);
-
       const token = await user.getIdToken();
       setCookie("idToken", token);
+      setLoading(false);
     });
 
     return unsubscribe;

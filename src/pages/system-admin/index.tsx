@@ -1,11 +1,13 @@
 import { FitnessCenter, People, TrendingUp } from "@mui/icons-material";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { AdminLayout } from "fitness/components/AdminLayout";
+import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 
 export default function SystemAdminDashboard() {
   return (
-    <AdminLayout>
-      <Box sx={{ py: 4 }}>
+    <AdminPageGuard>
+      <AdminLayout>
+        <Box sx={{ py: 4 }}>
         <Container maxWidth="lg">
           <Stack spacing={4}>
             <Box>
@@ -122,7 +124,8 @@ export default function SystemAdminDashboard() {
             </Paper>
           </Stack>
         </Container>
-      </Box>
-    </AdminLayout>
+        </Box>
+      </AdminLayout>
+    </AdminPageGuard>
   );
 }

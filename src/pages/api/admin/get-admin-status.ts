@@ -1,6 +1,5 @@
-import { requireAdmin } from "fitness/lib/auth/requireAdmin";
 import { checkIfGetOrSetError } from "fitness/lib/api/api-utils";
-import prisma from "fitness/lib/prisma";
+import { requireAdmin } from "fitness/lib/auth/requireAdmin";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -12,13 +11,5 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
 
-  const users = await prisma.user.findMany({
-    include: {
-      profile: true,
-      adminAccess: true,
-    },
-    orderBy: { createdAt: "desc" },
-  });
-
-  res.json(users);
+  return res.status(200).json({ isAdmin: true });
 }

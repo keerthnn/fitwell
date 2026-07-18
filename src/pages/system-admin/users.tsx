@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { AdminLayout } from "fitness/components/AdminLayout";
+import { AdminPageGuard } from "fitness/components/AdminPageGuard";
 import { adminGetUsers } from "fitness/utils/spec";
 import { useEffect, useState } from "react";
 
@@ -33,8 +34,9 @@ export default function AdminUsersPage() {
   }, []);
 
   return (
-    <AdminLayout>
-      <Box sx={{ py: 4 }}>
+    <AdminPageGuard>
+      <AdminLayout>
+        <Box sx={{ py: 4 }}>
         <Container maxWidth="lg">
           <Stack spacing={3}>
             <Box>
@@ -102,7 +104,8 @@ export default function AdminUsersPage() {
             </Paper>
           </Stack>
         </Container>
-      </Box>
-    </AdminLayout>
+        </Box>
+      </AdminLayout>
+    </AdminPageGuard>
   );
 }
