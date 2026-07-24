@@ -13,14 +13,14 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
   const result = validateAdminTarget(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const target = await prisma.user.findUnique({
     where: { id: result.data.id },
   });
   if (!target || target.deletedAt)
     return res
       .status(409)
-      .json({ error: "Deleted accounts cannot be restored by this operation" });
+      .send({ error: "Deleted accounts cannot be restored by this operation" });
   await prisma.$transaction(async (tx) => {
     await tx.user.update({
       where: { id: result.data.id },
@@ -30,5 +30,5 @@ export default async function handler(
       data: auditData(adminId, "USER_RESTORED", "User", result.data.id),
     });
   });
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

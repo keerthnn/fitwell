@@ -15,13 +15,13 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid request", details: result.errors });
+      .send({ error: "Invalid request", details: result.errors });
   const workout = await prisma.workout.findFirst({
     where: { id: result.data.id, userId, status: "IN_PROGRESS" },
   });
   if (!workout)
-    return res.status(404).json({ error: "Active workout not found" });
-  return res.json(
+    return res.status(404).send({ error: "Active workout not found" });
+  return res.send(
     await prisma.workout.update({
       where: { id: workout.id },
       data: { status: "DRAFT" },

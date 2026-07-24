@@ -16,7 +16,7 @@ export default async function handler(
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   const id = typeof req.query.id === "string" ? req.query.id : "";
-  if (!isIdentifier(id)) return res.status(400).json({ error: "Invalid id" });
+  if (!isIdentifier(id)) return res.status(400).send({ error: "Invalid id" });
   const includeArchived = req.query.includeArchived === "true";
   const isAdmin = includeArchived
     ? Boolean(await prisma.adminAccess.findUnique({ where: { userId } }))
@@ -27,6 +27,6 @@ export default async function handler(
         include: workoutPlanInclude,
       })
     : await findVisibleWorkoutPlan(id, userId);
-  if (!plan) return res.status(404).json({ error: "Workout Plan not found" });
-  return res.status(200).json(plan);
+  if (!plan) return res.status(404).send({ error: "Workout Plan not found" });
+  return res.status(200).send(plan);
 }

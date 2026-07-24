@@ -1,5 +1,10 @@
 import axios from "axios";
 import type {
+  AdminAccessListItem,
+  AdminAuditLogListItem,
+  AdminUserDetail,
+  AdminUserListItem,
+  AdminWorkoutListItem,
   AnalyticsSummary,
   CreateWorkoutRequest,
   DashboardSummary,
@@ -92,17 +97,33 @@ export const getAdminStatus = async () =>
 export const getAdminSummary = async () =>
   (await axios.get("/api/admin/dashboard/summary")).data as Record<string, number>;
 export const getAdminUsers = async () =>
-  (await axios.get("/api/admin/users/list")).data as { items: Array<Record<string, unknown>> };
+  (await axios.get<Paginated<AdminUserListItem>>("/api/admin/users/list")).data;
 export const getAdminUser = async (id: string) =>
-  (await axios.get("/api/admin/users/get-by-id", { params: { id } })).data as Record<string, unknown>;
+  (
+    await axios.get<AdminUserDetail>("/api/admin/users/get-by-id", {
+      params: { id },
+    })
+  ).data;
 export const getAdminWorkouts = async () =>
-  (await axios.get("/api/admin/workouts/list")).data as { items: Array<Record<string, unknown>> };
+  (
+    await axios.get<Paginated<AdminWorkoutListItem>>(
+      "/api/admin/workouts/list",
+    )
+  ).data;
 export const getAdminAnalytics = async () =>
   (await axios.get("/api/admin/analytics/summary")).data as Record<string, number>;
 export const getAdminAccessList = async () =>
-  (await axios.get("/api/admin/admin-access/list")).data as { items: Array<Record<string, unknown>> };
+  (
+    await axios.get<{ items: AdminAccessListItem[] }>(
+      "/api/admin/admin-access/list",
+    )
+  ).data;
 export const getAdminAuditLogs = async () =>
-  (await axios.get("/api/admin/audit-logs/list")).data as { items: Array<Record<string, unknown>> };
+  (
+    await axios.get<{ items: AdminAuditLogListItem[] }>(
+      "/api/admin/audit-logs/list",
+    )
+  ).data;
 export const adminDisableUser = async (id: string) =>
   (await axios.post("/api/admin/users/disable", { id })).data as { success: true };
 export const adminRestoreUser = async (id: string) =>

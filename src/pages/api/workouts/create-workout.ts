@@ -15,7 +15,7 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid workout", details: result.errors });
+      .send({ error: "Invalid workout", details: result.errors });
   const { exerciseIds = [], ...workoutInput } = result.data;
   const activeExercises = exerciseIds.length
     ? await prisma.exercise.findMany({
@@ -24,7 +24,7 @@ export default async function handler(
       })
     : [];
   if (activeExercises.length !== exerciseIds.length) {
-    return res.status(400).json({
+    return res.status(400).send({
       error: "One or more selected exercises are unavailable",
     });
   }
@@ -46,5 +46,5 @@ export default async function handler(
         : undefined,
     },
   });
-  return res.status(201).json({ id: workout.id });
+  return res.status(201).send({ id: workout.id });
 }

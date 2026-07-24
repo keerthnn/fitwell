@@ -4,10 +4,11 @@ import AdminDataList from "fitness/components/admin/layout/AdminDataList";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { adminDeleteWorkout, getAdminWorkouts } from "fitness/utils/spec";
+import type { AdminWorkoutListItem } from "fitness/utils/types";
 import { useCallback, useEffect, useState } from "react";
 
 export default function AdminWorkoutsPage() {
-  const [items, setItems] = useState<Array<Record<string, unknown>>>();
+  const [items, setItems] = useState<AdminWorkoutListItem[]>();
   const load = useCallback(
     () => getAdminWorkouts().then((result) => setItems(result.items)),
     [],
@@ -28,8 +29,6 @@ export default function AdminWorkoutsPage() {
           items={items}
           empty="No workouts"
           render={(item) => {
-            const user = item.user as Record<string, unknown> | undefined;
-            const count = item._count as Record<string, unknown> | undefined;
             return (
               <Stack
                 direction="row"
@@ -45,7 +44,7 @@ export default function AdminWorkoutsPage() {
                     flexWrap="wrap"
                   >
                     <Typography fontWeight={700}>
-                      {String(item.name)}
+                      {item.name}
                     </Typography>
                     <Chip
                       size="small"
@@ -56,18 +55,18 @@ export default function AdminWorkoutsPage() {
                             ? "primary"
                             : "warning"
                       }
-                      label={String(item.status).replaceAll("_", " ")}
+                      label={item.status.replaceAll("_", " ")}
                     />
                   </Stack>
                   <Typography color="text.secondary" variant="body2">
-                    {String(user?.displayName ?? user?.email ?? "Unknown user")}{" "}
-                    · {String(count?.exercises ?? 0)} exercises
+                    {item.user.displayName ?? item.user.email} ·{" "}
+                    {item._count.exercises} exercises
                   </Typography>
                 </Stack>
                 <Button
                   color="error"
                   onClick={async () => {
-                    await adminDeleteWorkout(String(item.id));
+                    await adminDeleteWorkout(item.id);
                     await load();
                   }}
                 >

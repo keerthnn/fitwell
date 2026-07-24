@@ -146,7 +146,7 @@ export default async function handler(
     currentStreak += 1;
     cursor.setDate(cursor.getDate() - 1);
   }
-  return res.status(200).json({
+  return res.status(200).send({
     greetingName: profile?.firstName ?? user?.displayName ?? "there",
     workoutsThisWeek: completed.filter(
       (workout) => workout.workoutDate >= startOfWeek(),

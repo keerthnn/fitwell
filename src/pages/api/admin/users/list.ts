@@ -30,5 +30,5 @@ export default async function handler(
     orderBy: { createdAt: "desc" },
     take: 100,
   });
-  return res.status(200).json({ items: users, nextCursor: null });
+  return res.status(200).send({ items: users, nextCursor: null });
 }

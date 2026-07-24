@@ -14,7 +14,7 @@ export default async function handler(
 
   const validation = validateIdBody(req.body);
   if (!validation.valid || !validation.data) {
-    return res.status(400).json({ errors: validation.errors });
+    return res.status(400).send({ errors: validation.errors });
   }
 
   const result = await prisma.workout.updateMany({
@@ -22,7 +22,7 @@ export default async function handler(
     data: { status: "IN_PROGRESS", startedAt: new Date() },
   });
   if (!result.count) {
-    return res.status(409).json({ error: "Workout cannot be resumed" });
+    return res.status(409).send({ error: "Workout cannot be resumed" });
   }
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

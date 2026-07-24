@@ -15,12 +15,12 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid request", details: result.errors });
+      .send({ error: "Invalid request", details: result.errors });
   const source = await prisma.workout.findFirst({
     where: { id: result.data.id, userId },
     include: { exercises: { include: { sets: true } } },
   });
-  if (!source) return res.status(404).json({ error: "Workout not found" });
+  if (!source) return res.status(404).send({ error: "Workout not found" });
   const workout = await prisma.workout.create({
     data: {
       userId,
@@ -49,5 +49,5 @@ export default async function handler(
       },
     },
   });
-  return res.status(201).json({ id: workout.id });
+  return res.status(201).send({ id: workout.id });
 }

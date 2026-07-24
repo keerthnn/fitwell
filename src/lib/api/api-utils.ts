@@ -51,5 +51,5 @@ export function sendApiError(
 ) {
   return res
     .status(status)
-    .json({ error, ...(fieldErrors ? { fieldErrors } : {}) });
+    .send({ error, ...(fieldErrors ? { fieldErrors } : {}) });
 }

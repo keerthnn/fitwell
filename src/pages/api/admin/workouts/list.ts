@@ -17,5 +17,5 @@ export default async function handler(
     orderBy: { workoutDate: "desc" },
     take: 100,
   });
-  return res.status(200).json({ items, nextCursor: null });
+  return res.status(200).send({ items, nextCursor: null });
 }

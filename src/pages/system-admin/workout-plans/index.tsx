@@ -5,18 +5,15 @@ import AdminDataList from "fitness/components/admin/layout/AdminDataList";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { listWorkoutPlans } from "fitness/utils/spec";
+import type { WorkoutPlan } from "fitness/utils/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminWorkoutPlansPage() {
-  const [items, setItems] = useState<Array<Record<string, unknown>>>();
+  const [items, setItems] = useState<WorkoutPlan[]>();
   useEffect(() => {
     void listWorkoutPlans({ includeArchived: "true" }).then((result) =>
-      setItems(
-        result.items.filter((item) => item.isBuiltIn) as unknown as Array<
-          Record<string, unknown>
-        >,
-      ),
+      setItems(result.items.filter((item) => item.isBuiltIn)),
     );
   }, []);
   return (
@@ -38,7 +35,7 @@ export default function AdminWorkoutPlansPage() {
           render={(item) => (
             <Box
               component={Link}
-              href={`/system-admin/workout-plans/${String(item.id)}`}
+              href={`/system-admin/workout-plans/${item.id}`}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -48,11 +45,10 @@ export default function AdminWorkoutPlansPage() {
             >
               <Stack minWidth={0}>
                 <Typography fontWeight={700} noWrap>
-                  {String(item.name)}
+                  {item.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {String(item.difficulty)} · {String(item.daysPerWeek)}{" "}
-                  days/week
+                  {item.difficulty} · {item.daysPerWeek} days/week
                 </Typography>
               </Stack>
               <Stack direction="row" alignItems="center" gap={1.5}>

@@ -15,10 +15,10 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid profile", details: result.errors });
+      .send({ error: "Invalid profile", details: result.errors });
   const existing = await prisma.userProfile.findUnique({ where: { userId } });
   if (existing)
-    return res.status(409).json({ error: "Profile already exists" });
+    return res.status(409).send({ error: "Profile already exists" });
   await prisma.userProfile.create({
     data: {
       ...result.data,
@@ -28,5 +28,5 @@ export default async function handler(
       userId,
     },
   });
-  return res.status(201).json({ success: true });
+  return res.status(201).send({ success: true });
 }

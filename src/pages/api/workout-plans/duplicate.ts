@@ -17,9 +17,9 @@ export default async function handler(
   if (!userId) return;
   const validation = validateIdBody(req.body);
   if (!validation.valid)
-    return res.status(400).json({ errors: validation.errors });
+    return res.status(400).send({ errors: validation.errors });
   const source = await findVisibleWorkoutPlan(validation.data.id, userId);
-  if (!source) return res.status(404).json({ error: "Workout Plan not found" });
+  if (!source) return res.status(404).send({ error: "Workout Plan not found" });
   const copy = await prisma.workoutPlan.create({
     data: {
       userId,
@@ -45,5 +45,5 @@ export default async function handler(
     },
     include: workoutPlanInclude,
   });
-  return res.status(201).json(copy);
+  return res.status(201).send(copy);
 }

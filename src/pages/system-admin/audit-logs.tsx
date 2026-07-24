@@ -4,10 +4,11 @@ import AdminDataList from "fitness/components/admin/layout/AdminDataList";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { getAdminAuditLogs } from "fitness/utils/spec";
+import type { AdminAuditLogListItem } from "fitness/utils/types";
 import { useEffect, useState } from "react";
 
 export default function AuditLogsPage() {
-  const [items, setItems] = useState<Array<Record<string, unknown>>>();
+  const [items, setItems] = useState<AdminAuditLogListItem[]>();
   useEffect(() => {
     void getAdminAuditLogs().then((result) => setItems(result.items));
   }, []);
@@ -24,7 +25,6 @@ export default function AuditLogsPage() {
           items={items}
           empty="No audit events"
           render={(item) => {
-            const admin = item.admin as Record<string, unknown> | undefined;
             return (
               <Stack
                 direction={{ xs: "column", sm: "row" }}
@@ -33,15 +33,15 @@ export default function AuditLogsPage() {
               >
                 <Stack>
                   <Typography fontWeight={700}>
-                    {String(item.action).replaceAll("_", " ")}
+                    {item.action.replaceAll("_", " ")}
                   </Typography>
                   <Typography color="text.secondary" variant="body2">
-                    {String(item.entityType)} ·{" "}
-                    {String(admin?.displayName ?? admin?.email ?? "System")}
+                    {item.entityType} ·{" "}
+                    {item.admin.displayName ?? item.admin.email}
                   </Typography>
                 </Stack>
                 <Typography color="text.secondary" variant="body2">
-                  {new Date(String(item.createdAt)).toLocaleString()}
+                  {new Date(item.createdAt).toLocaleString()}
                 </Typography>
               </Stack>
             );

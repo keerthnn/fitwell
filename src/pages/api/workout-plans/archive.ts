@@ -13,13 +13,13 @@ export default async function handler(
   if (!userId) return;
   const id = req.body?.id;
   if (!isIdentifier(id) || typeof req.body?.archived !== "boolean") {
-    return res.status(400).json({ error: "Invalid archive request" });
+    return res.status(400).send({ error: "Invalid archive request" });
   }
   const result = await prisma.workoutPlan.updateMany({
     where: { id, userId, isBuiltIn: false },
     data: { isArchived: req.body.archived },
   });
   if (!result.count)
-    return res.status(404).json({ error: "Workout Plan not found" });
-  return res.status(200).json({ id, isArchived: req.body.archived });
+    return res.status(404).send({ error: "Workout Plan not found" });
+  return res.status(200).send({ id, isArchived: req.body.archived });
 }

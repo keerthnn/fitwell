@@ -1,7 +1,10 @@
-import type { ValidationError } from "fitness/utils/types";
+import type {
+  RequestInputValue,
+  ValidationError,
+} from "fitness/utils/types";
 import { idValue, invalid, record, valid } from "./common";
 
-export function validateAdminTarget(value: unknown) {
+export function validateAdminTarget(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const id = idValue(input?.id ?? input?.userId, "id", errors);

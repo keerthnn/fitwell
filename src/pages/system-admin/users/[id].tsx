@@ -9,13 +9,14 @@ import {
   adminRestoreUser,
   getAdminUser,
 } from "fitness/utils/spec";
+import type { AdminUserDetail } from "fitness/utils/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function AdminUserPage() {
   const router = useRouter();
   const id = typeof router.query.id === "string" ? router.query.id : "";
-  const [user, setUser] = useState<Record<string, unknown>>();
+  const [user, setUser] = useState<AdminUserDetail>();
   const [confirmDelete, setConfirmDelete] = useState(false);
   useEffect(() => {
     if (id) void getAdminUser(id).then(setUser);
@@ -27,7 +28,7 @@ export default function AdminUserPage() {
       ) : (
         <>
           <PageHeader
-            title={String(user.displayName ?? user.email)}
+            title={user.displayName ?? user.email}
             description="Account details, status, and administrative actions."
           />
           <Paper variant="outlined" sx={{ p: 3, maxWidth: 760 }}>
@@ -36,7 +37,7 @@ export default function AdminUserPage() {
                 <Typography variant="caption" color="text.secondary">
                   Email
                 </Typography>
-                <Typography fontWeight={700}>{String(user.email)}</Typography>
+                <Typography fontWeight={700}>{user.email}</Typography>
               </Stack>
               <Stack direction={{ xs: "column", sm: "row" }} gap={3}>
                 <Stack gap={0.25}>

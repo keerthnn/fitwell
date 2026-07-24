@@ -12,14 +12,14 @@ export default async function handler(
   if (!userId) return;
   const validation = validateWorkoutExerciseUpdate(req.body);
   if (!validation.valid)
-    return res.status(400).json({ errors: validation.errors });
+    return res.status(400).send({ errors: validation.errors });
   const { id, notes } = validation.data;
   const owned = await prisma.workoutExercise.findFirst({
     where: { id, workout: { userId } },
   });
   if (!owned)
-    return res.status(404).json({ error: "Workout exercise not found" });
-  return res.json(
+    return res.status(404).send({ error: "Workout exercise not found" });
+  return res.send(
     await prisma.workoutExercise.update({
       where: { id },
       data: { notes: notes ?? null },

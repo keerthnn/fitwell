@@ -15,15 +15,15 @@ export default async function handler(
 
   const { id } = req.query;
   if (!isIdentifier(id)) {
-    return res.status(400).json({ error: "Invalid workout ID" });
+    return res.status(400).send({ error: "Invalid workout ID" });
   }
 
   const workout = await prisma.workout.findFirst({ where: { id, userId } });
   if (!workout) {
-    return res.status(404).json({ error: "Workout not found" });
+    return res.status(404).send({ error: "Workout not found" });
   }
 
   await prisma.workout.delete({ where: { id } });
 
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

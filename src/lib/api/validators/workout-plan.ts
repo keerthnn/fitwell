@@ -1,4 +1,8 @@
-import type { ValidationError, WorkoutPlanExercise } from "fitness/utils/types";
+import type {
+  RequestInputValue,
+  ValidationError,
+  WorkoutPlanExercise,
+} from "fitness/utils/types";
 import {
   enumValue,
   idValue,
@@ -20,7 +24,7 @@ export interface PlanInput {
   exercises: WorkoutPlanExercise[];
 }
 
-export function validateWorkoutPlan(value: unknown) {
+export function validateWorkoutPlan(value: RequestInputValue) {
   const input = record(value);
   if (!input)
     return invalid<PlanInput>([

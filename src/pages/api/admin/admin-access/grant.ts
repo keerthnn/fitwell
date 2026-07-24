@@ -13,11 +13,11 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
   const result = validateAdminTarget(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const target = await prisma.user.findFirst({
     where: { id: result.data.id, isDisabled: false, deletedAt: null },
   });
-  if (!target) return res.status(404).json({ error: "Active user not found" });
+  if (!target) return res.status(404).send({ error: "Active user not found" });
   await prisma.$transaction(async (tx) => {
     await tx.adminAccess.upsert({
       where: { userId: target.id },
@@ -28,5 +28,5 @@ export default async function handler(
       data: auditData(adminId, "ADMIN_GRANTED", "AdminAccess", target.id),
     });
   });
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

@@ -1,14 +1,19 @@
 import { Box, Divider, Paper, Stack, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 
-export default function AdminDataList({
+interface AdminDataListItem {
+  id?: string;
+  userId?: string | null;
+}
+
+export default function AdminDataList<T extends AdminDataListItem>({
   items,
   empty,
   render,
 }: {
-  items: Array<Record<string, unknown>>;
+  items: T[];
   empty: string;
-  render: (item: Record<string, unknown>) => ReactNode;
+  render: (item: T) => ReactNode;
 }) {
   if (!items.length) {
     return (

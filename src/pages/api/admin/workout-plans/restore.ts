@@ -13,7 +13,7 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
   const result = validateAdminTarget(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const changed = await prisma.$transaction(async (tx) => {
     const update = await tx.workoutPlan.updateMany({
       where: { id: result.data.id, userId: null, isBuiltIn: true },
@@ -31,6 +31,6 @@ export default async function handler(
     return update.count;
   });
   if (!changed)
-    return res.status(404).json({ error: "Built-in Workout Plan not found" });
-  return res.status(200).json({ success: true });
+    return res.status(404).send({ error: "Built-in Workout Plan not found" });
+  return res.status(200).send({ success: true });
 }

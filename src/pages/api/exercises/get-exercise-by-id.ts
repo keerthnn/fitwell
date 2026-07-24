@@ -14,7 +14,7 @@ export default async function handler(
 
   const id = typeof req.query.id === "string" ? req.query.id : "";
   if (!isIdentifier(id)) {
-    return res.status(400).json({ error: "A valid exercise id is required" });
+    return res.status(400).send({ error: "A valid exercise id is required" });
   }
   const includeInactive = req.query.includeInactive === "true";
   const isAdmin = includeInactive
@@ -23,6 +23,6 @@ export default async function handler(
   const exercise = await prisma.exercise.findFirst({
     where: { id, ...(isAdmin ? {} : { isActive: true }) },
   });
-  if (!exercise) return res.status(404).json({ error: "Exercise not found" });
-  return res.status(200).json(exercise);
+  if (!exercise) return res.status(404).send({ error: "Exercise not found" });
+  return res.status(200).send(exercise);
 }

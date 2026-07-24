@@ -14,12 +14,12 @@ export default async function handler(
   if (!adminId) return;
   const id = typeof req.query.id === "string" ? req.query.id : "";
   if (!isIdentifier(id))
-    return res.status(400).json({ error: "Invalid workout id" });
+    return res.status(400).send({ error: "Invalid workout id" });
   await prisma.$transaction(async (tx) => {
     await tx.workout.delete({ where: { id } });
     await tx.adminAuditLog.create({
       data: auditData(adminId, "WORKOUT_DELETED", "Workout", id),
     });
   });
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

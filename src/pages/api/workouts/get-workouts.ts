@@ -13,7 +13,7 @@ export default async function handler(
   if (!userId) return;
   const validation = validateWorkoutQuery(req.query);
   if (!validation.valid)
-    return res.status(400).json({ errors: validation.errors });
+    return res.status(400).send({ errors: validation.errors });
   const { status, search, limit, cursor, sort } = validation.data;
   const rows = await prisma.workout.findMany({
     where: {
@@ -49,7 +49,7 @@ export default async function handler(
     ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
   });
   const nextCursor = rows.length > limit ? rows[limit - 1].id : null;
-  return res.json({
+  return res.send({
     items: rows
       .slice(0, limit)
       .map(({ _count, exercises, sourceWorkoutPlan, ...workout }) => ({

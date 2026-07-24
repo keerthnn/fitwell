@@ -15,5 +15,5 @@ export default async function handler(
     prisma.exercise.count({ where: { isActive: true } }),
     prisma.workoutPlan.count({ where: { isBuiltIn: true, isActive: true } }),
   ]);
-  return res.status(200).json({ users, workouts, exercises, workoutPlans });
+  return res.status(200).send({ users, workouts, exercises, workoutPlans });
 }

@@ -25,10 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!userId) return;
 
   const validation = validateDomainInput(req.body);
-  if (!validation.valid) return res.status(400).json({ errors: validation.errors });
+  if (!validation.valid) return res.status(400).send({ errors: validation.errors });
 
   // Query through the shared Prisma client and include userId in ownership checks.
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }
 ```
 

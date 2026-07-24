@@ -1,4 +1,8 @@
-import type { Profile, ValidationError } from "fitness/utils/types";
+import type {
+  Profile,
+  RequestInputValue,
+  ValidationError,
+} from "fitness/utils/types";
 import {
   dateValue,
   enumValue,
@@ -20,7 +24,7 @@ const goals = [
 const levels = ["BEGINNER", "INTERMEDIATE", "ADVANCED"] as const;
 const units = ["METRIC", "IMPERIAL"] as const;
 
-export function validateProfile(value: unknown) {
+export function validateProfile(value: RequestInputValue) {
   const input = record(value);
   if (!input)
     return invalid<Profile>([

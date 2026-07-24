@@ -15,12 +15,12 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid sets", details: result.errors });
+      .send({ error: "Invalid sets", details: result.errors });
   const owned = await prisma.workoutExercise.findFirst({
     where: { id: result.data.workoutExerciseId, workout: { userId } },
   });
   if (!owned)
-    return res.status(404).json({ error: "Workout exercise not found" });
+    return res.status(404).send({ error: "Workout exercise not found" });
   await prisma.$transaction(async (tx) => {
     await tx.workoutSet.deleteMany({ where: { workoutExerciseId: owned.id } });
     await tx.workoutSet.createMany({
@@ -36,5 +36,5 @@ export default async function handler(
       })),
     });
   });
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

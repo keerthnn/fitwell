@@ -12,7 +12,7 @@ export default async function handler(
   if (!(await requireAdmin(req, res))) return;
   const id = typeof req.query.id === "string" ? req.query.id : "";
   if (!isIdentifier(id))
-    return res.status(400).json({ error: "Invalid user id" });
+    return res.status(400).send({ error: "Invalid user id" });
   const user = await prisma.user.findUnique({
     where: { id },
     include: {
@@ -21,6 +21,6 @@ export default async function handler(
       workouts: { orderBy: { workoutDate: "desc" }, take: 20 },
     },
   });
-  if (!user) return res.status(404).json({ error: "User not found" });
-  return res.status(200).json(user);
+  if (!user) return res.status(404).send({ error: "User not found" });
+  return res.status(200).send(user);
 }

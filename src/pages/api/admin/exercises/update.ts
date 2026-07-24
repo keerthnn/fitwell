@@ -15,9 +15,9 @@ export default async function handler(
   if (!adminId) return;
   const id = req.body?.id;
   if (!isIdentifier(id))
-    return res.status(400).json({ error: "Invalid exercise id" });
+    return res.status(400).send({ error: "Invalid exercise id" });
   const result = validateExercise(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const exercise = await prisma.$transaction(async (tx) => {
     const updated = await tx.exercise.update({
       where: { id },
@@ -28,5 +28,5 @@ export default async function handler(
     });
     return updated;
   });
-  return res.status(200).json(exercise);
+  return res.status(200).send(exercise);
 }

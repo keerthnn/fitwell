@@ -15,18 +15,18 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid workout", details: result.errors });
+      .send({ error: "Invalid workout", details: result.errors });
   const workout = await prisma.workout.findFirst({
     where: { id: result.data.id, userId },
     include: { exercises: { include: { sets: true } } },
   });
-  if (!workout) return res.status(404).json({ error: "Workout not found" });
+  if (!workout) return res.status(404).send({ error: "Workout not found" });
   if (
     !workout.exercises.some((exercise) =>
       exercise.sets.some((set) => set.isCompleted),
     )
   )
-    return res.status(400).json({ error: "Complete at least one set" });
+    return res.status(400).send({ error: "Complete at least one set" });
   const completedAt = new Date();
   const durationMinutes =
     workout.durationMinutes ??
@@ -38,7 +38,7 @@ export default async function handler(
           60000,
       ),
     );
-  return res.json(
+  return res.send(
     await prisma.workout.update({
       where: { id: workout.id },
       data: { status: "COMPLETED", completedAt, durationMinutes },

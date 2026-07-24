@@ -16,5 +16,6 @@ export default async function handler(
     where: { userId },
   });
 
-  return res.json(profile);
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  return res.send(profile === null ? "null" : profile);
 }

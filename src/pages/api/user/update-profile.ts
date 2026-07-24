@@ -15,9 +15,9 @@ export default async function handler(
   if (!result.valid)
     return res
       .status(400)
-      .json({ error: "Invalid profile", details: result.errors });
+      .send({ error: "Invalid profile", details: result.errors });
   const profile = await prisma.userProfile.findUnique({ where: { userId } });
-  if (!profile) return res.status(404).json({ error: "Profile not found" });
+  if (!profile) return res.status(404).send({ error: "Profile not found" });
   await prisma.userProfile.update({
     where: { userId },
     data: {
@@ -27,5 +27,5 @@ export default async function handler(
         : null,
     },
   });
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

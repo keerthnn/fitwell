@@ -16,7 +16,7 @@ export default async function handler(
   if (!result.valid) {
     return res
       .status(400)
-      .json({ error: "Invalid Workout Plan", details: result.errors });
+      .send({ error: "Invalid Workout Plan", details: result.errors });
   }
   const { exercises, ...plan } = result.data;
   const created = await prisma.workoutPlan.create({
@@ -39,5 +39,5 @@ export default async function handler(
     },
     include: workoutPlanInclude,
   });
-  return res.status(201).json(created);
+  return res.status(201).send(created);
 }

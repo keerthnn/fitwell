@@ -13,11 +13,11 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
   const result = validateAdminTarget(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   if (result.data.id === adminId)
     return res
       .status(409)
-      .json({ error: "You cannot disable your own account" });
+      .send({ error: "You cannot disable your own account" });
   await prisma.$transaction(async (tx) => {
     await tx.user.update({
       where: { id: result.data.id },
@@ -27,5 +27,5 @@ export default async function handler(
       data: auditData(adminId, "USER_DISABLED", "User", result.data.id),
     });
   });
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

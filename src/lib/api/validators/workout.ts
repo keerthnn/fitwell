@@ -1,5 +1,6 @@
 import type {
   CreateWorkoutRequest,
+  RequestInputValue,
   ValidationError,
   WorkoutSet,
 } from "fitness/utils/types";
@@ -16,7 +17,7 @@ import {
 
 const modes = ["LIVE", "QUICK_ENTRY", "PLAN"] as const;
 
-export function validateCreateWorkout(value: unknown) {
+export function validateCreateWorkout(value: RequestInputValue) {
   const input = record(value);
   if (!input)
     return invalid<CreateWorkoutRequest>([
@@ -68,14 +69,14 @@ export function validateCreateWorkout(value: unknown) {
   });
 }
 
-export function validateIdBody(value: unknown) {
+export function validateIdBody(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const id = idValue(input?.id, "id", errors);
   return errors.length || !id ? invalid<{ id: string }>(errors) : valid({ id });
 }
 
-export function validateSets(value: unknown) {
+export function validateSets(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const workoutExerciseId = idValue(
@@ -140,7 +141,7 @@ export function validateSets(value: unknown) {
     : valid({ workoutExerciseId, sets });
 }
 
-export function validateWorkoutQuery(value: unknown) {
+export function validateWorkoutQuery(value: RequestInputValue) {
   const input = record(value) ?? {};
   const errors: ValidationError[] = [];
   const status =
@@ -168,7 +169,7 @@ export function validateWorkoutQuery(value: unknown) {
     : valid({ status, search, cursor, sort, limit });
 }
 
-export function validateUpdateWorkout(value: unknown) {
+export function validateUpdateWorkout(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const id = idValue(input?.id, "id", errors);
@@ -189,7 +190,7 @@ export function validateUpdateWorkout(value: unknown) {
     : valid({ id, name, workoutDate, durationMinutes, notes });
 }
 
-export function validateExerciseOrder(value: unknown) {
+export function validateExerciseOrder(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const workoutId = idValue(input?.workoutId, "workoutId", errors);
@@ -207,7 +208,7 @@ export function validateExerciseOrder(value: unknown) {
     : valid({ workoutId, ids });
 }
 
-export function validateAddExercise(value: unknown) {
+export function validateAddExercise(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const workoutId = idValue(input?.workoutId, "workoutId", errors);
@@ -223,7 +224,7 @@ export function validateAddExercise(value: unknown) {
     : valid({ workoutId, exerciseId, order });
 }
 
-export function validateWorkoutExerciseUpdate(value: unknown) {
+export function validateWorkoutExerciseUpdate(value: RequestInputValue) {
   const input = record(value);
   const errors: ValidationError[] = [];
   const id = idValue(input?.id, "id", errors);

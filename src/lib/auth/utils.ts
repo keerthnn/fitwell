@@ -37,7 +37,7 @@ export async function getDecodedTokenOrSetError(
   try {
     return await adminAuth.verifyIdToken(idToken as string);
   } catch {
-    res.status(401).json({ error: "Invalid or expired authentication" });
+    res.status(401).send({ error: "Invalid or expired authentication" });
     return undefined;
   }
 }
@@ -58,7 +58,7 @@ export async function getUserIdOrSetError(
     select: { isDisabled: true, deletedAt: true },
   });
   if (user?.isDisabled || user?.deletedAt) {
-    res.status(403).json({ error: "Application access is disabled" });
+    res.status(403).send({ error: "Application access is disabled" });
     return;
   }
   try {

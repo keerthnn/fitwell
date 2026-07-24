@@ -1,4 +1,7 @@
-import type { ValidationError } from "fitness/utils/types";
+import type {
+  RequestInputValue,
+  ValidationError,
+} from "fitness/utils/types";
 import { enumValue, invalid, record, text, valid } from "./common";
 
 const equipment = [
@@ -41,7 +44,7 @@ export interface ExerciseInput {
   thumbnailPath?: string;
   equipmentImagePath?: string;
 }
-export function validateExercise(value: unknown) {
+export function validateExercise(value: RequestInputValue) {
   const input = record(value);
   if (!input)
     return invalid<ExerciseInput>([
@@ -120,7 +123,7 @@ export function validateExercise(value: unknown) {
   });
 }
 
-export function validateExerciseQuery(value: unknown) {
+export function validateExerciseQuery(value: RequestInputValue) {
   const input = record(value);
   if (!input)
     return invalid<Record<string, never>>([

@@ -15,14 +15,14 @@ export default async function handler(
   if (!adminId) return;
   const id = req.body?.id;
   if (!isIdentifier(id))
-    return res.status(400).json({ error: "Invalid Workout Plan id" });
+    return res.status(400).send({ error: "Invalid Workout Plan id" });
   const result = validateWorkoutPlan(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const existing = await prisma.workoutPlan.findFirst({
     where: { id, userId: null, isBuiltIn: true },
   });
   if (!existing)
-    return res.status(404).json({ error: "Built-in Workout Plan not found" });
+    return res.status(404).send({ error: "Built-in Workout Plan not found" });
   const { exercises, ...data } = result.data;
   const plan = await prisma.$transaction(async (tx) => {
     await tx.workoutPlanExercise.deleteMany({ where: { workoutPlanId: id } });
@@ -50,5 +50,5 @@ export default async function handler(
     });
     return updated;
   });
-  return res.status(200).json(plan);
+  return res.status(200).send(plan);
 }

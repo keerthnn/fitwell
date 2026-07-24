@@ -16,5 +16,5 @@ export default async function handler(
     where: { userId },
   });
 
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

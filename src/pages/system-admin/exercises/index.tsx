@@ -5,15 +5,18 @@ import AdminDataList from "fitness/components/admin/layout/AdminDataList";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { getExercises } from "fitness/utils/spec";
+import type { Exercise } from "fitness/utils/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminExercisesPage() {
-  const [items, setItems] = useState<Array<Record<string, unknown>>>();
+  const [items, setItems] = useState<Exercise[]>();
   useEffect(() => {
-    void getExercises({ limit: "100", includeInactive: "true" }).then(
-      (result) =>
-        setItems(result.items as unknown as Array<Record<string, unknown>>),
+    void getExercises({
+      limit: "100",
+      includeInactive: "true",
+    }).then(
+      (result) => setItems(result.items),
     );
   }, []);
   return (
@@ -35,7 +38,7 @@ export default function AdminExercisesPage() {
           render={(item) => (
             <Box
               component={Link}
-              href={`/system-admin/exercises/${String(item.id)}`}
+              href={`/system-admin/exercises/${item.id}`}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -45,10 +48,10 @@ export default function AdminExercisesPage() {
             >
               <Stack minWidth={0}>
                 <Typography fontWeight={700} noWrap>
-                  {String(item.name)}
+                  {item.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {String(item.primaryMuscle)} · {String(item.equipment)}
+                  {item.primaryMuscle} · {item.equipment}
                 </Typography>
               </Stack>
               <Stack direction="row" alignItems="center" gap={1.5}>

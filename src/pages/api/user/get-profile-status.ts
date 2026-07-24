@@ -17,7 +17,7 @@ export default async function handler(
     select: { id: true, onboardingCompleted: true },
   });
 
-  return res.json({
+  return res.send({
     hasProfile: Boolean(profile),
     onboardingCompleted: profile?.onboardingCompleted ?? false,
   });

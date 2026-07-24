@@ -1,4 +1,8 @@
-import type { ValidationError } from "fitness/utils/types";
+import type {
+  RequestInputObject,
+  RequestInputValue,
+  ValidationError,
+} from "fitness/utils/types";
 
 export type ValidationResult<T> =
   | { valid: true; data: T; errors: [] }
@@ -13,12 +17,12 @@ export const valid = <T>(data: T): ValidationResult<T> => ({
   data,
   errors: [],
 });
-export const record = (value: unknown): Record<string, unknown> | null =>
+export const record = (value: RequestInputValue): RequestInputObject | null =>
   value !== null && typeof value === "object" && !Array.isArray(value)
-    ? (value as Record<string, unknown>)
+    ? (value as RequestInputObject)
     : null;
 export const text = (
-  value: unknown,
+  value: RequestInputValue,
   field: string,
   errors: ValidationError[],
   options: { required?: boolean; max?: number } = {},
@@ -43,7 +47,7 @@ export const text = (
   return result;
 };
 export const numberValue = (
-  value: unknown,
+  value: RequestInputValue,
   field: string,
   errors: ValidationError[],
   options: {
@@ -71,7 +75,7 @@ export const numberValue = (
   return value;
 };
 export const enumValue = <T extends string>(
-  value: unknown,
+  value: RequestInputValue,
   field: string,
   allowed: readonly T[],
   errors: ValidationError[],
@@ -83,7 +87,7 @@ export const enumValue = <T extends string>(
   return value as T;
 };
 export const dateValue = (
-  value: unknown,
+  value: RequestInputValue,
   field: string,
   errors: ValidationError[],
 ) => {
@@ -94,12 +98,12 @@ export const dateValue = (
   return value;
 };
 export const idValue = (
-  value: unknown,
+  value: RequestInputValue,
   field: string,
   errors: ValidationError[],
 ) => text(value, field, errors, { required: true, max: 128 });
 
-export const isIdentifier = (value: unknown): value is string =>
+export const isIdentifier = (value: RequestInputValue): value is string =>
   typeof value === "string" &&
   value.length > 0 &&
   value.length <= 128 &&

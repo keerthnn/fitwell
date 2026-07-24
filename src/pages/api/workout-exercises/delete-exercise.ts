@@ -15,7 +15,7 @@ export default async function handler(
     where: { id, workout: { userId } },
   });
   if (!owned)
-    return res.status(404).json({ error: "Workout exercise not found" });
+    return res.status(404).send({ error: "Workout exercise not found" });
   await prisma.workoutExercise.delete({ where: { id } });
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

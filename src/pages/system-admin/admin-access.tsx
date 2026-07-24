@@ -8,10 +8,11 @@ import {
   adminRemoveAccess,
   getAdminAccessList,
 } from "fitness/utils/spec";
+import type { AdminAccessListItem } from "fitness/utils/types";
 import { useCallback, useEffect, useState } from "react";
 
 export default function AdminAccessPage() {
-  const [items, setItems] = useState<Array<Record<string, unknown>>>();
+  const [items, setItems] = useState<AdminAccessListItem[]>();
   const [userId, setUserId] = useState("");
   const load = useCallback(
     () => getAdminAccessList().then((result) => setItems(result.items)),
@@ -54,7 +55,6 @@ export default function AdminAccessPage() {
           items={items}
           empty="No admins"
           render={(item) => {
-            const user = item.user as Record<string, unknown> | undefined;
             return (
               <Stack
                 direction="row"
@@ -64,16 +64,16 @@ export default function AdminAccessPage() {
               >
                 <Stack minWidth={0}>
                   <Typography fontWeight={700} noWrap>
-                    {String(user?.displayName ?? user?.email ?? item.userId)}
+                    {item.user.displayName ?? item.user.email}
                   </Typography>
                   <Typography color="text.secondary" variant="body2" noWrap>
-                    {String(user?.email ?? item.userId)}
+                    {item.user.email}
                   </Typography>
                 </Stack>
                 <Button
                   color="error"
                   onClick={async () => {
-                    await adminRemoveAccess(String(item.userId));
+                    await adminRemoveAccess(item.userId);
                     await load();
                   }}
                 >

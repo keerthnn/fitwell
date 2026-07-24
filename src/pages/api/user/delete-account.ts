@@ -11,7 +11,7 @@ export default async function handler(
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   if (req.query.confirm !== "DELETE")
-    return res.status(400).json({ error: "Confirmation required" });
+    return res.status(400).send({ error: "Confirmation required" });
   const [isAdmin, activeAdminCount] = await Promise.all([
     prisma.adminAccess.findUnique({ where: { userId } }),
     prisma.adminAccess.count({
@@ -19,7 +19,7 @@ export default async function handler(
     }),
   ]);
   if (isAdmin && activeAdminCount <= 1) {
-    return res.status(409).json({
+    return res.status(409).send({
       error: "Grant another active administrator before deleting this account",
     });
   }
@@ -39,5 +39,5 @@ export default async function handler(
       },
     });
   });
-  return res.json({ success: true });
+  return res.send({ success: true });
 }

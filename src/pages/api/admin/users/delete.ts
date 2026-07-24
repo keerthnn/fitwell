@@ -14,7 +14,7 @@ export default async function handler(
   if (!adminId) return;
   const id = typeof req.query.id === "string" ? req.query.id : "";
   if (!isIdentifier(id) || id === adminId)
-    return res.status(400).json({ error: "Invalid user target" });
+    return res.status(400).send({ error: "Invalid user target" });
   await prisma.$transaction(async (tx) => {
     await tx.workout.deleteMany({ where: { userId: id } });
     await tx.workoutPlan.deleteMany({
@@ -36,5 +36,5 @@ export default async function handler(
       data: auditData(adminId, "USER_DELETED", "User", id),
     });
   });
-  return res.status(200).json({ success: true });
+  return res.status(200).send({ success: true });
 }

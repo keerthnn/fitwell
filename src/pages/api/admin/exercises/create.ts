@@ -13,7 +13,7 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
   const result = validateExercise(req.body);
-  if (!result.valid) return res.status(400).json({ errors: result.errors });
+  if (!result.valid) return res.status(400).send({ errors: result.errors });
   const exercise = await prisma.$transaction(async (tx) => {
     const created = await tx.exercise.create({ data: result.data });
     await tx.adminAuditLog.create({
@@ -21,5 +21,5 @@ export default async function handler(
     });
     return created;
   });
-  return res.status(201).json(exercise);
+  return res.status(201).send(exercise);
 }

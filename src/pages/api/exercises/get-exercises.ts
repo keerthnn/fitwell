@@ -15,7 +15,7 @@ export default async function handler(
 
   const validation = validateExerciseQuery(req.query);
   if (!validation.valid || !validation.data) {
-    return res.status(400).json({ errors: validation.errors });
+    return res.status(400).send({ errors: validation.errors });
   }
   const { search, equipment, category, movement, limit, cursor } =
     validation.data;
@@ -41,7 +41,7 @@ export default async function handler(
 
   const hasMore = exercises.length > limit;
   const items = hasMore ? exercises.slice(0, limit) : exercises;
-  return res.json({
+  return res.send({
     items,
     nextCursor: hasMore ? (items[items.length - 1]?.id ?? null) : null,
   });

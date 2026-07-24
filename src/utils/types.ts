@@ -191,6 +191,71 @@ export interface Paginated<T> {
   nextCursor: string | null;
 }
 
+export type RequestInputValue =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | RequestInputValue[]
+  | RequestInputObject;
+
+export interface RequestInputObject {
+  [key: string]: RequestInputValue;
+}
+
+export interface AdminUserListItem {
+  id: string;
+  email: string;
+  displayName: string | null;
+  _count: {
+    workouts: number;
+    workoutPlans: number;
+  };
+}
+
+export interface AdminUserDetail {
+  id: string;
+  email: string;
+  displayName: string | null;
+  isDisabled: boolean;
+  deletedAt: string | null;
+}
+
+export interface AdminWorkoutListItem {
+  id: string;
+  name: string;
+  status: WorkoutStatus;
+  user: {
+    email: string;
+    displayName: string | null;
+  };
+  _count: {
+    exercises: number;
+  };
+}
+
+export interface AdminAccessListItem {
+  userId: string;
+  user: {
+    id: string;
+    email: string;
+    displayName: string | null;
+    isDisabled: boolean;
+  };
+}
+
+export interface AdminAuditLogListItem {
+  id: string;
+  action: string;
+  entityType: string;
+  createdAt: string;
+  admin: {
+    email: string;
+    displayName: string | null;
+  };
+}
+
 export type AdminAnalyticsRange =
   | "TODAY"
   | "LAST_7_DAYS"

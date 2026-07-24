@@ -24,7 +24,7 @@ export default async function handler(
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   const range = dateRange(req.query);
-  if (!range) return res.status(400).json({ error: "Invalid date range" });
+  if (!range) return res.status(400).send({ error: "Invalid date range" });
 
   const workouts = await prisma.workout.findMany({
     where: {
@@ -68,7 +68,7 @@ export default async function handler(
   }
   const points = (map: Map<string, number>) =>
     [...map].map(([name, value]) => ({ name, value }));
-  return res.status(200).json({
+  return res.status(200).send({
     completedWorkouts: workouts.length,
     durationMinutes: workouts.reduce(
       (sum, workout) => sum + (workout.durationMinutes ?? 0),

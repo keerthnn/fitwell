@@ -14,12 +14,12 @@ export default async function handler(
   if (!token) return;
   const email = token.email;
   if (!email)
-    return res.status(400).json({ error: "Firebase account has no email" });
+    return res.status(400).send({ error: "Firebase account has no email" });
 
   try {
     const existing = await prisma.user.findUnique({ where: { id: token.uid } });
     if (existing?.deletedAt || existing?.isDisabled)
-      return res.status(403).json({ error: "Application account is disabled" });
+      return res.status(403).send({ error: "Application account is disabled" });
     const user = await prisma.user.upsert({
       where: { id: token.uid },
       update: {
@@ -37,7 +37,7 @@ export default async function handler(
       },
     });
     await recordUserActivity(user.id, true);
-    return res.status(200).json({ userName: user.displayName ?? "" });
+    return res.status(200).send({ userName: user.displayName ?? "" });
   } catch (err) {
     console.error("Error creating user:", err);
     return res.status(500).send("Internal Server Error");

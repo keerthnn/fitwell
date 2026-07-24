@@ -33,5 +33,5 @@ export default async function handler(
     orderBy: [{ isFeatured: "desc" }, { name: "asc" }],
     take: 100,
   });
-  return res.status(200).json({ items: plans, nextCursor: null });
+  return res.status(200).send({ items: plans, nextCursor: null });
 }
