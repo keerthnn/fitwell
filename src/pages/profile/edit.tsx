@@ -33,6 +33,12 @@ export default function ProfileEdit() {
     heightCm: "",
     weightKg: "",
     goal: "",
+    activityLevel: "MODERATELY_ACTIVE",
+    dailyCalorieTarget: "2000",
+    targetWeightKg: "",
+    preferredUnits: "METRIC",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+    weeklyWorkoutTarget: "3",
   });
 
   useEffect(() => {
@@ -48,6 +54,12 @@ export default function ProfileEdit() {
           heightCm: profile.heightCm ? String(profile.heightCm) : "",
           weightKg: profile.weightKg ? String(profile.weightKg) : "",
           goal: profile.goal || "",
+          activityLevel: profile.activityLevel || "MODERATELY_ACTIVE",
+          dailyCalorieTarget: String(profile.dailyCalorieTarget || 2000),
+          targetWeightKg: profile.targetWeightKg ? String(profile.targetWeightKg) : "",
+          preferredUnits: profile.preferredUnits || "METRIC",
+          timezone: profile.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+          weeklyWorkoutTarget: String(profile.weeklyWorkoutTarget || 3),
         });
       }
       setLoading(false);
@@ -66,6 +78,13 @@ export default function ProfileEdit() {
       heightCm: Number(form.heightCm),
       weightKg: Number(form.weightKg),
       goal: form.goal,
+      activityLevel: form.activityLevel as "SEDENTARY" | "LIGHTLY_ACTIVE" | "MODERATELY_ACTIVE" | "VERY_ACTIVE",
+      dailyCalorieTarget: Number(form.dailyCalorieTarget),
+      targetWeightKg: form.targetWeightKg ? Number(form.targetWeightKg) : null,
+      preferredUnits: form.preferredUnits as "METRIC" | "IMPERIAL",
+      timezone: form.timezone,
+      weeklyWorkoutTarget: Number(form.weeklyWorkoutTarget),
+      preferredWorkoutDays: [],
     };
 
     if (profileExisted) {
@@ -236,6 +255,14 @@ export default function ProfileEdit() {
                     rows={2}
                     fullWidth
                   />
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mt: 2 }}>
+                    <TextField select label="Activity level" value={form.activityLevel} onChange={(e) => setForm({ ...form, activityLevel: e.target.value })}>{["SEDENTARY", "LIGHTLY_ACTIVE", "MODERATELY_ACTIVE", "VERY_ACTIVE"].map((value) => <MenuItem key={value} value={value}>{value.replaceAll("_", " ")}</MenuItem>)}</TextField>
+                    <TextField label="Weekly workout goal" type="number" value={form.weeklyWorkoutTarget} onChange={(e) => setForm({ ...form, weeklyWorkoutTarget: e.target.value })} />
+                  </Stack>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mt: 2 }}>
+                    <TextField label="Daily calorie target" type="number" value={form.dailyCalorieTarget} onChange={(e) => setForm({ ...form, dailyCalorieTarget: e.target.value })} />
+                    <TextField label="Target weight (kg)" type="number" value={form.targetWeightKg} onChange={(e) => setForm({ ...form, targetWeightKg: e.target.value })} />
+                  </Stack>
                 </Box>
 
                 <Button

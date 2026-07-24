@@ -13,8 +13,9 @@ import {
 } from "@mui/material";
 import { deleteWorkout, getWorkoutById } from "fitness/utils/spec";
 import { Workout } from "fitness/utils/types";
+import { getExerciseMuscleGroup, getMuscleGroupImageSource } from "fitness/utils/exerciseCatalog";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function ViewWorkout() {
   const router = useRouter();
@@ -23,13 +24,7 @@ export default function ViewWorkout() {
   const [workout, setWorkout] = useState<Workout | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (typeof id === "string") {
-      loadWorkout();
-    }
-  }, [id]);
-
-  const loadWorkout = async () => {
+  const loadWorkout = useCallback(async () => {
     try {
       const data = await getWorkoutById(id as string);
       setWorkout(data);
@@ -39,7 +34,13 @@ export default function ViewWorkout() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (typeof id === "string") {
+      loadWorkout();
+    }
+  }, [id, loadWorkout]);
 
   const handleDelete = async () => {
     if (!confirm("Delete this workout? This cannot be undone.")) return;
@@ -105,12 +106,10 @@ export default function ViewWorkout() {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             {workout.exercises.map((exercise, idx) => (
               <Box key={exercise.id}>
-                <Typography variant="h6" gutterBottom>
-                  {idx + 1}. {exercise.exercise.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  {exercise.exercise.category} • {exercise.exercise.equipment}
-                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
+                  {getMuscleGroupImageSource(exercise.exercise) && <Box component="img" src={getMuscleGroupImageSource(exercise.exercise)} alt="" aria-hidden="true" sx={{ width: 60, height: 60, objectFit: "contain" }} />}
+                  <Box><Typography variant="h6">{idx + 1}. {exercise.exercise.name}</Typography><Typography variant="body2" color="text.secondary">{getExerciseMuscleGroup(exercise.exercise)?.label ?? exercise.exercise.category} • {exercise.exercise.equipment}</Typography></Box>
+                </Box>
 
                 {exercise.sets.length > 0 ? (
                   <Table size="small">

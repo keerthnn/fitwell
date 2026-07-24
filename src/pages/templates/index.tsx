@@ -1,0 +1,141 @@
+import { Add, ContentCopy, Search } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Container,
+  InputAdornment,
+  LinearProgress,
+  Paper,
+  Stack,
+  Tab,
+  Tabs,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AuthenticatedPage from "fitness/components/AuthenticatedPage";
+import { copyTemplate, getTemplates } from "fitness/utils/spec";
+import { WorkoutTemplateSummary } from "fitness/utils/types";
+import {
+  getWorkoutTemplateCatalogSlug,
+  getWorkoutTemplateImageSource,
+} from "fitness/utils/workoutTemplateCatalog";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+export default function TemplatesPage() {
+  const [mode, setMode] = useState<"mine" | "discover">("mine");
+  const [search, setSearch] = useState("");
+  const [items, setItems] = useState<WorkoutTemplateSummary[] | null>(null);
+  const router = useRouter();
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setItems(null);
+      getTemplates(mode, search).then((data) => setItems(data.items));
+    }, 200);
+    return () => clearTimeout(id);
+  }, [mode, search]);
+  return (
+    <AuthenticatedPage>
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Stack spacing={3}>
+          <Stack direction="row" justifyContent="space-between">
+            <Box>
+              <Typography variant="h4">Workout templates</Typography>
+              <Typography color="text.secondary">
+                Reuse your plans or discover routines from the community.
+              </Typography>
+            </Box>
+            <Button
+              variant="contained"
+              startIcon={<Add />}
+              onClick={() => router.push("/templates/create")}
+            >
+              Create
+            </Button>
+          </Stack>
+          <Tabs value={mode} onChange={(_, value) => setMode(value)}>
+            <Tab value="mine" label="My templates" />
+            <Tab value="discover" label="Discover" />
+          </Tabs>
+          <TextField
+            placeholder="Search templates"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {!items ? (
+            <LinearProgress />
+          ) : (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "repeat(2,1fr)",
+                  md: "repeat(3,1fr)",
+                },
+                gap: 2,
+              }}
+            >
+              {items.map((item) => (
+                <Paper key={item.id} sx={{ p: 3 }}>
+                  <Box
+                    component="img"
+                    src={getWorkoutTemplateImageSource(
+                      getWorkoutTemplateCatalogSlug(item.tags),
+                    )}
+                    alt=""
+                    aria-hidden="true"
+                    sx={{ width: 72, height: 72, objectFit: "contain" }}
+                  />
+                  <Typography variant="h6" mt={1}>
+                    {item.title}
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ minHeight: 48 }}>
+                    {item.description || "No description"}
+                  </Typography>
+                  <Typography variant="body2" mt={1}>
+                    {item.exerciseCount} exercises ·{" "}
+                    {item.estimatedDurationM ?? "—"} min · {item.difficulty}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    By {item.owner.name || "FitWell user"} · {item.copyCount}{" "}
+                    copies
+                  </Typography>
+                  <Stack direction="row" mt={2}>
+                    <Button
+                      onClick={() => router.push(`/templates/${item.id}`)}
+                    >
+                      View
+                    </Button>
+                    {mode === "discover" && (
+                      <Button
+                        startIcon={<ContentCopy />}
+                        onClick={async () => {
+                          const result = await copyTemplate(item.id);
+                          router.push(`/templates/${result.id}`);
+                        }}
+                      >
+                        Copy
+                      </Button>
+                    )}
+                  </Stack>
+                </Paper>
+              ))}
+              {items.length === 0 && (
+                <Typography color="text.secondary">
+                  No templates found.
+                </Typography>
+              )}
+            </Box>
+          )}
+        </Stack>
+      </Container>
+    </AuthenticatedPage>
+  );
+}

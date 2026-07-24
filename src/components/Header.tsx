@@ -1,30 +1,34 @@
+import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
 import {
   AppBar,
   Box,
+  Button,
   Divider,
+  Drawer,
   IconButton,
+  List,
+  ListItemButton,
+  ListItemText,
   Menu,
   MenuItem,
   Stack,
   Toolbar,
   Typography,
-  Button,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemText,
 } from "@mui/material";
-import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
-import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
 import { signOutUser } from "fitness/lib/authUtils";
+import { getAdminStatus } from "fitness/utils/spec";
+import { useRouter } from "next/router";
+import { MouseEvent, useEffect, useState } from "react";
 import { useAuth } from "./context";
+import ThemeModeSelector from "./ThemeModeSelector";
 
 export const HEADER_HEIGHT = 64;
 
 export default function Header() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
+  const [adminUserId, setAdminUserId] = useState<string | null>(null);
+  const isAdmin = Boolean(user && adminUserId === user.uid);
 
   // Profile menu
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -32,6 +36,24 @@ export default function Header() {
 
   // Mobile drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    if (loading || !user) return;
+
+    let active = true;
+
+    getAdminStatus()
+      .then(() => {
+        if (active) setAdminUserId(user.uid);
+      })
+      .catch(() => {
+        if (active) setAdminUserId(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [loading, user]);
 
   const navigate = (path: string) => {
     setAnchorEl(null);
@@ -55,7 +77,7 @@ export default function Header() {
           <IconButton
             edge="start"
             color="inherit"
-            sx={{ display: { xs: "inline-flex", md: "none" } }}
+            sx={{ display: { xs: "inline-flex", lg: "none" } }}
             onClick={() => setDrawerOpen(true)}
           >
             <MenuIcon />
@@ -74,7 +96,7 @@ export default function Header() {
           <Stack
             direction="row"
             spacing={2}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", lg: "flex" } }}
           >
             <Button color="inherit" onClick={() => navigate("/")}>
               Home
@@ -82,15 +104,44 @@ export default function Header() {
             <Button color="inherit" onClick={() => navigate("/workouts")}>
               Workouts
             </Button>
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/templates")}>
+                Templates
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/nutrition")}>
+                Nutrition
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/analytics")}>
+                Analytics
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/health")}>
+                Health
+              </Button>
+            )}
+            {user && (
+              <Button color="inherit" onClick={() => navigate("/achievements")}>
+                Achievements
+              </Button>
+            )}
+            {isAdmin && (
+              <Button color="inherit" onClick={() => navigate("/system-admin")}>
+                Admin
+              </Button>
+            )}
           </Stack>
         </Stack>
 
         {/* RIGHT SECTION */}
+        <ThemeModeSelector />
         <IconButton
           color="inherit"
-          onClick={(e: MouseEvent<HTMLElement>) =>
-            setAnchorEl(e.currentTarget)
-          }
+          onClick={(e: MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget)}
         >
           <AccountCircle />
         </IconButton>
@@ -105,15 +156,13 @@ export default function Header() {
         >
           {user ? (
             <>
-              <MenuItem onClick={() => navigate("/profile")}>
-                Profile
+              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+              <MenuItem onClick={logout} sx={{ color: "error.main" }}>
+                Logout
               </MenuItem>
-              <MenuItem onClick={logout}>Logout</MenuItem>
             </>
           ) : (
-            <MenuItem onClick={() => navigate("/auth/sign-in")}>
-              Login
-            </MenuItem>
+            <MenuItem onClick={() => navigate("/auth/sign-in")}>Login</MenuItem>
           )}
         </Menu>
 
@@ -132,6 +181,32 @@ export default function Header() {
               <ListItemButton onClick={() => navigate("/workouts")}>
                 <ListItemText primary="Workouts" />
               </ListItemButton>
+
+              {user && (
+                <>
+                  <ListItemButton onClick={() => navigate("/templates")}>
+                    <ListItemText primary="Templates" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/nutrition")}>
+                    <ListItemText primary="Nutrition" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/analytics")}>
+                    <ListItemText primary="Analytics" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/achievements")}>
+                    <ListItemText primary="Achievements" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => navigate("/health")}>
+                    <ListItemText primary="Health" />
+                  </ListItemButton>
+                </>
+              )}
+
+              {isAdmin && (
+                <ListItemButton onClick={() => navigate("/system-admin")}>
+                  <ListItemText primary="Admin" />
+                </ListItemButton>
+              )}
 
               <Divider />
 

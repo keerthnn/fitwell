@@ -38,6 +38,10 @@ export default async function handler(
       reps: s.reps ?? null,
       weightKg: s.weightKg ?? null,
       rpe: s.rpe ?? null,
+      durationS: s.durationS ?? null,
+      distanceM: s.distanceM ?? null,
+      isCompleted: s.isCompleted ?? true,
+      restDurationS: s.restDurationS ?? null,
     })),
   });
 

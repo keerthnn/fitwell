@@ -14,9 +14,9 @@ Fitwell is a Next.js **Pages Router** application for workout tracking. It uses 
 ## Common commands
 
 ```bash
-npm run dev
-npm run lint
-npm run build
+pnpm run dev
+pnpm run lint
+pnpm run build
 ```
 
 ## Detailed guides

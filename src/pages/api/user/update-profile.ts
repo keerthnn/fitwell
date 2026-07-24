@@ -2,6 +2,8 @@ import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { profileSchema } from "fitness/lib/api/schemas";
+import { parseOrError } from "fitness/lib/api/validation";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,8 +14,8 @@ export default async function handler(
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
 
-  const { firstName, lastName, gender, age, heightCm, weightKg, goal } =
-    req.body;
+  const parsed = parseOrError(profileSchema, req.body);
+  if (parsed.error) return res.status(400).json(parsed.error);
 
   const existing = await prisma.userProfile.findUnique({
     where: { userId },
@@ -25,15 +27,7 @@ export default async function handler(
 
   await prisma.userProfile.update({
     where: { userId },
-    data: {
-      firstName,
-      lastName,
-      gender,
-      age,
-      heightCm,
-      weightKg,
-      goal,
-    },
+    data: parsed.data,
   });
 
   return res.json({ success: true });

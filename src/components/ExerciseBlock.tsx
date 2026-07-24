@@ -1,4 +1,3 @@
-// fitness/components/ExerciseBlock.tsx
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
@@ -14,7 +13,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { deleteWorkoutExercises, saveWorkoutExercisesSets } from "fitness/utils/spec";
+import { useRestTimer } from "fitness/components/RestTimerProvider";
+import {
+  getExerciseMuscleGroup,
+  getMuscleGroupImageSource,
+} from "fitness/utils/exerciseCatalog";
+import {
+  deleteWorkoutExercises,
+  saveWorkoutExercisesSets,
+} from "fitness/utils/spec";
 import { WorkoutExerciseDetail } from "fitness/utils/types";
 import { useState } from "react";
 
@@ -31,6 +38,7 @@ interface SetRow {
 }
 
 export default function ExerciseBlock({ workoutExercise, onUpdate }: Props) {
+  const timer = useRestTimer();
   const [sets, setSets] = useState<SetRow[]>(() => {
     if (workoutExercise.sets.length > 0) {
       return workoutExercise.sets.map((s) => ({
@@ -98,12 +106,17 @@ export default function ExerciseBlock({ workoutExercise, onUpdate }: Props) {
   return (
     <Paper sx={{ p: 3, border: "2px solid", borderColor: "divider" }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-        <Box>
-          <Typography variant="h6">{workoutExercise.exercise.name}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {workoutExercise.exercise.category} •{" "}
-            {workoutExercise.exercise.equipment}
-          </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          {getMuscleGroupImageSource(workoutExercise.exercise) && (
+            <Box component="img" src={getMuscleGroupImageSource(workoutExercise.exercise)} alt="" aria-hidden="true" sx={{ width: 64, height: 64, objectFit: "contain" }} />
+          )}
+          <Box>
+            <Typography variant="h6">{workoutExercise.exercise.name}</Typography>
+            <Typography variant="body2" color="text.secondary">
+              {getExerciseMuscleGroup(workoutExercise.exercise)?.label ?? workoutExercise.exercise.category} •{" "}
+              {workoutExercise.exercise.equipment}
+            </Typography>
+          </Box>
         </Box>
         <IconButton size="small" onClick={handleRemove} color="error">
           <DeleteIcon />
@@ -184,6 +197,9 @@ export default function ExerciseBlock({ workoutExercise, onUpdate }: Props) {
           disabled={saving}
         >
           {saving ? "Saving..." : "Save Exercise"}
+        </Button>
+        <Button variant="text" size="small" onClick={() => timer.start(90)}>
+          Rest 90s
         </Button>
       </Box>
     </Paper>

@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import ExerciseBlock from "fitness/components/ExerciseBlock";
 import ExerciseSelector from "fitness/components/ExerciseSelector";
-import { getWorkoutById } from "fitness/utils/spec";
+import { completeWorkout, getWorkoutById } from "fitness/utils/spec";
 import { Workout } from "fitness/utils/types";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function EditWorkout() {
   const router = useRouter();
@@ -22,13 +22,7 @@ export default function EditWorkout() {
   const [loading, setLoading] = useState(true);
   const [showExerciseSelector, setShowExerciseSelector] = useState(false);
 
-  useEffect(() => {
-    if (typeof id === "string") {
-      loadWorkout();
-    }
-  }, [id]);
-
-  const loadWorkout = async () => {
+  const loadWorkout = useCallback(async () => {
     try {
       const data = await getWorkoutById(id as string);
       setWorkout(data);
@@ -38,7 +32,13 @@ export default function EditWorkout() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (typeof id === "string") {
+      loadWorkout();
+    }
+  }, [id, loadWorkout]);
 
   const handleExerciseAdded = () => {
     setShowExerciseSelector(false);
@@ -115,6 +115,17 @@ export default function EditWorkout() {
         </Box>
 
         <Box sx={{ mt: 4 }}>
+          <Button variant="contained" color="success" onClick={async () => {
+            try {
+              const value = prompt("Calories burned (optional; leave blank for FitWell estimate)", "");
+              await completeWorkout(workout.id, value ? Number(value) : undefined);
+              router.push(`/workouts/${workout.id}`);
+            } catch {
+              alert("Save at least one set before finishing the workout.");
+            }
+          }}>
+            Finish Workout
+          </Button>
           <Button variant="text" onClick={() => router.push("/workouts")}>
             Back to Workouts
           </Button>

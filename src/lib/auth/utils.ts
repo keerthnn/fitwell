@@ -1,6 +1,7 @@
 import { getCookie } from "cookies-next";
 import { adminAuth } from "fitness/lib/firebaseAdmin";
 import { ID_TOKEN_COOKIE_NAME } from "fitness/utils/cookieToken";
+import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function getIdTokenCookie(req: NextApiRequest, res: NextApiResponse) {
@@ -48,5 +49,14 @@ export async function getUserIdOrSetError(
 ) {
   const token = await getDecodedTokenOrSetError(req, res);
   if (!token) return;
+  try {
+    await recordUserActivity(token.uid);
+  } catch (error) {
+    // Analytics must never block an otherwise valid authenticated request.
+    console.error("Unable to record authenticated activity", {
+      userId: token.uid,
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
   return token.uid;
 }
