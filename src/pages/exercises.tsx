@@ -1,4 +1,4 @@
-import { Grid, MenuItem, TextField } from "@mui/material";
+import { Alert, MenuItem, TextField } from "@mui/material";
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import EmptyState from "fitness/components/common/EmptyState";
 import ErrorState from "fitness/components/common/ErrorState";
@@ -6,16 +6,24 @@ import FilterToolbar from "fitness/components/common/FilterToolbar";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import SearchInput from "fitness/components/common/SearchInput";
-import ExerciseCard from "fitness/components/exercises/ExerciseCard";
+import ExerciseList from "fitness/components/exercises/ExerciseList";
 import { exerciseCategories } from "fitness/utils/exerciseCatalog";
-import { getExercises } from "fitness/utils/spec";
+import {
+  addExerciseToWorkout,
+  createWorkout,
+  getExercises,
+} from "fitness/utils/spec";
 import type { Exercise } from "fitness/utils/types";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function ExercisesPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [items, setItems] = useState<Exercise[]>();
   const [error, setError] = useState("");
+  const [startError, setStartError] = useState("");
+  const [startingExerciseId, setStartingExerciseId] = useState("");
   const [equipment, setEquipment] = useState("");
   const [category, setCategory] = useState("");
   const [movement, setMovement] = useState("");
@@ -34,12 +42,39 @@ export default function ExercisesPage() {
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [search, equipment, category, movement]);
+
+  async function startWorkout(exercise: Exercise) {
+    setStartError("");
+    setStartingExerciseId(exercise.id);
+    try {
+      const workout = await createWorkout({
+        name: `${exercise.name} workout`,
+        workoutDate: new Date().toISOString(),
+        entryMode: "LIVE",
+      });
+      await addExerciseToWorkout(workout.id, {
+        exerciseId: exercise.id,
+        order: 0,
+      });
+      await router.push(`/workouts/live/${workout.id}`);
+    } catch {
+      setStartError("The workout could not be started. Please try again.");
+      setStartingExerciseId("");
+    }
+  }
+
   return (
     <AuthenticatedPage>
       <PageHeader
         title="Exercises"
         description="Browse the FitWell movement catalogue."
+        action={{ label: "Start empty workout", href: "/workouts/create" }}
       />
+      {startError && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {startError}
+        </Alert>
+      )}
       <FilterToolbar>
         <SearchInput
           value={search}
@@ -112,13 +147,11 @@ export default function ExercisesPage() {
           description="Try a different search."
         />
       ) : (
-        <Grid container spacing={2}>
-          {items.map((exercise) => (
-            <Grid key={exercise.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <ExerciseCard exercise={exercise} />
-            </Grid>
-          ))}
-        </Grid>
+        <ExerciseList
+          exercises={items}
+          onStart={(exercise) => void startWorkout(exercise)}
+          startingExerciseId={startingExerciseId}
+        />
       )}
     </AuthenticatedPage>
   );

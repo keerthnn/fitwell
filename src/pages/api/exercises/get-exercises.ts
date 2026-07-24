@@ -43,6 +43,6 @@ export default async function handler(
   const items = hasMore ? exercises.slice(0, limit) : exercises;
   return res.json({
     items,
-    nextCursor: hasMore ? items[items.length - 1]?.id ?? null : null,
+    nextCursor: hasMore ? (items[items.length - 1]?.id ?? null) : null,
   });
 }

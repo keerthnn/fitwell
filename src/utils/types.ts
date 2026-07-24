@@ -155,6 +155,7 @@ export interface CreateWorkoutRequest {
   entryMode: WorkoutEntryMode;
   durationMinutes?: number;
   notes?: string;
+  exerciseIds?: string[];
 }
 
 export interface DashboardSummary {

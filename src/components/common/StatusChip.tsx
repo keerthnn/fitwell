@@ -7,7 +7,11 @@ export default function StatusChip({ status }: { status: string }) {
       ? "success"
       : status === "IN_PROGRESS"
         ? "primary"
-        : "default";
+        : status === "DRAFT" || status === "SCHEDULED"
+          ? "warning"
+          : status === "CANCELLED"
+            ? "error"
+            : "default";
   return (
     <Chip
       size="small"

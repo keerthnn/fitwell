@@ -26,17 +26,40 @@ export default function AdminUserPage() {
         <LoadingState />
       ) : (
         <>
-          <PageHeader title={String(user.displayName ?? user.email)} />
-          <Paper sx={{ p: 3 }}>
+          <PageHeader
+            title={String(user.displayName ?? user.email)}
+            description="Account details, status, and administrative actions."
+          />
+          <Paper variant="outlined" sx={{ p: 3, maxWidth: 760 }}>
             <Stack gap={2}>
-              <Typography>{String(user.email)}</Typography>
-              <Typography>Disabled: {String(user.isDisabled)}</Typography>
-              <Typography>
-                Deleted: {String(Boolean(user.deletedAt))}
-              </Typography>
+              <Stack gap={0.25}>
+                <Typography variant="caption" color="text.secondary">
+                  Email
+                </Typography>
+                <Typography fontWeight={700}>{String(user.email)}</Typography>
+              </Stack>
+              <Stack direction={{ xs: "column", sm: "row" }} gap={3}>
+                <Stack gap={0.25}>
+                  <Typography variant="caption" color="text.secondary">
+                    Account status
+                  </Typography>
+                  <Typography fontWeight={700}>
+                    {user.isDisabled ? "Disabled" : "Active"}
+                  </Typography>
+                </Stack>
+                <Stack gap={0.25}>
+                  <Typography variant="caption" color="text.secondary">
+                    Local data
+                  </Typography>
+                  <Typography fontWeight={700}>
+                    {user.deletedAt ? "Deleted" : "Available"}
+                  </Typography>
+                </Stack>
+              </Stack>
               {!user.deletedAt && (
                 <Button
                   color={user.isDisabled ? "success" : "warning"}
+                  variant="outlined"
                   onClick={async () => {
                     if (user.isDisabled) await adminRestoreUser(id);
                     else await adminDisableUser(id);
@@ -46,7 +69,11 @@ export default function AdminUserPage() {
                   {user.isDisabled ? "Restore user" : "Disable user"}
                 </Button>
               )}
-              <Button color="error" onClick={() => setConfirmDelete(true)}>
+              <Button
+                color="error"
+                variant="outlined"
+                onClick={() => setConfirmDelete(true)}
+              >
                 Delete application account
               </Button>
             </Stack>

@@ -1,10 +1,9 @@
-import { Grid } from "@mui/material";
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import EmptyState from "fitness/components/common/EmptyState";
 import ErrorState from "fitness/components/common/ErrorState";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
-import WorkoutPlanCard from "fitness/components/workout-plans/WorkoutPlanCard";
+import WorkoutPlanList from "fitness/components/workout-plans/WorkoutPlanList";
 import { listWorkoutPlans } from "fitness/utils/spec";
 import type { WorkoutPlan } from "fitness/utils/types";
 import { useEffect, useState } from "react";
@@ -34,13 +33,7 @@ export default function WorkoutPlansPage() {
           description="Create a private plan to get started."
         />
       ) : (
-        <Grid container spacing={2}>
-          {plans.map((plan) => (
-            <Grid key={plan.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-              <WorkoutPlanCard plan={plan} />
-            </Grid>
-          ))}
-        </Grid>
+        <WorkoutPlanList plans={plans} />
       )}
     </AuthenticatedPage>
   );

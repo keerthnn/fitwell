@@ -1,6 +1,6 @@
+import { auditData } from "fitness/lib/admin/audit";
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { validateAdminTarget } from "fitness/lib/api/validators/admin";
-import { auditData } from "fitness/lib/admin/audit";
 import { requireAdmin } from "fitness/lib/auth/requireAdmin";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";

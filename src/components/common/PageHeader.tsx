@@ -19,13 +19,28 @@ export default function PageHeader({
       mb={3}
     >
       <Box>
-        <Typography variant="h4" component="h1" fontWeight={800}>
+        <Typography
+          variant="h4"
+          component="h1"
+          fontWeight={800}
+          sx={{ fontSize: { xs: "1.75rem", sm: "2rem" } }}
+        >
           {title}
         </Typography>
-        {description && <Typography color="text.secondary">{description}</Typography>}
+        {description && (
+          <Typography color="text.secondary" mt={0.5}>
+            {description}
+          </Typography>
+        )}
       </Box>
       {action && (
-        <Button component={Link} href={action.href} variant="contained" size="large">
+        <Button
+          component={Link}
+          href={action.href}
+          variant="contained"
+          size="large"
+          sx={{ width: { xs: "100%", sm: "auto" } }}
+        >
           {action.label}
         </Button>
       )}

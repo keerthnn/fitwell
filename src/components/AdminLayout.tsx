@@ -1,6 +1,7 @@
 import {
   AdminPanelSettings,
   Analytics,
+  ArrowBack,
   ChevronLeft,
   ChevronRight,
   FitnessCenter,
@@ -9,10 +10,13 @@ import {
   People,
   PlaylistAddCheck,
   Security,
+  Settings,
 } from "@mui/icons-material";
 import {
   AppBar,
   Box,
+  Button,
+  Container,
   Drawer,
   IconButton,
   List,
@@ -26,6 +30,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, type ReactNode } from "react";
 import { AdminPageGuard } from "./AdminPageGuard";
+import ThemeModeSelector from "./ThemeModeSelector";
 
 const links = [
   ["/system-admin", "Overview", AdminPanelSettings],
@@ -36,13 +41,18 @@ const links = [
   ["/system-admin/analytics", "Analytics", Analytics],
   ["/system-admin/admin-access", "Admin access", Security],
   ["/system-admin/audit-logs", "Audit logs", ListAlt],
+  ["/system-admin/settings", "Settings", Settings],
 ] as const;
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export function AdminLayoutContent({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopCollapsed, setDesktopCollapsed] = useState(false);
   const router = useRouter();
-  const navigation = (collapsed = false, collapsible = false) => (
+  const navigation = (
+    collapsed = false,
+    collapsible = false,
+    onDarkSurface = false,
+  ) => (
     <>
       <Toolbar sx={{ justifyContent: collapsed ? "center" : "space-between" }}>
         {!collapsed && (
@@ -80,6 +90,15 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
               borderRadius: 2,
               px: collapsed ? 1.5 : 2,
               justifyContent: collapsed ? "center" : "flex-start",
+              ...(onDarkSurface && {
+                "&.Mui-selected": {
+                  bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                  color: (theme) => theme.fitwell.colors.sidebar.selectedText,
+                  "&:hover": {
+                    bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                  },
+                },
+              }),
             }}
           >
             <ListItemIcon
@@ -95,12 +114,42 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </ListItemButton>
         ))}
       </List>
+      <Box sx={{ mt: "auto", px: collapsed ? 1 : 2, pb: 2 }}>
+        <Button
+          component={Link}
+          href="/dashboard"
+          color="inherit"
+          startIcon={collapsed ? undefined : <ArrowBack />}
+          aria-label="Back to FitWell"
+          sx={{
+            width: "100%",
+            minWidth: 0,
+            justifyContent: collapsed ? "center" : "flex-start",
+            px: collapsed ? 1 : 2,
+          }}
+        >
+          {collapsed ? <ArrowBack /> : "Back to FitWell"}
+        </Button>
+      </Box>
     </>
   );
   return (
-    <AdminPageGuard>
-      <Box sx={{ display: "flex", minHeight: "100vh" }}>
-        <AppBar sx={{ display: { md: "none" } }}>
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100vh",
+        bgcolor: "background.default",
+      }}
+    >
+        <AppBar
+          sx={{
+            display: { md: "none" },
+            background: (theme) => theme.fitwell.colors.sidebar.gradient,
+            color: "common.white",
+            borderRadius: 0,
+            border: 0,
+          }}
+        >
           <Toolbar>
             <IconButton
               color="inherit"
@@ -109,15 +158,27 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
               <Menu />
             </IconButton>
-            <Typography fontWeight={800}>FitWell Admin</Typography>
+            <Typography fontWeight={800} sx={{ flex: 1 }}>
+              FitWell Admin
+            </Typography>
+            <ThemeModeSelector />
           </Toolbar>
         </AppBar>
         <Drawer
           open={mobileOpen}
           onClose={() => setMobileOpen(false)}
-          sx={{ display: { md: "none" }, "& .MuiDrawer-paper": { width: 280 } }}
+          sx={{
+            display: { md: "none" },
+            "& .MuiDrawer-paper": {
+              width: 280,
+              background: (theme) => theme.fitwell.colors.sidebar.gradient,
+              color: "common.white",
+              border: 0,
+              borderRadius: 0,
+            },
+          }}
         >
-          {navigation()}
+          {navigation(false, false, true)}
         </Drawer>
         <Drawer
           variant="permanent"
@@ -137,9 +198,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 desktopCollapsed
                   ? theme.fitwell.sidebarCollapsedWidth
                   : theme.fitwell.sidebarWidth,
-              bgcolor: "#101827",
+              background: (theme) => theme.fitwell.colors.sidebar.gradient,
               color: "white",
               border: 0,
+              borderRadius: 0,
               overflowX: "hidden",
               transition: (theme) =>
                 theme.transitions.create("width", {
@@ -148,20 +210,34 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             },
           }}
         >
-          {navigation(desktopCollapsed, true)}
+          {navigation(desktopCollapsed, true, true)}
         </Drawer>
         <Box
           component="main"
           sx={{
             flex: 1,
             minWidth: 0,
-            p: { xs: 2, md: 4 },
-            pt: { xs: 11, md: 4 },
+            bgcolor: "background.default",
           }}
         >
-          {children}
+          <Container
+            maxWidth={false}
+            sx={{
+              maxWidth: (theme) => theme.fitwell.contentMaxWidth,
+              py: { xs: 11, md: 5 },
+            }}
+          >
+            {children}
+          </Container>
         </Box>
-      </Box>
+    </Box>
+  );
+}
+
+export default function AdminLayout({ children }: { children: ReactNode }) {
+  return (
+    <AdminPageGuard>
+      <AdminLayoutContent>{children}</AdminLayoutContent>
     </AdminPageGuard>
   );
 }

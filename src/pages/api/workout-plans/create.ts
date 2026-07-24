@@ -5,13 +5,18 @@ import prisma from "fitness/lib/prisma";
 import { workoutPlanInclude } from "fitness/lib/workoutPlans/access";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (!checkIfPostOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   const result = validateWorkoutPlan(req.body);
   if (!result.valid) {
-    return res.status(400).json({ error: "Invalid Workout Plan", details: result.errors });
+    return res
+      .status(400)
+      .json({ error: "Invalid Workout Plan", details: result.errors });
   }
   const { exercises, ...plan } = result.data;
   const created = await prisma.workoutPlan.create({

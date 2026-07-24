@@ -28,7 +28,7 @@ export default function PublicShell({ children }: { children: ReactNode }) {
               color="text.primary"
               sx={{ textDecoration: "none", fontWeight: 900 }}
             >
-              Fit<span style={{ color: "#35c46a" }}>Well</span>
+              FitWell
             </Typography>
             <Stack direction="row" gap={1} alignItems="center">
               <ThemeModeSelector />

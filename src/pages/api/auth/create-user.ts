@@ -1,7 +1,7 @@
+import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { getDecodedTokenOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
-import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

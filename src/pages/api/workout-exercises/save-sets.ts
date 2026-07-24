@@ -4,16 +4,23 @@ import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (!checkIfPostOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   const result = validateSets(req.body);
-  if (!result.valid) return res.status(400).json({ error: "Invalid sets", details: result.errors });
+  if (!result.valid)
+    return res
+      .status(400)
+      .json({ error: "Invalid sets", details: result.errors });
   const owned = await prisma.workoutExercise.findFirst({
     where: { id: result.data.workoutExerciseId, workout: { userId } },
   });
-  if (!owned) return res.status(404).json({ error: "Workout exercise not found" });
+  if (!owned)
+    return res.status(404).json({ error: "Workout exercise not found" });
   await prisma.$transaction(async (tx) => {
     await tx.workoutSet.deleteMany({ where: { workoutExerciseId: owned.id } });
     await tx.workoutSet.createMany({

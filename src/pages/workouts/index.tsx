@@ -1,4 +1,4 @@
-import { Grid, MenuItem, TextField } from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import EmptyState from "fitness/components/common/EmptyState";
 import ErrorState from "fitness/components/common/ErrorState";
@@ -6,7 +6,7 @@ import FilterToolbar from "fitness/components/common/FilterToolbar";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import SearchInput from "fitness/components/common/SearchInput";
-import WorkoutCard from "fitness/components/workouts/WorkoutCard";
+import WorkoutList from "fitness/components/workouts/WorkoutList";
 import { getWorkouts } from "fitness/utils/spec";
 import type { WorkoutListItem } from "fitness/utils/types";
 import { useEffect, useState } from "react";
@@ -65,13 +65,14 @@ export default function WorkoutsPage() {
           description="Start a live workout, add a quick entry, or change your filters."
         />
       ) : (
-        <Grid container spacing={2}>
-          {workouts.map((workout) => (
-            <Grid key={workout.id} size={{ xs: 12, md: 6, xl: 4 }}>
-              <WorkoutCard workout={workout} />
-            </Grid>
-          ))}
-        </Grid>
+        <WorkoutList
+          workouts={workouts}
+          onDeleted={(id) =>
+            setWorkouts((current) =>
+              current?.filter((workout) => workout.id !== id),
+            )
+          }
+        />
       )}
     </AuthenticatedPage>
   );

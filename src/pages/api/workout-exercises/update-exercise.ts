@@ -3,14 +3,26 @@ import { validateWorkoutExerciseUpdate } from "fitness/lib/api/validators/workou
 import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (!checkIfPatchOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
   const validation = validateWorkoutExerciseUpdate(req.body);
-  if (!validation.valid) return res.status(400).json({ errors: validation.errors });
+  if (!validation.valid)
+    return res.status(400).json({ errors: validation.errors });
   const { id, notes } = validation.data;
-  const owned = await prisma.workoutExercise.findFirst({ where: { id, workout: { userId } } });
-  if (!owned) return res.status(404).json({ error: "Workout exercise not found" });
-  return res.json(await prisma.workoutExercise.update({ where: { id }, data: { notes: notes ?? null } }));
+  const owned = await prisma.workoutExercise.findFirst({
+    where: { id, workout: { userId } },
+  });
+  if (!owned)
+    return res.status(404).json({ error: "Workout exercise not found" });
+  return res.json(
+    await prisma.workoutExercise.update({
+      where: { id },
+      data: { notes: notes ?? null },
+    }),
+  );
 }

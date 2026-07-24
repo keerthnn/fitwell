@@ -4,7 +4,10 @@ import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (!checkIfPostOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
@@ -16,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     where: { id, userId, isBuiltIn: false },
     data: { isArchived: req.body.archived },
   });
-  if (!result.count) return res.status(404).json({ error: "Workout Plan not found" });
+  if (!result.count)
+    return res.status(404).json({ error: "Workout Plan not found" });
   return res.status(200).json({ id, isArchived: req.body.archived });
 }

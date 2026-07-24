@@ -4,7 +4,10 @@ import prisma from "fitness/lib/prisma";
 import { workoutPlanInclude } from "fitness/lib/workoutPlans/access";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (!checkIfGetOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
@@ -12,7 +15,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const isAdmin = includeArchived
     ? Boolean(await prisma.adminAccess.findUnique({ where: { userId } }))
     : false;
-  const search = typeof req.query.search === "string" ? req.query.search.trim().slice(0, 120) : "";
+  const search =
+    typeof req.query.search === "string"
+      ? req.query.search.trim().slice(0, 120)
+      : "";
   const plans = await prisma.workoutPlan.findMany({
     where: {
       isActive: true,

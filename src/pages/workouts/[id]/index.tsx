@@ -15,6 +15,7 @@ import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import SectionHeader from "fitness/components/common/SectionHeader";
 import StatusChip from "fitness/components/common/StatusChip";
+import DeleteWorkoutButton from "fitness/components/workouts/DeleteWorkoutButton";
 import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
 import { duplicateWorkout, getWorkoutById } from "fitness/utils/spec";
 import type { Workout } from "fitness/utils/types";
@@ -99,6 +100,10 @@ export default function WorkoutDetailPage() {
                   >
                     {duplicating ? "Duplicating…" : "Duplicate"}
                   </Button>
+                  <DeleteWorkoutButton
+                    workoutId={workout.id}
+                    workoutName={workout.name}
+                  />
                 </Stack>
               </Grid>
             </Grid>

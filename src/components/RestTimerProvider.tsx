@@ -146,6 +146,11 @@ export default function RestTimerProvider({
             p: 2,
             borderRadius: 3,
             maxWidth: { md: 560 },
+            bgcolor: (theme) =>
+              theme.fitwell.colors.semantic.warning.container,
+            color: (theme) =>
+              theme.fitwell.colors.semantic.warning.onContainer,
+            borderColor: "warning.main",
           }}
         >
           <Stack

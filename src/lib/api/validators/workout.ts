@@ -33,6 +33,29 @@ export function validateCreateWorkout(value: unknown) {
     { min: 1, max: 1440, integer: true },
   );
   const notes = text(input.notes, "notes", errors, { max: 2000 });
+  const exerciseIds = Array.isArray(input.exerciseIds)
+    ? [
+        ...new Set(
+          input.exerciseIds
+            .map((value, index) =>
+              idValue(value, `exerciseIds.${index}`, errors),
+            )
+            .filter((value): value is string => Boolean(value)),
+        ),
+      ]
+    : [];
+  if (input.exerciseIds !== undefined && !Array.isArray(input.exerciseIds)) {
+    errors.push({
+      field: "exerciseIds",
+      message: "exerciseIds must be an array",
+    });
+  }
+  if (exerciseIds.length > 50) {
+    errors.push({
+      field: "exerciseIds",
+      message: "A workout can contain at most 50 exercises",
+    });
+  }
   if (errors.length || !name || !workoutDate || !entryMode)
     return invalid<CreateWorkoutRequest>(errors);
   return valid<CreateWorkoutRequest>({
@@ -41,6 +64,7 @@ export function validateCreateWorkout(value: unknown) {
     entryMode,
     durationMinutes,
     notes,
+    exerciseIds,
   });
 }
 

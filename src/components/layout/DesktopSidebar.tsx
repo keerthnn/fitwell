@@ -47,7 +47,7 @@ export default function DesktopSidebar({
           collapsed
             ? theme.fitwell.sidebarCollapsedWidth
             : theme.fitwell.sidebarWidth,
-        background: "linear-gradient(180deg, #101827 0%, #0b1220 100%)",
+        background: (theme) => theme.fitwell.colors.sidebar.gradient,
         color: "white",
         px: collapsed ? 1 : 2,
         py: 2,
@@ -69,7 +69,7 @@ export default function DesktopSidebar({
       >
         {!collapsed && (
           <Typography variant="h5" fontWeight={900} px={1}>
-            Fit<span style={{ color: "#35c46a" }}>Well</span>
+            FitWell
           </Typography>
         )}
         <IconButton
@@ -110,6 +110,13 @@ export default function DesktopSidebar({
                 mb: 0.5,
                 px: collapsed ? 1.5 : 2,
                 justifyContent: collapsed ? "center" : "flex-start",
+                "&.Mui-selected": {
+                  bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                  color: (theme) => theme.fitwell.colors.sidebar.selectedText,
+                  "&:hover": {
+                    bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                  },
+                },
               }}
             >
               <ListItemIcon

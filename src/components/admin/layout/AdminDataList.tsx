@@ -1,4 +1,4 @@
-import { Paper, Stack, Typography } from "@mui/material";
+import { Box, Divider, Paper, Stack, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 
 export default function AdminDataList({
@@ -10,6 +10,33 @@ export default function AdminDataList({
   empty: string;
   render: (item: Record<string, unknown>) => ReactNode;
 }) {
-  if (!items.length) return <Typography color="text.secondary">{empty}</Typography>;
-  return <Stack gap={1.5}>{items.map((item, index) => <Paper variant="outlined" sx={{ p: 2 }} key={String(item.id ?? item.userId ?? index)}>{render(item)}</Paper>)}</Stack>;
+  if (!items.length) {
+    return (
+      <Paper variant="outlined" sx={{ p: 4, textAlign: "center" }}>
+        <Typography color="text.secondary">{empty}</Typography>
+      </Paper>
+    );
+  }
+
+  return (
+    <Paper
+      variant="outlined"
+      sx={{ px: { xs: 1.5, sm: 2.5 }, overflow: "hidden" }}
+    >
+      <Stack divider={<Divider flexItem />}>
+        {items.map((item, index) => (
+          <Box
+            key={String(item.id ?? item.userId ?? index)}
+            sx={{
+              py: 1.75,
+              minWidth: 0,
+              "& a": { color: "inherit", textDecoration: "none" },
+            }}
+          >
+            {render(item)}
+          </Box>
+        ))}
+      </Stack>
+    </Paper>
+  );
 }

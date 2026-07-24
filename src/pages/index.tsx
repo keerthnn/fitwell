@@ -51,8 +51,7 @@ export default function Home() {
           minHeight: "100vh",
           pt: { xs: 14, md: 18 },
           pb: 8,
-          background: (theme) =>
-            `radial-gradient(circle at 80% 10%, ${theme.palette.primary.main}20, transparent 34%), ${theme.palette.background.default}`,
+          bgcolor: "background.default",
         }}
       >
         <Container maxWidth="lg">
