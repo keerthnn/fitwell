@@ -73,8 +73,8 @@ function ExerciseListRow({
           display="block"
           noWrap
         >
-          {exercise.equipment.toLowerCase()} ·{" "}
-          {exercise.movement.toLowerCase()} · {exerciseType}
+          {exercise.equipment.toLowerCase()} · {exercise.movement.toLowerCase()}{" "}
+          · {exerciseType}
         </Typography>
       </Box>
 
