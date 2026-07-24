@@ -1,136 +1,26 @@
-import AddIcon from "@mui/icons-material/Add";
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Paper,
-  Typography,
-} from "@mui/material";
-import ExerciseBlock from "fitness/components/ExerciseBlock";
-import ExerciseSelector from "fitness/components/ExerciseSelector";
-import { completeWorkout, getWorkoutById } from "fitness/utils/spec";
-import { Workout } from "fitness/utils/types";
+import { Button, Paper, Stack, TextField } from "@mui/material";
+import AuthenticatedPage from "fitness/components/AuthenticatedPage";
+import LoadingState from "fitness/components/common/LoadingState";
+import PageHeader from "fitness/components/common/PageHeader";
+import WorkoutExerciseEditor from "fitness/components/workouts/WorkoutExerciseEditor";
+import { completeWorkout, getWorkoutById, updateWorkout } from "fitness/utils/spec";
+import type { Workout } from "fitness/utils/types";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function EditWorkout() {
+export default function EditWorkoutPage() {
   const router = useRouter();
-  const { id } = router.query;
-
-  const [workout, setWorkout] = useState<Workout | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [showExerciseSelector, setShowExerciseSelector] = useState(false);
-
-  const loadWorkout = useCallback(async () => {
-    try {
-      const data = await getWorkoutById(id as string);
-      setWorkout(data);
-    } catch (error) {
-      console.error("Failed to load workout:", error);
-      alert("Failed to load workout");
-    } finally {
-      setLoading(false);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (typeof id === "string") {
-      loadWorkout();
-    }
-  }, [id, loadWorkout]);
-
-  const handleExerciseAdded = () => {
-    setShowExerciseSelector(false);
-    loadWorkout();
-  };
-
-  if (loading) {
-    return (
-      <Container maxWidth="md" sx={{ py: 4 }}>
-        <Typography>Loading...</Typography>
-      </Container>
-    );
-  }
-
-  if (!workout) {
-    return (
-      <Container maxWidth="md" sx={{ py: 4 }}>
-        <Typography>Workout not found</Typography>
-      </Container>
-    );
-  }
-
-  const formattedDate = new Date(workout.date).toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper sx={{ p: 4 }}>
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
-            {workout.title || "Untitled Workout"}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {formattedDate}
-          </Typography>
-          {workout.notes && (
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              {workout.notes}
-            </Typography>
-          )}
-        </Box>
-
-        <Divider sx={{ mb: 3 }} />
-
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-          {workout.exercises.map((exercise) => (
-            <ExerciseBlock
-              key={exercise.id}
-              workoutExercise={exercise}
-              onUpdate={loadWorkout}
-            />
-          ))}
-
-          {showExerciseSelector ? (
-            <ExerciseSelector
-              workoutId={workout.id}
-              nextOrder={workout.exercises.length + 1}
-              onAdded={handleExerciseAdded}
-              onCancel={() => setShowExerciseSelector(false)}
-            />
-          ) : (
-            <Button
-              variant="outlined"
-              startIcon={<AddIcon />}
-              onClick={() => setShowExerciseSelector(true)}
-            >
-              Add Exercise
-            </Button>
-          )}
-        </Box>
-
-        <Box sx={{ mt: 4 }}>
-          <Button variant="contained" color="success" onClick={async () => {
-            try {
-              const value = prompt("Calories burned (optional; leave blank for FitWell estimate)", "");
-              await completeWorkout(workout.id, value ? Number(value) : undefined);
-              router.push(`/workouts/${workout.id}`);
-            } catch {
-              alert("Save at least one set before finishing the workout.");
-            }
-          }}>
-            Finish Workout
-          </Button>
-          <Button variant="text" onClick={() => router.push("/workouts")}>
-            Back to Workouts
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
-  );
+  const id = typeof router.query.id === "string" ? router.query.id : "";
+  const [workout, setWorkout] = useState<Workout>();
+  const reload = async () => { if (id) setWorkout(await getWorkoutById(id)); };
+  useEffect(() => { if (id) void getWorkoutById(id).then(setWorkout); }, [id]);
+  return <AuthenticatedPage>{!workout ? <LoadingState /> : <>
+    <PageHeader title="Edit workout" />
+    <Paper sx={{ p: 4, maxWidth: 720 }}><Stack component="form" gap={2} onSubmit={async (event) => { event.preventDefault(); await updateWorkout({ id: workout.id, name: workout.name, workoutDate: workout.workoutDate, entryMode: workout.entryMode, durationMinutes: workout.durationMinutes ?? undefined, notes: workout.notes ?? undefined }); await router.push(`/workouts/${workout.id}`); }}>
+      <TextField label="Name" value={workout.name} onChange={(event) => setWorkout({ ...workout, name: event.target.value })} />
+      <TextField multiline minRows={3} label="Notes" value={workout.notes ?? ""} onChange={(event) => setWorkout({ ...workout, notes: event.target.value })} />
+      <Button type="submit" variant="contained">Save workout</Button>
+    </Stack></Paper>
+    <Paper sx={{ p: 4, maxWidth: 900, mt: 3 }}><Stack gap={3}><WorkoutExerciseEditor workout={workout} onReload={reload} />{workout.status !== "COMPLETED" && <Button onClick={async () => { await completeWorkout(workout.id); await router.push(`/workouts/${workout.id}`); }}>Mark workout complete</Button>}</Stack></Paper>
+  </>}</AuthenticatedPage>;
 }

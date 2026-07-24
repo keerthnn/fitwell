@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Barbell Back Squat",
+    "equipment": "BARBELL",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Barbell Front Squat",
+    "equipment": "BARBELL",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Zercher Squat",
+    "equipment": "BARBELL",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Hack Squat",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Pendulum Squat",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Smith Machine Squat",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Leg Press",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Narrow-Stance Leg Press",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Outer quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Leg Press",
+    "equipment": "MACHINE",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Leg Extension",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Leg Extension",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": false
+  },
+  {
+    "name": "Goblet Squat",
+    "equipment": "DUMBBELL",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Squat",
+    "equipment": "DUMBBELL",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Bulgarian Split Squat",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Walking Lunge",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Quadriceps",
+    "region": "Quadriceps and glutes",
+    "isCompound": true
+  },
+  {
+    "name": "Reverse Lunge",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Quadriceps",
+    "region": "Quadriceps and glutes",
+    "isCompound": true
+  },
+  {
+    "name": "Forward Lunge",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Step-Up",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Quadriceps",
+    "region": "Quadriceps and glutes",
+    "isCompound": true
+  },
+  {
+    "name": "Bodyweight Squat",
+    "equipment": "BODYWEIGHT",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Jump Squat",
+    "equipment": "BODYWEIGHT",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": true
+  },
+  {
+    "name": "Sissy Squat",
+    "equipment": "BODYWEIGHT",
+    "movement": "SQUAT",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": false
+  },
+  {
+    "name": "Wall Sit",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Quadriceps",
+    "region": "Quadriceps",
+    "isCompound": false
+  }
+]

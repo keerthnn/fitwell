@@ -1,327 +1,133 @@
 import axios from "axios";
-import {
-  AddExercisePayload,
-  AdminAnalyticsQuery,
-  AdminSummaryAnalytics,
-  AdminUsersAnalytics,
-  AdminWorkoutsAnalytics,
-  AdminTemplatesAnalytics,
-  AdminNutritionAnalytics,
-  AdminHealthAnalytics,
-  AdminWeightAnalytics,
-  AdminAchievementsAnalytics,
-  PersonalAnalyticsDashboard,
-  CreateWorkoutPayload,
+import type {
+  AnalyticsSummary,
+  CreateWorkoutRequest,
+  DashboardSummary,
   Exercise,
+  Paginated,
   Profile,
-  SaveSetsPayload,
   Workout,
   WorkoutListItem,
-  AnalyticsSummary,
-  DashboardSummary,
-  DailyNutritionSummary,
-  Injury,
-  MedicalCondition,
-  NutritionMutationRequest,
-  Paginated,
-  WorkoutTemplateDetail,
-  WorkoutTemplateSummary,
-  AdminTemplate,
+  WorkoutPlan,
+  WorkoutSet,
 } from "./types";
 
-export async function createUser() {
-  const { data } = await axios.post("/api/auth/sync-user");
-  return data as { userName: string };
-}
+export const createUser = async () =>
+  (await axios.post("/api/auth/sync-user")).data as { userName: string };
+export const getProfileStatus = async () =>
+  (await axios.get("/api/user/get-profile-status")).data as {
+    hasProfile: boolean;
+    onboardingCompleted: boolean;
+  };
+export const getUserProfile = async () =>
+  (await axios.get("/api/user/get-user-profile")).data as Profile | null;
+export const createProfile = async (input: Profile) =>
+  (await axios.post("/api/user/create-profile", input)).data as { success: true };
+export const updateProfile = async (input: Profile) =>
+  (await axios.post("/api/user/update-profile", input)).data as { success: true };
+export const deleteProfile = async () =>
+  (await axios.delete("/api/user/delete-profile")).data as { success: true };
+export const deleteAccount = async () =>
+  (await axios.delete("/api/user/delete-account", { params: { confirm: "DELETE" } })).data as {
+    success: true;
+  };
 
-export async function createProfile(input: Profile) {
-  const { data } = await axios.post("/api/user/create-profile", input);
-  return data as { success: true };
-}
+export const createWorkout = async (input: CreateWorkoutRequest) =>
+  (await axios.post("/api/workouts/create-workout", input)).data as { id: string };
+export const getWorkouts = async (params?: Record<string, string>) =>
+  (await axios.get("/api/workouts/get-workouts", { params })).data as Paginated<WorkoutListItem>;
+export const getWorkoutById = async (id: string) =>
+  (await axios.get("/api/workouts/get-workout-by-id", { params: { id } })).data as Workout;
+export const updateWorkout = async (input: Partial<CreateWorkoutRequest> & { id: string }) =>
+  (await axios.patch("/api/workouts/update-workout", input)).data as Workout;
+export const duplicateWorkout = async (id: string) =>
+  (await axios.post("/api/workouts/duplicate-workout", { id })).data as { id: string };
+export const completeWorkout = async (id: string) =>
+  (await axios.post("/api/workouts/complete-workout", { id })).data as Workout;
+export const pauseWorkout = async (id: string) =>
+  (await axios.post("/api/workouts/pause-workout", { id })).data as Workout;
+export const resumeWorkout = async (id: string) =>
+  (await axios.post("/api/workouts/resume-workout", { id })).data as Workout;
+export const deleteWorkout = async (id: string) =>
+  (await axios.delete("/api/workouts/delete-workout", { params: { id } })).data as {
+    success: true;
+  };
 
-export async function getProfileStatus() {
-  const { data } = await axios.get("/api/user/get-profile-status");
-  return data as { hasProfile: boolean };
-}
-
-export async function getUserProfile() {
-  const { data } = await axios.get("/api/user/get-user-profile");
-  return data as Profile | null;
-}
-
-export async function updateProfile(input: Profile) {
-  const { data } = await axios.post("/api/user/update-profile", input);
-  return data as { success: true };
-}
-
-export async function deleteProfile() {
-  const { data } = await axios.delete("/api/user/delete-profile");
-  return data as { success: true };
-}
-
-export async function deleteAccount() {
-  const { data } = await axios.delete("/api/user/delete-account", { params: { confirm: "DELETE" } });
-  return data as { success: true };
-}
-
-export async function createWorkout(payload: CreateWorkoutPayload) {
-  const { data } = await axios.post("/api/workouts/create-workout", payload);
-  return data as { id: string };
-}
-export async function getWorkouts() {
-  const { data } = await axios.get("/api/workouts/get-workout");
-  return data as WorkoutListItem[];
-}
-
-export async function getWorkoutById(workoutId: string) {
-  const { data } = await axios.get("/api/workouts/get-workout-by-id", {
-    params: { id: workoutId },
-  });
-  return data as Workout;
-}
-
-export async function deleteWorkout(workoutId: string) {
-  const { data } = await axios.delete("/api/workouts/delete-workout", {
-    params: { id: workoutId },
-  });
-  return data as { success: boolean };
-}
-
-export async function addExerciseToWorkout(
+export const getExercises = async (params?: Record<string, string>) =>
+  (await axios.get("/api/exercises/get-exercises", { params })).data as Paginated<Exercise>;
+export const getExerciseById = async (id: string, includeInactive = false) =>
+  (await axios.get("/api/exercises/get-exercise-by-id", { params: { id, includeInactive } })).data as Exercise;
+export const addExerciseToWorkout = async (
   workoutId: string,
-  payload: AddExercisePayload,
-) {
-  const { data } = await axios.post("/api/workouts/add-exercise", {
-    workoutId,
-    ...payload,
-  });
-  return data as { id: string };
-}
-
-export async function deleteWorkoutExercises(workoutExerciseId: string) {
-  const { data } = await axios.delete(
-    "/api/workout-exercises/delete-workout-exercises",
-    { params: { workoutExerciseId } },
-  );
-  return data as { success: boolean };
-}
-
-export async function saveWorkoutExercisesSets(
+  input: { exerciseId: string; order: number },
+) => (await axios.post("/api/workout-exercises/add-exercise", { workoutId, ...input })).data;
+export const saveWorkoutExerciseSets = async (
   workoutExerciseId: string,
-  payload: SaveSetsPayload,
-) {
-  const { data } = await axios.post(
-    "/api/workout-exercises/save-workout-exercises-sets",
-    {
-      workoutExerciseId,
-      ...payload,
-    },
-  );
-  return data as { success: boolean };
-}
+  sets: WorkoutSet[],
+) => (await axios.post("/api/workout-exercises/save-sets", { workoutExerciseId, sets })).data;
+export const deleteWorkoutExercise = async (id: string) =>
+  (await axios.delete("/api/workout-exercises/delete-exercise", { params: { id } })).data;
 
-export async function getExercises(search?: string) {
-  const { data } = await axios.get("/api/exercises/get-exercises", {
-    params: search ? { search } : undefined,
-  });
-  return data as Exercise[];
-}
+export const listWorkoutPlans = async (params?: Record<string, string>) =>
+  (await axios.get("/api/workout-plans/list", { params })).data as Paginated<WorkoutPlan>;
+export const getWorkoutPlan = async (id: string, includeArchived = false) =>
+  (await axios.get("/api/workout-plans/get-by-id", { params: { id, includeArchived } })).data as WorkoutPlan;
+export const createWorkoutPlan = async (input: Partial<WorkoutPlan>) =>
+  (await axios.post("/api/workout-plans/create", input)).data as WorkoutPlan;
+export const updateWorkoutPlan = async (input: Partial<WorkoutPlan> & { id: string }) =>
+  (await axios.patch("/api/workout-plans/update", input)).data as WorkoutPlan;
+export const archiveWorkoutPlan = async (id: string, archived: boolean) =>
+  (await axios.post("/api/workout-plans/archive", { id, archived })).data as WorkoutPlan;
+export const duplicateWorkoutPlan = async (id: string) =>
+  (await axios.post("/api/workout-plans/duplicate", { id })).data as WorkoutPlan;
+export const startWorkoutFromPlan = async (id: string) =>
+  (await axios.post("/api/workout-plans/start-workout", { id })).data as { id: string };
 
-export async function adminGetUsers() {
-  const { data } = await axios.get("/api/admin/get-users");
-  return data;
-}
-
-const adminAnalyticsParams = (query: AdminAnalyticsQuery) => ({
-  range: query.range,
-  start: query.start,
-  end: query.end,
-  groupBy: query.groupBy ?? "AUTO",
-});
-
-export async function getAdminDashboardSummary(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/summary", { params: adminAnalyticsParams(query) });
-  return data as AdminSummaryAnalytics;
-}
-
-export async function getAdminUsersAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/users", { params: adminAnalyticsParams(query) });
-  return data as AdminUsersAnalytics;
-}
-export async function getAdminWorkoutsAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/workouts", { params: adminAnalyticsParams(query) });
-  return data as AdminWorkoutsAnalytics;
-}
-export async function getAdminTemplatesAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/templates", { params: adminAnalyticsParams(query) });
-  return data as AdminTemplatesAnalytics;
-}
-export async function getAdminNutritionAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/nutrition", { params: adminAnalyticsParams(query) });
-  return data as AdminNutritionAnalytics;
-}
-export async function getAdminHealthAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/health", { params: adminAnalyticsParams(query) });
-  return data as AdminHealthAnalytics;
-}
-export async function getAdminWeightAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/weight", { params: adminAnalyticsParams(query) });
-  return data as AdminWeightAnalytics;
-}
-export async function getAdminAchievementsAnalytics(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/admin/dashboard/achievements", { params: adminAnalyticsParams(query) });
-  return data as AdminAchievementsAnalytics;
-}
-
-export async function getPersonalAnalyticsDashboard(query: AdminAnalyticsQuery) {
-  const { data } = await axios.get("/api/analytics/personal-dashboard", {
-    params: adminAnalyticsParams(query),
-  });
-  return data as PersonalAnalyticsDashboard;
-}
-
-export async function getAdminStatus() {
-  const { data } = await axios.get("/api/admin/get-admin-status");
-  return data as { isAdmin: true };
-}
-
-export async function adminCreateExercise(input: Partial<Exercise>) {
-  const { data } = await axios.post("/api/admin/create-exercise", input);
-  return data as Exercise;
-}
-
-export async function adminUpdateExercise(
-  input: Partial<Exercise> & { id: string },
-) {
-  const { data } = await axios.post("/api/admin/update-exercise", input);
-  return data as Exercise;
-}
-
-export async function adminDeleteExercise(id: string) {
-  const { data } = await axios.delete("/api/admin/delete-exercise", {
-    params: { id },
-  });
-  return data as { success: boolean };
-}
-
-export async function adminSetUserAccess(userId: string, isAdmin: boolean) {
-  const { data } = await axios.post("/api/admin/set-admin-access", {
-    userId,
-    isAdmin,
-  });
-  return data as { success: true; isAdmin: boolean };
-}
-
-export async function adminDeleteUser(userId: string) {
-  const { data } = await axios.delete("/api/admin/delete-user", {
-    params: { userId },
-  });
-  return data as { success: true };
-}
-
-export async function adminGetTemplates(filters?: { search?: string; visibility?: string; archived?: string; catalogOnly?: string }) {
-  const { data } = await axios.get("/api/admin/templates", { params: filters });
-  return data as AdminTemplate[];
-}
-
-export async function adminSetTemplateArchived(id: string, isArchived: boolean) {
-  const { data } = await axios.patch("/api/admin/templates", { id, isArchived });
-  return data as { id: string; isArchived: boolean };
-}
-
-export async function adminDeleteTemplate(id: string) {
-  const { data } = await axios.delete("/api/admin/templates", { params: { id } });
-  return data as { success: true };
-}
-
-export async function adminAddCatalogTemplate(catalogSlug: string) {
-  const { data } = await axios.post("/api/admin/templates", { catalogSlug });
-  return data as { template: { id: string; title: string }; created: boolean };
-}
-
-export async function completeWorkout(id: string, caloriesBurned?: number) {
-  const { data } = await axios.post("/api/workouts/complete-workout", { id, caloriesBurned });
-  return data;
-}
-
-export async function duplicateWorkout(id: string) {
-  const { data } = await axios.post("/api/workouts/duplicate-workout", { id });
-  return data as { id: string };
-}
-
-export async function getDashboardSummary() {
-  const { data } = await axios.get("/api/dashboard/summary");
-  return data as DashboardSummary;
-}
-
-export async function getNutritionDay(start: Date, end: Date) {
-  const { data } = await axios.get("/api/nutrition/entries", { params: { start: start.toISOString(), end: end.toISOString() } });
-  return data as DailyNutritionSummary;
-}
-
-export async function saveNutritionEntry(input: NutritionMutationRequest & { id?: string }) {
-  const { data } = await axios.request({ url: "/api/nutrition/entries", method: input.id ? "PATCH" : "POST", data: input });
-  return data;
-}
-
-export async function deleteNutritionEntry(id: string) {
-  await axios.delete("/api/nutrition/entries", { params: { id } });
-}
-
-export async function getHealthRecords() {
-  const { data } = await axios.get("/api/health/records");
-  return data as { conditions: MedicalCondition[]; injuries: Injury[] };
-}
-
-export async function saveHealthRecord(input: Record<string, unknown> & { id?: string }) {
-  const { data } = await axios.request({ url: "/api/health/records", method: input.id ? "PATCH" : "POST", data: input });
-  return data;
-}
-
-export async function deleteHealthRecord(id: string, type: "condition" | "injury") {
-  await axios.delete("/api/health/records", { params: { id, type } });
-}
-
-export async function getTemplates(mode: "mine" | "discover", search = "") {
-  const { data } = await axios.get("/api/templates/templates", { params: { mode, search } });
-  return data as Paginated<WorkoutTemplateSummary>;
-}
-
-export async function getTemplate(id: string) {
-  const { data } = await axios.get("/api/templates/get-template", { params: { id } });
-  return data as WorkoutTemplateDetail;
-}
-
-export async function getSharedTemplate(token: string) {
-  const { data } = await axios.get("/api/templates/shared", { params: { token } });
-  return data as WorkoutTemplateDetail;
-}
-
-export async function saveTemplate(input: Record<string, unknown> & { id?: string }) {
-  const { data } = await axios.request({ url: "/api/templates/templates", method: input.id ? "PATCH" : "POST", data: input });
-  return data;
-}
-
-export async function copyTemplate(id: string, token?: string) {
-  const { data } = await axios.post("/api/templates/copy-template", { id, token });
-  return data as { id: string };
-}
-
-export async function deleteTemplate(id: string) {
-  await axios.delete("/api/templates/templates", { params: { id } });
-}
-
-export async function getAnalytics(start: Date, end: Date) {
-  const { data } = await axios.get("/api/analytics/summary", { params: { start: start.toISOString(), end: end.toISOString() } });
-  return data as AnalyticsSummary;
-}
-
-export async function saveWeightCheckIn(weightKg: number, recordedAt = new Date(), notes?: string) {
-  const { data } = await axios.post("/api/weight/check-ins", { weightKg, recordedAt: recordedAt.toISOString(), notes });
-  return data as { id: string };
-}
-
-export async function getAchievements() {
-  const { data } = await axios.get("/api/achievements/get-achievements");
-  return data as Array<{ id: string; key: string; name: string; description: string; icon: string; earned: boolean; awardedAt: string | null }>;
-}
+export const getDashboardSummary = async () =>
+  (await axios.get("/api/dashboard/summary")).data as DashboardSummary;
+export const getAnalytics = async (params?: Record<string, string>) =>
+  (await axios.get("/api/analytics/summary", { params })).data as AnalyticsSummary;
+export const getAdminStatus = async () =>
+  (await axios.get("/api/admin/get-admin-status")).data as { isAdmin: true };
+export const getAdminSummary = async () =>
+  (await axios.get("/api/admin/dashboard/summary")).data as Record<string, number>;
+export const getAdminUsers = async () =>
+  (await axios.get("/api/admin/users/list")).data as { items: Array<Record<string, unknown>> };
+export const getAdminUser = async (id: string) =>
+  (await axios.get("/api/admin/users/get-by-id", { params: { id } })).data as Record<string, unknown>;
+export const getAdminWorkouts = async () =>
+  (await axios.get("/api/admin/workouts/list")).data as { items: Array<Record<string, unknown>> };
+export const getAdminAnalytics = async () =>
+  (await axios.get("/api/admin/analytics/summary")).data as Record<string, number>;
+export const getAdminAccessList = async () =>
+  (await axios.get("/api/admin/admin-access/list")).data as { items: Array<Record<string, unknown>> };
+export const getAdminAuditLogs = async () =>
+  (await axios.get("/api/admin/audit-logs/list")).data as { items: Array<Record<string, unknown>> };
+export const adminDisableUser = async (id: string) =>
+  (await axios.post("/api/admin/users/disable", { id })).data as { success: true };
+export const adminRestoreUser = async (id: string) =>
+  (await axios.post("/api/admin/users/restore", { id })).data as { success: true };
+export const adminDeleteUser = async (id: string) =>
+  (await axios.delete("/api/admin/users/delete", { params: { id } })).data as { success: true };
+export const adminCreateExercise = async (input: Partial<Exercise>) =>
+  (await axios.post("/api/admin/exercises/create", input)).data as Exercise;
+export const adminUpdateExercise = async (input: Partial<Exercise> & { id: string }) =>
+  (await axios.patch("/api/admin/exercises/update", input)).data as Exercise;
+export const adminArchiveExercise = async (id: string) =>
+  (await axios.post("/api/admin/exercises/archive", { id })).data as { success: true };
+export const adminRestoreExercise = async (id: string) =>
+  (await axios.post("/api/admin/exercises/restore", { id })).data as { success: true };
+export const adminCreateWorkoutPlan = async (input: Partial<WorkoutPlan>) =>
+  (await axios.post("/api/admin/workout-plans/create", input)).data as WorkoutPlan;
+export const adminUpdateWorkoutPlan = async (input: Partial<WorkoutPlan> & { id: string }) =>
+  (await axios.patch("/api/admin/workout-plans/update", input)).data as WorkoutPlan;
+export const adminArchiveWorkoutPlan = async (id: string) =>
+  (await axios.post("/api/admin/workout-plans/archive", { id })).data as { success: true };
+export const adminRestoreWorkoutPlan = async (id: string) =>
+  (await axios.post("/api/admin/workout-plans/restore", { id })).data as { success: true };
+export const adminDeleteWorkout = async (id: string) =>
+  (await axios.delete("/api/admin/workouts/delete", { params: { id } })).data as { success: true };
+export const adminGrantAccess = async (id: string) =>
+  (await axios.post("/api/admin/admin-access/grant", { id })).data as { success: true };
+export const adminRemoveAccess = async (id: string) =>
+  (await axios.post("/api/admin/admin-access/remove", { id })).data as { success: true };

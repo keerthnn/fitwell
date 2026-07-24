@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useAuth } from "fitness/components/context";
 import { signInWithEmail, signInWithGoogle } from "fitness/lib/authUtils";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function SignIn() {
@@ -113,6 +113,12 @@ export default function SignIn() {
                   >
                     Sign In
                   </Button>
+                  <Button
+                    variant="text"
+                    onClick={() => router.push("/auth/forgot-password")}
+                  >
+                    Forgot password?
+                  </Button>
                 </Stack>
               </form>
 
@@ -140,7 +146,8 @@ export default function SignIn() {
                     sx={{
                       textTransform: "none",
                       fontWeight: 600,
-                      p: 0,
+                      px: 1,
+                      minHeight: 44,
                       minWidth: "auto",
                       verticalAlign: "baseline",
                     }}

@@ -6,7 +6,7 @@ Firebase client authentication is configured in `src/lib/firebaseConfig.ts`. The
 
 When a user is signed in, the provider obtains their Firebase ID token and writes it to the `idToken` cookie. When signed out, it removes that cookie. The provider also exposes `user` and `loading` through `useAuth()` and sends a signed-in visitor from `/` to profile setup or the dashboard based on profile status.
 
-The user creation helpers in `src/lib/authUtils.ts` sign in through Firebase and call `/api/auth/create-user` so the application database has a matching `User` record.
+The provider calls `/api/auth/sync-user` so PostgreSQL has a matching `User` record. Deleted application accounts remain disabled tombstones and cannot be silently recreated.
 
 ## API authentication
 
@@ -35,3 +35,4 @@ if (!adminId) return;
 - Never accept a user ID from the request body or query as the authority for user-owned data.
 - Never expose Firebase service-account values, database URLs, ID tokens, or cookies in source, logs, or docs.
 - New authenticated routes should be tested signed out, as a normal user, and as an admin when applicable.
+- Never call Firebase Admin user deletion. Application account deletion preserves Firebase Authentication identities.

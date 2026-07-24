@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useAuth } from "fitness/components/context";
 import { signInWithGoogle, signUpUser } from "fitness/lib/authUtils";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -140,7 +140,8 @@ export default function SignUp() {
                     sx={{
                       textTransform: "none",
                       fontWeight: 600,
-                      p: 0,
+                      px: 1,
+                      minHeight: 44,
                       minWidth: "auto",
                       verticalAlign: "baseline",
                     }}

@@ -14,10 +14,11 @@ export default async function handler(
 
   const profile = await prisma.userProfile.findUnique({
     where: { userId },
-    select: { id: true },
+    select: { id: true, onboardingCompleted: true },
   });
 
   return res.json({
     hasProfile: Boolean(profile),
+    onboardingCompleted: profile?.onboardingCompleted ?? false,
   });
 }

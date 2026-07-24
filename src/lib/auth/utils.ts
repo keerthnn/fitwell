@@ -1,5 +1,6 @@
 import { getCookie } from "cookies-next";
 import { adminAuth } from "fitness/lib/firebaseAdmin";
+import prisma from "fitness/lib/prisma";
 import { ID_TOKEN_COOKIE_NAME } from "fitness/utils/cookieToken";
 import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -33,9 +34,12 @@ export async function getDecodedTokenOrSetError(
 ) {
   const idToken = await getIdTokenCookieOrSetError(req, res);
   if (!idToken) return;
-  const decodedToken = await adminAuth.verifyIdToken(idToken as string);
-  if (!decodedToken) res.status(403).send("Could not get decoded token");
-  return decodedToken;
+  try {
+    return await adminAuth.verifyIdToken(idToken as string);
+  } catch {
+    res.status(401).json({ error: "Invalid or expired authentication" });
+    return undefined;
+  }
 }
 
 export async function getUserId(req: NextApiRequest, res: NextApiResponse) {
@@ -49,6 +53,14 @@ export async function getUserIdOrSetError(
 ) {
   const token = await getDecodedTokenOrSetError(req, res);
   if (!token) return;
+  const user = await prisma.user.findUnique({
+    where: { id: token.uid },
+    select: { isDisabled: true, deletedAt: true },
+  });
+  if (user?.isDisabled || user?.deletedAt) {
+    res.status(403).json({ error: "Application access is disabled" });
+    return;
+  }
   try {
     await recordUserActivity(token.uid);
   } catch (error) {

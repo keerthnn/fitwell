@@ -1,162 +1,27 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import { deleteWorkout, getWorkoutById } from "fitness/utils/spec";
-import { Workout } from "fitness/utils/types";
-import { getExerciseMuscleGroup, getMuscleGroupImageSource } from "fitness/utils/exerciseCatalog";
+import { Button, Paper, Stack, Typography } from "@mui/material";
+import AuthenticatedPage from "fitness/components/AuthenticatedPage";
+import LoadingState from "fitness/components/common/LoadingState";
+import PageHeader from "fitness/components/common/PageHeader";
+import StatusChip from "fitness/components/common/StatusChip";
+import { duplicateWorkout, getWorkoutById } from "fitness/utils/spec";
+import type { Workout } from "fitness/utils/types";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ViewWorkout() {
+export default function WorkoutDetailPage() {
   const router = useRouter();
-  const { id } = router.query;
-
-  const [workout, setWorkout] = useState<Workout | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  const loadWorkout = useCallback(async () => {
-    try {
-      const data = await getWorkoutById(id as string);
-      setWorkout(data);
-    } catch (error) {
-      console.error("Failed to load workout:", error);
-      alert("Failed to load workout");
-    } finally {
-      setLoading(false);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (typeof id === "string") {
-      loadWorkout();
-    }
-  }, [id, loadWorkout]);
-
-  const handleDelete = async () => {
-    if (!confirm("Delete this workout? This cannot be undone.")) return;
-    try {
-      await deleteWorkout(id as string);
-      router.push("/workouts");
-    } catch (error) {
-      console.error("Failed to delete workout:", error);
-      alert("Failed to delete workout");
-    }
-  };
-
-  if (loading) {
-    return (
-      <Container maxWidth="md" sx={{ py: 4 }}>
-        <Typography>Loading...</Typography>
-      </Container>
-    );
-  }
-
-  if (!workout) {
-    return (
-      <Container maxWidth="md" sx={{ py: 4 }}>
-        <Typography>Workout not found</Typography>
-      </Container>
-    );
-  }
-
-  const formattedDate = new Date(workout.date).toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper sx={{ p: 4 }}>
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
-            {workout.title || "Untitled Workout"}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {formattedDate}
-          </Typography>
-          {workout.durationM && (
-            <Typography variant="body2" color="text.secondary">
-              Duration: {workout.durationM} minutes
-            </Typography>
-          )}
-          {workout.notes && (
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              {workout.notes}
-            </Typography>
-          )}
-        </Box>
-
-        <Divider sx={{ mb: 3 }} />
-
-        {workout.exercises.length === 0 ? (
-          <Typography color="text.secondary">No exercises logged</Typography>
-        ) : (
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            {workout.exercises.map((exercise, idx) => (
-              <Box key={exercise.id}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
-                  {getMuscleGroupImageSource(exercise.exercise) && <Box component="img" src={getMuscleGroupImageSource(exercise.exercise)} alt="" aria-hidden="true" sx={{ width: 60, height: 60, objectFit: "contain" }} />}
-                  <Box><Typography variant="h6">{idx + 1}. {exercise.exercise.name}</Typography><Typography variant="body2" color="text.secondary">{getExerciseMuscleGroup(exercise.exercise)?.label ?? exercise.exercise.category} • {exercise.exercise.equipment}</Typography></Box>
-                </Box>
-
-                {exercise.sets.length > 0 ? (
-                  <Table size="small">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Set</TableCell>
-                        <TableCell>Reps</TableCell>
-                        <TableCell>Weight (kg)</TableCell>
-                        <TableCell>RPE</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {exercise.sets.map((set) => (
-                        <TableRow key={set.id}>
-                          <TableCell>{set.setNumber}</TableCell>
-                          <TableCell>{set.reps || "-"}</TableCell>
-                          <TableCell>{set.weightKg || "-"}</TableCell>
-                          <TableCell>{set.rpe || "-"}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                ) : (
-                  <Typography variant="body2" color="text.secondary">
-                    No sets logged
-                  </Typography>
-                )}
-              </Box>
-            ))}
-          </Box>
-        )}
-
-        <Box sx={{ display: "flex", gap: 2, mt: 4 }}>
-          <Button
-            variant="outlined"
-            onClick={() => router.push(`/workouts/${id}/edit`)}
-          >
-            Edit Workout
-          </Button>
-          <Button variant="outlined" color="error" onClick={handleDelete}>
-            Delete
-          </Button>
-          <Button variant="text" onClick={() => router.push("/workouts")}>
-            Back to Workouts
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
-  );
+  const id = typeof router.query.id === "string" ? router.query.id : "";
+  const [workout, setWorkout] = useState<Workout>();
+  useEffect(() => { if (id) void getWorkoutById(id).then(setWorkout); }, [id]);
+  return <AuthenticatedPage>{!workout ? <LoadingState /> : <>
+    <PageHeader title={workout.name} action={{ label: "Edit", href: `/workouts/${workout.id}/edit` }} />
+    <Paper sx={{ p: 3 }}>
+      <Stack gap={2}><StatusChip status={workout.status} /><Typography>{new Date(workout.workoutDate).toLocaleDateString()}</Typography><Typography>{workout.durationMinutes ?? 0} minutes</Typography>
+        {workout.exercises.map((item) => <Stack key={item.id}><Typography fontWeight={700}>{item.exercise.name}</Typography><Typography color="text.secondary">{item.sets.filter((set) => set.isCompleted).length} completed sets</Typography></Stack>)}
+        <Button component={Link} href={`/workouts/${workout.id}/edit`}>Edit workout</Button>
+        <Button onClick={async () => { const result = await duplicateWorkout(workout.id); await router.push(`/workouts/${result.id}/edit`); }}>Duplicate</Button>
+      </Stack>
+    </Paper>
+  </>}</AuthenticatedPage>;
 }

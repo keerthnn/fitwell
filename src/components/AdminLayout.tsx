@@ -1,141 +1,48 @@
-import {
-  AccountCircle,
-  Menu as MenuIcon,
-} from "@mui/icons-material";
-import {
-  AppBar,
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { signOutUser } from "fitness/lib/authUtils";
-import { useRouter } from "next/router";
-import { MouseEvent, ReactNode, useState } from "react";
-import { AdminSidebar, APP_HEADER_HEIGHT, SIDEBAR_WIDTH } from "./AdminSidebar";
-import { useAuth } from "./context";
-import ThemeModeSelector from "./ThemeModeSelector";
+import { AdminPanelSettings, Analytics, FitnessCenter, ListAlt, Menu, People, PlaylistAddCheck, Security } from "@mui/icons-material";
+import { AppBar, Box, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
+import Link from "next/link";
+import { useState, type ReactNode } from "react";
+import { AdminPageGuard } from "./AdminPageGuard";
 
-interface AdminLayoutProps {
-  children: ReactNode;
-}
+const links = [
+  ["/system-admin", "Overview", AdminPanelSettings],
+  ["/system-admin/users", "Users", People],
+  ["/system-admin/exercises", "Exercises", FitnessCenter],
+  ["/system-admin/workout-plans", "Workout Plans", PlaylistAddCheck],
+  ["/system-admin/workouts", "Workouts", ListAlt],
+  ["/system-admin/analytics", "Analytics", Analytics],
+  ["/system-admin/admin-access", "Admin access", Security],
+  ["/system-admin/audit-logs", "Audit logs", ListAlt],
+] as const;
 
-export function AdminLayout({ children }: AdminLayoutProps) {
+export default function AdminLayout({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const router = useRouter();
-  const { user } = useAuth();
-
-  const navigate = (path: string) => {
-    setAnchorEl(null);
-    setMobileOpen(false);
-    router.push(path);
-  };
-
-  const logout = async () => {
-    setAnchorEl(null);
-    await signOutUser();
-    router.replace("/");
-  };
-
+  const navigation = (
+    <>
+      <Toolbar><Typography variant="h6" fontWeight={800}>FitWell Admin</Typography></Toolbar>
+      <List>
+        {links.map(([href, label, Icon]) => (
+          <ListItemButton component={Link} href={href} key={href} onClick={() => setMobileOpen(false)}>
+            <ListItemIcon><Icon /></ListItemIcon><ListItemText primary={label} />
+          </ListItemButton>
+        ))}
+      </List>
+    </>
+  );
   return (
-    <Box sx={{ display: "flex", width: "100%", maxWidth: "100%", minHeight: "100vh", overflowX: "hidden" }}>
-      <AppBar
-        position="fixed"
-        sx={{
-          height: APP_HEADER_HEIGHT,
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-      >
-        <Toolbar sx={{ minHeight: APP_HEADER_HEIGHT }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open admin navigation"
-            sx={{ display: { xs: "inline-flex", md: "none" }, mr: 1 }}
-            onClick={() => setMobileOpen(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={{ xs: 1, sm: 2 }}
-            sx={{ flexGrow: 1, minWidth: 0 }}
-          >
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{ fontWeight: 700, cursor: "pointer" }}
-              onClick={() => navigate("/")}
-            >
-              FitWell
-            </Typography>
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{ display: { xs: "none", sm: "block" }, fontWeight: 500, opacity: 0.9 }}
-            >
-              System Admin
-            </Typography>
-          </Stack>
-
-          <ThemeModeSelector />
-
-          <IconButton
-            color="inherit"
-            aria-label="open profile menu"
-            onClick={(event: MouseEvent<HTMLElement>) =>
-              setAnchorEl(event.currentTarget)
-            }
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={() => setAnchorEl(null)}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            transformOrigin={{ vertical: "top", horizontal: "right" }}
-          >
-            <MenuItem onClick={() => navigate("/dashboard")}>
-              Back to App
-            </MenuItem>
-            {user && (
-              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
-            )}
-            <MenuItem onClick={logout} sx={{ color: "error.main" }}>
-              Logout
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-
-      <AdminSidebar
-        mobileOpen={mobileOpen}
-        onMobileClose={() => setMobileOpen(false)}
-      />
-
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          width: { xs: "100%", md: `calc(100% - ${SIDEBAR_WIDTH}px)` },
-          maxWidth: "100%",
-          minWidth: 0,
-          overflowX: "hidden",
-          ml: { md: `${SIDEBAR_WIDTH}px` },
-          mt: `${APP_HEADER_HEIGHT}px`,
-          minHeight: `calc(100vh - ${APP_HEADER_HEIGHT}px)`,
-          backgroundColor: "background.default",
-        }}
-      >
-        {children}
+    <AdminPageGuard>
+      <Box sx={{ display: "flex", minHeight: "100vh" }}>
+        <AppBar sx={{ display: { md: "none" } }}>
+          <Toolbar><IconButton color="inherit" onClick={() => setMobileOpen(true)} aria-label="Open admin navigation"><Menu /></IconButton><Typography fontWeight={800}>FitWell Admin</Typography></Toolbar>
+        </AppBar>
+        <Drawer open={mobileOpen} onClose={() => setMobileOpen(false)} sx={{ display: { md: "none" }, "& .MuiDrawer-paper": { width: 280 } }}>
+          {navigation}
+        </Drawer>
+        <Drawer variant="permanent" sx={{ display: { xs: "none", md: "block" }, width: 248, "& .MuiDrawer-paper": { width: 248 } }}>
+          {navigation}
+        </Drawer>
+        <Box component="main" sx={{ flex: 1, minWidth: 0, p: { xs: 2, md: 4 }, pt: { xs: 11, md: 4 } }}>{children}</Box>
       </Box>
-    </Box>
+    </AdminPageGuard>
   );
 }

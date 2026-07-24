@@ -1,8 +1,7 @@
 import { randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { loadEnvFile } from "node:process";
 import pg from "pg";
-import ts from "typescript";
 
 try {
   loadEnvFile();
@@ -11,54 +10,15 @@ try {
 }
 
 const { Pool } = pg;
-const catalogFile = new URL("../src/utils/workoutCatalog.ts", import.meta.url);
-const catalogSource = await readFile(catalogFile, "utf8");
-const sourceFile = ts.createSourceFile(
-  catalogFile.pathname,
-  catalogSource,
-  ts.ScriptTarget.Latest,
-  true,
-  ts.ScriptKind.TS,
-);
-
-function literalValue(node) {
-  if (ts.isStringLiteral(node)) return node.text;
-  if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
-  if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
-  throw new Error(`Unsupported catalog value: ${node.getText(sourceFile)}`);
-}
-
-function readExercise(node) {
-  if (!ts.isObjectLiteralExpression(node)) {
-    throw new Error(`Catalog item is not an object: ${node.getText(sourceFile)}`);
-  }
-
-  return Object.fromEntries(
-    node.properties.map((property) => {
-      if (!ts.isPropertyAssignment(property)) {
-        throw new Error(`Unsupported catalog property: ${property.getText(sourceFile)}`);
-      }
-
-      const key = property.name.getText(sourceFile).replaceAll('"', "");
-      return [key, literalValue(property.initializer)];
-    }),
-  );
-}
-
-let catalogDeclaration;
-for (const statement of sourceFile.statements) {
-  if (!ts.isVariableStatement(statement)) continue;
-  catalogDeclaration = statement.declarationList.declarations.find(
-    (declaration) => declaration.name.getText(sourceFile) === "exerciseCatalog",
-  );
-  if (catalogDeclaration) break;
-}
-
-if (!catalogDeclaration || !ts.isArrayLiteralExpression(catalogDeclaration.initializer)) {
-  throw new Error("Could not read exerciseCatalog from src/utils/workoutCatalog.ts");
-}
-
-const exercises = catalogDeclaration.initializer.elements.map(readExercise);
+const catalogDirectory = new URL("../src/utils/exercises/", import.meta.url);
+const catalogFiles = (await readdir(catalogDirectory)).filter((file) => file.endsWith(".json")).sort();
+const exercises = (
+  await Promise.all(
+    catalogFiles.map(async (file) =>
+      JSON.parse(await readFile(new URL(file, catalogDirectory), "utf8")),
+    ),
+  )
+).flat();
 const equipmentTypes = new Set([
   "BARBELL",
   "DUMBBELL",
@@ -106,28 +66,40 @@ try {
   await client.query("BEGIN");
 
   for (const exercise of exercises) {
+    const trackingType =
+      exercise.equipment === "BODYWEIGHT" ? "REPS_ONLY" : "REPS_WEIGHT";
+    const equipmentImagePath = `/images/equipment/${exercise.equipment.toLowerCase()}.svg`;
     await client.query(
       `
         INSERT INTO "Exercise"
-          ("id", "name", "equipment", "movement", "category", "region", "isCompound", "createdAt", "updatedAt")
+          ("id", "name", "description", "instructions", "equipment", "movement",
+           "category", "primaryMuscle", "isCompound", "trackingType", "isActive",
+           "equipmentImagePath", "createdAt", "updatedAt")
         VALUES
-          ($1, $2, $3::"EquipmentType", $4::"MovementType", $5, $6, $7, NOW(), NOW())
+          ($1, $2, $3, $4, $5::"EquipmentType", $6::"MovementType", $7, $8,
+           $9, $10::"ExerciseTrackingType", TRUE, $11, NOW(), NOW())
         ON CONFLICT ("name", "equipment") DO UPDATE SET
           "movement" = EXCLUDED."movement",
           "category" = EXCLUDED."category",
-          "region" = EXCLUDED."region",
+          "primaryMuscle" = EXCLUDED."primaryMuscle",
           "isCompound" = EXCLUDED."isCompound",
-          "isArchived" = FALSE,
+          "trackingType" = EXCLUDED."trackingType",
+          "isActive" = TRUE,
+          "equipmentImagePath" = EXCLUDED."equipmentImagePath",
           "updatedAt" = NOW()
       `,
       [
         randomUUID(),
         exercise.name,
+        `${exercise.name} for ${exercise.region ?? exercise.category}.`,
+        "Use controlled form and a range of motion appropriate for you.",
         exercise.equipment,
         exercise.movement,
         exercise.category,
-        exercise.region ?? null,
+        exercise.region ?? exercise.category,
         exercise.isCompound,
+        trackingType,
+        equipmentImagePath,
       ],
     );
   }

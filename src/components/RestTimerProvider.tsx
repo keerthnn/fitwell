@@ -1,4 +1,4 @@
-import { Add, Close, Pause, PlayArrow } from "@mui/icons-material";
+import { Add, Close, Pause, PlayArrow, Replay } from "@mui/icons-material";
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import {
   createContext,
@@ -20,6 +20,7 @@ type TimerContext = State & {
   pause(): void;
   resume(): void;
   add(seconds: number): void;
+  reset(): void;
   stop(): void;
 };
 const initial: State = {
@@ -113,9 +114,19 @@ export default function RestTimerProvider({
     [],
   );
   const stop = useCallback(() => setState(initial), []);
+  const reset = useCallback(
+    () =>
+      setState((current) => ({
+        ...current,
+        remaining: current.duration,
+        running: true,
+        startedAt: Date.now(),
+      })),
+    [],
+  );
   const value = useMemo(
-    () => ({ ...state, start, pause, resume, add, stop }),
-    [state, start, pause, resume, add, stop],
+    () => ({ ...state, start, pause, resume, add, reset, stop }),
+    [state, start, pause, resume, add, reset, stop],
   );
   return (
     <Context.Provider value={value}>
@@ -126,13 +137,14 @@ export default function RestTimerProvider({
           sx={{
             position: "fixed",
             zIndex: 1400,
-            right: 16,
-            bottom: 16,
+            right: { xs: 8, md: 16 },
+            left: { xs: 8, md: "auto" },
+            bottom: { xs: 72, md: 16 },
             p: 2,
             borderRadius: 3,
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={1} flexWrap="wrap">
             <Box>
               <Typography variant="caption">Rest timer</Typography>
               <Typography variant="h6">
@@ -147,16 +159,17 @@ export default function RestTimerProvider({
             >
               {state.running ? "Pause" : "Resume"}
             </Button>
-            <Button size="small" onClick={() => add(15)} startIcon={<Add />}>
-              15s
+            <Button size="small" onClick={() => add(30)} startIcon={<Add />}>
+              30s
             </Button>
+            <Button size="small" onClick={reset} startIcon={<Replay />}>Reset</Button>
             <Button
               size="small"
               color="inherit"
               onClick={stop}
               startIcon={<Close />}
             >
-              Skip
+              Dismiss
             </Button>
           </Stack>
         </Paper>

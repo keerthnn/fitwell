@@ -3,39 +3,34 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  sendPasswordResetEmail,
   User,
 } from "firebase/auth";
 
 import { auth, googleProvider } from "./firebaseConfig";
 
 export async function signInWithEmail(email: string, password: string) {
-  if (!auth) return;
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    console.error(err);
-  }
+  if (!auth) throw new Error("Authentication is not configured");
+  return signInWithEmailAndPassword(auth, email, password);
 }
 
 export async function signInWithGoogle() {
-  if (!auth || !googleProvider) return;
-  try {
-    const res = await signInWithPopup(auth, googleProvider);
-    if (!res.user.email) throw new Error("Email is missing");
-  } catch (err) {
-    console.error(err);
-  }
+  if (!auth || !googleProvider) throw new Error("Authentication is not configured");
+  const res = await signInWithPopup(auth, googleProvider);
+  if (!res.user.email) throw new Error("Email is missing");
+  return res.user;
 }
 
 export async function signUpUser(email: string, password: string) {
-  if (!auth) return;
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    if (!res.user.email) throw new Error("Email is missing");
-    return res.user;
-  } catch (err) {
-    console.error(err);
-  }
+  if (!auth) throw new Error("Authentication is not configured");
+  const res = await createUserWithEmailAndPassword(auth, email, password);
+  if (!res.user.email) throw new Error("Email is missing");
+  return res.user;
+}
+
+export async function resetPassword(email: string) {
+  if (!auth) throw new Error("Authentication is not configured");
+  await sendPasswordResetEmail(auth, email);
 }
 
 export async function getCurrentUser() {

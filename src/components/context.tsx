@@ -41,8 +41,14 @@ export const AuthContextProvider = ({
       setUser(user);
       const token = await user.getIdToken();
       setCookie("idToken", token);
-      await createUser();
-      setLoading(false);
+      try {
+        await createUser();
+        setLoading(false);
+      } catch {
+        deleteCookie("idToken");
+        setUser(null);
+        setLoading(false);
+      }
     });
 
     return unsubscribe;
@@ -50,9 +56,9 @@ export const AuthContextProvider = ({
 
   // Redirect decision (wrapper-based)
   useEffect(() => {
-    if (!loading && user && router.pathname === "/") {
-      getProfileStatus().then(({ hasProfile }) => {
-        router.push(hasProfile ? "/dashboard" : "/profile");
+    if (!loading && user && (router.pathname === "/" || router.pathname.startsWith("/auth/"))) {
+      getProfileStatus().then(({ onboardingCompleted }) => {
+        router.push(onboardingCompleted ? "/dashboard" : "/onboarding");
       });
     }
   }, [user, loading, router]);

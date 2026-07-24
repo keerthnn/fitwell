@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Barbell Wrist Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm flexors",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse Barbell Wrist Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm extensors",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Wrist Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm flexors",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse Dumbbell Wrist Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm extensors",
+    "isCompound": false
+  },
+  {
+    "name": "Behind-the-Back Wrist Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm flexors",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Wrist Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm flexors",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Reverse Wrist Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Forearm extensors",
+    "isCompound": false
+  },
+  {
+    "name": "Wrist Roller",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Forearms",
+    "region": "Total forearms",
+    "isCompound": false
+  },
+  {
+    "name": "Dead Hang",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Forearms",
+    "region": "Grip",
+    "isCompound": false
+  },
+  {
+    "name": "Towel Dead Hang",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Forearms",
+    "region": "Grip",
+    "isCompound": false
+  },
+  {
+    "name": "Plate Pinch Hold",
+    "equipment": "BARBELL",
+    "movement": "ISOMETRIC",
+    "category": "Forearms",
+    "region": "Grip",
+    "isCompound": false
+  }
+]

@@ -1,34 +1,23 @@
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { getUserIdOrSetError } from "fitness/lib/auth/utils";
+import { validateProfile } from "fitness/lib/api/validators/profile";
 import prisma from "fitness/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { profileSchema } from "fitness/lib/api/schemas";
-import { parseOrError } from "fitness/lib/api/validation";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!checkIfPostOrSetError(req, res)) return;
-
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
-
-  const parsed = parseOrError(profileSchema, req.body);
-  if (parsed.error) return res.status(400).json(parsed.error);
-
-  const existing = await prisma.userProfile.findUnique({
-    where: { userId },
-  });
-
-  if (!existing) {
-    return res.status(404).send("Profile does not exist");
-  }
-
+  const result = validateProfile(req.body);
+  if (!result.valid) return res.status(400).json({ error: "Invalid profile", details: result.errors });
+  const profile = await prisma.userProfile.findUnique({ where: { userId } });
+  if (!profile) return res.status(404).json({ error: "Profile not found" });
   await prisma.userProfile.update({
     where: { userId },
-    data: parsed.data,
+    data: {
+      ...result.data,
+      dateOfBirth: result.data.dateOfBirth ? new Date(result.data.dateOfBirth) : null,
+    },
   });
-
   return res.json({ success: true });
 }

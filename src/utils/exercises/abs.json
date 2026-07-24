@@ -1,0 +1,194 @@
+[
+  {
+    "name": "Plank",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Total core",
+    "isCompound": false
+  },
+  {
+    "name": "Side Plank",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Weighted Plank",
+    "equipment": "DUMBBELL",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Total core",
+    "isCompound": false
+  },
+  {
+    "name": "Crunch",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Upper abs",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse Crunch",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Abs",
+    "region": "Lower abs",
+    "isCompound": false
+  },
+  {
+    "name": "Bicycle Crunch",
+    "equipment": "BODYWEIGHT",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Abs and obliques",
+    "isCompound": false
+  },
+  {
+    "name": "V-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Total abs",
+    "isCompound": false
+  },
+  {
+    "name": "Sit-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Upper abs",
+    "isCompound": false
+  },
+  {
+    "name": "Decline Sit-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Upper abs",
+    "isCompound": false
+  },
+  {
+    "name": "Hanging Knee Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Abs",
+    "region": "Lower abs",
+    "isCompound": false
+  },
+  {
+    "name": "Hanging Leg Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Abs",
+    "region": "Lower abs",
+    "isCompound": false
+  },
+  {
+    "name": "Captain's Chair Knee Raise",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Abs",
+    "region": "Lower abs",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Crunch",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Upper abs",
+    "isCompound": false
+  },
+  {
+    "name": "Standing Cable Crunch",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Abs",
+    "region": "Upper abs",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Wood Chop",
+    "equipment": "CABLE",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Side Bend",
+    "equipment": "CABLE",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Side Bend",
+    "equipment": "DUMBBELL",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Russian Twist",
+    "equipment": "BODYWEIGHT",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Russian Twist",
+    "equipment": "DUMBBELL",
+    "movement": "ROTATION",
+    "category": "Abs",
+    "region": "Obliques",
+    "isCompound": false
+  },
+  {
+    "name": "Mountain Climber",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Abs",
+    "region": "Total core",
+    "isCompound": true
+  },
+  {
+    "name": "Dead Bug",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Deep core",
+    "isCompound": false
+  },
+  {
+    "name": "Bird Dog",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Deep core",
+    "isCompound": false
+  },
+  {
+    "name": "Hollow Body Hold",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Total core",
+    "isCompound": false
+  },
+  {
+    "name": "Pallof Press",
+    "equipment": "CABLE",
+    "movement": "ISOMETRIC",
+    "category": "Abs",
+    "region": "Deep core",
+    "isCompound": false
+  }
+]

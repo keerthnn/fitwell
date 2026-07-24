@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Barbell Shrug",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Behind-the-Back Barbell Shrug",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Shrug",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Kettlebell Shrug",
+    "equipment": "KETTLEBELL",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Shrug",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Shrug",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": false
+  },
+  {
+    "name": "Farmer's Carry",
+    "equipment": "DUMBBELL",
+    "movement": "CARRY",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Farmer's Carry",
+    "equipment": "KETTLEBELL",
+    "movement": "CARRY",
+    "category": "Traps",
+    "region": "Upper traps",
+    "isCompound": true
+  }
+]
