@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import AppShell from "fitness/components/layout/AppShell";
 import { AuthContextProvider } from "fitness/components/context";
+import AppShell from "fitness/components/layout/AppShell";
+import PublicShell from "fitness/components/layout/PublicShell";
 import RestTimerProvider from "fitness/components/RestTimerProvider";
 import ThemeModeProvider from "fitness/components/ThemeModeProvider";
 import type { AppProps } from "next/app";
@@ -13,14 +14,17 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
   const isPublicRoute =
     router.pathname === "/" || router.pathname.startsWith("/auth/");
   const isOnboarding = router.pathname === "/onboarding";
-  const content =
-    isPublicRoute || isSystemAdminRoute || isOnboarding ? (
+  const content = isPublicRoute ? (
+    <PublicShell>
       <Component {...pageProps} />
-    ) : (
-      <AppShell>
-        <Component {...pageProps} />
-      </AppShell>
-    );
+    </PublicShell>
+  ) : isSystemAdminRoute || isOnboarding ? (
+    <Component {...pageProps} />
+  ) : (
+    <AppShell>
+      <Component {...pageProps} />
+    </AppShell>
+  );
 
   return (
     <>

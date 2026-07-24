@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -18,6 +19,8 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const { user, loading } = useAuth();
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   if (loading && !user) {
     return (
@@ -40,19 +43,26 @@ export default function SignIn() {
 
   async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError("");
+    setSubmitting(true);
     try {
       await signInWithEmail(email, password);
-    } catch (err) {
-      console.error("signin failed", err);
-      alert("Sign in failed");
+    } catch {
+      setError("We couldn’t sign you in. Check your email and password.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
   async function handleSignInWithGoogle() {
     try {
+      setError("");
+      setSubmitting(true);
       await signInWithGoogle();
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setError("Google sign-in could not be completed.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -86,6 +96,7 @@ export default function SignIn() {
 
               <form onSubmit={handleSignIn}>
                 <Stack spacing={2.5}>
+                  {error && <Alert severity="error">{error}</Alert>}
                   <TextField
                     label="Email"
                     type="email"
@@ -109,9 +120,10 @@ export default function SignIn() {
                     variant="outlined"
                     size="large"
                     fullWidth
+                    disabled={submitting}
                     sx={{ mt: 1 }}
                   >
-                    Sign In
+                    {submitting ? "Signing in…" : "Sign In"}
                   </Button>
                   <Button
                     variant="text"
@@ -133,6 +145,7 @@ export default function SignIn() {
                 size="large"
                 fullWidth
                 onClick={handleSignInWithGoogle}
+                disabled={submitting}
               >
                 Continue with Google
               </Button>

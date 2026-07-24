@@ -51,6 +51,15 @@ export default function createAppTheme(mode: PaletteMode) {
       button: { fontWeight: 600, letterSpacing: "0.02em" },
     },
     shape: { borderRadius: 8 },
+    fitwell: {
+      sidebarWidth: 264,
+      sidebarCollapsedWidth: 80,
+      mobileNavigationHeight: 72,
+      contentMaxWidth: 1440,
+      cardRadius: 16,
+      buttonRadius: 12,
+      imageRatios: { card: "16 / 10", cover: "3 / 2" },
+    },
     components: {
       MuiCssBaseline: {
         styleOverrides: {
@@ -67,7 +76,7 @@ export default function createAppTheme(mode: PaletteMode) {
         defaultProps: { disableElevation: true },
         styleOverrides: {
           root: {
-            borderRadius: 8,
+            borderRadius: 12,
             textTransform: "none",
             fontWeight: 600,
             fontSize: "0.9375rem",
@@ -151,7 +160,7 @@ export default function createAppTheme(mode: PaletteMode) {
         defaultProps: { elevation: 0 },
         styleOverrides: {
           root: {
-            borderRadius: 12,
+            borderRadius: 16,
             border: `1px solid ${dark ? "#26292e" : "#e2e8f0"}`,
             backgroundImage: "none",
           },
@@ -163,6 +172,34 @@ export default function createAppTheme(mode: PaletteMode) {
       MuiFormControl: {
         styleOverrides: {
           root: { "& .MuiInputLabel-root": { fontWeight: 500 } },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: 16,
+            backgroundImage: "none",
+            boxShadow: dark
+              ? "0 18px 45px rgb(0 0 0 / 0.18)"
+              : "0 14px 36px rgb(15 23 42 / 0.06)",
+          },
+        },
+      },
+      MuiBottomNavigationAction: {
+        styleOverrides: {
+          root: {
+            minWidth: 56,
+            minHeight: 64,
+            "&:focus-visible": {
+              outline: `2px solid ${dark ? "#60a5fa" : "#2563eb"}`,
+              outlineOffset: -3,
+            },
+          },
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: { borderRadius: 999, fontWeight: 600 },
         },
       },
     },

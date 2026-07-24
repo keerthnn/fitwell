@@ -96,6 +96,17 @@ export interface Workout {
   exercises: WorkoutExerciseDetail[];
 }
 
+export type ExerciseImageMetadata = Pick<
+  Exercise,
+  | "name"
+  | "imagePath"
+  | "equipmentImagePath"
+  | "equipment"
+  | "primaryMuscle"
+  | "category"
+  | "movement"
+>;
+
 export interface WorkoutListItem {
   id: string;
   name: string;
@@ -104,6 +115,9 @@ export interface WorkoutListItem {
   entryMode: WorkoutEntryMode;
   durationMinutes: number | null;
   exerciseCount: number;
+  representativeExercise: ExerciseImageMetadata | null;
+  sourcePlanCoverImagePath: string | null;
+  sourcePlanCategory: string | null;
 }
 
 export interface WorkoutPlanExercise {
@@ -148,10 +162,15 @@ export interface DashboardSummary {
   workoutsThisWeek: number;
   weeklyTarget: number;
   currentStreak: number;
+  completedWorkouts: number;
   totalDurationMinutes: number;
   recentWorkouts: WorkoutListItem[];
   activeWorkout: WorkoutListItem | null;
   savedPlans: Array<Pick<WorkoutPlan, "id" | "name" | "coverImagePath">>;
+  frequentExercises: Array<{
+    exercise: ExerciseImageMetadata;
+    count: number;
+  }>;
 }
 
 export interface AnalyticsSummary {

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -18,6 +19,8 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const { user, loading } = useAuth();
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   if (loading && !user) {
     return (
@@ -40,18 +43,28 @@ export default function SignUp() {
 
   async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError("");
+    setSubmitting(true);
     try {
       await signUpUser(email, password);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setError(
+        "Your account could not be created. Check the details and try again.",
+      );
+    } finally {
+      setSubmitting(false);
     }
   }
 
   async function handleSignUpWithGoogle() {
     try {
+      setError("");
+      setSubmitting(true);
       await signInWithGoogle();
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setError("Google sign-up could not be completed.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -85,6 +98,7 @@ export default function SignUp() {
 
               <form onSubmit={handleSignUp}>
                 <Stack spacing={2.5}>
+                  {error && <Alert severity="error">{error}</Alert>}
                   <TextField
                     label="Email"
                     type="email"
@@ -109,9 +123,10 @@ export default function SignUp() {
                     variant="contained"
                     size="large"
                     fullWidth
+                    disabled={submitting}
                     sx={{ mt: 1 }}
                   >
-                    Create Account
+                    {submitting ? "Creating account…" : "Create Account"}
                   </Button>
                 </Stack>
               </form>
@@ -127,6 +142,7 @@ export default function SignUp() {
                 size="large"
                 fullWidth
                 onClick={handleSignUpWithGoogle}
+                disabled={submitting}
               >
                 Continue with Google
               </Button>

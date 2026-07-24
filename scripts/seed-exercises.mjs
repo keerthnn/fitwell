@@ -11,7 +11,9 @@ try {
 
 const { Pool } = pg;
 const catalogDirectory = new URL("../src/utils/exercises/", import.meta.url);
-const catalogFiles = (await readdir(catalogDirectory)).filter((file) => file.endsWith(".json")).sort();
+const catalogFiles = (await readdir(catalogDirectory))
+  .filter((file) => file.endsWith(".json"))
+  .sort();
 const exercises = (
   await Promise.all(
     catalogFiles.map(async (file) =>
@@ -43,10 +45,14 @@ for (const exercise of exercises) {
     throw new Error("Every catalog exercise needs a name and category");
   }
   if (!equipmentTypes.has(exercise.equipment)) {
-    throw new Error(`Unknown equipment for ${exercise.name}: ${exercise.equipment}`);
+    throw new Error(
+      `Unknown equipment for ${exercise.name}: ${exercise.equipment}`,
+    );
   }
   if (!movementTypes.has(exercise.movement)) {
-    throw new Error(`Unknown movement for ${exercise.name}: ${exercise.movement}`);
+    throw new Error(
+      `Unknown movement for ${exercise.name}: ${exercise.movement}`,
+    );
   }
 }
 
@@ -68,7 +74,7 @@ try {
   for (const exercise of exercises) {
     const trackingType =
       exercise.equipment === "BODYWEIGHT" ? "REPS_ONLY" : "REPS_WEIGHT";
-    const equipmentImagePath = `/images/equipment/${exercise.equipment.toLowerCase()}.svg`;
+    const equipmentImagePath = `/images/equipment/${exercise.equipment.toLowerCase()}-512.webp`;
     await client.query(
       `
         INSERT INTO "Exercise"

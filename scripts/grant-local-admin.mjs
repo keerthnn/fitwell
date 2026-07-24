@@ -8,11 +8,19 @@ try {
 }
 
 const identifier = process.argv[2]?.trim();
-if (!identifier) throw new Error("Pass an exact synchronized Firebase UID or email");
+if (!identifier)
+  throw new Error("Pass an exact synchronized Firebase UID or email");
 if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is required");
 const url = new URL(process.env.DATABASE_URL);
-if (!["localhost", "127.0.0.1", "[::1]", "::1", "postgres", "db"].includes(url.hostname) || url.pathname !== "/fitness") {
-  throw new Error("Local admin bootstrap is restricted to the local fitness database");
+if (
+  !["localhost", "127.0.0.1", "[::1]", "::1", "postgres", "db"].includes(
+    url.hostname,
+  ) ||
+  url.pathname !== "/fitness"
+) {
+  throw new Error(
+    "Local admin bootstrap is restricted to the local fitness database",
+  );
 }
 
 const client = new pg.Client({ connectionString: process.env.DATABASE_URL });
@@ -23,7 +31,10 @@ try {
     [identifier],
   );
   const user = result.rows[0];
-  if (!user) throw new Error("Synchronize an active Firebase user before granting admin access");
+  if (!user)
+    throw new Error(
+      "Synchronize an active Firebase user before granting admin access",
+    );
   await client.query(
     `INSERT INTO "AdminAccess" ("userId","createdAt") VALUES ($1,NOW()) ON CONFLICT ("userId") DO NOTHING`,
     [user.id],

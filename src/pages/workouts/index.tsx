@@ -1,30 +1,77 @@
-import { Button, Paper, Stack, Typography } from "@mui/material";
+import { Grid, MenuItem, TextField } from "@mui/material";
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import EmptyState from "fitness/components/common/EmptyState";
+import ErrorState from "fitness/components/common/ErrorState";
+import FilterToolbar from "fitness/components/common/FilterToolbar";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
-import StatusChip from "fitness/components/common/StatusChip";
+import SearchInput from "fitness/components/common/SearchInput";
+import WorkoutCard from "fitness/components/workouts/WorkoutCard";
 import { getWorkouts } from "fitness/utils/spec";
 import type { WorkoutListItem } from "fitness/utils/types";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function WorkoutsPage() {
   const [workouts, setWorkouts] = useState<WorkoutListItem[]>();
-  useEffect(() => { void getWorkouts().then((result) => setWorkouts(result.items)); }, []);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      setError("");
+      const params = {
+        ...(search ? { search } : {}),
+        ...(status ? { status } : {}),
+      };
+      void getWorkouts(params)
+        .then((result) => setWorkouts(result.items))
+        .catch(() => setError("Your workouts could not be loaded."));
+    }, 250);
+    return () => window.clearTimeout(timeout);
+  }, [search, status]);
   return (
     <AuthenticatedPage>
-      <PageHeader title="Workouts" description="Your workout history and sessions." action={{ label: "Start workout", href: "/workouts/create" }} />
-      <Button component={Link} href="/workouts/quick-entry" sx={{ mb: 3 }}>Add quick entry</Button>
-      {!workouts ? <LoadingState /> : workouts.length === 0 ? <EmptyState title="No workouts" description="Start a live workout or add a quick entry." /> : (
-        <Stack gap={1.5}>{workouts.map((workout) => (
-          <Paper key={workout.id} variant="outlined" sx={{ p: 2 }}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Stack><Typography component={Link} href={`/workouts/${workout.id}`} fontWeight={700} color="inherit">{workout.name}</Typography><Typography color="text.secondary" variant="body2">{new Date(workout.workoutDate).toLocaleDateString()} · {workout.exerciseCount} exercises</Typography></Stack>
-              <StatusChip status={workout.status} />
-            </Stack>
-          </Paper>
-        ))}</Stack>
+      <PageHeader
+        title="Workouts"
+        description="Your training history, drafts, and active sessions."
+        action={{ label: "Start workout", href: "/workouts/create" }}
+      />
+      <FilterToolbar>
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          label="Search workouts"
+        />
+        <TextField
+          select
+          label="Status"
+          value={status}
+          onChange={(event) => setStatus(event.target.value)}
+          sx={{ minWidth: { sm: 180 } }}
+        >
+          <MenuItem value="">All statuses</MenuItem>
+          <MenuItem value="IN_PROGRESS">In progress</MenuItem>
+          <MenuItem value="COMPLETED">Completed</MenuItem>
+          <MenuItem value="DRAFT">Draft</MenuItem>
+        </TextField>
+      </FilterToolbar>
+      {error ? (
+        <ErrorState message={error} />
+      ) : !workouts ? (
+        <LoadingState />
+      ) : workouts.length === 0 ? (
+        <EmptyState
+          title="No workouts found"
+          description="Start a live workout, add a quick entry, or change your filters."
+        />
+      ) : (
+        <Grid container spacing={2}>
+          {workouts.map((workout) => (
+            <Grid key={workout.id} size={{ xs: 12, md: 6, xl: 4 }}>
+              <WorkoutCard workout={workout} />
+            </Grid>
+          ))}
+        </Grid>
       )}
     </AuthenticatedPage>
   );

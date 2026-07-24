@@ -139,12 +139,21 @@ export default function RestTimerProvider({
             zIndex: 1400,
             right: { xs: 8, md: 16 },
             left: { xs: 8, md: "auto" },
-            bottom: { xs: 72, md: 16 },
+            bottom: {
+              xs: "calc(80px + env(safe-area-inset-bottom))",
+              md: 16,
+            },
             p: 2,
             borderRadius: 3,
+            maxWidth: { md: 560 },
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={1} flexWrap="wrap">
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            flexWrap="wrap"
+          >
             <Box>
               <Typography variant="caption">Rest timer</Typography>
               <Typography variant="h6">
@@ -156,18 +165,32 @@ export default function RestTimerProvider({
               size="small"
               onClick={state.running ? pause : resume}
               startIcon={state.running ? <Pause /> : <PlayArrow />}
+              sx={{ minHeight: 44 }}
             >
               {state.running ? "Pause" : "Resume"}
             </Button>
-            <Button size="small" onClick={() => add(30)} startIcon={<Add />}>
+            <Button
+              size="small"
+              onClick={() => add(30)}
+              startIcon={<Add />}
+              sx={{ minHeight: 44 }}
+            >
               30s
             </Button>
-            <Button size="small" onClick={reset} startIcon={<Replay />}>Reset</Button>
+            <Button
+              size="small"
+              onClick={reset}
+              startIcon={<Replay />}
+              sx={{ minHeight: 44 }}
+            >
+              Reset
+            </Button>
             <Button
               size="small"
               color="inherit"
               onClick={stop}
               startIcon={<Close />}
+              sx={{ minHeight: 44 }}
             >
               Dismiss
             </Button>

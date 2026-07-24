@@ -24,7 +24,8 @@ export const text = (
   options: { required?: boolean; max?: number } = {},
 ) => {
   if (value === undefined || value === null || value === "") {
-    if (options.required) errors.push({ field, message: `${field} is required` });
+    if (options.required)
+      errors.push({ field, message: `${field} is required` });
     return undefined;
   }
   if (typeof value !== "string") {
@@ -32,19 +33,29 @@ export const text = (
     return undefined;
   }
   const result = value.trim();
-  if (options.required && !result) errors.push({ field, message: `${field} is required` });
+  if (options.required && !result)
+    errors.push({ field, message: `${field} is required` });
   if (options.max && result.length > options.max)
-    errors.push({ field, message: `${field} must be ${options.max} characters or fewer` });
+    errors.push({
+      field,
+      message: `${field} must be ${options.max} characters or fewer`,
+    });
   return result;
 };
 export const numberValue = (
   value: unknown,
   field: string,
   errors: ValidationError[],
-  options: { min?: number; max?: number; integer?: boolean; required?: boolean } = {},
+  options: {
+    min?: number;
+    max?: number;
+    integer?: boolean;
+    required?: boolean;
+  } = {},
 ) => {
   if (value === undefined || value === null || value === "") {
-    if (options.required) errors.push({ field, message: `${field} is required` });
+    if (options.required)
+      errors.push({ field, message: `${field} is required` });
     return undefined;
   }
   if (typeof value !== "number" || !Number.isFinite(value)) {
@@ -71,15 +82,22 @@ export const enumValue = <T extends string>(
   }
   return value as T;
 };
-export const dateValue = (value: unknown, field: string, errors: ValidationError[]) => {
+export const dateValue = (
+  value: unknown,
+  field: string,
+  errors: ValidationError[],
+) => {
   if (typeof value !== "string" || Number.isNaN(Date.parse(value))) {
     errors.push({ field, message: `${field} must be a valid date` });
     return undefined;
   }
   return value;
 };
-export const idValue = (value: unknown, field: string, errors: ValidationError[]) =>
-  text(value, field, errors, { required: true, max: 128 });
+export const idValue = (
+  value: unknown,
+  field: string,
+  errors: ValidationError[],
+) => text(value, field, errors, { required: true, max: 128 });
 
 export const isIdentifier = (value: unknown): value is string =>
   typeof value === "string" &&
