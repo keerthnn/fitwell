@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Barbell Hip Thrust",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": true
+  },
+  {
+    "name": "Barbell Glute Bridge",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Hip Thrust",
+    "equipment": "DUMBBELL",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Glute Bridge",
+    "equipment": "DUMBBELL",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Leg Hip Thrust",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": true
+  },
+  {
+    "name": "Bodyweight Glute Bridge",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": false
+  },
+  {
+    "name": "Frog Pump",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Glute Kickback",
+    "equipment": "CABLE",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Pull-Through",
+    "equipment": "CABLE",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Glutes and hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Cable Hip Abduction",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Glutes",
+    "region": "Gluteus medius",
+    "isCompound": false
+  },
+  {
+    "name": "Hip Abduction Machine",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Glutes",
+    "region": "Gluteus medius",
+    "isCompound": false
+  },
+  {
+    "name": "Hip Adduction Machine",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Glutes",
+    "region": "Inner thighs",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Glute Kickback",
+    "equipment": "MACHINE",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": false
+  },
+  {
+    "name": "Donkey Kick",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Glutes",
+    "region": "Gluteus maximus",
+    "isCompound": false
+  },
+  {
+    "name": "Fire Hydrant",
+    "equipment": "BODYWEIGHT",
+    "movement": "ROTATION",
+    "category": "Glutes",
+    "region": "Gluteus medius",
+    "isCompound": false
+  },
+  {
+    "name": "Lateral Lunge",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Glutes",
+    "region": "Glutes and inner thighs",
+    "isCompound": true
+  },
+  {
+    "name": "Curtsy Lunge",
+    "equipment": "DUMBBELL",
+    "movement": "LUNGE",
+    "category": "Glutes",
+    "region": "Gluteus medius",
+    "isCompound": true
+  }
+]

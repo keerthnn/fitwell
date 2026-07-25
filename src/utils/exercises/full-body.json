@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Barbell Clean",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Clean and Press",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Barbell Thruster",
+    "equipment": "BARBELL",
+    "movement": "SQUAT",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Thruster",
+    "equipment": "DUMBBELL",
+    "movement": "SQUAT",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Clean and Press",
+    "equipment": "KETTLEBELL",
+    "movement": "HINGE",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Goblet Squat",
+    "equipment": "KETTLEBELL",
+    "movement": "SQUAT",
+    "category": "Full Body",
+    "region": "Lower body",
+    "isCompound": true
+  },
+  {
+    "name": "Turkish Get-Up",
+    "equipment": "KETTLEBELL",
+    "movement": "ROTATION",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Burpee",
+    "equipment": "BODYWEIGHT",
+    "movement": "SQUAT",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Bear Crawl",
+    "equipment": "BODYWEIGHT",
+    "movement": "CARRY",
+    "category": "Full Body",
+    "region": "Full body",
+    "isCompound": true
+  },
+  {
+    "name": "Suitcase Carry",
+    "equipment": "DUMBBELL",
+    "movement": "CARRY",
+    "category": "Full Body",
+    "region": "Core and grip",
+    "isCompound": true
+  },
+  {
+    "name": "Overhead Carry",
+    "equipment": "DUMBBELL",
+    "movement": "CARRY",
+    "category": "Full Body",
+    "region": "Shoulders and core",
+    "isCompound": true
+  }
+]

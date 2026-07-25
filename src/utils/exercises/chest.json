@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Barbell Bench Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Incline Barbell Bench Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": true
+  },
+  {
+    "name": "Decline Barbell Bench Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Bench Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Incline Dumbbell Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": true
+  },
+  {
+    "name": "Decline Dumbbell Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Floor Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Squeeze Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Inner chest",
+    "isCompound": true
+  },
+  {
+    "name": "Machine Chest Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Incline Machine Chest Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": true
+  },
+  {
+    "name": "Decline Machine Chest Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": true
+  },
+  {
+    "name": "Smith Machine Bench Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Smith Machine Incline Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": true
+  },
+  {
+    "name": "Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  },
+  {
+    "name": "Wide-Grip Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Outer chest",
+    "isCompound": true
+  },
+  {
+    "name": "Incline Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": true
+  },
+  {
+    "name": "Decline Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": true
+  },
+  {
+    "name": "Diamond Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Inner chest",
+    "isCompound": true
+  },
+  {
+    "name": "Chest Dip",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Fly",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": false
+  },
+  {
+    "name": "Incline Dumbbell Fly",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": false
+  },
+  {
+    "name": "Decline Dumbbell Fly",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Fly",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": false
+  },
+  {
+    "name": "Low-to-High Cable Fly",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Upper chest",
+    "isCompound": false
+  },
+  {
+    "name": "High-to-Low Cable Fly",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Lower chest",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Cable Fly",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Chest",
+    "isCompound": false
+  },
+  {
+    "name": "Pec Deck Fly",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Chest",
+    "isCompound": false
+  },
+  {
+    "name": "Kettlebell Floor Press",
+    "equipment": "KETTLEBELL",
+    "movement": "PUSH",
+    "category": "Chest",
+    "region": "Mid chest",
+    "isCompound": true
+  }
+]

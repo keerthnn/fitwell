@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Standing Barbell Calf Raise",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Standing Dumbbell Calf Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Leg Dumbbell Calf Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Standing Bodyweight Calf Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Leg Calf Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Seated Calf Raise",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Soleus",
+    "isCompound": false
+  },
+  {
+    "name": "Standing Machine Calf Raise",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Leg Press Calf Raise",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Smith Machine Calf Raise",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Donkey Calf Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Calves",
+    "region": "Gastrocnemius",
+    "isCompound": false
+  },
+  {
+    "name": "Tibialis Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Calves",
+    "region": "Tibialis anterior",
+    "isCompound": false
+  }
+]

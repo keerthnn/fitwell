@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Close-Grip Bench Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": true
+  },
+  {
+    "name": "JM Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": true
+  },
+  {
+    "name": "Barbell Skull Crusher",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Incline Barbell Skull Crusher",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Skull Crusher",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Overhead Dumbbell Extension",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Overhead Dumbbell Extension",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Tricep Kickback",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Lateral head",
+    "isCompound": false
+  },
+  {
+    "name": "Tricep Pushdown",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Lateral head",
+    "isCompound": false
+  },
+  {
+    "name": "Rope Tricep Pushdown",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Lateral head",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse-Grip Tricep Pushdown",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Medial head",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Cable Pushdown",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Lateral head",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Overhead Tricep Extension",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Cable Overhead Extension",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Tricep Kickback",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Lateral head",
+    "isCompound": false
+  },
+  {
+    "name": "Bench Dip",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": true
+  },
+  {
+    "name": "Parallel Bar Dip",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": true
+  },
+  {
+    "name": "Machine Tricep Extension",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": false
+  },
+  {
+    "name": "Assisted Dip Machine",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Triceps",
+    "region": "Triceps",
+    "isCompound": true
+  }
+]

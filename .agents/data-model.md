@@ -10,7 +10,11 @@ The Prisma schema lives in `prisma/schema.prisma` and uses PostgreSQL. Access th
 | `Exercise` | Reusable exercise catalog entry | Used by many workout exercises; categorized by equipment and movement enums. |
 | `WorkoutExercise` | An exercise included in a workout | Joins a workout and an exercise; has ordered sets. |
 | `WorkoutSet` | Recorded performance for one exercise set | Belongs to a workout exercise. |
+| `WorkoutPlan` | Built-in or private workout programme | Has ordered plan exercises and can source workouts. |
+| `WorkoutPlanExercise` | Ordered guidance within a Workout Plan | Joins a plan and an exercise. |
+| `UserActivityDay` | Throttled daily application activity | Belongs to a user. |
 | `AdminAccess` | Server-enforced admin permission | One-to-one with `User`; checked by `requireAdmin`. |
+| `AdminAuditLog` | Audited sensitive admin state changes | Belongs to the acting admin. |
 
 ## Schema changes
 
@@ -19,4 +23,4 @@ The Prisma schema lives in `prisma/schema.prisma` and uses PostgreSQL. Access th
 3. Regenerate the Prisma client as required by the configured generator, which writes to `src/generated/prisma`.
 4. Update API queries, shared client types, and UI flows affected by the changed data contract.
 
-Do not manually edit historical migrations. Preserve user ownership and cascade behavior when adding related data.
+FitWell is local-development-only. Run `pnpm run db:assert-local` before any reset. The clean Version 1 migration may replace disposable local history, but Firebase identities are never part of a Prisma reset.

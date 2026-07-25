@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Barbell Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  },
+  {
+    "name": "Wide-Grip Barbell Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Close-Grip Barbell Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse Barbell Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Brachialis",
+    "isCompound": false
+  },
+  {
+    "name": "Barbell Drag Curl",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Bicep Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  },
+  {
+    "name": "Alternating Dumbbell Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  },
+  {
+    "name": "Incline Dumbbell Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Hammer Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Brachialis",
+    "isCompound": false
+  },
+  {
+    "name": "Cross-Body Hammer Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Brachialis",
+    "isCompound": false
+  },
+  {
+    "name": "Concentration Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Spider Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Zottman Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps and forearms",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Preacher Curl",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Bicep Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  },
+  {
+    "name": "Rope Hammer Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Brachialis",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Cable Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  },
+  {
+    "name": "High Cable Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Bayesian Cable Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Long head",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Preacher Curl",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Short head",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Bicep Curl",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Biceps",
+    "region": "Biceps",
+    "isCompound": false
+  }
+]

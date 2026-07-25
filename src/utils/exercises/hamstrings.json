@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Romanian Deadlift",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Stiff-Leg Deadlift",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Good Morning",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Romanian Deadlift",
+    "equipment": "DUMBBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Leg Romanian Deadlift",
+    "equipment": "DUMBBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Romanian Deadlift",
+    "equipment": "KETTLEBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Swing",
+    "equipment": "KETTLEBELL",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings and glutes",
+    "isCompound": true
+  },
+  {
+    "name": "Lying Leg Curl",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Seated Leg Curl",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Standing Single-Leg Curl",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Leg Curl",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Nordic Hamstring Curl",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Sliding Leg Curl",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Hamstrings",
+    "region": "Hamstrings",
+    "isCompound": false
+  },
+  {
+    "name": "Glute-Ham Raise",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Hamstrings",
+    "region": "Hamstrings and glutes",
+    "isCompound": true
+  }
+]

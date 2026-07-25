@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -33,16 +27,32 @@ enum MovementType {
   ISOMETRIC
 }
 
-enum PreferredUnits {
+enum ExerciseTrackingType {
+  REPS_WEIGHT
+  REPS_ONLY
+  DURATION
+  DISTANCE
+  DURATION_DISTANCE
+}
+
+enum UnitSystem {
   METRIC
   IMPERIAL
 }
 
-enum ActivityLevel {
-  SEDENTARY
-  LIGHTLY_ACTIVE
-  MODERATELY_ACTIVE
-  VERY_ACTIVE
+enum FitnessGoal {
+  LOSE_FAT
+  BUILD_MUSCLE
+  IMPROVE_STRENGTH
+  IMPROVE_ENDURANCE
+  MAINTAIN_FITNESS
+  GENERAL_FITNESS
+}
+
+enum ExperienceLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
 }
 
 enum WorkoutStatus {
@@ -51,403 +61,222 @@ enum WorkoutStatus {
   COMPLETED
 }
 
-enum WorkoutIntensity {
-  LIGHT
-  MODERATE
-  VIGOROUS
+enum WorkoutEntryMode {
+  LIVE
+  QUICK_ENTRY
+  PLAN
 }
 
-enum CalorieSource {
-  ESTIMATED
-  OVERRIDDEN
-}
-
-enum MealType {
-  BREAKFAST
-  LUNCH
-  DINNER
-  SNACK
-  PRE_WORKOUT
-  POST_WORKOUT
-  OTHER
-}
-
-enum TemplateVisibility {
-  PRIVATE
-  UNLISTED
-  PUBLIC
-}
-
-enum TemplateDifficulty {
+enum WorkoutPlanDifficulty {
   BEGINNER
   INTERMEDIATE
   ADVANCED
 }
 
-enum HealthStatus {
-  ACTIVE
-  MANAGED
-  RESOLVED
-}
-
-enum InjuryStatus {
-  ACTIVE
-  RECOVERING
-  RESOLVED
-}
-
-enum InjurySide {
-  LEFT
-  RIGHT
-  BILATERAL
-  NOT_APPLICABLE
-}
-
-enum AchievementCategory {
-  WORKOUT
-  STREAK
-  NUTRITION
-  VOLUME
-  COMMUNITY
-}
-
 model User {
-  id        String  @id @default(uuid())
-  name      String?
-  email     String  @unique
-  avatarUrl String?
+  id           String    @id
+  email        String    @unique
+  displayName  String?
+  photoURL     String?
+  lastActiveAt DateTime?
+  isDisabled   Boolean   @default(false)
+  deletedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
-  profile           UserProfile?
-  workouts          Workout[]
-  nutritionEntries  NutritionEntry[]
-  weightCheckIns    WeightCheckIn[]
-  medicalConditions MedicalCondition[]
-  injuries          Injury[]
-  templates         WorkoutTemplate[]
-  templateCopies    TemplateCopy[]     @relation("TemplateCopyRecipient")
-  achievements      UserAchievement[]
-  activityDays      UserActivityDay[]
-  adminAccess       AdminAccess?
-  adminAuditLogs    AdminAuditLog[]    @relation("AdminAuditActor")
-  updatedAt         DateTime           @updatedAt
-  createdAt         DateTime           @default(now())
+  profile          UserProfile?
+  workouts         Workout[]
+  workoutPlans     WorkoutPlan[]
+  activityDays     UserActivityDay[]
+  adminAccess      AdminAccess?   @relation("AdminUser")
+  adminGrants      AdminAccess[]  @relation("AdminGrantor")
+  adminAuditLogs   AdminAuditLog[]
 }
 
 model UserProfile {
-  id     String @id @default(uuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                     String           @id @default(uuid())
+  userId                 String           @unique
+  firstName              String
+  lastName               String
+  gender                 String?
+  dateOfBirth            DateTime?
+  heightCm               Float?
+  currentWeightKg        Float?
+  unitSystem             UnitSystem       @default(METRIC)
+  fitnessGoal            FitnessGoal
+  experienceLevel        ExperienceLevel
+  weeklyWorkoutTarget    Int              @default(3)
+  typicalWorkoutDuration Int?
+  preferredWorkoutTime   String?
+  timezone               String           @default("UTC")
+  onboardingCompleted    Boolean          @default(false)
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
 
-  firstName String
-  lastName  String
-
-  age      Int
-  gender   String
-  heightCm Int
-  weightKg Float
-  goal     String
-
-  activityLevel        ActivityLevel  @default(MODERATELY_ACTIVE)
-  dailyCalorieTarget   Int            @default(2000)
-  targetWeightKg       Float?
-  preferredUnits       PreferredUnits @default(METRIC)
-  timezone             String         @default("UTC")
-  weeklyWorkoutTarget  Int            @default(3)
-  preferredWorkoutDays Int[]          @default([])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Workout {
-  id     String @id @default(uuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  title                   String? // e.g. "Push Day", "Legs A"
-  date                    DateTime // workout date
-  durationM               Int? // total duration in minutes
-  notes                   String?
-  status                  WorkoutStatus    @default(DRAFT)
-  startedAt               DateTime?
-  completedAt             DateTime?
-  intensity               WorkoutIntensity @default(MODERATE)
-  perceivedDifficulty     Int?
-  estimatedCaloriesBurned Int?
-  caloriesBurned          Int?
-  calorieSource           CalorieSource?
-  templateId              String?
-  template                WorkoutTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
-
-  exercises WorkoutExercise[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId, date, status])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Exercise {
-  id String @id @default(uuid())
+  id                 String               @id @default(uuid())
+  name               String
+  description        String?
+  instructions       String?
+  equipment          EquipmentType
+  movement           MovementType
+  category           String
+  primaryMuscle      String
+  secondaryMuscles   String[]             @default([])
+  isCompound         Boolean              @default(true)
+  trackingType       ExerciseTrackingType @default(REPS_WEIGHT)
+  isActive           Boolean              @default(true)
+  imagePath          String?
+  thumbnailPath      String?
+  equipmentImagePath String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
 
-  name      String // "Barbell Bench Press"
-  equipment EquipmentType
-  movement  MovementType
-  category  String // Chest, Back, Legs, Shoulders, Arms, Core
-  region    String? // Upper chest, Lats, Quads, etc.
-
-  isCompound            Boolean  @default(true)
-  instructions          String?
-  imageUrl              String?
-  secondaryMuscleGroups String[] @default([])
-  safetyNotes           String?
-  contraindicationTags  String[] @default([])
-  isArchived            Boolean  @default(false)
-
-  workouts          WorkoutExercise[]
-  templateExercises TemplateExercise[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  workoutExercises     WorkoutExercise[]
+  workoutPlanExercises WorkoutPlanExercise[]
 
   @@unique([name, equipment])
+  @@index([category, primaryMuscle, isActive])
+}
+
+model Workout {
+  id                  String           @id @default(uuid())
+  userId              String
+  name                String
+  workoutDate         DateTime
+  status              WorkoutStatus    @default(DRAFT)
+  entryMode           WorkoutEntryMode
+  startedAt           DateTime?
+  completedAt         DateTime?
+  durationMinutes     Int?
+  notes               String?
+  sourceWorkoutPlanId String?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceWorkoutPlan WorkoutPlan? @relation(fields: [sourceWorkoutPlanId], references: [id], onDelete: SetNull)
+  exercises         WorkoutExercise[]
+
+  @@index([userId, workoutDate, status])
+  @@index([sourceWorkoutPlanId, entryMode])
 }
 
 model WorkoutExercise {
-  id         String @id @default(uuid())
+  id         String   @id @default(uuid())
   workoutId  String
   exerciseId String
+  order      Int
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   workout  Workout  @relation(fields: [workoutId], references: [id], onDelete: Cascade)
   exercise Exercise @relation(fields: [exerciseId], references: [id])
+  sets     WorkoutSet[]
 
-  order Int // order in workout (1,2,3...)
-
-  sets WorkoutSet[]
-
-  notes String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([workoutId])
+  @@index([workoutId, order])
 }
 
 model WorkoutSet {
-  id                String @id @default(uuid())
+  id                String   @id @default(uuid())
   workoutExerciseId String
+  setNumber         Int
+  reps              Int?
+  weightKg          Float?
+  durationSeconds   Int?
+  distanceMeters    Float?
+  restSeconds       Int?
+  isCompleted       Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   workoutExercise WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
 
-  setNumber     Int
-  reps          Int?
-  weightKg      Float?
-  durationS     Int?
-  distanceM     Int?
-  rpe           Float?
-  isCompleted   Boolean @default(false)
-  restDurationS Int?
-
-  createdAt DateTime @default(now())
-
-  @@index([workoutExerciseId])
+  @@index([workoutExerciseId, setNumber])
 }
 
-model AdminAccess {
-  userId String @id
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+model WorkoutPlan {
+  id             String                @id @default(uuid())
+  userId         String?
+  name           String
+  description    String?
+  difficulty     WorkoutPlanDifficulty @default(BEGINNER)
+  category       String
+  daysPerWeek    Int
+  isBuiltIn      Boolean               @default(false)
+  isFeatured     Boolean               @default(false)
+  isActive       Boolean               @default(true)
+  isArchived     Boolean               @default(false)
+  coverImagePath String?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
-  createdAt DateTime @default(now())
+  user      User?                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercises WorkoutPlanExercise[]
+  workouts  Workout[]
+
+  @@index([userId, isArchived])
+  @@index([isBuiltIn, isActive, isFeatured])
 }
 
-model NutritionEntry {
-  id              String   @id @default(uuid())
-  userId          String
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  consumedAt      DateTime
-  mealType        MealType
-  foodName        String
-  calories        Int
-  proteinG        Float?
-  carbsG          Float?
-  fatG            Float?
-  fibreG          Float?
-  servingQuantity Float?
-  servingUnit     String?
-  notes           String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+model WorkoutPlanExercise {
+  id            String   @id @default(uuid())
+  workoutPlanId String
+  exerciseId    String
+  order         Int
+  sets          Int      @default(3)
+  minimumReps   Int?
+  maximumReps   Int?
+  weightGuidance String?
+  restSeconds   Int?
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  @@index([userId, consumedAt])
-}
+  workoutPlan WorkoutPlan @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  exercise    Exercise    @relation(fields: [exerciseId], references: [id])
 
-model WeightCheckIn {
-  id         String   @id @default(uuid())
-  userId     String
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  recordedAt DateTime
-  weightKg   Float
-  notes      String?
-  createdAt  DateTime @default(now())
-
-  @@index([userId, recordedAt])
-}
-
-model MedicalCondition {
-  id                String       @id @default(uuid())
-  userId            String
-  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  name              String
-  status            HealthStatus @default(ACTIVE)
-  severity          String?
-  startedAt         DateTime?
-  resolvedAt        DateTime?
-  clinicianGuidance String?
-  notes             String?
-  createdAt         DateTime     @default(now())
-  updatedAt         DateTime     @updatedAt
-
-  @@index([userId, status])
-}
-
-model Injury {
-  id                   String       @id @default(uuid())
-  userId               String
-  user                 User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bodyRegion           String
-  name                 String
-  side                 InjurySide   @default(NOT_APPLICABLE)
-  status               InjuryStatus @default(ACTIVE)
-  painLevel            Int?
-  startedAt            DateTime?
-  resolvedAt           DateTime?
-  notes                String?
-  exercisesToAvoid     String[]     @default([])
-  contraindicationTags String[]     @default([])
-  createdAt            DateTime     @default(now())
-  updatedAt            DateTime     @updatedAt
-
-  @@index([userId, status])
-}
-
-model WorkoutTemplate {
-  id                 String             @id @default(uuid())
-  ownerId            String
-  owner              User               @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  title              String
-  description        String?
-  goal               String?
-  difficulty         TemplateDifficulty @default(BEGINNER)
-  estimatedDurationM Int?
-  visibility         TemplateVisibility @default(PRIVATE)
-  tags               String[]           @default([])
-  shareToken         String?            @unique
-  isArchived         Boolean            @default(false)
-  copyCount          Int                @default(0)
-  useCount           Int                @default(0)
-  exercises          TemplateExercise[]
-  workouts           Workout[]
-  sourceCopies       TemplateCopy[]     @relation("TemplateCopySource")
-  copiedRecord       TemplateCopy?      @relation("TemplateCopyResult")
-  useEvents          TemplateUseEvent[]
-  createdAt          DateTime           @default(now())
-  updatedAt          DateTime           @updatedAt
-
-  @@index([ownerId, isArchived])
-  @@index([visibility, createdAt])
-}
-
-model TemplateExercise {
-  id                String          @id @default(uuid())
-  templateId        String
-  template          WorkoutTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
-  exerciseId        String
-  exercise          Exercise        @relation(fields: [exerciseId], references: [id])
-  order             Int
-  targetSets        Int             @default(3)
-  minReps           Int?
-  maxReps           Int?
-  suggestedWeightKg Float?
-  targetRpe         Float?
-  restSeconds       Int?
-  notes             String?
-
-  @@index([templateId, order])
-}
-
-model TemplateCopy {
-  id               String          @id @default(uuid())
-  sourceTemplateId String
-  sourceTemplate   WorkoutTemplate @relation("TemplateCopySource", fields: [sourceTemplateId], references: [id], onDelete: Cascade)
-  recipientId      String
-  recipient        User            @relation("TemplateCopyRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
-  copiedTemplateId String          @unique
-  copiedTemplate   WorkoutTemplate @relation("TemplateCopyResult", fields: [copiedTemplateId], references: [id], onDelete: Cascade)
-  createdAt        DateTime        @default(now())
-
-  @@index([recipientId, createdAt])
-  @@index([createdAt])
+  @@index([workoutPlanId, order])
 }
 
 model UserActivityDay {
   id            String   @id @default(uuid())
   userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   activityDate  DateTime @db.Date
   firstActiveAt DateTime
   lastActiveAt  DateTime
   requestCount  Int      @default(1)
 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([userId, activityDate])
   @@index([activityDate])
 }
 
-model TemplateUseEvent {
-  id                    String           @id @default(uuid())
-  templateId            String?
-  template              WorkoutTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
-  templateTitleSnapshot String
-  createdAt             DateTime         @default(now())
+model AdminAccess {
+  userId      String   @id
+  grantedById String?
+  createdAt   DateTime @default(now())
 
-  @@index([createdAt])
-  @@index([templateId, createdAt])
-}
-
-model Achievement {
-  id           String              @id @default(uuid())
-  key          String              @unique
-  name         String
-  description  String
-  category     AchievementCategory
-  icon         String
-  criteria     Json
-  displayOrder Int                 @default(0)
-  isActive     Boolean             @default(true)
-  users        UserAchievement[]
-}
-
-model UserAchievement {
-  id            String      @id @default(uuid())
-  userId        String
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  achievementId String
-  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
-  awardedAt     DateTime    @default(now())
-  context       Json?
-
-  @@unique([userId, achievementId])
-  @@index([userId, awardedAt])
-  @@index([awardedAt])
+  user      User  @relation("AdminUser", fields: [userId], references: [id], onDelete: Cascade)
+  grantedBy User? @relation("AdminGrantor", fields: [grantedById], references: [id], onDelete: SetNull)
 }
 
 model AdminAuditLog {
-  id        String   @id @default(uuid())
-  actorId   String
-  actor     User     @relation("AdminAuditActor", fields: [actorId], references: [id], onDelete: Cascade)
-  action    String
-  targetId  String?
-  metadata  Json?
-  createdAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  adminId    String
+  action     String
+  entityType String
+  entityId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
 
-  @@index([actorId, createdAt])
+  admin User @relation(fields: [adminId], references: [id], onDelete: Restrict)
+
+  @@index([adminId, createdAt])
+  @@index([entityType, entityId])
 }

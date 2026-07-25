@@ -11,5 +11,5 @@ export default async function handler(
   const adminId = await requireAdmin(req, res);
   if (!adminId) return;
 
-  return res.status(200).json({ isAdmin: true });
+  return res.status(200).send({ isAdmin: true });
 }

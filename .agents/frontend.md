@@ -2,7 +2,7 @@
 
 ## Application shell
 
-`src/pages/_app.tsx` applies the MUI theme, `CssBaseline`, the `AuthContextProvider`, and the global header. Pages render inside that shell, so avoid duplicating those providers or the header in individual pages.
+`src/pages/_app.tsx` preserves provider order and selects the public, authenticated, onboarding, or admin shell. Authenticated pages use the desktop sidebar and mobile bottom navigation.
 
 The project uses the Next.js Pages Router. A file under `src/pages/` is a route; dynamic segments use bracket directories or files such as `workouts/[id]`.
 
@@ -10,7 +10,7 @@ The project uses the Next.js Pages Router. A file under `src/pages/` is a route;
 
 - Build screens as page components in `src/pages/` and extract reusable controls into `src/components/`.
 - Use MUI components and the shared theme (`src/theme.ts`) first. Existing pages commonly use the `sx` prop for local layout and styling.
-- Use the `fitness/*` TypeScript alias for imports from `src/`, such as `fitness/components/Header` or `fitness/utils/spec`.
+- Use the `fitness/*` TypeScript alias for imports from `src/`, such as `fitness/components/common/PageHeader` or `fitness/utils/spec`.
 - Keep page-specific state and data loading in the page unless it is reused; then extract a component or helper with a focused responsibility.
 
 ## Calling APIs

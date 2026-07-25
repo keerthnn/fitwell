@@ -1,7 +1,7 @@
+import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
 import { getDecodedTokenOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
-import { recordUserActivity } from "fitness/lib/analytics/activity";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -14,25 +14,30 @@ export default async function handler(
   if (!token) return;
   const email = token.email;
   if (!email)
-    return res.status(400).json({ error: "Firebase account has no email" });
+    return res.status(400).send({ error: "Firebase account has no email" });
 
   try {
+    const existing = await prisma.user.findUnique({ where: { id: token.uid } });
+    if (existing?.deletedAt || existing?.isDisabled)
+      return res.status(403).send({ error: "Application account is disabled" });
     const user = await prisma.user.upsert({
       where: { id: token.uid },
       update: {
         email,
-        name: token.name ?? undefined,
-        avatarUrl: token.picture ?? undefined,
+        displayName: token.name ?? undefined,
+        photoURL: token.picture ?? undefined,
+        lastActiveAt: new Date(),
       },
       create: {
         id: token.uid,
         email,
-        name: token.name ?? "",
-        avatarUrl: token.picture ?? null,
+        displayName: token.name ?? "",
+        photoURL: token.picture ?? null,
+        lastActiveAt: new Date(),
       },
     });
     await recordUserActivity(user.id, true);
-    return res.status(200).json({ userName: user.name ?? "" });
+    return res.status(200).send({ userName: user.displayName ?? "" });
   } catch (err) {
     console.error("Error creating user:", err);
     return res.status(500).send("Internal Server Error");

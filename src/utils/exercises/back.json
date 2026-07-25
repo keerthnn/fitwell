@@ -1,0 +1,258 @@
+[
+  {
+    "name": "Conventional Deadlift",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Back",
+    "region": "Total back",
+    "isCompound": true
+  },
+  {
+    "name": "Sumo Deadlift",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Back",
+    "region": "Lower back",
+    "isCompound": true
+  },
+  {
+    "name": "Rack Pull",
+    "equipment": "BARBELL",
+    "movement": "HINGE",
+    "category": "Back",
+    "region": "Upper and lower back",
+    "isCompound": true
+  },
+  {
+    "name": "Barbell Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Pendlay Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Underhand Barbell Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lower lats",
+    "isCompound": true
+  },
+  {
+    "name": "T-Bar Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Meadows Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Arm Dumbbell Row",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Chest-Supported Dumbbell Row",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Pullover",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": false
+  },
+  {
+    "name": "Kettlebell Row",
+    "equipment": "KETTLEBELL",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Pull-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Wide-Grip Pull-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Upper lats",
+    "isCompound": true
+  },
+  {
+    "name": "Neutral-Grip Pull-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Chin-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lower lats",
+    "isCompound": true
+  },
+  {
+    "name": "Inverted Row",
+    "equipment": "BODYWEIGHT",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Lat Pulldown",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Wide-Grip Lat Pulldown",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Upper lats",
+    "isCompound": true
+  },
+  {
+    "name": "Close-Grip Lat Pulldown",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lower lats",
+    "isCompound": true
+  },
+  {
+    "name": "Underhand Lat Pulldown",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lower lats",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Arm Lat Pulldown",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Seated Cable Row",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Wide-Grip Cable Row",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Upper back",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Arm Cable Row",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": true
+  },
+  {
+    "name": "Straight-Arm Cable Pulldown",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Row",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Chest-Supported Machine Row",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Middle back",
+    "isCompound": true
+  },
+  {
+    "name": "Machine Pullover",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Back",
+    "region": "Lats",
+    "isCompound": false
+  },
+  {
+    "name": "Back Extension",
+    "equipment": "BODYWEIGHT",
+    "movement": "HINGE",
+    "category": "Back",
+    "region": "Lower back",
+    "isCompound": false
+  },
+  {
+    "name": "Weighted Back Extension",
+    "equipment": "DUMBBELL",
+    "movement": "HINGE",
+    "category": "Back",
+    "region": "Lower back",
+    "isCompound": false
+  },
+  {
+    "name": "Superman Hold",
+    "equipment": "BODYWEIGHT",
+    "movement": "ISOMETRIC",
+    "category": "Back",
+    "region": "Lower back",
+    "isCompound": false
+  }
+]

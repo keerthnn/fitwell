@@ -14,7 +14,9 @@ export async function recordUserActivity(userId: string, force = false) {
     select: { timezone: true },
   });
   const timezone = profile?.timezone ?? "UTC";
-  const activityDate = new Date(`${dateKeyInTimezone(now, timezone)}T00:00:00.000Z`);
+  const activityDate = new Date(
+    `${dateKeyInTimezone(now, timezone)}T00:00:00.000Z`,
+  );
 
   await prisma.userActivityDay.upsert({
     where: { userId_activityDate: { userId, activityDate } },

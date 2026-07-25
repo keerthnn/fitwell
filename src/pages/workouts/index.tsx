@@ -1,101 +1,79 @@
-// pages/workouts/index.tsx
-import AddIcon from "@mui/icons-material/Add";
-import {
-  Box,
-  Button,
-  Container,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
+import AuthenticatedPage from "fitness/components/AuthenticatedPage";
+import EmptyState from "fitness/components/common/EmptyState";
+import ErrorState from "fitness/components/common/ErrorState";
+import FilterToolbar from "fitness/components/common/FilterToolbar";
+import LoadingState from "fitness/components/common/LoadingState";
+import PageHeader from "fitness/components/common/PageHeader";
+import SearchInput from "fitness/components/common/SearchInput";
+import WorkoutList from "fitness/components/workouts/WorkoutList";
 import { getWorkouts } from "fitness/utils/spec";
-import { WorkoutListItem } from "fitness/utils/types";
-import { useRouter } from "next/router";
+import type { WorkoutListItem } from "fitness/utils/types";
 import { useEffect, useState } from "react";
 
-export default function Workouts() {
-  const router = useRouter();
-  const [workouts, setWorkouts] = useState<WorkoutListItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
+export default function WorkoutsPage() {
+  const [workouts, setWorkouts] = useState<WorkoutListItem[]>();
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
-    loadWorkouts();
-  }, []);
-
-  const loadWorkouts = async () => {
-    try {
-      const data = await getWorkouts();
-      setWorkouts(data);
-    } catch (error) {
-      console.error("Failed to load workouts:", error);
-      alert("Failed to load workouts");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
+    const timeout = window.setTimeout(() => {
+      setError("");
+      const params = {
+        ...(search ? { search } : {}),
+        ...(status ? { status } : {}),
+      };
+      void getWorkouts(params)
+        .then((result) => setWorkouts(result.items))
+        .catch(() => setError("Your workouts could not be loaded."));
+    }, 250);
+    return () => window.clearTimeout(timeout);
+  }, [search, status]);
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper sx={{ p: 4 }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-          <Typography variant="h4">Workouts</Typography>
-          <Button
-            variant="contained"
-            startIcon={<AddIcon />}
-            onClick={() => router.push("/workouts/create")}
-          >
-            New Workout
-          </Button>
-        </Box>
-
-        {loading ? (
-          <Typography>Loading...</Typography>
-        ) : workouts.length === 0 ? (
-          <Typography color="text.secondary">
-            No workouts yet. Create your first workout to get started.
-          </Typography>
-        ) : (
-          <List>
-            {workouts.map((workout) => (
-              <ListItem key={workout.id} disablePadding>
-                <ListItemButton
-                  onClick={() => router.push(`/workouts/${workout.id}`)}
-                  sx={{
-                    border: "1px solid",
-                    borderColor: "divider",
-                    borderRadius: 1,
-                    mb: 1,
-                  }}
-                >
-                  <ListItemText
-                    primary={workout.title || "Untitled Workout"}
-                    secondary={
-                      <>
-                        {formatDate(workout.date)}
-                        {" • "}
-                        {workout.exerciseCount} exercise
-                        {workout.exerciseCount !== 1 ? "s" : ""}
-                        {workout.durationM && ` • ${workout.durationM}m`}
-                      </>
-                    }
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        )}
-      </Paper>
-    </Container>
+    <AuthenticatedPage>
+      <PageHeader
+        title="Workouts"
+        description="Your training history, drafts, and active sessions."
+        action={{ label: "Start workout", href: "/workouts/create" }}
+      />
+      <FilterToolbar>
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          label="Search workouts"
+        />
+        <TextField
+          select
+          label="Status"
+          value={status}
+          onChange={(event) => setStatus(event.target.value)}
+          sx={{ minWidth: { sm: 180 } }}
+        >
+          <MenuItem value="">All statuses</MenuItem>
+          <MenuItem value="IN_PROGRESS">In progress</MenuItem>
+          <MenuItem value="COMPLETED">Completed</MenuItem>
+          <MenuItem value="DRAFT">Draft</MenuItem>
+        </TextField>
+      </FilterToolbar>
+      {error ? (
+        <ErrorState message={error} />
+      ) : !workouts ? (
+        <LoadingState />
+      ) : workouts.length === 0 ? (
+        <EmptyState
+          title="No workouts found"
+          description="Start a live workout, add a quick entry, or change your filters."
+        />
+      ) : (
+        <WorkoutList
+          workouts={workouts}
+          onDeleted={(id) =>
+            setWorkouts((current) =>
+              current?.filter((workout) => workout.id !== id),
+            )
+          }
+        />
+      )}
+    </AuthenticatedPage>
   );
 }

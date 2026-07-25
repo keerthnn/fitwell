@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Barbell Overhead Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Seated Barbell Shoulder Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Behind-the-Neck Press",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front and side delts",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Shoulder Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Seated Dumbbell Shoulder Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Arnold Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front and side delts",
+    "isCompound": true
+  },
+  {
+    "name": "Single-Arm Dumbbell Shoulder Press",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Kettlebell Shoulder Press",
+    "equipment": "KETTLEBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Machine Shoulder Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Smith Machine Shoulder Press",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Pike Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Handstand Push-Up",
+    "equipment": "BODYWEIGHT",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Lateral Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Seated Dumbbell Lateral Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Lean-Away Dumbbell Lateral Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Lateral Raise",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Single-Arm Cable Lateral Raise",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Machine Lateral Raise",
+    "equipment": "MACHINE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Front Raise",
+    "equipment": "DUMBBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": false
+  },
+  {
+    "name": "Barbell Front Raise",
+    "equipment": "BARBELL",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Front Raise",
+    "equipment": "CABLE",
+    "movement": "PUSH",
+    "category": "Shoulders",
+    "region": "Front delts",
+    "isCompound": false
+  },
+  {
+    "name": "Dumbbell Rear Delt Fly",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Rear delts",
+    "isCompound": false
+  },
+  {
+    "name": "Reverse Pec Deck",
+    "equipment": "MACHINE",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Rear delts",
+    "isCompound": false
+  },
+  {
+    "name": "Cable Rear Delt Fly",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Rear delts",
+    "isCompound": false
+  },
+  {
+    "name": "Face Pull",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Rear delts",
+    "isCompound": false
+  },
+  {
+    "name": "Barbell Upright Row",
+    "equipment": "BARBELL",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": true
+  },
+  {
+    "name": "Dumbbell Upright Row",
+    "equipment": "DUMBBELL",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": true
+  },
+  {
+    "name": "Cable Upright Row",
+    "equipment": "CABLE",
+    "movement": "PULL",
+    "category": "Shoulders",
+    "region": "Side delts",
+    "isCompound": true
+  }
+]
