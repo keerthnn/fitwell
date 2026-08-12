@@ -73,6 +73,25 @@ enum WorkoutPlanDifficulty {
   ADVANCED
 }
 
+enum FeedbackCategory {
+  TECHNICAL_ISSUE
+  ACCOUNT_ISSUE
+  WORKOUT_CONTENT
+  SUGGESTION
+  OTHER
+}
+
+enum FeedbackStatus {
+  OPEN
+  RESPONDED
+  CLOSED
+}
+
+enum FeedbackAuthorRole {
+  USER
+  ADMIN
+}
+
 model User {
   id           String    @id
   email        String    @unique
@@ -88,30 +107,32 @@ model User {
   workouts         Workout[]
   workoutPlans     WorkoutPlan[]
   activityDays     UserActivityDay[]
-  adminAccess      AdminAccess?   @relation("AdminUser")
-  adminGrants      AdminAccess[]  @relation("AdminGrantor")
+  adminAccess      AdminAccess?      @relation("AdminUser")
+  adminGrants      AdminAccess[]     @relation("AdminGrantor")
   adminAuditLogs   AdminAuditLog[]
+  feedback         Feedback[]        @relation("FeedbackOwner")
+  feedbackMessages FeedbackMessage[] @relation("FeedbackMessageAuthor")
 }
 
 model UserProfile {
-  id                     String           @id @default(uuid())
-  userId                 String           @unique
+  id                     String          @id @default(uuid())
+  userId                 String          @unique
   firstName              String
   lastName               String
   gender                 String?
   dateOfBirth            DateTime?
   heightCm               Float?
   currentWeightKg        Float?
-  unitSystem             UnitSystem       @default(METRIC)
+  unitSystem             UnitSystem      @default(METRIC)
   fitnessGoal            FitnessGoal
   experienceLevel        ExperienceLevel
-  weeklyWorkoutTarget    Int              @default(3)
+  weeklyWorkoutTarget    Int             @default(3)
   typicalWorkoutDuration Int?
   preferredWorkoutTime   String?
-  timezone               String           @default("UTC")
-  onboardingCompleted    Boolean          @default(false)
-  createdAt              DateTime         @default(now())
-  updatedAt              DateTime         @updatedAt
+  timezone               String          @default("UTC")
+  onboardingCompleted    Boolean         @default(false)
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -157,8 +178,8 @@ model Workout {
   createdAt           DateTime         @default(now())
   updatedAt           DateTime         @updatedAt
 
-  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sourceWorkoutPlan WorkoutPlan? @relation(fields: [sourceWorkoutPlanId], references: [id], onDelete: SetNull)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceWorkoutPlan WorkoutPlan?      @relation(fields: [sourceWorkoutPlanId], references: [id], onDelete: SetNull)
   exercises         WorkoutExercise[]
 
   @@index([userId, workoutDate, status])
@@ -174,8 +195,8 @@ model WorkoutExercise {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  workout  Workout  @relation(fields: [workoutId], references: [id], onDelete: Cascade)
-  exercise Exercise @relation(fields: [exerciseId], references: [id])
+  workout  Workout      @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercise Exercise     @relation(fields: [exerciseId], references: [id])
   sets     WorkoutSet[]
 
   @@index([workoutId, order])
@@ -224,18 +245,18 @@ model WorkoutPlan {
 }
 
 model WorkoutPlanExercise {
-  id            String   @id @default(uuid())
-  workoutPlanId String
-  exerciseId    String
-  order         Int
-  sets          Int      @default(3)
-  minimumReps   Int?
-  maximumReps   Int?
+  id             String   @id @default(uuid())
+  workoutPlanId  String
+  exerciseId     String
+  order          Int
+  sets           Int      @default(3)
+  minimumReps    Int?
+  maximumReps    Int?
   weightGuidance String?
-  restSeconds   Int?
-  notes         String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  restSeconds    Int?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   workoutPlan WorkoutPlan @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
   exercise    Exercise    @relation(fields: [exerciseId], references: [id])
@@ -279,4 +300,35 @@ model AdminAuditLog {
 
   @@index([adminId, createdAt])
   @@index([entityType, entityId])
+}
+
+model Feedback {
+  id            String           @id @default(uuid())
+  userId        String
+  category      FeedbackCategory
+  subject       String
+  status        FeedbackStatus   @default(OPEN)
+  lastMessageAt DateTime         @default(now())
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  user     User              @relation("FeedbackOwner", fields: [userId], references: [id], onDelete: Cascade)
+  messages FeedbackMessage[]
+
+  @@index([userId, status, lastMessageAt])
+  @@index([status, category, lastMessageAt])
+}
+
+model FeedbackMessage {
+  id         String             @id @default(uuid())
+  feedbackId String
+  authorId   String?
+  authorRole FeedbackAuthorRole
+  content    String
+  createdAt  DateTime           @default(now())
+
+  feedback Feedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+  author   User?    @relation("FeedbackMessageAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([feedbackId, createdAt])
 }

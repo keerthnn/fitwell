@@ -1,11 +1,12 @@
-import { ArrowForward, Schedule } from "@mui/icons-material";
+import { ArrowForward, Schedule } from "fitness/components/common/icons";
 import { Box, Button, Divider, Paper, Stack, Typography } from "@mui/material";
 import FitWellImage from "fitness/components/common/FitWellImage";
+import WorkoutSummaryVisual from "fitness/components/workouts/WorkoutSummaryVisual";
 import {
   resolveExerciseImageCandidates,
-  resolveWorkoutImageCandidates,
 } from "fitness/lib/images/assetRegistry";
 import type { DashboardSummary, WorkoutListItem } from "fitness/utils/types";
+import { formatCount } from "fitness/utils/copy";
 import Link from "next/link";
 
 const formatWorkoutDate = (date: string) =>
@@ -58,12 +59,7 @@ function RecentWorkoutRow({ workout }: { workout: WorkoutListItem }) {
           borderRadius: 2,
         }}
       >
-        <FitWellImage
-          candidates={resolveWorkoutImageCandidates(workout)}
-          alt={`${workout.name} workout illustration`}
-          height="100%"
-          objectFit="contain"
-        />
+        <WorkoutSummaryVisual workout={workout} height="100%" compact />
       </Box>
       <Box minWidth={0}>
         <Typography fontWeight={700} noWrap>
@@ -75,7 +71,7 @@ function RecentWorkoutRow({ workout }: { workout: WorkoutListItem }) {
       </Box>
       <Stack alignItems="flex-end" gap={0.5}>
         <Stack direction="row" alignItems="center" gap={0.5}>
-          <Schedule sx={{ fontSize: 16 }} color="action" />
+          <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
           <Typography variant="body2" whiteSpace="nowrap">
             {workout.durationMinutes ? `${workout.durationMinutes} min` : "—"}
           </Typography>
@@ -85,7 +81,7 @@ function RecentWorkoutRow({ workout }: { workout: WorkoutListItem }) {
           color="text.secondary"
           whiteSpace="nowrap"
         >
-          {workout.exerciseCount} exercises
+          {formatCount(workout.exerciseCount, "exercise")}
         </Typography>
       </Stack>
     </Box>

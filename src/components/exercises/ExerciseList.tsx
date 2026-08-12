@@ -1,4 +1,4 @@
-import { PlayArrow } from "@mui/icons-material";
+import { PlayArrow } from "fitness/components/common/icons";
 import {
   Box,
   Button,
@@ -130,7 +130,7 @@ export default function ExerciseList({
       {columns.map((column, columnIndex) => (
         <Paper
           key={columnIndex === 0 ? "left" : "right"}
-          variant="outlined"
+          elevation={1}
           sx={{ overflow: "hidden" }}
         >
           <Stack divider={<Divider flexItem />}>

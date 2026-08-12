@@ -26,6 +26,7 @@ export default async function handler(
   await prisma.$transaction(async (tx) => {
     await tx.workout.deleteMany({ where: { userId } });
     await tx.workoutPlan.deleteMany({ where: { userId } });
+    await tx.feedback.deleteMany({ where: { userId } });
     await tx.userProfile.deleteMany({ where: { userId } });
     await tx.adminAccess.deleteMany({ where: { userId } });
     await tx.user.update({

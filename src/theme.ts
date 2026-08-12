@@ -212,6 +212,7 @@ export default function createAppTheme(mode: PaletteMode) {
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
+            minHeight: 48,
             borderRadius: 8,
             backgroundColor: dark ? "#0C1117" : "#FFFFFF",
             transition: "background-color 0.2s ease-in-out",
@@ -231,6 +232,7 @@ export default function createAppTheme(mode: PaletteMode) {
                 borderWidth: 2,
               },
             },
+            "&.MuiInputBase-sizeSmall": { minHeight: 44 },
           },
         },
       },
@@ -262,13 +264,18 @@ export default function createAppTheme(mode: PaletteMode) {
         styleOverrides: {
           root: {
             borderRadius: 16,
-            border: `1px solid ${colors.border}`,
             backgroundColor: dark ? "#0C1117" : "#FFFFFF",
             backgroundImage: "none",
           },
+          outlined: {
+            border: `1.5px solid ${colors.border}`,
+            boxShadow: dark
+              ? "inset 0 1px 0 rgb(255 255 255 / 0.025)"
+              : "inset 0 1px 0 rgb(255 255 255 / 0.75)",
+          },
           elevation1: { boxShadow: "0 1px 3px rgb(0 0 0 / 0.14)" },
-          elevation2: { boxShadow: "0 4px 10px rgb(0 0 0 / 0.16)" },
-          elevation3: { boxShadow: "0 10px 20px rgb(0 0 0 / 0.2)" },
+          elevation2: { boxShadow: "0 10px 26px rgb(0 0 0 / 0.16)" },
+          elevation3: { boxShadow: "0 20px 48px rgb(0 0 0 / 0.24)" },
         },
       },
       MuiPopover: {
@@ -282,6 +289,10 @@ export default function createAppTheme(mode: PaletteMode) {
         styleOverrides: {
           paper: {
             backgroundColor: colors.surface.elevated,
+            border: 0,
+            boxShadow: dark
+              ? "0 28px 80px rgb(0 0 0 / 0.62)"
+              : "0 28px 80px rgb(15 23 42 / 0.24)",
           },
         },
       },
@@ -294,12 +305,32 @@ export default function createAppTheme(mode: PaletteMode) {
         styleOverrides: {
           root: {
             borderRadius: 16,
-            borderColor: colors.border,
             backgroundColor: dark ? "#0C1117" : "#FFFFFF",
             backgroundImage: "none",
             boxShadow: dark
-              ? "0 18px 45px rgb(0 0 0 / 0.18)"
-              : "0 14px 36px rgb(15 23 42 / 0.06)",
+              ? "0 8px 24px rgb(0 0 0 / 0.22)"
+              : "0 8px 24px rgb(15 23 42 / 0.08)",
+            transition:
+              "transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease",
+            "&.MuiCard-outlined": {
+              border: `1px solid ${colors.border}`,
+            },
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            minWidth: 44,
+            minHeight: 44,
+          },
+        },
+      },
+      MuiCheckbox: {
+        styleOverrides: {
+          root: {
+            minWidth: 44,
+            minHeight: 44,
           },
         },
       },

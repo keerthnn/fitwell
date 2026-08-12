@@ -1,4 +1,4 @@
-import { ArrowForward, BarChart, Bolt, CheckCircle } from "@mui/icons-material";
+import { ArrowForward, BarChart, Bolt, CheckCircle } from "fitness/components/common/icons";
 import {
   Box,
   Button,
@@ -63,7 +63,7 @@ export default function Home() {
               >
                 <Typography
                   variant="overline"
-                  color="primary"
+                  color="text.secondary"
                   fontWeight={800}
                   letterSpacing={2}
                 >
@@ -140,7 +140,7 @@ export default function Home() {
             {features.map(({ icon: Icon, title, description }) => (
               <Grid key={title} size={{ xs: 12, md: 4 }}>
                 <Card variant="outlined" sx={{ p: 3, height: "100%" }}>
-                  <Icon color="primary" sx={{ fontSize: 34 }} />
+                  <Icon color="action" sx={{ fontSize: 34 }} />
                   <Typography variant="h6" mt={2}>
                     {title}
                   </Typography>

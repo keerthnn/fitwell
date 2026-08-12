@@ -1,10 +1,8 @@
-import { Add } from "@mui/icons-material";
+import { Add } from "fitness/components/common/icons";
 import {
   Button,
   Card,
   CardContent,
-  Chip,
-  Stack,
   Typography,
 } from "@mui/material";
 import FitWellImage from "fitness/components/common/FitWellImage";
@@ -20,14 +18,17 @@ export default function ExerciseCard({
 }) {
   return (
     <Card
-      variant="outlined"
+      elevation={1}
       sx={{
         height: "100%",
         overflow: "hidden",
-        transition: "transform .2s ease, border-color .2s ease",
+        transition: "transform .2s ease, box-shadow .2s ease",
         "&:hover": {
           transform: "translateY(-2px)",
-          borderColor: "primary.main",
+          boxShadow: (theme) =>
+            theme.palette.mode === "dark"
+              ? "0 16px 38px rgb(0 0 0 / 0.34)"
+              : "0 16px 38px rgb(15 23 42 / 0.14)",
         },
       }}
     >
@@ -41,15 +42,16 @@ export default function ExerciseCard({
         <Typography color="text.secondary" variant="body2" mt={0.5}>
           {exercise.primaryMuscle}
         </Typography>
-        <Stack direction="row" gap={1} mt={2} flexWrap="wrap">
-          <Chip size="small" label={exercise.equipment.toLowerCase()} />
-          <Chip size="small" label={exercise.movement.toLowerCase()} />
-          <Chip
-            size="small"
-            color={exercise.isCompound ? "primary" : "default"}
-            label={exercise.isCompound ? "Compound" : "Isolation"}
-          />
-        </Stack>
+        <Typography
+          color="text.secondary"
+          variant="caption"
+          display="block"
+          mt={1.5}
+          textTransform="capitalize"
+        >
+          {exercise.equipment.toLowerCase()} · {exercise.movement.toLowerCase()} ·{" "}
+          {exercise.isCompound ? "Compound" : "Isolation"}
+        </Typography>
         {onAdd && (
           <Button
             startIcon={<Add />}

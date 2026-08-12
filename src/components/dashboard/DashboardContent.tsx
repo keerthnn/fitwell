@@ -4,7 +4,7 @@ import {
   CheckCircleOutline,
   LocalFireDepartment,
   PlayArrow,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import ThemeModeSelector from "fitness/components/ThemeModeSelector";
 import type { DashboardSummary } from "fitness/utils/types";
@@ -78,7 +78,7 @@ export default function DashboardContent({
             label="Current streak"
             value={summary.currentStreak}
             helper={summary.currentStreak === 1 ? "day" : "days"}
-            tone="warning"
+            tone="neutral"
           />
         </Grid>
         <Grid size={{ xs: 6, lg: 3 }}>
@@ -96,7 +96,7 @@ export default function DashboardContent({
             label="Training time"
             value={summary.totalDurationMinutes}
             helper="minutes"
-            tone="info"
+            tone="neutral"
           />
         </Grid>
       </Grid>

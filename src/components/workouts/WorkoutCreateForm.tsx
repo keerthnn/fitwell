@@ -65,7 +65,7 @@ export default function WorkoutCreateForm({
         <Typography color="text.secondary" variant="body2" mb={2}>
           {mode === "LIVE"
             ? "Give this workout a recognizable name and confirm the date."
-            : "Enter the details for the completed workout."}
+            : "Enter the basic details, then add exercises before completing the draft."}
         </Typography>
         <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
           <TextField
@@ -123,7 +123,7 @@ export default function WorkoutCreateForm({
         <Box>
           <Typography fontWeight={700}>
             {mode === "QUICK_ENTRY"
-              ? "Ready to record this workout?"
+              ? "Ready to create this draft?"
               : selectedExercises.length
                 ? `${selectedExercises.length} ${
                     selectedExercises.length === 1 ? "exercise" : "exercises"
@@ -133,7 +133,7 @@ export default function WorkoutCreateForm({
           <Typography color="text.secondary" variant="body2">
             {mode === "LIVE"
               ? "Sets and weights are entered in the live workout."
-              : "You can add exercise details after creating the entry."}
+              : "You’ll add exercise details and mark the workout complete next."}
           </Typography>
         </Box>
         <Button

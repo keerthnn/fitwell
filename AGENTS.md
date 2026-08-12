@@ -5,6 +5,7 @@ Fitwell is a Next.js **Pages Router** application for workout tracking. It uses 
 ## Quick rules
 
 - Use the `fitness/*` import alias for modules under `src/` (for example, `fitness/lib/prisma`).
+- Keep all test cases under the root `test cases/` folder, mirroring the relevant `src/` hierarchy.
 - Keep feature pages in `src/pages/`, API handlers in `src/pages/api/`, and reusable UI in `src/components/`.
 - Use the shared Axios wrappers in `src/utils/spec.ts` for browser-to-API calls; keep their request and response types in `src/utils/types.ts`.
 - Authenticate every user-scoped API request with `getUserIdOrSetError`. Use `requireAdmin` for admin-only endpoints.

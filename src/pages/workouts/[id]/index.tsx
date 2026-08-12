@@ -1,4 +1,4 @@
-import { ContentCopy, Edit, Notes, Schedule } from "@mui/icons-material";
+import { ContentCopy, Edit, Notes, Schedule } from "fitness/components/common/icons";
 import {
   Button,
   Card,
@@ -11,12 +11,14 @@ import {
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import ErrorState from "fitness/components/common/ErrorState";
 import FitWellImage from "fitness/components/common/FitWellImage";
+import HeroSurface from "fitness/components/common/HeroSurface";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import SectionHeader from "fitness/components/common/SectionHeader";
 import StatusChip from "fitness/components/common/StatusChip";
 import DeleteWorkoutButton from "fitness/components/workouts/DeleteWorkoutButton";
 import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
+import { formatCount } from "fitness/utils/copy";
 import { duplicateWorkout, getWorkoutById } from "fitness/utils/spec";
 import type { Workout } from "fitness/utils/types";
 import Link from "next/link";
@@ -51,7 +53,7 @@ export default function WorkoutDetailPage() {
               href: `/workouts/${workout.id}/edit`,
             }}
           />
-          <Paper sx={{ p: { xs: 2, sm: 3 }, mb: 4 }}>
+          <HeroSurface sx={{ p: { xs: 2, sm: 3 }, mb: 4 }}>
             <Grid container spacing={2} alignItems="center">
               <Grid size={{ xs: 6, md: 3 }}>
                 <Typography variant="caption" color="text.secondary">
@@ -66,7 +68,7 @@ export default function WorkoutDetailPage() {
                   Duration
                 </Typography>
                 <Stack direction="row" gap={0.75} mt={0.5} alignItems="center">
-                  <Schedule fontSize="small" color="action" />
+                  <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
                   <Typography fontWeight={700}>
                     {workout.durationMinutes ?? 0} min
                   </Typography>
@@ -107,7 +109,7 @@ export default function WorkoutDetailPage() {
                 </Stack>
               </Grid>
             </Grid>
-          </Paper>
+          </HeroSurface>
           <SectionHeader>Exercises</SectionHeader>
           <Stack gap={2}>
             {workout.exercises.map((item) => (
@@ -128,8 +130,11 @@ export default function WorkoutDetailPage() {
                         {item.exercise.equipment.toLowerCase()}
                       </Typography>
                       <Typography mt={2}>
-                        {item.sets.filter((set) => set.isCompleted).length} of{" "}
-                        {item.sets.length} sets completed
+                        {formatCount(
+                          item.sets.filter((set) => set.isCompleted).length,
+                          "set",
+                        )}{" "}
+                        completed of {formatCount(item.sets.length, "set")}
                       </Typography>
                       {item.notes && (
                         <Stack
@@ -149,7 +154,7 @@ export default function WorkoutDetailPage() {
             ))}
           </Stack>
           {workout.notes && (
-            <Paper sx={{ p: 3, mt: 4 }}>
+            <Paper variant="outlined" sx={{ p: 3, mt: 4 }}>
               <Typography variant="h6">Workout notes</Typography>
               <Typography color="text.secondary" mt={1}>
                 {workout.notes}

@@ -3,7 +3,7 @@ import {
   AdminPanelSettings,
   ChevronLeft,
   ChevronRight,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Box,
   Button,
@@ -110,6 +110,9 @@ export default function DesktopSidebar({
                 mb: 0.5,
                 px: collapsed ? 1.5 : 2,
                 justifyContent: collapsed ? "center" : "flex-start",
+                "&:hover": {
+                  bgcolor: "rgba(255, 255, 255, 0.08)",
+                },
                 "&.Mui-selected": {
                   bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
                   color: (theme) => theme.fitwell.colors.sidebar.selectedText,
@@ -142,6 +145,9 @@ export default function DesktopSidebar({
               borderRadius: 2,
               px: collapsed ? 1.5 : 2,
               justifyContent: collapsed ? "center" : "flex-start",
+              "&:hover": {
+                bgcolor: "rgba(255, 255, 255, 0.08)",
+              },
             }}
           >
             <ListItemIcon

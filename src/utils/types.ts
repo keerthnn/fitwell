@@ -9,6 +9,14 @@ export type FitnessGoal =
 export type ExperienceLevel = "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
 export type WorkoutStatus = "DRAFT" | "IN_PROGRESS" | "COMPLETED";
 export type WorkoutEntryMode = "LIVE" | "QUICK_ENTRY" | "PLAN";
+export type FeedbackCategory =
+  | "TECHNICAL_ISSUE"
+  | "ACCOUNT_ISSUE"
+  | "WORKOUT_CONTENT"
+  | "SUGGESTION"
+  | "OTHER";
+export type FeedbackStatus = "OPEN" | "RESPONDED" | "CLOSED";
+export type FeedbackAuthorRole = "USER" | "ADMIN";
 export type TrackingType =
   | "REPS_WEIGHT"
   | "REPS_ONLY"
@@ -24,6 +32,51 @@ export interface ValidationError {
 export interface ApiError {
   error: string;
   details?: ValidationError[];
+}
+
+export interface CreateFeedbackRequest {
+  category: FeedbackCategory;
+  subject: string;
+  message: string;
+}
+
+export interface FeedbackReplyRequest {
+  feedbackId: string;
+  message: string;
+}
+
+export interface FeedbackMessage {
+  id: string;
+  authorRole: FeedbackAuthorRole;
+  content: string;
+  createdAt: string;
+}
+
+export interface FeedbackListItem {
+  id: string;
+  category: FeedbackCategory;
+  subject: string;
+  status: FeedbackStatus;
+  lastMessageAt: string;
+  createdAt: string;
+  lastMessagePreview: string;
+  canDelete: boolean;
+}
+
+export interface FeedbackThread extends FeedbackListItem {
+  messages: FeedbackMessage[];
+}
+
+export interface AdminFeedbackListItem extends FeedbackListItem {
+  user: {
+    id: string;
+    email: string;
+    displayName: string | null;
+  };
+}
+
+export interface AdminFeedbackThread extends FeedbackThread {
+  user: AdminFeedbackListItem["user"];
 }
 
 export interface Profile {

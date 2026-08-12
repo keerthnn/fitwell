@@ -1,10 +1,12 @@
-import { FitnessCenter, PlayArrow, Schedule } from "@mui/icons-material";
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
-import FitWellImage from "fitness/components/common/FitWellImage";
 import {
-  isApprovedLocalImagePath,
-  resolveWorkoutImageCandidates,
-} from "fitness/lib/images/assetRegistry";
+  Barbell,
+  PlayArrow,
+  Schedule,
+} from "fitness/components/common/icons";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import HeroSurface from "fitness/components/common/HeroSurface";
+import WorkoutSummaryVisual from "fitness/components/workouts/WorkoutSummaryVisual";
+import { formatCount } from "fitness/utils/copy";
 import type { WorkoutListItem } from "fitness/utils/types";
 import Link from "next/link";
 
@@ -13,32 +15,15 @@ export default function ActiveWorkoutBanner({
 }: {
   workout: WorkoutListItem;
 }) {
-  const bannerCandidates = [
-    ...(isApprovedLocalImagePath(workout.sourcePlanCoverImagePath)
-      ? [
-          {
-            src: workout.sourcePlanCoverImagePath!,
-            kind: "specific" as const,
-          },
-        ]
-      : []),
-    {
-      src: "/images/workouts/strength-768.webp",
-      srcSet:
-        "/images/workouts/strength-384.webp 384w, /images/workouts/strength-768.webp 768w",
-      kind: "fallback" as const,
-    },
-    ...resolveWorkoutImageCandidates(workout),
-  ];
-
   return (
-    <Card
+    <HeroSurface
+      tone="warning"
       sx={{
         position: "relative",
         minHeight: { xs: 230, sm: 190 },
         mb: 3,
         overflow: "hidden",
-        bgcolor: (theme) => theme.fitwell.colors.sidebar.start,
+        background: (theme) => theme.fitwell.colors.sidebar.start,
         color: "common.white",
         border: 0,
       }}
@@ -54,7 +39,7 @@ export default function ActiveWorkoutBanner({
         <Typography
           variant="overline"
           fontWeight={800}
-          sx={{ color: "success.main", letterSpacing: 0.8 }}
+          sx={{ color: "warning.light", letterSpacing: 0.8 }}
         >
           Workout in progress
         </Typography>
@@ -67,7 +52,7 @@ export default function ActiveWorkoutBanner({
           mt={2}
         >
           <Stack direction="row" gap={0.75} alignItems="center">
-            <Schedule fontSize="small" />
+            <Schedule sx={{ fontSize: 18 }} />
             <Typography variant="body2">
               {workout.durationMinutes
                 ? `${workout.durationMinutes} min`
@@ -75,9 +60,9 @@ export default function ActiveWorkoutBanner({
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.75} alignItems="center">
-            <FitnessCenter fontSize="small" />
+            <Barbell sx={{ fontSize: 18 }} />
             <Typography variant="body2">
-              {workout.exerciseCount} exercises
+              {formatCount(workout.exerciseCount, "exercise")}
             </Typography>
           </Stack>
         </Stack>
@@ -97,19 +82,13 @@ export default function ActiveWorkoutBanner({
           },
         }}
       >
-        <FitWellImage
-          candidates={bannerCandidates}
-          alt={`${workout.name} workout illustration`}
-          height="100%"
-          objectFit="contain"
-        />
+        <WorkoutSummaryVisual workout={workout} height="100%" />
       </Box>
 
       <Button
         component={Link}
         href={`/workouts/live/${workout.id}`}
         variant="contained"
-        color="success"
         size="large"
         startIcon={<PlayArrow />}
         sx={{
@@ -124,6 +103,6 @@ export default function ActiveWorkoutBanner({
       >
         Continue
       </Button>
-    </Card>
+    </HeroSurface>
   );
 }

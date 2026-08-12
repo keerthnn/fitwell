@@ -1,25 +1,24 @@
 import {
+  Barbell,
   CalendarMonth,
   ContentCopy,
-  FitnessCenter,
   PlayArrow,
   Schedule,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Alert,
   Box,
   Button,
-  Chip,
   Divider,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import FitWellImage from "fitness/components/common/FitWellImage";
-import {
-  resolveExerciseImageCandidates,
-  resolveWorkoutPlanImageCandidates,
-} from "fitness/lib/images/assetRegistry";
+import HeroSurface from "fitness/components/common/HeroSurface";
+import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
+import WorkoutPlanVisual from "fitness/components/workout-plans/WorkoutPlanVisual";
+import { formatCount, pluralize } from "fitness/utils/copy";
 import type { WorkoutPlan, WorkoutPlanExercise } from "fitness/utils/types";
 
 function repLabel(item: WorkoutPlanExercise) {
@@ -90,16 +89,14 @@ function ExerciseRow({
           />
         ) : (
           <Box
+            role="img"
+            aria-label="Exercise muscle group not mapped"
             sx={{
               width: "100%",
               height: "100%",
               bgcolor: "action.hover",
-              display: "grid",
-              placeItems: "center",
             }}
-          >
-            <FitnessCenter color="action" />
-          </Box>
+          />
         )}
       </Box>
 
@@ -117,7 +114,7 @@ function ExerciseRow({
           sx={{ display: { xs: "block", sm: "none" } }}
           noWrap
         >
-          {item.sets} sets
+          {formatCount(item.sets, "set")}
           {repetitions ? ` · ${repetitions}` : ""}
           {item.restSeconds ? ` · ${item.restSeconds}s rest` : ""}
         </Typography>
@@ -131,13 +128,15 @@ function ExerciseRow({
       >
         <Box textAlign="right">
           <Typography variant="body2" fontWeight={700} whiteSpace="nowrap">
-            {item.sets} sets{repetitions ? ` · ${repetitions}` : ""}
+            {formatCount(item.sets, "set")}{repetitions ? ` · ${repetitions}` : ""}
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {item.restSeconds ? `${item.restSeconds}s rest` : "Self-paced"}
           </Typography>
         </Box>
-        <FitnessCenter color="action" />
+        <Barbell
+          sx={{ color: "text.secondary", fontSize: 20 }}
+        />
       </Stack>
     </Box>
   );
@@ -162,7 +161,7 @@ export default function WorkoutPlanDetail({
     <Stack gap={3}>
       {error && <Alert severity="error">{error}</Alert>}
 
-      <Paper variant="outlined" sx={{ overflow: "hidden" }}>
+      <HeroSurface sx={{ overflow: "hidden" }}>
         <Box
           sx={{
             display: "grid",
@@ -170,24 +169,19 @@ export default function WorkoutPlanDetail({
           }}
         >
           <Box sx={{ bgcolor: "action.hover", alignSelf: "stretch" }}>
-            <FitWellImage
-              candidates={resolveWorkoutPlanImageCandidates(plan)}
-              alt={`${plan.name} workout plan cover`}
-              aspectRatio="16 / 10"
-              objectFit="contain"
-            />
+            <WorkoutPlanVisual plan={plan} aspectRatio="16 / 10" />
           </Box>
 
           <Stack p={{ xs: 2.5, sm: 4 }} gap={2.5} justifyContent="center">
             <Stack direction="row" gap={1} flexWrap="wrap">
-              <Chip
-                size="small"
-                color="primary"
-                label={plan.difficulty.toLowerCase()}
-                sx={{ textTransform: "capitalize" }}
-              />
-              <Chip size="small" label={plan.category} />
-              {plan.isBuiltIn && <Chip size="small" label="Built-in plan" />}
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                textTransform="capitalize"
+                alignSelf="center"
+              >
+                {plan.difficulty.toLowerCase()} · {plan.category}
+              </Typography>
             </Stack>
 
             <Typography color="text.secondary">
@@ -197,27 +191,29 @@ export default function WorkoutPlanDetail({
 
             <Stack direction="row" gap={{ xs: 2, sm: 4 }} flexWrap="wrap">
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <CalendarMonth color="primary" fontSize="small" />
+                <CalendarMonth sx={{ color: "text.secondary", fontSize: 18 }} />
                 <Box>
                   <Typography fontWeight={800}>{plan.daysPerWeek}</Typography>
                   <Typography variant="caption" color="text.secondary">
-                    days/week
+                    {pluralize(plan.daysPerWeek, "day", "days")}/week
                   </Typography>
                 </Box>
               </Stack>
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <FitnessCenter color="primary" fontSize="small" />
+                <Barbell
+                  sx={{ color: "text.secondary", fontSize: 18 }}
+                />
                 <Box>
                   <Typography fontWeight={800}>
                     {plan.exercises.length}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    exercises
+                    {pluralize(plan.exercises.length, "exercise")}
                   </Typography>
                 </Box>
               </Stack>
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <Schedule color="primary" fontSize="small" />
+                <Schedule sx={{ color: "text.secondary", fontSize: 18 }} />
                 <Box>
                   <Typography fontWeight={800}>
                     {plan.exercises.reduce(
@@ -226,7 +222,10 @@ export default function WorkoutPlanDetail({
                     )}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    total sets
+                    total {pluralize(
+                      plan.exercises.reduce((total, item) => total + item.sets, 0),
+                      "set",
+                    )}
                   </Typography>
                 </Box>
               </Stack>
@@ -252,7 +251,7 @@ export default function WorkoutPlanDetail({
             </Stack>
           </Stack>
         </Box>
-      </Paper>
+      </HeroSurface>
 
       <Paper variant="outlined" sx={{ px: { xs: 2, sm: 3 }, py: 2 }}>
         <Typography variant="h5" mb={0.5}>

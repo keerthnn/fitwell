@@ -3,7 +3,7 @@ import { Box, LinearProgress, Paper, Stack, Typography } from "@mui/material";
 import type { Theme } from "@mui/material/styles";
 import type { ReactElement } from "react";
 
-type Tone = "primary" | "success" | "warning" | "info";
+type Tone = "primary" | "success" | "warning" | "neutral";
 
 export default function DashboardStatCard({
   icon,
@@ -21,8 +21,12 @@ export default function DashboardStatCard({
   progress?: number;
 }) {
   const toneStyles = (theme: Theme) => {
-    const semantic =
-      tone === "primary"
+    const semantic = tone === "neutral"
+      ? {
+          background: theme.fitwell.colors.surface.secondary,
+          foreground: theme.palette.text.secondary,
+        }
+      : tone === "primary"
         ? {
             background: theme.fitwell.colors.interaction.primaryContainer,
             foreground: theme.fitwell.colors.interaction.onPrimaryContainer,
@@ -43,7 +47,7 @@ export default function DashboardStatCard({
       sx={{
         p: { xs: 1.75, sm: 2.25 },
         height: "100%",
-        minHeight: { xs: 136, sm: 164 },
+        minHeight: { xs: 132, sm: 148 },
       }}
     >
       <Stack direction="row" gap={1.5} alignItems="flex-start">
@@ -89,10 +93,15 @@ export default function DashboardStatCard({
           value={Math.min(Math.max(progress, 0), 100)}
           sx={{
             mt: 2,
-            height: 8,
+            height: 12,
             borderRadius: 999,
             bgcolor: (theme) => theme.fitwell.colors.surface.secondary,
-            "& .MuiLinearProgress-bar": { borderRadius: 999 },
+            boxShadow: (theme) =>
+              `inset 0 0 0 1px ${theme.fitwell.colors.border}`,
+            "& .MuiLinearProgress-bar": {
+              borderRadius: 999,
+              boxShadow: "0 0 12px rgb(37 99 235 / 0.3)",
+            },
           }}
         />
       )}

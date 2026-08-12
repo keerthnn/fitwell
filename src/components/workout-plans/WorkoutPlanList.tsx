@@ -1,19 +1,18 @@
 import {
   ArrowForward,
+  Barbell,
   CalendarMonth,
-  FitnessCenter,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Box,
-  Chip,
   Divider,
   IconButton,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
-import FitWellImage from "fitness/components/common/FitWellImage";
-import { resolveWorkoutPlanImageCandidates } from "fitness/lib/images/assetRegistry";
+import WorkoutPlanVisual from "fitness/components/workout-plans/WorkoutPlanVisual";
+import { formatCount, formatDaysPerWeek } from "fitness/utils/copy";
 import type { WorkoutPlan } from "fitness/utils/types";
 import Link from "next/link";
 
@@ -45,12 +44,7 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
           borderRadius: 2,
         }}
       >
-        <FitWellImage
-          candidates={resolveWorkoutPlanImageCandidates(plan)}
-          alt={`${plan.name} workout plan cover`}
-          height="100%"
-          objectFit="contain"
-        />
+        <WorkoutPlanVisual plan={plan} height="100%" compact />
       </Box>
 
       <Box minWidth={0}>
@@ -58,13 +52,6 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
           <Typography variant="subtitle1" fontWeight={700} noWrap>
             {plan.name}
           </Typography>
-          {plan.isBuiltIn && (
-            <Chip
-              size="small"
-              label="Built-in"
-              sx={{ display: { xs: "none", sm: "inline-flex" } }}
-            />
-          )}
         </Stack>
         <Typography variant="body2" color="text.secondary" noWrap>
           {plan.description || plan.category}
@@ -76,8 +63,8 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
           sx={{ display: { xs: "block", sm: "none" } }}
           noWrap
         >
-          {plan.difficulty.toLowerCase()} · {plan.daysPerWeek} days/week ·{" "}
-          {plan.exercises.length} exercises
+          {plan.difficulty.toLowerCase()} · {formatDaysPerWeek(plan.daysPerWeek)} ·{" "}
+          {formatCount(plan.exercises.length, "exercise")}
         </Typography>
       </Box>
 
@@ -94,9 +81,9 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             justifyContent="flex-end"
             gap={0.5}
           >
-            <CalendarMonth sx={{ fontSize: 17 }} color="action" />
+            <CalendarMonth sx={{ fontSize: 18, color: "text.secondary" }} />
             <Typography variant="body2" whiteSpace="nowrap">
-              {plan.daysPerWeek} days/week
+              {formatDaysPerWeek(plan.daysPerWeek)}
             </Typography>
           </Stack>
           <Stack
@@ -105,17 +92,23 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             justifyContent="flex-end"
             gap={0.5}
           >
-            <FitnessCenter sx={{ fontSize: 17 }} color="action" />
+            <Barbell
+              sx={{ fontSize: 18, color: "text.secondary" }}
+            />
             <Typography
               variant="caption"
               color="text.secondary"
               whiteSpace="nowrap"
             >
-              {plan.exercises.length} exercises
+              {formatCount(plan.exercises.length, "exercise")}
             </Typography>
           </Stack>
         </Box>
-        <IconButton component="span" aria-label={`View ${plan.name}`}>
+        <IconButton
+          component="span"
+          aria-label={`View ${plan.name}`}
+          sx={{ color: "text.secondary" }}
+        >
           <ArrowForward />
         </IconButton>
       </Stack>
@@ -141,7 +134,7 @@ export default function WorkoutPlanList({ plans }: { plans: WorkoutPlan[] }) {
       {columns.map((column, columnIndex) => (
         <Paper
           key={columnIndex === 0 ? "left" : "right"}
-          variant="outlined"
+          elevation={1}
           sx={{ overflow: "hidden" }}
         >
           <Stack divider={<Divider flexItem />}>

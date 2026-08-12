@@ -17,17 +17,14 @@ export default function AdminDataList<T extends AdminDataListItem>({
 }) {
   if (!items.length) {
     return (
-      <Paper variant="outlined" sx={{ p: 4, textAlign: "center" }}>
+      <Paper elevation={1} sx={{ p: 4, textAlign: "center" }}>
         <Typography color="text.secondary">{empty}</Typography>
       </Paper>
     );
   }
 
   return (
-    <Paper
-      variant="outlined"
-      sx={{ px: { xs: 1.5, sm: 2.5 }, overflow: "hidden" }}
-    >
+    <Paper elevation={1} sx={{ px: { xs: 1.5, sm: 2.5 }, overflow: "hidden" }}>
       <Stack divider={<Divider flexItem />}>
         {items.map((item, index) => (
           <Box

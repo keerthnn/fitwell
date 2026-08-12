@@ -2,13 +2,19 @@ import axios from "axios";
 import type {
   AdminAccessListItem,
   AdminAuditLogListItem,
+  AdminFeedbackListItem,
+  AdminFeedbackThread,
   AdminUserDetail,
   AdminUserListItem,
   AdminWorkoutListItem,
   AnalyticsSummary,
+  CreateFeedbackRequest,
   CreateWorkoutRequest,
   DashboardSummary,
   Exercise,
+  FeedbackListItem,
+  FeedbackReplyRequest,
+  FeedbackThread,
   Paginated,
   Profile,
   Workout,
@@ -16,6 +22,28 @@ import type {
   WorkoutPlan,
   WorkoutSet,
 } from "./types";
+
+export const createFeedback = async (input: CreateFeedbackRequest) =>
+  (await axios.post("/api/feedback/create", input)).data as { id: string };
+export const getFeedback = async (params?: Record<string, string>) =>
+  (await axios.get("/api/feedback/list", { params })).data as Paginated<FeedbackListItem>;
+export const getFeedbackById = async (id: string) =>
+  (
+    await axios.get<FeedbackThread>("/api/feedback/get-by-id", {
+      params: { id },
+    })
+  ).data;
+export const replyToFeedback = async (input: FeedbackReplyRequest) =>
+  (await axios.post("/api/feedback/reply", input)).data as {
+    message: FeedbackThread["messages"][number];
+    status: "OPEN";
+  };
+export const deleteFeedback = async (id: string) =>
+  (
+    await axios.delete("/api/feedback/delete", {
+      params: { id },
+    })
+  ).data as { success: true };
 
 export const createUser = async () =>
   (await axios.post("/api/auth/sync-user")).data as { userName: string };
@@ -124,6 +152,29 @@ export const getAdminAuditLogs = async () =>
       "/api/admin/audit-logs/list",
     )
   ).data;
+export const getAdminFeedback = async (params?: Record<string, string>) =>
+  (
+    await axios.get<Paginated<AdminFeedbackListItem>>(
+      "/api/admin/feedback/list",
+      { params },
+    )
+  ).data;
+export const getAdminFeedbackById = async (id: string) =>
+  (
+    await axios.get<AdminFeedbackThread>("/api/admin/feedback/get-by-id", {
+      params: { id },
+    })
+  ).data;
+export const adminReplyToFeedback = async (input: FeedbackReplyRequest) =>
+  (await axios.post("/api/admin/feedback/reply", input)).data as {
+    message: AdminFeedbackThread["messages"][number];
+    status: "RESPONDED";
+  };
+export const adminCloseFeedback = async (feedbackId: string) =>
+  (await axios.post("/api/admin/feedback/close", { feedbackId })).data as {
+    success: true;
+    status: "CLOSED";
+  };
 export const adminDisableUser = async (id: string) =>
   (await axios.post("/api/admin/users/disable", { id })).data as { success: true };
 export const adminRestoreUser = async (id: string) =>

@@ -1,4 +1,4 @@
-import { ArrowForward } from "@mui/icons-material";
+import { ArrowForward } from "fitness/components/common/icons";
 import { Box, Stack, Typography } from "@mui/material";
 import AdminLayout from "fitness/components/AdminLayout";
 import AdminDataList from "fitness/components/admin/layout/AdminDataList";
@@ -6,6 +6,7 @@ import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { getAdminUsers } from "fitness/utils/spec";
 import type { AdminUserListItem } from "fitness/utils/types";
+import { formatCount } from "fitness/utils/copy";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -52,9 +53,9 @@ export default function AdminUsersPage() {
                     variant="body2"
                     sx={{ display: { xs: "none", sm: "block" } }}
                   >
-                    {item._count.workouts} workouts
+                    {formatCount(item._count.workouts, "workout")}
                   </Typography>
-                  <ArrowForward color="action" />
+                  <ArrowForward sx={{ color: "text.secondary", fontSize: 20 }} />
                 </Stack>
               </Box>
             );

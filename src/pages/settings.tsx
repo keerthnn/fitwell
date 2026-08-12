@@ -13,7 +13,7 @@ export default function SettingsPage() {
   return (
     <AuthenticatedPage>
       <PageHeader title="Settings" />
-      <Paper sx={{ p: 4, maxWidth: 720 }}>
+      <Paper variant="outlined" sx={{ p: 4, maxWidth: 720 }}>
         <Stack gap={3}>
           <Typography variant="h6">Session</Typography>
           <Button variant="outlined" onClick={() => void signOutUser().then(() => router.push("/"))}>Sign out</Button>

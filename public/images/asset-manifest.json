@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-24T17:16:12.748Z",
+  "generatedAt": "2026-08-12T10:13:31.064Z",
   "assets": [
     {
       "path": "/images/muscle-groups/front/chest.png",
@@ -941,184 +941,184 @@
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/push-day-384.webp",
-      "sha256": "094c141bbbaa214081e2bde85ab0a699ca06ed723cf08a4fbd3cfa725bc77a31",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/push-day-simple-384.webp",
+      "sha256": "bd157e8b2539399cb2f3eae79af390ce09766bea6271bbf6e89e5aae653d6b33",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/push-day-768.webp",
-      "sha256": "6cd6ca10933a7bc9e972e27c9ce3acc49697ac4db84a9981b4422fd0c1a0e97a",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/push-day-simple-768.webp",
+      "sha256": "ca73b7fd015868c006fe3717e89aff941fbc3c11d6aca9bdd6a55317ecef18ef",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/pull-day-384.webp",
-      "sha256": "5e3998ca01ce128585422d329630c7aa1bad07c6378772ae4009c4bb07376f5f",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/pull-day-simple-384.webp",
+      "sha256": "a281fd581734976c1ab06f8acf2a895d84abc8d5e397359659727e08fb00ef52",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/pull-day-768.webp",
-      "sha256": "234fca540a05160db8a62334646c22bedbaff3d46d57b80ff8e26d267f7bd130",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/pull-day-simple-768.webp",
+      "sha256": "39e3b36210a93bb3da1c2237a2f165e4dd89aedc298566c7b714a0b25b1a1b80",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/leg-day-384.webp",
-      "sha256": "b77ddb560e5be80a64b54443e562b8e09a94cccb5bbf332682682eeb4b851395",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/leg-day-simple-384.webp",
+      "sha256": "fcad2a2a421d616d5fc22ed9a81419be93f076b58378639279c947b4462afa2d",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/leg-day-768.webp",
-      "sha256": "03d3fca661fa50fa4d7c4360370cfc336130113b1883e9726989c67c3eb3c721",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/leg-day-simple-768.webp",
+      "sha256": "286e68ce12b5f9bd2765405de5fa63b08bcb46be872f77198661358c97344828",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/upper-body-384.webp",
-      "sha256": "f3ae65543ca6ca9b2833ad1c093515378a26e09d4576259b3c1367bf395512ea",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/upper-body-simple-384.webp",
+      "sha256": "2f18a510d289b7c70c7dc4ba95eb4c8723a80dd2f1254e258f8e431a5bc0f744",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/upper-body-768.webp",
-      "sha256": "0b212b08586fa195b2726a6345067c9019ba77b16242b9f07badf302fc72c5a3",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/upper-body-simple-768.webp",
+      "sha256": "8709a7a19b8bd13047eca779f5c56f2bf1e3e4c05bda028223528b2741eaf076",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/lower-body-384.webp",
-      "sha256": "b77ddb560e5be80a64b54443e562b8e09a94cccb5bbf332682682eeb4b851395",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/lower-body-simple-384.webp",
+      "sha256": "57afb93c4a2c6a2ddf467a12d888528a7b405454cd2280125546bcdc1b088ba2",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/lower-body-768.webp",
-      "sha256": "03d3fca661fa50fa4d7c4360370cfc336130113b1883e9726989c67c3eb3c721",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/lower-body-simple-768.webp",
+      "sha256": "b49bd490643ec1a3b7e893bf0b48ca357ac6605106a0bb3df1716ad203d1680d",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/chest-384.webp",
-      "sha256": "094c141bbbaa214081e2bde85ab0a699ca06ed723cf08a4fbd3cfa725bc77a31",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/chest-simple-384.webp",
+      "sha256": "fce2b09b5725036e71e56687a684ca2a73fe1e340a8f7ff955091d5b81ef1559",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/chest-768.webp",
-      "sha256": "6cd6ca10933a7bc9e972e27c9ce3acc49697ac4db84a9981b4422fd0c1a0e97a",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/chest-simple-768.webp",
+      "sha256": "5a2a1b6ffc7610095db6a247d533cb35f1801bdf719c92e4564671b63bb40fa6",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/back-384.webp",
-      "sha256": "5e3998ca01ce128585422d329630c7aa1bad07c6378772ae4009c4bb07376f5f",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/back-simple-384.webp",
+      "sha256": "3d7fd58df7bf895e7b8876c8219f87600901e6131e5ca86e0b2b70d750ccf065",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/back-768.webp",
-      "sha256": "234fca540a05160db8a62334646c22bedbaff3d46d57b80ff8e26d267f7bd130",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/back-simple-768.webp",
+      "sha256": "f7d3de884842f78bb7aec74b99ef28fe8f318fa076993cb7c057b4872a566e57",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/shoulders-384.webp",
-      "sha256": "f3ae65543ca6ca9b2833ad1c093515378a26e09d4576259b3c1367bf395512ea",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/shoulders-simple-384.webp",
+      "sha256": "da306df1f2d6e443dcc3793349fb7daff214ba1d45f0f29501c9651e79a33a21",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/shoulders-768.webp",
-      "sha256": "0b212b08586fa195b2726a6345067c9019ba77b16242b9f07badf302fc72c5a3",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/shoulders-simple-768.webp",
+      "sha256": "a965f227f0879ab665a0cfe2f65dbb291720498d26ec283db90461613661828b",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/biceps-384.webp",
-      "sha256": "5e3998ca01ce128585422d329630c7aa1bad07c6378772ae4009c4bb07376f5f",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/biceps-simple-384.webp",
+      "sha256": "cd975616f22723033a559970f892a22f7b1c2c20ee0784465c6d6a6dcfd088a2",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/biceps-768.webp",
-      "sha256": "234fca540a05160db8a62334646c22bedbaff3d46d57b80ff8e26d267f7bd130",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/biceps-simple-768.webp",
+      "sha256": "422b4d5c3aef846f97739aa2f3015ee0f2b81f71b91db995f059a4cb4f93f649",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/triceps-384.webp",
-      "sha256": "094c141bbbaa214081e2bde85ab0a699ca06ed723cf08a4fbd3cfa725bc77a31",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/triceps-simple-384.webp",
+      "sha256": "69ae25a7ffc9c5b56d0d96c850e06dce9a8cd79c0c2cb793c8bcc8ea4f4b4f5f",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/triceps-768.webp",
-      "sha256": "6cd6ca10933a7bc9e972e27c9ce3acc49697ac4db84a9981b4422fd0c1a0e97a",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/triceps-simple-768.webp",
+      "sha256": "1f46bf9669603af69e8e163c18a7808a7dfcff7b14785bde178aad3701e83473",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/arms-384.webp",
-      "sha256": "ad961ab3cd75d3f884c61c9c9c3b1c4234e77f83de74a2d5ce93af7a61621638",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/arms-simple-384.webp",
+      "sha256": "697e9a59ebdf0ab78753ca9364b00932453b00ee0572be7705f74d102d862f75",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/arms-768.webp",
-      "sha256": "5428c758e2482e8aa2770f9922c9907829dd59fea883ffa6eef9208f6db33fc6",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/arms-simple-768.webp",
+      "sha256": "2ae766d34e577b94ab3db56bf922338064d71f74b9ad0e18efb3c96e5d82a8c0",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/abs-384.webp",
-      "sha256": "ff3f3b237289dad950a97ef1e730e732cbab4f81f90e42099545c8cd75a373f3",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/abs-simple-384.webp",
+      "sha256": "4422affdc8ec2dcfd485be685bd5ae81a1453f804e3ad7f3be101783f0d52396",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/abs-768.webp",
-      "sha256": "bede60aec22e9d8c0a943918f8935ea40301df928c9af2e76e72a47febe37b72",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/abs-simple-768.webp",
+      "sha256": "a5a8f18ac78540f0b8e2225b24ba33b27d3b3778bb165909a146bf3c44fb61d1",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/full-body-384.webp",
-      "sha256": "f3ae65543ca6ca9b2833ad1c093515378a26e09d4576259b3c1367bf395512ea",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/full-body-simple-384.webp",
+      "sha256": "f1b01954b643520081be0d3ab5918ff1c58cebffb6693e98b875b7559eab99b2",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     },
     {
-      "path": "/images/workout-plans/covers/full-body-768.webp",
-      "sha256": "0b212b08586fa195b2726a6345067c9019ba77b16242b9f07badf302fc72c5a3",
-      "provenance": "openai-imagegen-fitwell-cover",
+      "path": "/images/workout-plans/covers/full-body-simple-768.webp",
+      "sha256": "92c93fd894c40863caedf5583aa5d71af1cdfeb8e69426caacaa754eddfafe0a",
+      "provenance": "openai-imagegen-fitwell-simple-plan-cover",
       "kind": "plan-cover",
       "approved": true
     }

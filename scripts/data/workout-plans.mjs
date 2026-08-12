@@ -9,7 +9,7 @@ const plan = (slug, name, exercises) => ({
 });
 
 export const workoutPlans = [
-  plan("push-day", "Push Day", [
+  plan("push-day-simple", "Push Day", [
     "Barbell Bench Press",
     "Incline Dumbbell Press",
     "Barbell Overhead Press",
@@ -17,7 +17,7 @@ export const workoutPlans = [
     "Tricep Pushdown",
     "Overhead Dumbbell Extension",
   ]),
-  plan("pull-day", "Pull Day", [
+  plan("pull-day-simple", "Pull Day", [
     "Pull-Up",
     "Barbell Row",
     "Lat Pulldown",
@@ -25,7 +25,7 @@ export const workoutPlans = [
     "Face Pull",
     "Dumbbell Bicep Curl",
   ]),
-  plan("leg-day", "Leg Day", [
+  plan("leg-day-simple", "Leg Day", [
     "Barbell Back Squat",
     "Romanian Deadlift",
     "Leg Press",
@@ -33,7 +33,7 @@ export const workoutPlans = [
     "Lying Leg Curl",
     "Standing Machine Calf Raise",
   ]),
-  plan("upper-body", "Upper Body", [
+  plan("upper-body-simple", "Upper Body", [
     "Barbell Bench Press",
     "Barbell Row",
     "Incline Dumbbell Press",
@@ -42,7 +42,7 @@ export const workoutPlans = [
     "Dumbbell Bicep Curl",
     "Tricep Pushdown",
   ]),
-  plan("lower-body", "Lower Body", [
+  plan("lower-body-simple", "Lower Body", [
     "Barbell Back Squat",
     "Romanian Deadlift",
     "Dumbbell Bulgarian Split Squat",
@@ -50,14 +50,14 @@ export const workoutPlans = [
     "Lying Leg Curl",
     "Standing Machine Calf Raise",
   ]),
-  plan("chest", "Chest", [
+  plan("chest-simple", "Chest", [
     "Barbell Bench Press",
     "Incline Dumbbell Press",
     "Pec Deck Fly",
     "Cable Fly",
     "Push-Up",
   ]),
-  plan("back", "Back", [
+  plan("back-simple", "Back", [
     "Pull-Up",
     "Barbell Row",
     "Lat Pulldown",
@@ -65,28 +65,28 @@ export const workoutPlans = [
     "Straight-Arm Cable Pulldown",
     "Face Pull",
   ]),
-  plan("shoulders", "Shoulders", [
+  plan("shoulders-simple", "Shoulders", [
     "Barbell Overhead Press",
     "Arnold Press",
     "Dumbbell Lateral Raise",
     "Dumbbell Rear Delt Fly",
     "Face Pull",
   ]),
-  plan("biceps", "Biceps", [
+  plan("biceps-simple", "Biceps", [
     "Barbell Curl",
     "Dumbbell Bicep Curl",
     "Hammer Curl",
     "Dumbbell Preacher Curl",
     "Concentration Curl",
   ]),
-  plan("triceps", "Triceps", [
+  plan("triceps-simple", "Triceps", [
     "Close-Grip Bench Press",
     "Barbell Skull Crusher",
     "Tricep Pushdown",
     "Overhead Dumbbell Extension",
     "Bench Dip",
   ]),
-  plan("arms", "Arms", [
+  plan("arms-simple", "Arms", [
     "Barbell Curl",
     "Close-Grip Bench Press",
     "Hammer Curl",
@@ -94,7 +94,7 @@ export const workoutPlans = [
     "Dumbbell Preacher Curl",
     "Overhead Dumbbell Extension",
   ]),
-  plan("abs", "Abs", [
+  plan("abs-simple", "Abs", [
     "Plank",
     "Hanging Leg Raise",
     "Cable Crunch",
@@ -102,7 +102,7 @@ export const workoutPlans = [
     "Bicycle Crunch",
     "Mountain Climber",
   ]),
-  plan("full-body", "Full Body", [
+  plan("full-body-simple", "Full Body", [
     "Barbell Back Squat",
     "Barbell Bench Press",
     "Barbell Row",

@@ -20,7 +20,7 @@ export default function WorkoutPlansPage() {
     <AuthenticatedPage>
       <PageHeader
         title="Workout Plans"
-        description="Built-in programmes and your private plans."
+        description="Training programmes and your personal plans."
         action={{ label: "Create Workout Plan", href: "/workout-plans/create" }}
       />
       {error ? (

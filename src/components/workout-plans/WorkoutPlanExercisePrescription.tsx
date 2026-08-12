@@ -1,4 +1,8 @@
-import { ArrowDownward, ArrowUpward, FitnessCenter } from "@mui/icons-material";
+import {
+  ArrowDownward,
+  ArrowUpward,
+  Barbell,
+} from "fitness/components/common/icons";
 import {
   Box,
   Divider,
@@ -181,7 +185,7 @@ export default function WorkoutPlanExercisePrescription({
       </Stack>
       {exercises.length === 0 && (
         <Stack alignItems="center" color="text.secondary" p={4}>
-          <FitnessCenter sx={{ fontSize: 44, mb: 1 }} />
+          <Barbell sx={{ fontSize: 44, mb: 1 }} />
           <Typography>Select exercises to configure the plan.</Typography>
         </Stack>
       )}

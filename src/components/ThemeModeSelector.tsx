@@ -3,7 +3,7 @@ import {
   DarkMode,
   LightMode,
   SettingsBrightness,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   IconButton,
   ListItemIcon,

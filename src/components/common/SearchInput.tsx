@@ -1,4 +1,4 @@
-import { Clear, Search } from "@mui/icons-material";
+import { Clear, Search } from "fitness/components/common/icons";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 
 export default function SearchInput({

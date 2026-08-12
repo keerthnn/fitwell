@@ -61,19 +61,19 @@ const priorityExercises = new Set([
 ]);
 
 const planSlugs: Record<string, string> = {
-  "Push Day": "push-day",
-  "Pull Day": "pull-day",
-  "Leg Day": "leg-day",
-  "Upper Body": "upper-body",
-  "Lower Body": "lower-body",
-  Chest: "chest",
-  Back: "back",
-  Shoulders: "shoulders",
-  Biceps: "biceps",
-  Triceps: "triceps",
-  Arms: "arms",
-  Abs: "abs",
-  "Full Body": "full-body",
+  "Push Day": "push-day-simple",
+  "Pull Day": "pull-day-simple",
+  "Leg Day": "leg-day-simple",
+  "Upper Body": "upper-body-simple",
+  "Lower Body": "lower-body-simple",
+  Chest: "chest-simple",
+  Back: "back-simple",
+  Shoulders: "shoulders-simple",
+  Biceps: "biceps-simple",
+  Triceps: "triceps-simple",
+  Arms: "arms-simple",
+  Abs: "abs-simple",
+  "Full Body": "full-body-simple",
 };
 
 const equipmentSlugs: Record<string, string> = {
@@ -265,20 +265,24 @@ export function resolveWorkoutImageCandidates(workout: WorkoutListItem) {
 }
 
 export function resolveWorkoutPlanImageCandidates(
-  plan: Pick<WorkoutPlan, "name" | "category" | "coverImagePath" | "exercises">,
+  plan: Pick<
+    WorkoutPlan,
+    "name" | "category" | "coverImagePath" | "exercises" | "isBuiltIn"
+  >,
 ) {
   const firstExercise = plan.exercises[0]?.exercise;
+  const generatedPlanCover = planSlugs[plan.name]
+    ? responsive(
+        "/images/workout-plans/covers",
+        planSlugs[plan.name],
+        "specific",
+        768,
+        384,
+      )
+    : null;
   return unique([
-    candidate(plan.coverImagePath, "specific"),
-    planSlugs[plan.name]
-      ? responsive(
-          "/images/workout-plans/covers",
-          planSlugs[plan.name],
-          "specific",
-          768,
-          384,
-        )
-      : null,
+    plan.isBuiltIn ? generatedPlanCover : candidate(plan.coverImagePath, "specific"),
+    plan.isBuiltIn ? candidate(plan.coverImagePath, "specific") : generatedPlanCover,
     ...(firstExercise ? resolveExerciseImageCandidates(firstExercise) : []),
     responsive(
       "/images/workouts",
