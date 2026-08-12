@@ -1,4 +1,4 @@
-import { ArrowForward, BarChart, Bolt, CheckCircle } from "@mui/icons-material";
+import { ArrowForward, BarChart, Bolt, CheckCircle } from "fitness/components/common/icons";
 import {
   Box,
   Button,

@@ -1,4 +1,4 @@
-import { DeleteOutline } from "@mui/icons-material";
+import { DeleteOutline } from "fitness/components/common/icons";
 import {
   Alert,
   Button,

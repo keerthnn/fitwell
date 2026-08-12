@@ -1,6 +1,7 @@
 import type {
   CreateWorkoutRequest,
   RequestInputValue,
+  TrackingType,
   ValidationError,
   WorkoutSet,
 } from "fitness/utils/types";
@@ -139,6 +140,65 @@ export function validateSets(value: RequestInputValue) {
   return errors.length || !workoutExerciseId
     ? invalid<{ workoutExerciseId: string; sets: WorkoutSet[] }>(errors)
     : valid({ workoutExerciseId, sets });
+}
+
+export function validateSetsForTrackingType(
+  sets: WorkoutSet[],
+  trackingType: TrackingType,
+) {
+  const errors: ValidationError[] = [];
+  const requiresReps =
+    trackingType === "REPS_ONLY" || trackingType === "REPS_WEIGHT";
+  const requiresWeight = trackingType === "REPS_WEIGHT";
+  const requiresDuration =
+    trackingType === "DURATION" || trackingType === "DURATION_DISTANCE";
+  const requiresDistance =
+    trackingType === "DISTANCE" || trackingType === "DURATION_DISTANCE";
+
+  sets.forEach((set, index) => {
+    if (requiresReps) {
+      if (set.reps === null || set.reps === undefined) {
+        errors.push({
+          field: `sets.${index}.reps`,
+          message: "Reps are required",
+        });
+      } else if (set.reps < 1) {
+        errors.push({
+          field: `sets.${index}.reps`,
+          message: "Reps must be at least 1",
+        });
+      }
+    }
+
+    if (requiresWeight && (set.weightKg === null || set.weightKg === undefined)) {
+      errors.push({
+        field: `sets.${index}.weightKg`,
+        message: "Weight is required",
+      });
+    }
+
+    if (
+      requiresDuration &&
+      (set.durationSeconds === null || set.durationSeconds === undefined)
+    ) {
+      errors.push({
+        field: `sets.${index}.durationSeconds`,
+        message: "Duration is required",
+      });
+    }
+
+    if (
+      requiresDistance &&
+      (set.distanceMeters === null || set.distanceMeters === undefined)
+    ) {
+      errors.push({
+        field: `sets.${index}.distanceMeters`,
+        message: "Distance is required",
+      });
+    }
+  });
+
+  return errors.length ? invalid<WorkoutSet[]>(errors) : valid(sets);
 }
 
 export function validateWorkoutQuery(value: RequestInputValue) {

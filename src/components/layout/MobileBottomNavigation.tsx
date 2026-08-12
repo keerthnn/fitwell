@@ -1,10 +1,10 @@
 import {
   Add,
+  Barbell,
   Dashboard,
-  FitnessCenter,
   MoreHoriz,
-  ViewModule,
-} from "@mui/icons-material";
+  Stretching,
+} from "fitness/components/common/icons";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 
@@ -21,7 +21,7 @@ export default function MobileBottomNavigation({
         display: { xs: "block", md: "none" },
         position: "fixed",
         inset: "auto 0 0",
-        zIndex: 1300,
+        zIndex: (theme) => theme.zIndex.appBar,
         pb: "env(safe-area-inset-bottom)",
         borderRadius: "20px 20px 0 0",
       }}
@@ -36,7 +36,7 @@ export default function MobileBottomNavigation({
         <BottomNavigationAction
           label="Workouts"
           value="/workouts"
-          icon={<FitnessCenter />}
+          icon={<Barbell />}
           onClick={() => router.push("/workouts")}
         />
         <BottomNavigationAction
@@ -60,7 +60,7 @@ export default function MobileBottomNavigation({
         <BottomNavigationAction
           label="Exercises"
           value="/exercises"
-          icon={<ViewModule />}
+          icon={<Stretching />}
           onClick={() => router.push("/exercises")}
         />
         <BottomNavigationAction

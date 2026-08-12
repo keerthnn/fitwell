@@ -1,5 +1,5 @@
-import { FitnessCenter } from "@mui/icons-material";
 import { Box } from "@mui/material";
+import { Barbell } from "fitness/components/common/icons";
 import type { ImageCandidate } from "fitness/lib/images/assetRegistry";
 import { useMemo, useState } from "react";
 
@@ -45,7 +45,7 @@ export default function FitWellImage({
           color: "text.secondary",
         }}
       >
-        <FitnessCenter sx={{ fontSize: 48 }} />
+        <Barbell sx={{ fontSize: 48 }} />
       </Box>
     );
   }

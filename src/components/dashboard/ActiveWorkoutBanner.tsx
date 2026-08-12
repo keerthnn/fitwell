@@ -1,4 +1,8 @@
-import { FitnessCenter, PlayArrow, Schedule } from "@mui/icons-material";
+import {
+  Barbell,
+  PlayArrow,
+  Schedule,
+} from "fitness/components/common/icons";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import HeroSurface from "fitness/components/common/HeroSurface";
 import WorkoutSummaryVisual from "fitness/components/workouts/WorkoutSummaryVisual";
@@ -19,7 +23,7 @@ export default function ActiveWorkoutBanner({
         minHeight: { xs: 230, sm: 190 },
         mb: 3,
         overflow: "hidden",
-        bgcolor: (theme) => theme.fitwell.colors.sidebar.start,
+        background: (theme) => theme.fitwell.colors.sidebar.start,
         color: "common.white",
         border: 0,
       }}
@@ -56,7 +60,7 @@ export default function ActiveWorkoutBanner({
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.75} alignItems="center">
-            <FitnessCenter sx={{ fontSize: 18 }} />
+            <Barbell sx={{ fontSize: 18 }} />
             <Typography variant="body2">
               {formatCount(workout.exerciseCount, "exercise")}
             </Typography>

@@ -1,4 +1,4 @@
-import { Add, Check, Close, FitnessCenter } from "@mui/icons-material";
+import { Add, Barbell, Check, Close } from "fitness/components/common/icons";
 import {
   Box,
   Button,
@@ -208,7 +208,7 @@ export default function WorkoutExercisePicker({
             p={3}
             color="text.secondary"
           >
-            <FitnessCenter sx={{ fontSize: 44, mb: 1 }} />
+            <Barbell sx={{ fontSize: 44, mb: 1 }} />
             <Typography fontWeight={700} color="text.primary">
               No exercises selected
             </Typography>

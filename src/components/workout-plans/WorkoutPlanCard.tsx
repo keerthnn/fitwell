@@ -1,13 +1,12 @@
 import {
   ArrowForward,
+  Barbell,
   CalendarMonth,
-  FitnessCenter,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Button,
   Card,
   CardContent,
-  Chip,
   Stack,
   Typography,
 } from "@mui/material";
@@ -37,7 +36,6 @@ export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
       <CardContent>
         <Stack direction="row" justifyContent="space-between" gap={1}>
           <Typography variant="h6">{plan.name}</Typography>
-          {plan.isBuiltIn && <Chip size="small" label="Built-in" />}
         </Stack>
         <Typography color="text.secondary" variant="body2" mt={0.75}>
           {plan.description}
@@ -50,7 +48,7 @@ export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.5} alignItems="center">
-            <FitnessCenter sx={{ fontSize: 18 }} />
+            <Barbell sx={{ fontSize: 18 }} />
             <Typography variant="caption">
               {formatCount(plan.exercises.length, "exercise")}
             </Typography>

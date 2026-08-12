@@ -4,7 +4,7 @@ import {
   CheckCircleOutline,
   ListAlt,
   People,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import AdminLayout from "fitness/components/AdminLayout";
 import LoadingState from "fitness/components/common/LoadingState";

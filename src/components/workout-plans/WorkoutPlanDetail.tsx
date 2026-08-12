@@ -1,15 +1,14 @@
 import {
+  Barbell,
   CalendarMonth,
   ContentCopy,
-  FitnessCenter,
   PlayArrow,
   Schedule,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Alert,
   Box,
   Button,
-  Chip,
   Divider,
   Paper,
   Stack,
@@ -135,7 +134,9 @@ function ExerciseRow({
             {item.restSeconds ? `${item.restSeconds}s rest` : "Self-paced"}
           </Typography>
         </Box>
-        <FitnessCenter sx={{ color: "text.secondary", fontSize: 20 }} />
+        <Barbell
+          sx={{ color: "text.secondary", fontSize: 20 }}
+        />
       </Stack>
     </Box>
   );
@@ -181,7 +182,6 @@ export default function WorkoutPlanDetail({
               >
                 {plan.difficulty.toLowerCase()} · {plan.category}
               </Typography>
-              {plan.isBuiltIn && <Chip size="small" label="Built-in plan" />}
             </Stack>
 
             <Typography color="text.secondary">
@@ -200,7 +200,9 @@ export default function WorkoutPlanDetail({
                 </Box>
               </Stack>
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <FitnessCenter sx={{ color: "text.secondary", fontSize: 18 }} />
+                <Barbell
+                  sx={{ color: "text.secondary", fontSize: 18 }}
+                />
                 <Box>
                   <Typography fontWeight={800}>
                     {plan.exercises.length}

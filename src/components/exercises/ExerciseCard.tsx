@@ -1,4 +1,4 @@
-import { Add } from "@mui/icons-material";
+import { Add } from "fitness/components/common/icons";
 import {
   Button,
   Card,

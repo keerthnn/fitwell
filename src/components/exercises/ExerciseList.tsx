@@ -1,4 +1,4 @@
-import { PlayArrow } from "@mui/icons-material";
+import { PlayArrow } from "fitness/components/common/icons";
 import {
   Box,
   Button,

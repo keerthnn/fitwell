@@ -4,7 +4,7 @@ import {
   CheckCircleOutline,
   LocalFireDepartment,
   PlayArrow,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import ThemeModeSelector from "fitness/components/ThemeModeSelector";
 import type { DashboardSummary } from "fitness/utils/types";

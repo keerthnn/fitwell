@@ -91,7 +91,7 @@ These features should not be added without a separate product specification and 
 - All other member pages render in the authenticated application shell.
 - Desktop navigation uses a collapsible sidebar; mobile navigation uses a bottom bar and additional navigation drawer.
 - Theme preference is `light`, `dark`, or `system` and is persisted in `localStorage` as `fitwell.theme`.
-- The rest timer persists in `localStorage` as `fitwell.restTimer` and remains visible across member routes.
+- The workout-aware rest timer persists in `localStorage` as `fitwell.restTimer`, is scoped to the signed-in member, and remains visible across member routes.
 
 ## 4. Functional specification: current implementation
 
@@ -158,9 +158,9 @@ These features should not be added without a separate product specification and 
 | WORK-02 | Members can start a live workout with optional initial exercises. | Implemented | `/workouts/create`, `POST /api/workouts/create-workout`. |
 | WORK-03 | A live workout begins in `IN_PROGRESS` with `startedAt` populated. | Implemented for `LIVE` | Create-workout handler. |
 | WORK-04 | Members can add, remove, reorder, and annotate workout exercises. | Implemented at API/component level; reorder integration needs manual verification | Workout-exercise handlers and editor components. |
-| WORK-05 | Members can add/remove sets and record reps, kg weight, duration, distance, rest, and completion. | Implemented | Set editor and replace-all set save API. |
+| WORK-05 | Members can add/remove sets and record reps, kg weight, duration, distance, exercise-wide session rest, and completion. A set cannot be marked complete until its tracking metrics are valid. | Implemented | Live exercise panels and replace-all set save API; completion and saving share tracking-aware validation, and the shared rest snapshot is written to each set. |
 | WORK-06 | Set changes in the live page are saved while the member works. | Implemented; needs failure-state verification | Live page message and exercise editor save calls. |
-| WORK-07 | A live workout can be paused to `DRAFT` and resumed to `IN_PROGRESS`. | Implemented | Pause/resume endpoints and workout UI actions. |
+| WORK-07 | A live workout can be paused to `DRAFT` and resumed to `IN_PROGRESS` without leaving the live page. | Implemented | Pause/resume endpoints and live-page lifecycle actions; a workout-paused rest timer follows the same transition. |
 | WORK-08 | A workout can be completed only when at least one set is complete. | Implemented | Completion endpoint validation. |
 | WORK-09 | Completion records `completedAt` and derives duration when none was supplied. | Implemented | Completion endpoint. |
 | WORK-10 | Members can create a quick-entry draft for a past/completed session and then edit details. | Implemented but terminology is partial | `/workouts/quick-entry` creates a `DRAFT`; user must complete it separately. |
@@ -177,10 +177,11 @@ These features should not be added without a separate product specification and 
 
 | ID | Requirement | Status | Implementation evidence |
 | --- | --- | --- | --- |
-| TIMER-01 | A member can start a rest timer from set editing. | Implemented; needs manual verification | Rest timer context and set editor integration. |
-| TIMER-02 | The timer can pause, resume, add 30 seconds, reset, and dismiss. | Implemented | Floating timer controls. |
-| TIMER-03 | Timer state persists across navigation/reload. | Implemented | Local storage state. |
-| TIMER-04 | Timer expiry is communicated accessibly. | Partial | Timer disappears at zero; no audible, vibration, or live-region completion cue. |
+| TIMER-01 | Completing a set starts rest automatically from the exercise-wide session duration; rest can also be started from the exercise panel. | Implemented | Live exercise panel and workout-aware timer context. |
+| TIMER-02 | The timer can pause, resume, add 30 seconds, reset, and skip. | Implemented | Floating warning-colored timer controls. |
+| TIMER-03 | Timer state persists across member navigation/reload without leaking between users or workouts. | Implemented | Versioned, authenticated local-storage state with deadline reconciliation. |
+| TIMER-04 | Timer expiry is communicated visually and accessibly. | Implemented | Auto-clearing completion pulse and polite live-region status. |
+| TIMER-05 | Workout pause/resume pauses/resumes a running rest timer, and workout completion clears it. | Implemented | Live workout lifecycle integration with manual-pause preservation. |
 
 ### 4.7 Workout Plans
 
@@ -327,7 +328,7 @@ All routes below are same-origin Pages Router APIs. Member routes require a veri
 | `Exercise` | Global movement catalogue. | Unique name/equipment pair; active flag controls member visibility. |
 | `Workout` | Dated member workout. | Belongs to one user; status and entry mode are explicit enums. |
 | `WorkoutExercise` | Ordered exercise in a workout. | Cascades with workout; links to global exercise. |
-| `WorkoutSet` | Performance values for one set. | Supports tracking-type-specific nullable values and completion. |
+| `WorkoutSet` | Performance values for one set. | Supports tracking-type-specific nullable values and completion; `restSeconds` stores the exercise-wide session snapshot consistently across the exercise's sets. |
 | `WorkoutPlan` | Built-in or private programme. | Built-in has null owner; private has member owner; archive/active flags. |
 | `WorkoutPlanExercise` | Ordered plan prescription. | Sets, rep range, guidance, rest, notes. |
 | `UserActivityDay` | One activity aggregate per user/date. | Unique user/date and request count. |
@@ -381,8 +382,8 @@ A null owner alone never grants visibility.
 | Typical workout duration | Integer 1–1,440 minutes. |
 | Workout name/notes | Name required and max 120; notes max 2,000. |
 | Initial workout exercises | Up to 50 unique IDs; all must be active. |
-| Saved sets | Up to 100; set number 1–100. |
-| Set values | Reps 0–10,000; kg 0–2,000; duration 0–86,400 seconds; distance 0–1,000,000 m; rest 0–7,200 seconds. |
+| Saved sets | Up to 100; set number 1–100; every metric applicable to the exercise tracking type is required. |
+| Set values | Rep-tracked sets require 1–10,000 reps; weighted sets require an entered kg value from 0–2,000; duration 0–86,400 seconds; distance 0–1,000,000 m; rest 0–7,200 seconds. |
 | Exercise text | Name 120; category/muscle 80; description 2,000; instructions 5,000. |
 | Plan | Name 120; description 2,000; category 80; 1–7 days/week. |
 | Plan exercise | 1–100 exercises; 1–20 sets; reps 0–10,000; rest 0–7,200 seconds. |
@@ -438,7 +439,7 @@ No remote HTTP image dependency should be introduced without revisiting the asse
 
 ### P0 — release blockers
 
-1. **No automated tests.** The declared test command fails because all tests were removed. Security/ownership, validators, state transitions, analytics, units, and asset resolution need coverage.
+1. **Automated coverage remains incomplete.** Rest-timer, live-workout lifecycle, copy, and exercise-rest behavior have focused coverage; security/ownership, broader validators, analytics, units, and asset resolution still need tests.
 2. **No fresh-database acceptance evidence.** Migration, exercise seed, plan seed, and admin bootstrap must be proven from an empty local database.
 3. **No authenticated end-to-end smoke result.** The core member and admin journeys have not been exercised in this audit.
 4. **Cursor correctness risk.** Workout list next-cursor selection should be fixed and covered before pagination is exposed.
@@ -457,10 +458,9 @@ No remote HTTP image dependency should be introduced without revisiting the asse
 
 1. API error response shapes vary (`error`, `errors`, `details`, `fieldErrors`, strings); converge on `ApiError`.
 2. Client wrappers use broad assertions and several admin responses are unstructured `Record<string, number>`.
-3. Rest-timer completion needs an accessible notification.
-4. Analytics unit labels should honor the profile unit system.
-5. Some components/routes exceed the project guide's preferred 300-line threshold or compress JSX into hard-to-maintain single lines; keep decomposition as an ongoing rule.
-6. No CI workflow currently enforces the repository checks.
+3. Analytics unit labels should honor the profile unit system.
+4. Some components/routes exceed the project guide's preferred 300-line threshold or compress JSX into hard-to-maintain single lines; keep decomposition as an ongoing rule.
+5. No CI workflow currently enforces the repository checks.
 
 ## 12. Delivery plan
 
@@ -514,7 +514,7 @@ Deliverables:
 - Clarify quick-entry UX and implement the approved draft/completion behavior.
 - Prevent invalid edits/transitions after completion, except explicitly permitted metadata corrections.
 - Confirm add/remove/reorder/save behavior with retryable UI errors and no silent data loss.
-- Confirm timer persistence and add an accessible expiry cue.
+- Maintain regression coverage for timer persistence, workout lifecycle coupling, and the accessible expiry cue.
 
 Exit criteria:
 

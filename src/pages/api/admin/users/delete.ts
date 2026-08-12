@@ -20,6 +20,7 @@ export default async function handler(
     await tx.workoutPlan.deleteMany({
       where: { userId: id, isBuiltIn: false },
     });
+    await tx.feedback.deleteMany({ where: { userId: id } });
     await tx.userProfile.deleteMany({ where: { userId: id } });
     await tx.adminAccess.deleteMany({ where: { userId: id } });
     await tx.user.update({

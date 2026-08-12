@@ -1,4 +1,4 @@
-import { ContentCopy, Edit, Notes, Schedule } from "@mui/icons-material";
+import { ContentCopy, Edit, Notes, Schedule } from "fitness/components/common/icons";
 import {
   Button,
   Card,

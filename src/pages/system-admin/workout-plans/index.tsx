@@ -1,4 +1,4 @@
-import { ArrowForward } from "@mui/icons-material";
+import { ArrowForward } from "fitness/components/common/icons";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import AdminLayout from "fitness/components/AdminLayout";
 import AdminDataList from "fitness/components/admin/layout/AdminDataList";

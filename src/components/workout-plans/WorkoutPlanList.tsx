@@ -1,11 +1,10 @@
 import {
   ArrowForward,
+  Barbell,
   CalendarMonth,
-  FitnessCenter,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Box,
-  Chip,
   Divider,
   IconButton,
   Paper,
@@ -53,13 +52,6 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
           <Typography variant="subtitle1" fontWeight={700} noWrap>
             {plan.name}
           </Typography>
-          {plan.isBuiltIn && (
-            <Chip
-              size="small"
-              label="Built-in"
-              sx={{ display: { xs: "none", sm: "inline-flex" } }}
-            />
-          )}
         </Stack>
         <Typography variant="body2" color="text.secondary" noWrap>
           {plan.description || plan.category}
@@ -100,7 +92,9 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             justifyContent="flex-end"
             gap={0.5}
           >
-            <FitnessCenter sx={{ fontSize: 18, color: "text.secondary" }} />
+            <Barbell
+              sx={{ fontSize: 18, color: "text.secondary" }}
+            />
             <Typography
               variant="caption"
               color="text.secondary"

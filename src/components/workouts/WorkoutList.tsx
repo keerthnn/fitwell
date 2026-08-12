@@ -1,4 +1,4 @@
-import { ArrowForward, Schedule } from "@mui/icons-material";
+import { ArrowForward, Schedule } from "fitness/components/common/icons";
 import {
   Box,
   Divider,

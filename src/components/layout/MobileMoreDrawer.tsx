@@ -3,7 +3,7 @@ import {
   Close,
   Logout,
   Palette,
-} from "@mui/icons-material";
+} from "fitness/components/common/icons";
 import {
   Box,
   Drawer,

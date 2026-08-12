@@ -1,11 +1,11 @@
 import {
   ArrowForward,
-  FitnessCenter,
+  Barbell,
+  ClipboardList,
   ListAlt,
   People,
-  PlaylistAddCheck,
-  SportsGymnastics,
-} from "@mui/icons-material";
+  Stretching,
+} from "fitness/components/common/icons";
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import AdminLayout from "fitness/components/AdminLayout";
 import ErrorState from "fitness/components/common/ErrorState";
@@ -36,21 +36,21 @@ export default function AdminOverviewPage() {
       key: "workouts",
       label: "Workouts",
       helper: "all time",
-      icon: <SportsGymnastics />,
+      icon: <Barbell />,
       tone: "neutral" as const,
     },
     {
       key: "exercises",
       label: "Active exercises",
       helper: "catalogue",
-      icon: <FitnessCenter />,
+      icon: <Stretching />,
       tone: "neutral" as const,
     },
     {
       key: "workoutPlans",
       label: "Built-in plans",
       helper: "published",
-      icon: <PlaylistAddCheck />,
+      icon: <ClipboardList />,
       tone: "neutral" as const,
     },
   ];
@@ -93,12 +93,12 @@ export default function AdminOverviewPage() {
                 [
                   "/system-admin/exercises",
                   "Exercise catalogue",
-                  FitnessCenter,
+                  Stretching,
                 ],
                 [
                   "/system-admin/workout-plans",
                   "Built-in plans",
-                  PlaylistAddCheck,
+                  ClipboardList,
                 ],
                 ["/system-admin/audit-logs", "Audit events", ListAlt],
               ].map(([href, label, Icon]) => (
