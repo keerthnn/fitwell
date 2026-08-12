@@ -11,8 +11,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import FitWellImage from "fitness/components/common/FitWellImage";
-import { resolveWorkoutPlanImageCandidates } from "fitness/lib/images/assetRegistry";
+import WorkoutPlanVisual from "fitness/components/workout-plans/WorkoutPlanVisual";
+import { formatCount, formatDaysPerWeek } from "fitness/utils/copy";
 import type { WorkoutPlan } from "fitness/utils/types";
 import Link from "next/link";
 
@@ -20,14 +20,20 @@ export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
   return (
     <Card
       variant="outlined"
-      sx={{ height: "100%", overflow: "hidden", position: "relative" }}
+      sx={{
+        height: "100%",
+        overflow: "hidden",
+        position: "relative",
+        "&:hover": {
+          transform: "translateY(-3px)",
+          boxShadow: (theme) =>
+            theme.palette.mode === "dark"
+              ? "0 16px 38px rgb(0 0 0 / 0.34)"
+              : "0 16px 38px rgb(15 23 42 / 0.14)",
+        },
+      }}
     >
-      <FitWellImage
-        candidates={resolveWorkoutPlanImageCandidates(plan)}
-        alt={`${plan.name} Workout Plan cover`}
-        aspectRatio="3 / 2"
-        objectFit="contain"
-      />
+      <WorkoutPlanVisual plan={plan} />
       <CardContent>
         <Stack direction="row" justifyContent="space-between" gap={1}>
           <Typography variant="h6">{plan.name}</Typography>
@@ -40,13 +46,13 @@ export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
           <Stack direction="row" gap={0.5} alignItems="center">
             <CalendarMonth fontSize="small" />
             <Typography variant="caption">
-              {plan.daysPerWeek} days/week
+              {formatDaysPerWeek(plan.daysPerWeek)}
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.5} alignItems="center">
             <FitnessCenter fontSize="small" />
             <Typography variant="caption">
-              {plan.exercises.length} exercises
+              {formatCount(plan.exercises.length, "exercise")}
             </Typography>
           </Stack>
         </Stack>

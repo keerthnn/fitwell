@@ -36,7 +36,7 @@ export default function EditWorkoutPage() {
       ) : (
         <>
           <PageHeader title="Edit workout" />
-          <Paper sx={{ p: { xs: 2, sm: 4 }, maxWidth: 720 }}>
+          <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 }, maxWidth: 900 }}>
             <Stack
               component="form"
               gap={2}
@@ -74,7 +74,10 @@ export default function EditWorkoutPage() {
               </Button>
             </Stack>
           </Paper>
-          <Paper sx={{ p: { xs: 2, sm: 4 }, maxWidth: 900, mt: 3 }}>
+          <Paper
+            variant="outlined"
+            sx={{ p: { xs: 2, sm: 3 }, maxWidth: 1040, mt: 3 }}
+          >
             <Stack gap={3}>
               <WorkoutExerciseEditor workout={workout} onReload={reload} />
               {workout.status !== "COMPLETED" && (

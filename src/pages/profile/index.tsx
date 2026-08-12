@@ -5,6 +5,7 @@ import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import { getUserProfile } from "fitness/utils/spec";
 import type { Profile } from "fitness/utils/types";
+import { formatCount } from "fitness/utils/copy";
 import { formatHeight, formatWeight } from "fitness/utils/units";
 import { useEffect, useState } from "react";
 
@@ -27,7 +28,7 @@ export default function ProfilePage() {
       ) : profile === undefined ? (
         <LoadingState />
       ) : profile ? (
-        <Paper sx={{ p: 4, maxWidth: 720 }}>
+        <Paper variant="outlined" sx={{ p: 4, maxWidth: 720 }}>
           <Stack gap={2}>
             <Typography variant="h5">
               {profile.firstName} {profile.lastName}
@@ -37,7 +38,7 @@ export default function ProfilePage() {
               {profile.fitnessGoal.replaceAll("_", " ")}
             </Typography>
             <Typography>
-              Weekly target: {profile.weeklyWorkoutTarget} workouts
+              Weekly target: {formatCount(profile.weeklyWorkoutTarget, "workout")}
             </Typography>
             <Typography>Units: {profile.unitSystem.toLowerCase()}</Typography>
             {profile.heightCm && (

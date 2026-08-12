@@ -14,7 +14,7 @@ export default function OnboardingPage() {
     <AuthenticatedPage>
       <Box minHeight="100vh" display="grid" sx={{ placeItems: "center", p: 2 }}>
         <Container maxWidth="md">
-          <Paper sx={{ p: { xs: 3, md: 5 } }}>
+          <Paper variant="outlined" sx={{ p: { xs: 3, md: 5 } }}>
             <Stack gap={1} mb={4}>
               <Typography variant="h4" fontWeight={800}>Set up FitWell</Typography>
               <Typography color="text.secondary">Tell us how you train so your workout experience starts in the right place.</Typography>

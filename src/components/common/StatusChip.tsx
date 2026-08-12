@@ -6,7 +6,7 @@ export default function StatusChip({ status }: { status: string }) {
     status === "COMPLETED"
       ? "success"
       : status === "IN_PROGRESS"
-        ? "primary"
+        ? "warning"
         : status === "DRAFT" || status === "SCHEDULED"
           ? "warning"
           : status === "CANCELLED"

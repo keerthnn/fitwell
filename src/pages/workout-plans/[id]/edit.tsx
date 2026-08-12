@@ -12,6 +12,21 @@ export default function EditWorkoutPlanPage() {
   const router = useRouter();
   const id = typeof router.query.id === "string" ? router.query.id : "";
   const [plan, setPlan] = useState<WorkoutPlan>();
-  useEffect(() => { if (id) void getWorkoutPlan(id).then(setPlan); }, [id]);
-  return <AuthenticatedPage>{!plan ? <LoadingState /> : <><PageHeader title="Edit Workout Plan" /><Paper sx={{ p: 4 }}><WorkoutPlanForm initial={plan} /></Paper></>}</AuthenticatedPage>;
+  useEffect(() => {
+    if (id) void getWorkoutPlan(id).then(setPlan);
+  }, [id]);
+  return (
+    <AuthenticatedPage>
+      {!plan ? (
+        <LoadingState />
+      ) : (
+        <>
+          <PageHeader title="Edit Workout Plan" />
+          <Paper variant="outlined" sx={{ p: 4 }}>
+            <WorkoutPlanForm initial={plan} />
+          </Paper>
+        </>
+      )}
+    </AuthenticatedPage>
+  );
 }

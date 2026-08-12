@@ -1,8 +1,8 @@
 import { ArrowForward, Schedule } from "@mui/icons-material";
 import { Button, Card, CardContent, Stack, Typography } from "@mui/material";
-import FitWellImage from "fitness/components/common/FitWellImage";
 import StatusChip from "fitness/components/common/StatusChip";
-import { resolveWorkoutImageCandidates } from "fitness/lib/images/assetRegistry";
+import WorkoutSummaryVisual from "fitness/components/workouts/WorkoutSummaryVisual";
+import { formatCount } from "fitness/utils/copy";
 import type { WorkoutListItem } from "fitness/utils/types";
 import Link from "next/link";
 
@@ -21,13 +21,18 @@ export default function WorkoutCard({
         gridTemplateColumns: compact ? "180px 1fr" : undefined,
         overflow: "hidden",
         height: "100%",
+        "&:hover": {
+          transform: "translateY(-3px)",
+          boxShadow: (theme) =>
+            theme.palette.mode === "dark"
+              ? "0 16px 38px rgb(0 0 0 / 0.34)"
+              : "0 16px 38px rgb(15 23 42 / 0.14)",
+        },
       }}
     >
-      <FitWellImage
-        candidates={resolveWorkoutImageCandidates(workout)}
-        alt={`${workout.name} workout illustration`}
+      <WorkoutSummaryVisual
+        workout={workout}
         aspectRatio={compact ? "4 / 3" : "16 / 10"}
-        objectFit="contain"
       />
       <CardContent>
         <Stack direction="row" justifyContent="space-between" gap={2}>
@@ -36,7 +41,7 @@ export default function WorkoutCard({
         </Stack>
         <Typography color="text.secondary" variant="body2" mt={0.75}>
           {new Date(workout.workoutDate).toLocaleDateString()} ·{" "}
-          {workout.exerciseCount} exercises
+          {formatCount(workout.exerciseCount, "exercise")}
         </Typography>
         <Stack direction="row" alignItems="center" gap={0.5} mt={1}>
           <Schedule fontSize="small" color="action" />

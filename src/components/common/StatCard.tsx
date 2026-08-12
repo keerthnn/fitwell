@@ -10,7 +10,7 @@ export default function StatCard({
   return (
     <Paper
       variant="outlined"
-      sx={{ p: 2.5, minWidth: 0, minHeight: 144, height: "100%" }}
+      sx={{ p: 2.25, minWidth: 0, minHeight: 116, height: "100%" }}
     >
       <Typography color="text.secondary" variant="body2">
         {label}

@@ -78,7 +78,7 @@ export default function DashboardContent({
             label="Current streak"
             value={summary.currentStreak}
             helper={summary.currentStreak === 1 ? "day" : "days"}
-            tone="warning"
+            tone="neutral"
           />
         </Grid>
         <Grid size={{ xs: 6, lg: 3 }}>
@@ -96,7 +96,7 @@ export default function DashboardContent({
             label="Training time"
             value={summary.totalDurationMinutes}
             helper="minutes"
-            tone="info"
+            tone="neutral"
           />
         </Grid>
       </Grid>

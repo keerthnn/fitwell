@@ -15,12 +15,21 @@ export default function WorkoutExerciseEditor({
   const [exerciseId, setExerciseId] = useState("");
   useEffect(() => { void getExercises({ limit: "100" }).then((result) => setCatalogue(result.items)); }, []);
   return (
-    <Stack gap={2}>
-      <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
+    <Stack gap={3}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        alignItems={{ sm: "center" }}
+        gap={1.5}
+        sx={{
+          p: { xs: 1.5, sm: 2 },
+          borderRadius: 2.5,
+          bgcolor: "action.hover",
+        }}
+      >
         <TextField select label="Add exercise" value={exerciseId} onChange={(event) => setExerciseId(event.target.value)}>
           {catalogue.map((exercise) => <MenuItem key={exercise.id} value={exercise.id}>{exercise.name}</MenuItem>)}
         </TextField>
-        <Button variant="outlined" disabled={!exerciseId} onClick={async () => {
+        <Button sx={{ minWidth: 112 }} variant="outlined" disabled={!exerciseId} onClick={async () => {
           await addExerciseToWorkout(workout.id, { exerciseId, order: workout.exercises.length });
           setExerciseId("");
           await onReload();

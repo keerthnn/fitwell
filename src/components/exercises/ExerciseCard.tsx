@@ -46,7 +46,6 @@ export default function ExerciseCard({
           <Chip size="small" label={exercise.movement.toLowerCase()} />
           <Chip
             size="small"
-            color={exercise.isCompound ? "primary" : "default"}
             label={exercise.isCompound ? "Compound" : "Isolation"}
           />
         </Stack>

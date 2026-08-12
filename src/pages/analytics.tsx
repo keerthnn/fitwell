@@ -28,7 +28,7 @@ export default function AnalyticsPage() {
         <LoadingState />
       ) : (
         <>
-          <Grid container spacing={2} mb={4}>
+          <Grid container spacing={2} mb={3}>
             <Grid size={{ xs: 6, md: 3 }}>
               <StatCard label="Completed" value={summary.completedWorkouts} />
             </Grid>
@@ -51,14 +51,34 @@ export default function AnalyticsPage() {
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 6 }}>
               <MetricList
+                title="Workout frequency"
+                items={summary.workoutFrequency}
+                valueLabel={(value) => `${value} workout${value === 1 ? "" : "s"}`}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <MetricList
                 title="Muscle distribution"
                 items={summary.muscleDistribution}
+                valueLabel={(value) => `${value} exercise${value === 1 ? "" : "s"}`}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <MetricList
+                title="Personal bests"
+                items={summary.personalBests.map((item) => ({
+                  name: item.exercise,
+                  value: item.weightKg,
+                }))}
+                valueLabel={(value) => `${value} kg`}
+                empty="Complete weighted sets to see personal bests."
               />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
               <MetricList
                 title="Workout Plan usage"
                 items={summary.workoutPlanUsage}
+                valueLabel={(value) => `${value} workout${value === 1 ? "" : "s"}`}
               />
             </Grid>
           </Grid>
@@ -71,24 +91,36 @@ export default function AnalyticsPage() {
 function MetricList({
   title,
   items,
+  valueLabel = (value) => String(value),
+  empty = "Complete a workout to see this insight.",
 }: {
   title: string;
   items: Array<{ name: string; value: number }>;
+  valueLabel?: (value: number) => string;
+  empty?: string;
 }) {
   return (
-    <Paper variant="outlined" sx={{ p: 3 }}>
+    <Paper variant="outlined" sx={{ p: 3, height: "100%", minHeight: 180 }}>
       <Typography variant="h6" mb={2}>
         {title}
       </Typography>
       <Stack gap={1}>
         {items.length ? (
           items.map((item) => (
-            <Typography key={item.name}>
-              {item.name}: {item.value}
-            </Typography>
+            <Stack
+              key={item.name}
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              gap={2}
+              sx={{ py: 0.5 }}
+            >
+              <Typography color="text.secondary">{item.name}</Typography>
+              <Typography fontWeight={800}>{valueLabel(item.value)}</Typography>
+            </Stack>
           ))
         ) : (
-          <Typography color="text.secondary">No data yet.</Typography>
+          <Typography color="text.secondary">{empty}</Typography>
         )}
       </Stack>
     </Paper>

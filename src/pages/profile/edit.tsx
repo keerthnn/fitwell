@@ -29,7 +29,7 @@ export default function EditProfilePage() {
       ) : profile === undefined ? (
         <LoadingState />
       ) : (
-        <Paper sx={{ p: { xs: 2, md: 4 }, maxWidth: 900 }}>
+        <Paper variant="outlined" sx={{ p: { xs: 2, md: 4 }, maxWidth: 900 }}>
           <ProfileForm
             initial={profile}
             submitLabel="Save changes"

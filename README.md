@@ -2,6 +2,8 @@
 
 FitWell is a local-development-only workout tracker built with Next.js Pages Router, React, MUI, Firebase Authentication, PostgreSQL, and Prisma.
 
+The as-built product specification, requirement traceability, known gaps, and release plan are documented in [FitWell Version 1: Current-State Specification and Delivery Plan](docs/FITWELL_V1_SPEC_PLAN.md). The route-by-route interface specification is in [FitWell Page Design Specification](docs/PAGE_DESIGN_SPEC.md).
+
 ## Local setup
 
 1. Configure Firebase client and admin credentials in `.env`.

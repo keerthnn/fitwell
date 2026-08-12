@@ -3,6 +3,7 @@ import AdminLayout from "fitness/components/AdminLayout";
 import AdminDataList from "fitness/components/admin/layout/AdminDataList";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
+import { formatCount } from "fitness/utils/copy";
 import { adminDeleteWorkout, getAdminWorkouts } from "fitness/utils/spec";
 import type { AdminWorkoutListItem } from "fitness/utils/types";
 import { useCallback, useEffect, useState } from "react";
@@ -43,9 +44,7 @@ export default function AdminWorkoutsPage() {
                     alignItems="center"
                     flexWrap="wrap"
                   >
-                    <Typography fontWeight={700}>
-                      {item.name}
-                    </Typography>
+                    <Typography fontWeight={700}>{item.name}</Typography>
                     <Chip
                       size="small"
                       color={
@@ -60,7 +59,7 @@ export default function AdminWorkoutsPage() {
                   </Stack>
                   <Typography color="text.secondary" variant="body2">
                     {item.user.displayName ?? item.user.email} ·{" "}
-                    {item._count.exercises} exercises
+                    {formatCount(item._count.exercises, "exercise")}
                   </Typography>
                 </Stack>
                 <Button

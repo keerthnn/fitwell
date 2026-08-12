@@ -7,10 +7,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import FitWellImage from "fitness/components/common/FitWellImage";
 import StatusChip from "fitness/components/common/StatusChip";
 import DeleteWorkoutButton from "fitness/components/workouts/DeleteWorkoutButton";
-import { resolveWorkoutImageCandidates } from "fitness/lib/images/assetRegistry";
+import WorkoutSummaryVisual from "fitness/components/workouts/WorkoutSummaryVisual";
+import { formatCount } from "fitness/utils/copy";
 import type { WorkoutListItem } from "fitness/utils/types";
 import Link from "next/link";
 
@@ -62,12 +62,7 @@ function WorkoutListRow({
             borderRadius: 2,
           }}
         >
-          <FitWellImage
-            candidates={resolveWorkoutImageCandidates(workout)}
-            alt={`${workout.name} workout illustration`}
-            height="100%"
-            objectFit="contain"
-          />
+          <WorkoutSummaryVisual workout={workout} height="100%" compact />
         </Box>
 
         <Box minWidth={0}>
@@ -107,7 +102,7 @@ function WorkoutListRow({
               color="text.secondary"
               whiteSpace="nowrap"
             >
-              {workout.exerciseCount} exercises
+              {formatCount(workout.exerciseCount, "exercise")}
             </Typography>
           </Box>
           <IconButton

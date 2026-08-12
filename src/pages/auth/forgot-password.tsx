@@ -32,7 +32,7 @@ export default function ForgotPasswordPage() {
   return (
     <Box minHeight="100vh" display="grid" sx={{ placeItems: "center", p: 2 }}>
       <Container maxWidth="sm">
-        <Paper sx={{ p: { xs: 3, sm: 5 } }}>
+        <Paper elevation={2} sx={{ p: { xs: 3, sm: 5 } }}>
           <Stack component="form" onSubmit={submit} gap={3}>
             <Typography variant="h4" fontWeight={800}>
               Reset password
