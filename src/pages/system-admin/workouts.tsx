@@ -51,7 +51,7 @@ export default function AdminWorkoutsPage() {
                         item.status === "COMPLETED"
                           ? "success"
                           : item.status === "IN_PROGRESS"
-                            ? "primary"
+                            ? "warning"
                             : "warning"
                       }
                       label={item.status.replaceAll("_", " ")}

@@ -17,9 +17,7 @@ import {
 } from "@mui/material";
 import FitWellImage from "fitness/components/common/FitWellImage";
 import HeroSurface from "fitness/components/common/HeroSurface";
-import {
-  resolveExerciseImageCandidates,
-} from "fitness/lib/images/assetRegistry";
+import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
 import WorkoutPlanVisual from "fitness/components/workout-plans/WorkoutPlanVisual";
 import { formatCount, pluralize } from "fitness/utils/copy";
 import type { WorkoutPlan, WorkoutPlanExercise } from "fitness/utils/types";
@@ -92,16 +90,14 @@ function ExerciseRow({
           />
         ) : (
           <Box
+            role="img"
+            aria-label="Exercise muscle group not mapped"
             sx={{
               width: "100%",
               height: "100%",
               bgcolor: "action.hover",
-              display: "grid",
-              placeItems: "center",
             }}
-          >
-            <FitnessCenter color="action" />
-          </Box>
+          />
         )}
       </Box>
 
@@ -139,7 +135,7 @@ function ExerciseRow({
             {item.restSeconds ? `${item.restSeconds}s rest` : "Self-paced"}
           </Typography>
         </Box>
-        <FitnessCenter color="action" />
+        <FitnessCenter sx={{ color: "text.secondary", fontSize: 20 }} />
       </Stack>
     </Box>
   );
@@ -177,12 +173,14 @@ export default function WorkoutPlanDetail({
 
           <Stack p={{ xs: 2.5, sm: 4 }} gap={2.5} justifyContent="center">
             <Stack direction="row" gap={1} flexWrap="wrap">
-              <Chip
-                size="small"
-                label={plan.difficulty.toLowerCase()}
-                sx={{ textTransform: "capitalize" }}
-              />
-              <Chip size="small" label={plan.category} />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                textTransform="capitalize"
+                alignSelf="center"
+              >
+                {plan.difficulty.toLowerCase()} · {plan.category}
+              </Typography>
               {plan.isBuiltIn && <Chip size="small" label="Built-in plan" />}
             </Stack>
 
@@ -193,7 +191,7 @@ export default function WorkoutPlanDetail({
 
             <Stack direction="row" gap={{ xs: 2, sm: 4 }} flexWrap="wrap">
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <CalendarMonth color="action" fontSize="small" />
+                <CalendarMonth sx={{ color: "text.secondary", fontSize: 18 }} />
                 <Box>
                   <Typography fontWeight={800}>{plan.daysPerWeek}</Typography>
                   <Typography variant="caption" color="text.secondary">
@@ -202,7 +200,7 @@ export default function WorkoutPlanDetail({
                 </Box>
               </Stack>
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <FitnessCenter color="action" fontSize="small" />
+                <FitnessCenter sx={{ color: "text.secondary", fontSize: 18 }} />
                 <Box>
                   <Typography fontWeight={800}>
                     {plan.exercises.length}
@@ -213,7 +211,7 @@ export default function WorkoutPlanDetail({
                 </Box>
               </Stack>
               <Stack direction="row" alignItems="center" gap={0.75}>
-                <Schedule color="action" fontSize="small" />
+                <Schedule sx={{ color: "text.secondary", fontSize: 18 }} />
                 <Box>
                   <Typography fontWeight={800}>
                     {plan.exercises.reduce(

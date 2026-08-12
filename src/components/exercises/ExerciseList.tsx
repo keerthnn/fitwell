@@ -130,7 +130,7 @@ export default function ExerciseList({
       {columns.map((column, columnIndex) => (
         <Paper
           key={columnIndex === 0 ? "left" : "right"}
-          variant="outlined"
+          elevation={1}
           sx={{ overflow: "hidden" }}
         >
           <Stack divider={<Divider flexItem />}>

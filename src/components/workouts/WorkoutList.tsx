@@ -90,7 +90,7 @@ function WorkoutListRow({
               justifyContent="flex-end"
               gap={0.5}
             >
-              <Schedule sx={{ fontSize: 17 }} color="action" />
+              <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
               <Typography variant="body2" whiteSpace="nowrap">
                 {workout.durationMinutes
                   ? `${workout.durationMinutes} min`
@@ -108,7 +108,10 @@ function WorkoutListRow({
           <IconButton
             component="span"
             aria-label={`View ${workout.name}`}
-            sx={{ display: { xs: "none", sm: "inline-flex" } }}
+            sx={{
+              display: { xs: "none", sm: "inline-flex" },
+              color: "text.secondary",
+            }}
           >
             <ArrowForward />
           </IconButton>

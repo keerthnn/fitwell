@@ -53,9 +53,16 @@ export default function DeleteWorkoutButton({
       {compact ? (
         <Tooltip title="Delete workout">
           <IconButton
-            color="error"
             aria-label={`Delete ${workoutName}`}
             onClick={() => setOpen(true)}
+            sx={{
+              color: "text.disabled",
+              "&:hover, &:focus-visible": {
+                color: "error.main",
+                bgcolor: (theme) =>
+                  theme.fitwell.colors.semantic.error.container,
+              },
+            }}
           >
             <DeleteOutline />
           </IconButton>

@@ -71,9 +71,10 @@ export default function AdminWorkoutPlansPage() {
               <Stack direction="row" alignItems="center" gap={1.5}>
                 <Chip
                   size="small"
+                  color={item.isArchived ? "warning" : "success"}
                   label={item.isArchived ? "Archived" : "Active"}
                 />
-                <ArrowForward color="action" />
+                <ArrowForward sx={{ color: "text.secondary", fontSize: 20 }} />
               </Stack>
             </Box>
           )}

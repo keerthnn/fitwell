@@ -76,9 +76,10 @@ export default function AdminExercisesPage() {
               <Stack direction="row" alignItems="center" gap={1.5}>
                 <Chip
                   size="small"
+                  color={item.isActive ? "success" : "warning"}
                   label={item.isActive ? "Active" : "Archived"}
                 />
-                <ArrowForward color="action" />
+                <ArrowForward sx={{ color: "text.secondary", fontSize: 20 }} />
               </Stack>
             </Box>
           )}

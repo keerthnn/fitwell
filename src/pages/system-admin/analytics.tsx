@@ -91,7 +91,7 @@ export default function AdminAnalyticsPage() {
                   <Typography fontWeight={700} flex={1}>
                     {String(label)}
                   </Typography>
-                  <ArrowForward color="action" fontSize="small" />
+                  <ArrowForward sx={{ color: "text.secondary", fontSize: 20 }} />
                 </Box>
               ))}
             </Stack>

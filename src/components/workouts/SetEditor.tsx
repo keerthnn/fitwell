@@ -1,10 +1,14 @@
-import { Add, CheckCircle, Delete } from "@mui/icons-material";
+import {
+  Add,
+  CheckCircle,
+  CheckCircleOutline,
+  Delete,
+} from "@mui/icons-material";
 import {
   Alert,
   Box,
   Button,
   Checkbox,
-  FormControlLabel,
   IconButton,
   Paper,
   Stack,
@@ -162,23 +166,22 @@ export default function SetEditor({ item }: { item: WorkoutExerciseDetail }) {
               gap={0.5}
               sx={{ gridColumn: { xs: "2", sm: "auto" }, gridRow: { xs: 1 } }}
             >
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={set.isCompleted}
-                    onChange={(event) =>
-                      update(index, { isCompleted: event.target.checked })
-                    }
-                    inputProps={{
-                      "aria-label": `Complete set ${index + 1}`,
-                    }}
-                  />
+              <Checkbox
+                checked={set.isCompleted}
+                icon={<CheckCircleOutline />}
+                checkedIcon={<CheckCircle />}
+                onChange={(event) =>
+                  update(index, { isCompleted: event.target.checked })
                 }
-                label="Done"
-                sx={{ mr: 0, "& .MuiFormControlLabel-label": { fontSize: 14 } }}
+                inputProps={{
+                  "aria-label": `Complete set ${index + 1}`,
+                }}
+                sx={{
+                  color: "text.disabled",
+                  "&.Mui-checked": { color: "success.main" },
+                }}
               />
               <IconButton
-                color="error"
                 aria-label={`Remove set ${index + 1}`}
                 onClick={() => {
                   setSaveState("idle");
@@ -190,6 +193,14 @@ export default function SetEditor({ item }: { item: WorkoutExerciseDetail }) {
                         setNumber: setIndex + 1,
                       })),
                   );
+                }}
+                sx={{
+                  color: "text.disabled",
+                  "&:hover, &:focus-visible": {
+                    color: "error.main",
+                    bgcolor: (theme) =>
+                      theme.fitwell.colors.semantic.error.container,
+                  },
                 }}
               >
                 <Delete />

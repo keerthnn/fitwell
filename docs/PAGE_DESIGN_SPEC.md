@@ -73,11 +73,11 @@ Page titles use a bold weight. Body text remains sentence case. Avoid all-caps e
 | FitWell image | Fixed aspect ratio, `object-fit: contain`, meaningful alt text, deterministic fallback. |
 | Hero surface | The single dominant page region; stronger elevation, semantic/primary accent, and more generous spacing than surrounding cards or panels. Used for active workouts and major detail introductions. |
 
-### 2.5 Workout-specific imagery
+### 2.5 Workout Plan imagery
 
-Workout Plans retain their workout-specific cover images. A supplied cover image is the first choice; built-in plans then resolve to the matching plan artwork, followed by a representative exercise, a category workout image, and finally the general strength fallback.
+Every built-in Workout Plan uses its own simple 3:2 WebP cover. The shared visual family uses a navy background, a minimal body diagram, and a coral highlight for the plan's target muscles. Each cover is available at 768×512 and 384×256 for responsive loading.
 
-The same deterministic image resolution must appear on member plan cards/lists/details, administrator plan lists, and workout summaries. Do not replace a workout image with an abstract category icon when workout-specific artwork is available.
+User-created plans retain an explicitly supplied custom cover. Exercise cards, exercise lists, administrator exercise thumbnails, workout history, and active-workout summaries retain their existing exercise/workout-specific image resolution and fallback chains. Plan covers use the same fixed aspect ratios as the image slots they replace, so cards and rows do not shift.
 
 ## 3. Application shells
 
@@ -267,9 +267,9 @@ Mobile:
 
 **Purpose:** Find an exercise and optionally start training from it.
 
-**Composition:** Page header with Start empty workout. Filter toolbar contains search, equipment, muscle group, and movement. Results use an image-led responsive card grid.
+**Composition:** Page header with Start empty workout. Filter toolbar contains search, equipment, muscle group, and movement. Results use image-led responsive rows/cards.
 
-**Exercise card:** Illustration, exercise name, primary muscle, equipment, movement/tracking context, and Start workout icon/button. Whole-card navigation should be added only if an exercise detail page exists.
+**Exercise card:** Exercise-specific image, exercise name, primary muscle, equipment, movement/tracking context, and Start workout icon/button. Whole-card navigation should be added only if an exercise detail page exists.
 
 **Desktop:** Four or three cards per row depending on width. **Tablet:** two. **Mobile:** one or compact two-column cards only when labels remain readable.
 
@@ -380,9 +380,9 @@ Mobile:
 **Composition:**
 
 1. Header with plan name and Edit plan only for owner-created plans.
-2. Hero panel: cover image, difficulty/category/built-in chips, description, days/week, exercise count, total sets.
+2. Hero panel: plan-specific WebP or explicit custom cover, difficulty/category metadata, built-in status chip, description, days/week, exercise count, total sets.
 3. Primary Start workout and secondary Duplicate plan.
-4. Ordered exercise prescription list showing image, muscle/equipment, sets, rep range, and rest.
+4. Ordered exercise prescription list showing exercise-specific image, muscle/equipment, sets, rep range, and rest.
 5. Archive action for owned plans in a separate management area.
 
 **Mobile:** Hero stacks image above copy; actions become full-width; prescription rows use compact image and two-line metadata.

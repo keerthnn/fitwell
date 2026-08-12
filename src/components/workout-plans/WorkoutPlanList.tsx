@@ -89,7 +89,7 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             justifyContent="flex-end"
             gap={0.5}
           >
-            <CalendarMonth sx={{ fontSize: 17 }} color="action" />
+            <CalendarMonth sx={{ fontSize: 18, color: "text.secondary" }} />
             <Typography variant="body2" whiteSpace="nowrap">
               {formatDaysPerWeek(plan.daysPerWeek)}
             </Typography>
@@ -100,7 +100,7 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             justifyContent="flex-end"
             gap={0.5}
           >
-            <FitnessCenter sx={{ fontSize: 17 }} color="action" />
+            <FitnessCenter sx={{ fontSize: 18, color: "text.secondary" }} />
             <Typography
               variant="caption"
               color="text.secondary"
@@ -110,7 +110,11 @@ function WorkoutPlanListRow({ plan }: { plan: WorkoutPlan }) {
             </Typography>
           </Stack>
         </Box>
-        <IconButton component="span" aria-label={`View ${plan.name}`}>
+        <IconButton
+          component="span"
+          aria-label={`View ${plan.name}`}
+          sx={{ color: "text.secondary" }}
+        >
           <ArrowForward />
         </IconButton>
       </Stack>
@@ -136,7 +140,7 @@ export default function WorkoutPlanList({ plans }: { plans: WorkoutPlan[] }) {
       {columns.map((column, columnIndex) => (
         <Paper
           key={columnIndex === 0 ? "left" : "right"}
-          variant="outlined"
+          elevation={1}
           sx={{ overflow: "hidden" }}
         >
           <Stack divider={<Divider flexItem />}>

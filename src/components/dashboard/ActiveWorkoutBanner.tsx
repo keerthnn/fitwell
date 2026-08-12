@@ -48,7 +48,7 @@ export default function ActiveWorkoutBanner({
           mt={2}
         >
           <Stack direction="row" gap={0.75} alignItems="center">
-            <Schedule fontSize="small" />
+            <Schedule sx={{ fontSize: 18 }} />
             <Typography variant="body2">
               {workout.durationMinutes
                 ? `${workout.durationMinutes} min`
@@ -56,7 +56,7 @@ export default function ActiveWorkoutBanner({
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.75} alignItems="center">
-            <FitnessCenter fontSize="small" />
+            <FitnessCenter sx={{ fontSize: 18 }} />
             <Typography variant="body2">
               {formatCount(workout.exerciseCount, "exercise")}
             </Typography>

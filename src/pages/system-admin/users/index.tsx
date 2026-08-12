@@ -55,7 +55,7 @@ export default function AdminUsersPage() {
                   >
                     {formatCount(item._count.workouts, "workout")}
                   </Typography>
-                  <ArrowForward color="action" />
+                  <ArrowForward sx={{ color: "text.secondary", fontSize: 20 }} />
                 </Stack>
               </Box>
             );

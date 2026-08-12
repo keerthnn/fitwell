@@ -148,7 +148,7 @@ for (const plan of workoutPlans) {
     await register(
       `workout-plans/covers/${plan.slug}-${size}.webp`,
       "plan-cover",
-      "openai-imagegen-fitwell-cover",
+      "openai-imagegen-fitwell-simple-plan-cover",
     );
   }
 }

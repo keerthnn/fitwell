@@ -19,7 +19,7 @@ import Link from "next/link";
 export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
   return (
     <Card
-      variant="outlined"
+      elevation={1}
       sx={{
         height: "100%",
         overflow: "hidden",
@@ -44,13 +44,13 @@ export default function WorkoutPlanCard({ plan }: { plan: WorkoutPlan }) {
         </Typography>
         <Stack direction="row" gap={2} mt={2} color="text.secondary">
           <Stack direction="row" gap={0.5} alignItems="center">
-            <CalendarMonth fontSize="small" />
+            <CalendarMonth sx={{ fontSize: 18 }} />
             <Typography variant="caption">
               {formatDaysPerWeek(plan.daysPerWeek)}
             </Typography>
           </Stack>
           <Stack direction="row" gap={0.5} alignItems="center">
-            <FitnessCenter fontSize="small" />
+            <FitnessCenter sx={{ fontSize: 18 }} />
             <Typography variant="caption">
               {formatCount(plan.exercises.length, "exercise")}
             </Typography>

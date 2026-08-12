@@ -71,7 +71,7 @@ function RecentWorkoutRow({ workout }: { workout: WorkoutListItem }) {
       </Box>
       <Stack alignItems="flex-end" gap={0.5}>
         <Stack direction="row" alignItems="center" gap={0.5}>
-          <Schedule sx={{ fontSize: 16 }} color="action" />
+          <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
           <Typography variant="body2" whiteSpace="nowrap">
             {workout.durationMinutes ? `${workout.durationMinutes} min` : "—"}
           </Typography>

@@ -68,7 +68,7 @@ export default function WorkoutDetailPage() {
                   Duration
                 </Typography>
                 <Stack direction="row" gap={0.75} mt={0.5} alignItems="center">
-                  <Schedule fontSize="small" color="action" />
+                  <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
                   <Typography fontWeight={700}>
                     {workout.durationMinutes ?? 0} min
                   </Typography>

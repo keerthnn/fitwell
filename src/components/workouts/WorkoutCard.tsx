@@ -44,7 +44,7 @@ export default function WorkoutCard({
           {formatCount(workout.exerciseCount, "exercise")}
         </Typography>
         <Stack direction="row" alignItems="center" gap={0.5} mt={1}>
-          <Schedule fontSize="small" color="action" />
+          <Schedule sx={{ fontSize: 18, color: "text.secondary" }} />
           <Typography variant="body2" color="text.secondary">
             {workout.durationMinutes
               ? `${workout.durationMinutes} min`
