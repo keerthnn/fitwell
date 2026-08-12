@@ -52,6 +52,7 @@ export default function ProfileForm({
     setForm((current) => ({ ...current, [key]: value }));
   async function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (dateOfBirthHasError) return;
     setSaving(true);
     try {
       await onSubmit({
@@ -89,6 +90,9 @@ export default function ProfileForm({
           onChange={(event) => set("gender", event.target.value || null)}
         >
           <MenuItem value="">Select an option</MenuItem>
+          {form.gender && !genderOptions.includes(form.gender) && (
+            <MenuItem value={form.gender}>{form.gender}</MenuItem>
+          )}
           {genderOptions.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
