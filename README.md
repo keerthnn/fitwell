@@ -1,6 +1,6 @@
 # FitWell Version 1
 
-FitWell is a local-development-only workout tracker built with Next.js Pages Router, React, MUI, Firebase Authentication, PostgreSQL, and Prisma.
+FitWell is a workout tracker built with Next.js Pages Router, React, MUI, Firebase Authentication, PostgreSQL, and Prisma.
 
 The as-built product specification, requirement traceability, known gaps, and release plan are documented in [FitWell Version 1: Current-State Specification and Delivery Plan](docs/FITWELL_V1_SPEC_PLAN.md). The route-by-route interface specification is in [FitWell Page Design Specification](docs/PAGE_DESIGN_SPEC.md).
 
@@ -15,6 +15,16 @@ The as-built product specification, requirement traceability, known gaps, and re
 7. Start the app with `pnpm run dev`.
 
 The database safety check rejects production mode, remote hosts, cloud-provider hostnames, and any database name other than `fitness`. Prisma resets affect PostgreSQL only. They never delete or modify Firebase Authentication identities.
+
+## Vercel deployment
+
+1. Provision a PostgreSQL database and apply the committed migrations with `pnpm run db:migrate:deploy`.
+2. Seed a new database with `pnpm run db:seed-all` if it needs the built-in exercise and Workout Plan catalogues.
+3. Import the repository into Vercel as a Next.js project. Vercel can use the default install and build settings.
+4. Add every variable from `.env.example` to the Vercel Production environment. Use a pooled PostgreSQL connection URL for `DATABASE_URL`.
+5. Deploy, then add the generated `*.vercel.app` hostname to Firebase Authentication's authorized domains.
+
+The install lifecycle runs `prisma generate`, so the ignored generated Prisma client is recreated during each clean Vercel build. Never run `prisma migrate reset` or the local database reset workflow against a hosted database.
 
 ## Verification
 
