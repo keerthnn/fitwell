@@ -11,6 +11,7 @@
 | `src/utils/types.ts` | Shared browser-facing TypeScript types | A request, response, or UI model needs a reusable type. |
 | `src/lib/` | Server/client integrations and cross-cutting helpers | Adding Prisma, Firebase, API-method, or authorization infrastructure. |
 | `src/styles/` | Global and page-specific CSS | Styling does not belong in the MUI `sx` prop or theme. |
+| `test cases/` | Central Vitest test suite, mirroring the `src/` hierarchy | Adding or moving any `*.test.ts` or `*.test.tsx` test case. |
 | `prisma/schema.prisma` | Database schema | Changing persistent models, relations, enums, or indexes. |
 | `prisma/migrations/` | Prisma migration history | Recording a generated database migration. |
 
@@ -19,4 +20,5 @@
 - Keep route-specific page code beside its page: for example, workout detail belongs at `src/pages/workouts/[id]/index.tsx`.
 - Create a new API file under the closest domain folder. Its URL mirrors the file path: `src/pages/api/workouts/create-workout.ts` serves `/api/workouts/create-workout`.
 - Keep request orchestration in pages/components and database access in API handlers. Browser code must not import Prisma or Firebase Admin.
+- Put every new test case under `test cases/`; do not colocate test files under `src/`.
 - Prefer existing feature names and patterns over creating a parallel folder naming scheme.
