@@ -1,6 +1,6 @@
 ---
 id: architecture-authorization-model
-title: Authorization Model
+title: Authorization Model Standard
 status: draft
 authority: binding-engineering
 requirements: []
@@ -12,24 +12,33 @@ last_verified: null
 
 # Authorization model
 
-> Bootstrap required. Authorization is a Full SDD area. Do not infer current behavior from this placeholder.
+## Purpose
 
-## Principals and roles
+This document is the mandatory engineering contract for resource access. It defines how FitWell converts an authenticated principal into permitted actions while preserving user isolation and administrator boundaries.
 
-<!-- Document verified user and administrator principals. -->
+## Required content
 
-## Ownership rules
+An active revision must define:
 
-<!-- Map resource classes to verified ownership checks. -->
+- Principals, roles, and trust sources.
+- User-owned, platform-owned, shared, and public resource classes.
+- Read, create, update, delete, archive, restore, and administrative permissions.
+- Ownership inheritance across related records.
+- Administrator grant, removal, and loss-of-access behavior.
+- Effects of disabled, deleted, or partially provisioned accounts.
+- Error-disclosure policy for forbidden versus missing resources.
+- Audit requirements for privileged actions.
 
-## Public and shared resources
+## Binding rules
 
-<!-- Document any verified exceptions to private ownership. -->
+- Authenticate and authorize on the server for every protected operation.
+- Never accept user ID, role, or ownership from the client as authority.
+- Verify ownership for both reads and mutations.
+- A null owner is not public authorization unless the resource class explicitly defines it.
+- Client-side routing and hidden controls never replace API authorization.
+- Use least privilege; administrator access does not imply unrestricted data access without a documented requirement.
+- Test signed-out, cross-user, normal-user-on-admin, revoked-admin, and stale-reference cases as applicable.
 
-## Prohibited patterns
+## Change control
 
-<!-- Record load-bearing authorization constraints after verification. -->
-
-## Traceability
-
-<!-- Populate security requirements, code, and adversarial tests after bootstrap. -->
+Any permission, ownership, public/private boundary, or admin-role change requires Full SDD, linked security requirements, and adversarial verification.

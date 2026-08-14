@@ -1,6 +1,6 @@
 ---
 id: database-design
-title: Database Design
+title: Database Design Standard
 status: draft
 authority: engineering
 requirements: []
@@ -13,28 +13,33 @@ last_verified: null
 
 # Database design
 
-> Bootstrap required. `prisma/schema.prisma` remains authoritative for exact structure.
+## Purpose
 
-## Aggregate boundaries
+This document governs how future authors explain FitWell's persistent model without copying the Prisma schema.
 
-<!-- Document verified aggregates and ownership. -->
+## Required content
 
-## Relationship map
+An active revision must define:
 
-<!-- Explain important relations without copying every field. -->
+- Aggregate roots and transaction boundaries.
+- User-owned, platform-owned, shared, and administrative data.
+- Relationship meaning and ownership inheritance.
+- Domain invariants not completely enforced by schema syntax.
+- Identifier strategy and external-identity mapping.
+- Uniqueness, nullability, defaults, and timestamp meaning.
+- Referential actions and why delete/restrict/set-null behavior is safe.
+- JSON, arrays, enums, and units with compatibility implications.
+- Links to feature SDDs and relevant ADRs.
 
-## Domain invariants
+## Rules
 
-<!-- Document invariants not fully expressed by schema constraints. -->
+- Prisma schema is exact structural authority.
+- Prefer database constraints for invariants the database can enforce reliably.
+- Application checks must not be represented as database guarantees.
+- Every user-owned aggregate must have a documented authorization path.
+- Timestamps state timezone and semantic meaning.
+- Derived/duplicated data states its source, refresh rule, and consistency tolerance.
 
-## Deletion and referential behavior
+## Review
 
-<!-- Explain verified cascade, restrict, and set-null intent. -->
-
-## Conventions and trade-offs
-
-<!-- Link related decisions. -->
-
-## Traceability
-
-<!-- Populate after bootstrap. -->
+Activation requires a model diagram, invariant review, query-pattern review, deletion simulation, and traceability to PRDs/SDDs. Structural redesign requires Full SDD.

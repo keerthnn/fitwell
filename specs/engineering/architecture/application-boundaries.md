@@ -1,6 +1,6 @@
 ---
 id: architecture-application-boundaries
-title: Application Boundaries
+title: Application Boundaries Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,24 +12,32 @@ last_verified: null
 
 # Application boundaries
 
-> Bootstrap required. Do not treat this placeholder as verified architecture.
+## Purpose
 
-## Layer responsibilities
+This document governs dependency direction inside the FitWell monolith. It prevents browser code from acquiring server authority, keeps domain logic discoverable, and avoids parallel patterns for the same responsibility.
 
-<!-- Document pages, components, client API wrappers, API routes, libraries, and data access. -->
+## Required boundary definitions
 
-## Allowed dependencies
+An active revision must define responsibilities for:
 
-<!-- Document browser/server boundaries and dependency direction. -->
+- Route-level pages and application shells.
+- Reusable UI components.
+- Browser state and typed API clients.
+- API handlers and request orchestration.
+- Runtime validation.
+- Authentication and authorization helpers.
+- Domain and cross-cutting libraries.
+- Prisma and external-service access.
+- Generated code, assets, scripts, and tests.
 
-## Domain boundaries
+## Rules
 
-<!-- Document cross-domain collaboration and prohibited coupling. -->
+- Browser-safe code must not import server credentials, Firebase Admin, Prisma, or database drivers.
+- API handlers establish method, identity, authorization, validation, and ownership before persistence.
+- Shared abstractions must have one clear responsibility and real reuse.
+- Domain coupling must be explicit in SDDs; avoid circular dependencies.
+- Exact directory rules belong here only when they are stable architecture, not temporary layout.
 
-## Code organization
+## Review
 
-<!-- Link to verified paths and conventions without duplicating code. -->
-
-## Traceability
-
-<!-- Populate after bootstrap. -->
+New top-level source areas, dependency inversions, or competing request/data-access patterns require architecture review and may require an ADR.

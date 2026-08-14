@@ -1,6 +1,6 @@
 ---
 id: prd-workout-plans
-title: Workout Plans
+title: Workout Plan Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: PLAN
@@ -11,24 +11,26 @@ last_verified: null
 
 # Workout plans PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs reusable intended workout structures and the outcomes of creating a performed workout from a plan. It does not own the lifecycle of the resulting workout.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Plan discovery, detail, creation, editing, duplication, archive, restore, and deletion outcomes.
+- Distinction between platform-provided, user-owned, private, and any future shared plans.
+- Exercise ordering and prescription semantics.
+- Availability when referenced exercises change.
+- Starting a workout from a plan and independence of later edits.
+- Ownership and administrator-maintenance outcomes.
+- Empty, incomplete, unavailable, and duplicate-action behavior.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add PLAN-NNN requirements. -->
+Link Exercise Catalog for exercise identity, Workout Engine for created workouts, Administration for platform-provided plans, and system qualities for ownership and data integrity.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `PLAN-NNN`. Public/private boundary changes, ownership changes, and cross-domain lifecycle redesign require Full SDD.

@@ -15,8 +15,10 @@ Before implementation:
 The Full SDD sequence is mandatory and must not be merged or silently skipped:
 
 ```text
-Clarify -> Proposal -> Design -> Tasks -> Verification -> Archive
+Clarify -> Proposal -> Design -> Tasks -> Implementation -> Verification -> Archive
 ```
+
+Clarify and Proposal are separate artifacts. Implementation follows the approved task list and does not add another change-package document.
 
 Use `specs/changes/active/YYYY-MM-DD-semantic-change-name/` and the corresponding templates in `specs/templates/`. Before Archive, synchronize all affected canonical documents and confirm no lasting rule remains only in the change package.
 

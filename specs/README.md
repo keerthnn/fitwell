@@ -1,46 +1,70 @@
 # FitWell specifications
 
-This directory is the canonical home for FitWell product requirements, engineering design, decisions, operations, quality standards, and change records.
+## Purpose
+
+The specs directory is FitWell's canonical repository for durable product and engineering knowledge. It establishes what the product promises, how the system must fulfill those promises, why durable decisions were made, how high-risk changes are controlled, and how releases and recovery are performed safely.
+
+The system follows Docs-as-Contracts: intentional changes to active requirements, designs, decisions, or procedures are incomplete until the relevant specification, implementation, tests, and verification agree.
 
 ## Start here
 
-- [Documentation policy](handbook/documentation-policy.md): authority, lifecycle, and conflict rules.
-- [Engineering workflow](handbook/engineering-workflow.md): lightweight and Full SDD workflows.
-- [Authoring guide](handbook/authoring-guide.md): naming, metadata, and writing rules.
-- [Traceability guide](handbook/traceability-guide.md): requirements-to-code-to-test mapping.
-- [Review checklist](handbook/review-checklist.md): proportional review gates.
+Read the smallest set relevant to the task:
+
+1. [Documentation policy](handbook/documentation-policy.md) for authority, synchronization, lifecycle, and conflict resolution.
+2. [Engineering workflow](handbook/engineering-workflow.md) to select Lightweight or Full SDD.
+3. [Authoring guide](handbook/authoring-guide.md) when writing or editing specifications.
+4. [Traceability guide](handbook/traceability-guide.md) when mapping requirements to design, code, tests, and evidence.
+5. [Review checklist](handbook/review-checklist.md) before completion.
 
 ## Documentation map
 
-| Area | Purpose | Authority |
+| Area | Owns | Authority |
 | --- | --- | --- |
-| [Product](product/README.md) | Vision, shipped-feature inventory, and roadmap | Informational |
-| [PRDs](prds/README.md) | Observable product behavior and system qualities | Binding product |
-| [Engineering](engineering/README.md) | Architecture, SDDs, APIs, data, decisions, integrations, operations, and quality | Engineering, binding engineering, decision, or operational |
-| [Changes](changes/README.md) | Full SDD work in progress and archived evidence | Temporary until synchronized |
-| [Templates](templates/README.md) | Required document structures | Binding process |
+| [Handbook](handbook/README.md) | Documentation governance, workflow, writing, traceability, review | Binding process and engineering guidance |
+| [Product](product/README.md) | Vision, verified feature inventory, roadmap | Informational |
+| [PRDs](prds/README.md) | Observable product requirements and system qualities | Binding product when active |
+| [Engineering](engineering/README.md) | Architecture, feature SDDs, APIs, data, ADRs, integrations, operations, quality | Engineering, binding engineering, decision, operational |
+| [Changes](changes/README.md) | Full SDD deltas and verification history | Temporary while active; historical after Archive |
+| [Templates](templates/README.md) | Required canonical and Full SDD document structure | Binding process |
 
-## Authority order
+## Authority and conflict
 
-1. Security and user-data-isolation requirements override feature convenience.
-2. An approved active change temporarily overrides the canonical documents it explicitly changes.
-3. PRDs define expected observable behavior.
-4. Engineering SDDs define the approved implementation design.
-5. Accepted decision records define durable technical choices.
-6. Code, validators, Prisma schema, migrations, and tests reveal the exact current executable state.
-7. Product documents provide direction but never override binding specifications.
+Security and user-data-isolation requirements override feature convenience. An approved active change may temporarily override only the canonical statements it explicitly names. PRDs own outcomes; engineering standards and accepted ADRs own mandatory technical constraints; feature SDDs own implementation design. Executable artifacts reveal current behavior but do not silently redefine intended behavior.
 
-If executable state and a binding document disagree, treat the mismatch as drift. Determine whether the implementation or document is wrong and resolve both deliberately.
+When documents or code conflict, stop, classify the drift, and resolve it according to the [documentation policy](handbook/documentation-policy.md).
 
-## Implementation path
+## Knowledge flow
 
-```text
+~~~text
 Product direction
   -> PRDs and system qualities
-  -> Engineering SDDs and decisions
-  -> Code, validators, and Prisma schema
-  -> Tests and verification
+  -> Architecture, feature SDDs, and ADRs
+  -> Code, validators, schema, and migrations
+  -> Automated and manual verification
   -> Deployment and operations
-```
+~~~
 
-Do not duplicate authoritative details. Link to the exact source instead.
+Product documents inform the chain but do not authorize implementation. Tests demonstrate selected contracts but do not create missing requirements.
+
+## Workflow
+
+Lightweight work uses a clear goal, relevant context, plan, tests, implementation, proportional verification, and a specification-sync decision.
+
+Full SDD uses:
+
+~~~text
+Clarify -> Proposal -> Design -> Tasks -> Implementation -> Verification -> Archive
+~~~
+
+Clarify and Proposal remain separate artifacts. Implementation follows approved Tasks; it has no additional change document.
+
+## Responsibilities
+
+- The change author selects the mode, loads relevant context, maintains traceability, and synchronizes documentation.
+- Reviewers check authority, placement, security/data impact, evidence, and link accuracy.
+- The project owner approves Full SDD phase transitions, active PRDs/SDDs, accepted ADRs, destructive operations, and conflict resolution.
+- Agents follow the same rules, do not invent unknown state, and stop for unresolved binding contradictions.
+
+## Maintenance rules
+
+Each fact has one authoritative home; other documents link to it. Update active contracts atomically with intentional behavior changes. Preserve stable IDs and historical decisions. Never store credentials, tokens, personal data, or secret values. Change last_verified only after comparing the document with authoritative evidence.

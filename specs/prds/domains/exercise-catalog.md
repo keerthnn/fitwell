@@ -1,6 +1,6 @@
 ---
 id: prd-exercise-catalog
-title: Exercise Catalog
+title: Exercise Catalog Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: EXERCISE
@@ -11,24 +11,27 @@ last_verified: null
 
 # Exercise catalog PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs how users and authorized administrators discover, understand, and select exercises. It owns catalogue outcomes and terminology, not seed-file formats, asset paths, database columns, or search algorithms.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Exercise identity and distinguishability.
+- Browse, search, filter, and empty-result outcomes.
+- Exercise detail and instruction expectations.
+- Equipment, movement, muscle, and tracking terminology where product-visible.
+- Active, archived, unavailable, and restored exercise behavior.
+- Image or media fallback outcomes.
+- Selection behavior when used by workouts or plans.
+- Administrator catalogue-maintenance outcomes.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add EXERCISE-NNN requirements. -->
+Link Workout Engine and Workout Plans for exercise references, Administration for privileged mutation, system qualities for accessibility, and data requirements for deletion/reference integrity.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `EXERCISE-NNN`. Catalogue content policy and catalogue software behavior must be distinguished explicitly.

@@ -1,20 +1,28 @@
 # Engineering decision records
 
-Decision records preserve accepted technical choices, context, alternatives, and consequences.
+## Purpose
 
-Create a record when a decision affects multiple domains, establishes a repository convention, changes a trust or data boundary, introduces an external dependency, is costly to reverse, or has multiple credible alternatives.
+ADRs preserve durable technical choices and the constraints that made them reasonable. They prevent future contributors from removing a load-bearing design merely because the original discussion is no longer visible.
 
-Do not create one for routine implementation following established conventions.
+## When to create an ADR
 
-## Naming and lifecycle
+Create one when a choice affects multiple domains, establishes a repository convention, changes a trust/data/deployment boundary, introduces or replaces an external dependency, is costly to reverse, or has multiple credible alternatives.
 
-- Filename: `NNNN-semantic-decision.md`.
-- ID: `ADR-NNNN`.
-- Status: `proposed`, `accepted`, `superseded`, or `rejected`.
-- Accepted records are superseded by a new record rather than rewritten substantively.
+Do not create one for routine code organization, a local variable, ordinary CRUD following active standards, or a choice whose only rationale is “already implemented.”
 
-Use the [decision record template](../../templates/decision-record-template.md).
+## Lifecycle
 
-## Records
+- `proposed`: under review and not binding.
+- `accepted`: binding decision.
+- `superseded`: replaced by a named later ADR.
+- `rejected`: considered and deliberately not selected.
 
-- [ADR-0001 placeholder](0001-example-decision.md) — draft template instance; replace during bootstrap before acceptance.
+Accepted ADRs are immutable in substance. Correct typos directly; supersede a changed decision with a new ADR and reciprocal links.
+
+## Naming and content
+
+Use `NNNN-semantic-decision.md` and ID `ADR-NNNN`. Allocate the next unused number; never renumber. Use the [ADR template](../../templates/decision-record-template.md). Context, alternatives, consequences, security/data impact, and related PRDs/SDDs are required.
+
+## Review
+
+The project owner accepts or rejects ADRs. Every active SDD citing a superseded ADR must be reviewed. This index lists accepted and historically relevant records once they exist; no fictitious example ADR occupies the sequence.

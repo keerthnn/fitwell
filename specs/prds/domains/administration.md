@@ -1,6 +1,6 @@
 ---
 id: prd-administration
-title: Administration
+title: Administration Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: ADMIN
@@ -11,24 +11,27 @@ last_verified: null
 
 # Administration PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs capabilities available to authorized FitWell administrators and the observable effects of privileged actions. It does not grant authority; server-side authorization design remains binding engineering policy.
 
-<!-- Define the administrator outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Administrator eligibility and access-denied outcomes.
+- Admin access grant and removal outcomes.
+- User inspection, disablement, restoration, and deletion outcomes.
+- Exercise and workout-plan maintenance outcomes.
+- Workout inspection or intervention boundaries.
+- Feedback triage, reply, closure, and visibility.
+- Administrative analytics.
+- Auditability, confirmation, irreversible-action, and safe-error outcomes.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add ADMIN-NNN requirements. -->
+Each privileged action must link the affected domain PRD rather than redefining its invariants. Link system qualities for least privilege, data isolation, sensitive data, audit retention, and destructive action safeguards.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `ADMIN-NNN`. All authorization, role, user lifecycle, and destructive administrative changes require Full SDD and normal-user rejection evidence.

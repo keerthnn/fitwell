@@ -1,20 +1,32 @@
 # Documentation templates
 
-Use these templates without removing required sections. Sections that do not apply should say `Not applicable` with a short reason.
+## Purpose
 
-## Canonical documents
+Templates define the minimum structure and writing instructions for canonical specifications and Full SDD change artifacts. They reduce omissions without turning review into form-filling.
 
-- [Product requirements](product-requirements-template.md)
-- [Engineering SDD](engineering-sdd-template.md)
-- [Decision record](decision-record-template.md)
+## Canonical templates
 
-## Full SDD change artifacts
+- [PRD template](product-requirements-template.md) for binding product outcomes.
+- [Feature SDD template](engineering-sdd-template.md) for stack-specific design and traceability.
+- [ADR template](decision-record-template.md) for durable technical choices.
 
-Use in this exact order:
+## Full SDD templates
+
+Use these as separate artifacts in exact order:
 
 1. [Clarify](clarify-template.md)
 2. [Proposal](proposal-template.md)
 3. [Design](design-template.md)
 4. [Tasks](tasks-template.md)
-5. [Verification](verification-template.md)
-6. Archive the complete package after canonical synchronization.
+5. Implementation follows the approved tasks; it has no separate template.
+6. [Verification](verification-template.md)
+7. Archive after canonical synchronization.
+
+## Use rules
+
+- Copy the template into its canonical destination and replace every bracketed instruction.
+- Keep every required section. If a section does not apply, write `Not applicable` and explain why.
+- Remove instructional examples that are not relevant to the authored document.
+- Do not activate a document with unresolved material questions or example-only content.
+- Keep frontmatter fields and use repository-relative references.
+- Add detail proportional to risk; never omit security, authorization, data, migration, or recovery analysis when applicable.

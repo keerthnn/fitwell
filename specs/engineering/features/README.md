@@ -1,6 +1,10 @@
 # Feature SDDs
 
-Feature SDDs define how FitWell implements the corresponding domain PRDs. All current files are intentionally unpopulated drafts for the bootstrap phase.
+## Purpose
+
+Feature SDDs define how each FitWell domain fulfills its PRD within shared architecture, API, data, security, and operational constraints. They are the canonical engineering home for domain invariants, flows, failure behavior, and code/test maps.
+
+## Domain SDDs
 
 - [Authentication](authentication.md)
 - [User profiles](user-profiles.md)
@@ -13,4 +17,12 @@ Feature SDDs define how FitWell implements the corresponding domain PRDs. All cu
 - [Feedback](feedback.md)
 - [Administration](administration.md)
 
-Use the [engineering SDD template](../../templates/engineering-sdd-template.md) and the [traceability guide](../../handbook/traceability-guide.md) when bootstrapping a feature.
+## Responsibilities
+
+Each SDD author must trace active PRD IDs, respect architecture and accepted ADRs, define boundaries and failure states, link exact code/tests, and disclose gaps. Shared rules are linked rather than copied.
+
+These documents define domain-specific authoring standards until the codebase bootstrap is performed. They remain `draft` and make no current implementation claims.
+
+## Change control
+
+Update a feature SDD when its invariant, flow, contract, ownership, data lifecycle, or cross-domain dependency changes. Local refactors that preserve the design require only path-map updates when paths materially move.

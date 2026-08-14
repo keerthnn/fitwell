@@ -1,6 +1,6 @@
 ---
 id: prd-user-profiles
-title: User Profiles
+title: User Profile Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: PROFILE
@@ -11,24 +11,27 @@ last_verified: null
 
 # User profiles PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs user-visible profile data, preferences, profile completion, and account-level self-service outcomes. It does not own authentication credentials, workout history semantics, or administrator-only user management.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Profile creation, viewing, and editing outcomes.
+- Required and optional user-provided fields.
+- Validation and correction behavior.
+- Unit, timezone, and fitness-preference outcomes.
+- Incomplete-profile and missing-profile behavior.
+- Profile deletion versus application-account deletion.
+- Disabled or deleted account visibility and recoverability.
+- Privacy expectations for profile information.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add PROFILE-NNN requirements. -->
+Link Onboarding for first-run sequencing, Authentication for identity state, system qualities for privacy and data lifecycle, and Administration for privileged user actions.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `PROFILE-NNN`, remain meaningful without naming database fields, and distinguish user intent from internal storage. Deletion or identity-lifecycle changes require Full SDD.

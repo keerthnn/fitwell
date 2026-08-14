@@ -10,36 +10,56 @@ opened: <YYYY-MM-DD>
 
 # Tasks: <Change title>
 
-## Rules
+> **Phase purpose:** Convert the approved Design into ordered, independently verifiable execution. Link `design.md` and keep this document current during Implementation.
 
-- Follow the approved design; revise earlier artifacts when reality invalidates it.
-- Keep task states current.
-- Complete tests before or with the implementation they verify.
-- Do not defer canonical documentation synchronization past Verification.
+## Task rules
 
-## Red-phase tests
+- Use `[ ]`, `[~]`, and `[x]` for pending, in progress, and completed.
+- Each task names an output and verification.
+- Order by dependency and keep at most one active implementation task per execution stream.
+- Return to an earlier phase when evidence invalidates scope or design.
+- Do not mark a task complete when its required test or evidence is missing.
 
-- [ ] Add requirement-driven tests.
-- [ ] Run them and confirm they fail for the intended reason.
+## 1. Red-phase tests
 
-## Implementation
+- [ ] Add tests for <requirement/criterion>; verify by running <focused command>.
+- [ ] Demonstrate the expected Red failure and record why it proves the test exercises missing behavior.
+- [ ] Add adversarial, boundary, and failure tests required by the Design.
 
-- [ ] <!-- Add ordered, independently verifiable implementation tasks. -->
+## 2. Implementation
 
-## Data and deployment
+- [ ] Implement <bounded design unit>; verify with <focused tests/typecheck>.
+- [ ] Implement <next dependency>; verify with <evidence>.
+- [ ] Update shared client types/wrappers and endpoint contracts where applicable.
+- [ ] Perform focused review against the approved Design.
 
-- [ ] <!-- Add migration, backfill, configuration, rollout, or recovery tasks; state Not applicable when appropriate. -->
+## 3. Data, configuration, and deployment
 
-## Documentation synchronization
+- [ ] Create and review migration/backfill/integrity work, or record `Not applicable` with reason.
+- [ ] Update configuration/example/integration records, or record `Not applicable`.
+- [ ] Prepare rollout and recovery evidence required by the runbooks.
 
-- [ ] Update affected PRDs.
-- [ ] Update affected SDDs and architecture documents.
-- [ ] Add or supersede required decisions.
-- [ ] Update API, database, integration, and operations documents as applicable.
-- [ ] Update product feature catalog if shipped behavior changed.
+## 4. Canonical documentation synchronization
 
-## Verification and archive
+- [ ] Update affected PRD requirements and statuses.
+- [ ] Update feature and architecture SDDs, including code/test maps.
+- [ ] Add, accept, or supersede ADRs.
+- [ ] Update endpoint catalog and API standards.
+- [ ] Update database, integration, and operations documents.
+- [ ] Review product feature catalog and roadmap.
 
-- [ ] Complete `verification.md`.
+## 5. Verification
+
+- [ ] Complete automated checks from the verification matrix.
+- [ ] Complete manual, role, failure, migration, and environment scenarios.
+- [ ] Complete `verification.md` and resolve deviations/gaps.
+
+## 6. Archive
+
 - [ ] Confirm no lasting rule remains only in this package.
-- [ ] Move the verified package to `specs/changes/archive/YYYY/`.
+- [ ] Obtain project-owner Verification approval.
+- [ ] Set status to `archived` and move the directory to `specs/changes/archive/YYYY/`.
+
+## Discoveries and replanning
+
+Record new evidence, the affected phase, and the approved resolution. This log explains why tasks changed without replacing Git history.

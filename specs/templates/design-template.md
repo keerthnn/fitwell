@@ -14,56 +14,79 @@ tests: []
 
 # Design: <Change title>
 
+> **Phase purpose:** Define how the approved Proposal will be implemented and verified. Link `proposal.md`; do not broaden approved scope silently.
+
 ## Approved proposal
 
-<!-- Link proposal.md. -->
+Link the approved Proposal and list its acceptance criteria and requirement deltas by ID.
 
 ## Upstream context reviewed
 
-<!-- List PRDs, system qualities, SDDs, decisions, runbooks, code, tests, and verified external state. -->
+List PRDs, system qualities, architecture, feature SDDs, ADRs, API/data standards, runbooks, code, tests, incidents, and authorized external state reviewed. Record gaps rather than guessing.
 
-## Architecture and boundaries
+## Design summary
 
-<!-- Define components, trust boundaries, and dependency direction. -->
+Explain the chosen approach, major boundaries, and why it satisfies the Proposal.
+
+## Architecture and dependency changes
+
+Define components, responsibilities, dependency direction, trust boundaries, cross-domain calls, and external-system interactions. Include a diagram when several boundaries interact.
 
 ## Detailed flows and state transitions
 
-<!-- Include diagrams where useful. -->
+Describe success, invalid, unauthorized, interrupted, duplicate, partial-failure, retry, terminal, and recovery paths. Use a state or sequence diagram for non-trivial behavior.
 
 ## Frontend design
 
-<!-- Define pages/components, state, responsive behavior, accessibility, and user-visible states. -->
+Define routes/pages/components, state ownership, typed data access, forms, responsive layout, accessibility, and loading/empty/error/success/partial states.
 
 ## API contracts
 
-<!-- Define methods, inputs, outputs, auth, ownership, validation, errors, side effects, and idempotency. -->
+For every operation specify method/path, input/type/validator, authentication, role/ownership, success output, status codes, errors, side effects, transaction, and repeat/idempotency semantics.
 
 ## Data design and migration
 
-<!-- Define models, relations, invariants, indexes, backfill, compatibility, and recovery. -->
+Define model/field/relation changes, invariants, uniqueness, referential actions, indexes/query rationale, backfill, compatibility window, destructive risk, integrity checks, and recovery.
 
-## Authentication and authorization
+## Authentication, authorization, and privacy
 
-<!-- Define trust decisions and adversarial cases. -->
+Define principal source, resource classes, permission checks, disclosure policy, sensitive data, logs, and adversarial cases.
 
 ## Failure handling and observability
 
-<!-- Define partial failure, logs, retry, and recovery. -->
+Define expected failures, safe client behavior, consistency, retry, logging, metrics, correlation, alerts, and information excluded from telemetry.
 
-## Test design
+## Test design and Red phase
 
-<!-- Map requirements and acceptance criteria to tests, including Red-phase expectations. -->
+Map each requirement and acceptance criterion to a planned test or manual/operational scenario. Name the expected pre-implementation failure.
 
-## Deployment and rollback
+| Requirement/criterion | Test layer | Planned evidence | Expected Red failure |
+| --- | --- | --- | --- |
+| <ID> | Unit/API/UI/Manual/Operational | <test or scenario> | <why it fails before implementation> |
 
-<!-- Define rollout, verification, and recovery decisions. -->
+## Deployment, rollout, and recovery
 
-## Alternatives and decisions
+Define environment configuration, sequencing, migration timing, backwards compatibility, post-deploy checks, stop conditions, and roll-forward/recovery procedure.
 
-<!-- Identify ADRs required before implementation. -->
+## Alternatives and ADRs
 
-## Design approval
+Record technical alternatives and identify decisions that require proposed ADRs before Implementation.
 
-- Status: Pending
+## Risks and mitigations
+
+Maintain a concrete risk table.
+
+| Risk | Likelihood/impact | Prevention | Detection | Recovery |
+| --- | --- | --- | --- | --- |
+| <risk> | <rating> | <control> | <evidence> | <procedure> |
+
+## Documentation impact
+
+List canonical PRDs, SDDs, ADRs, API/data docs, integrations, operations, quality docs, and product inventory that Verification must synchronize.
+
+## Design decision
+
+- Status: Pending approval
 - Approved by: Project owner
-- Date: Pending
+- Date: Not yet approved
+- Conditions: <conditions or none>

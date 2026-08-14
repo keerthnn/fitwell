@@ -1,6 +1,6 @@
 ---
 id: prd-feedback
-title: Feedback
+title: Feedback Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: FEEDBACK
@@ -11,24 +11,26 @@ last_verified: null
 
 # Feedback PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs user-to-administrator feedback conversations and their observable lifecycle. It does not define external customer-support systems unless one is explicitly introduced.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Feedback creation, categorization, subject, and content outcomes.
+- Conversation viewing and reply behavior.
+- Open, responded, closed, reopened, deleted, or retained states as applicable.
+- User ownership and administrator visibility.
+- Ordering, timestamps, unread/recency semantics if exposed.
+- Validation, abuse boundaries, empty states, and safe error behavior.
+- Effects of account disablement or deletion.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add FEEDBACK-NNN requirements. -->
+Link Administration for privileged triage/reply, User Profiles for account lifecycle, and system qualities for privacy, retention, and authorization.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `FEEDBACK-NNN`. Content privacy and cross-user access require adversarial acceptance cases and Full SDD for material changes.

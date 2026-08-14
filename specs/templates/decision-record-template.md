@@ -11,26 +11,60 @@ superseded_by: null
 
 # ADR-<NNNN>: <Decision title>
 
+> **Writing instruction:** Use a concise decision phrase such as “Use server-verified ownership for user resources.” Proposed ADRs are not binding until accepted.
+
 ## Context
 
-<!-- Describe the forces, constraints, and reason a durable decision is needed. -->
+Describe the forces that make a durable decision necessary: requirements, constraints, current problems, scale, security/data risk, external limits, and prior decisions. Separate facts from assumptions.
+
+Example: “Multiple domains need a common principal identifier, and inconsistent mapping would create ownership risk.”
+
+## Decision drivers
+
+List the criteria used to compare alternatives, ordered by importance.
+
+- Security and data isolation.
+- Operational simplicity.
+- Reversibility.
+- Compatibility and maintenance cost.
 
 ## Decision
 
-<!-- State the choice precisely. -->
+State exactly what is chosen, where it applies, and any explicit exceptions. Use present tense after acceptance.
 
 ## Alternatives considered
 
-<!-- Describe credible alternatives and why they were not selected. -->
+For each credible alternative record benefits, costs, risks, and why it was not selected. Include “do nothing” when it is credible.
+
+| Alternative | Benefits | Costs/risks | Disposition |
+| --- | --- | --- | --- |
+| <option> | <benefits> | <costs> | Rejected because <reason> |
 
 ## Consequences
 
-<!-- Record positive, negative, operational, and follow-up consequences. -->
+### Positive
+
+List expected benefits.
+
+### Negative
+
+List accepted complexity, lock-in, migration, or operational cost.
+
+### Follow-up
+
+List required SDD, code, migration, runbook, or future-review work.
 
 ## Security and data impact
 
-<!-- State impact or explicitly state none. -->
+State trust-boundary, privacy, retention, migration, and recovery impact. Write `No material impact` with rationale when appropriate.
 
 ## Related documents
 
-<!-- Link PRDs, SDDs, operations, and other decisions. -->
+Link driving PRDs, affected SDDs, operations, and earlier decisions. Populate reciprocal `supersedes` and `superseded_by` fields when applicable.
+
+## Decision outcome
+
+- Status: Proposed | Accepted | Superseded | Rejected
+- Decided by: Project owner
+- Date: YYYY-MM-DD
+- Review trigger: <condition that should reopen the decision>

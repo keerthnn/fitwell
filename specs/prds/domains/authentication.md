@@ -1,6 +1,6 @@
 ---
 id: prd-authentication
-title: Authentication
+title: Authentication Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: AUTH
@@ -11,24 +11,27 @@ last_verified: null
 
 # Authentication PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs product requirements for entering, recovering, maintaining, and ending an authenticated FitWell session. It owns user-observable identity outcomes, not token formats, cookie mechanics, provider SDK behavior, or server authorization implementation.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Supported sign-up and sign-in outcomes.
+- Identity-provider choice and consent only where product-visible.
+- Sign-out and session-expiration behavior.
+- Password or account recovery outcomes.
+- Duplicate identity and existing-account behavior.
+- Invalid, expired, revoked, disabled, and deleted-account outcomes.
+- Loading, cancellation, retry, and safe error communication.
+- Redirect behavior where it is a product promise.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add AUTH-NNN requirements. -->
+Link security qualities for credential/token privacy and identity integrity, Onboarding for post-authentication readiness, User Profiles for application-user lifecycle, and Administration for disablement effects. Server-side ownership and role enforcement belong in the authorization model.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Every requirement uses `AUTH-NNN`, avoids Firebase-specific language, and has success, failure, and recovery acceptance examples. Authentication changes require Full SDD.

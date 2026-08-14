@@ -12,74 +12,86 @@ last_verified: null
 
 # <Feature> SDD
 
+> **Writing instruction:** Describe verified current design or an approved proposed design explicitly. Link exact executable artifacts instead of copying their contents.
+
 ## Context
 
-<!-- Explain why this design exists. -->
+Explain the problem, domain boundary, existing constraints, and why an engineering design is required. Link the approving Proposal for new Full SDD work.
 
 ## Goals and non-goals
 
-<!-- Bound the design. -->
+Translate approved scope into engineering goals. State adjacent systems or refactors that are intentionally excluded.
 
-## Linked requirements
+## Requirements and decisions
 
-<!-- Map stable requirement IDs; do not restate their text. -->
+Map every relevant PRD/system-quality ID and ADR. Explain the design consequence, not the requirement text.
 
-## Current behavior
+| ID | Source | Design consequence |
+| --- | --- | --- |
+| <DOMAIN>-001 | [PRD](../../prds/domains/<domain>.md) | <consequence> |
 
-<!-- Record only verified behavior and sources. -->
+## Architecture and boundaries
 
-## Design
-
-<!-- Describe the approved stack-specific design. -->
+Define components, trust boundaries, data ownership, dependency direction, and cross-domain calls. Use a diagram when several boundaries interact.
 
 ## Domain concepts and invariants
 
-<!-- Define state, ownership, and load-bearing rules. -->
+Define aggregates, identities, states, valid transitions, units, time semantics, uniqueness, and load-bearing rules.
+
+Example invariant: “A child record is accessible only through an aggregate owned by the authenticated principal.”
 
 ## User and system flows
 
-<!-- Use a flow or state diagram when it improves clarity. -->
+Describe success, empty, failure, interruption, retry, and recovery paths. Use a state diagram for non-trivial lifecycles and name invalid transitions.
 
 ## Frontend design
 
-<!-- Pages, components, state, accessibility, and user-visible states. -->
+Define page/component responsibilities, state ownership, data loading, forms, responsive behavior, accessibility, and loading/empty/error/success states. State `Not applicable` for server-only designs.
 
 ## API design
 
-<!-- Contracts, authorization, validation, errors, and side effects. -->
+For every affected operation define method/path, input and validator links, authentication, role/ownership, output, errors, side effects, transaction boundary, and repeat/idempotency behavior.
 
 ## Database design
 
-<!-- Relations, lifecycle, indexes, migrations, and transactions. Link exact schema. -->
+Define model/relationship changes, invariants, referential actions, indexes and query rationale, migration/backfill, compatibility, and recovery. Link `prisma/schema.prisma` and migration files for exact structure.
 
 ## Authentication and authorization
 
-<!-- State trust boundaries and adversarial cases. -->
+Identify principal source, resource owner, role checks, trust boundaries, disclosure policy, and adversarial cases. Never rely on client-side visibility.
 
-## Failure and recovery behavior
+## Failure handling and consistency
 
-<!-- Define partial failures, retry, consistency, and recovery. -->
+Define partial failure, retry, duplicate requests, stale state, timeouts, transaction rollback, and the consistency visible to users.
 
 ## Observability
 
-<!-- Define logs, metrics, or operational evidence if applicable. -->
+Define safe logs, metrics, alerts, correlation, and operational evidence. State what must never be logged.
 
 ## Testing and verification
 
-<!-- Map requirement IDs to test layers and manual evidence. -->
+Map requirements and invariants to unit, API, component, manual, migration, and operational evidence.
+
+| Requirement/invariant | Test layer | Test or scenario |
+| --- | --- | --- |
+| <DOMAIN>-001 | API | `<DOMAIN>-001 <behavior>` |
 
 ## Deployment and migration
 
-<!-- Link runbooks and state operational impact. -->
+Define configuration, rollout order, compatibility window, post-deploy checks, stop conditions, and roll-forward/recovery path. Link runbooks.
 
 ## Alternatives considered
 
-<!-- Link an ADR when the decision is durable and cross-cutting. -->
+Compare credible alternatives and consequences. Create an ADR when the choice is durable, cross-cutting, or costly to reverse.
 
-## Known limitations
+## Known limitations and follow-up triggers
 
-<!-- Record verified limitations and follow-up triggers. -->
+Record accepted limitations, why they are acceptable, and the evidence or scale that requires reconsideration.
 
-## Code map
+## Code and test map
 
-<!-- Explain non-obvious path responsibilities; keep frontmatter paths current. -->
+Explain stable path responsibilities and keep frontmatter mappings current. Do not list generated files or every helper.
+
+## Open questions and approval
+
+Resolve material questions before activation. Record the approving change package or project-owner review and update `last_verified` only after comparing the document with evidence.

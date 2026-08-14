@@ -13,44 +13,64 @@ affected_decisions: []
 
 # Proposal: <Change title>
 
-## Clarified problem
+> **Phase purpose:** Define the approved outcome and scope separately from detailed engineering design. Link the completed `clarify.md`.
 
-<!-- Link clarify.md and summarize the resolved problem. -->
+## Clarification source
+
+Link `clarify.md` and summarize the resolved problem, decisive evidence, and bounded unknowns.
 
 ## Proposed outcome
 
-<!-- State what will be true after the change. -->
+State what becomes true for users, administrators, operators, and data after this change.
 
 ## Scope
 
-<!-- Define included behavior and systems. -->
+List included behavior, domains, environments, data, and operational work.
 
 ## Non-goals
 
-<!-- Define what will not be addressed. -->
+List tempting adjacent work intentionally excluded and where it belongs.
 
-## Requirement changes
+## Requirement delta
 
-<!-- List additions, amendments, retirements, and unchanged cross-cutting requirements. -->
+Record each proposed requirement addition, amendment, retirement, or unchanged cross-domain dependency.
+
+| Requirement | Action | Proposed outcome | Reason |
+| --- | --- | --- | --- |
+| <ID or new prefix> | Add / Amend / Retire / Unchanged | <outcome> | <reason> |
+
+Do not edit active canonical PRDs as if approved until this proposal is accepted; retain proposed wording here or in an explicitly marked draft.
 
 ## Acceptance criteria
 
-<!-- Use stable requirement IDs where available and make each criterion verifiable. -->
+Write independently verifiable criteria. Use stable IDs where available.
 
-## Proposed approach
+- [ ] Given <precondition>, when <action>, then <observable outcome>.
+- [ ] If <failure or unauthorized condition>, the system produces <safe outcome>.
 
-<!-- Describe the approach at a high level; detailed mechanics belong in design.md. -->
+## High-level approach
 
-## Alternatives considered
+Describe the intended direction and boundary changes without route, schema, or algorithm detail better left to Design.
 
-<!-- Record high-level alternatives. -->
+## Alternatives
 
-## Risks and mitigations
+Compare credible outcome-level or architectural directions.
 
-<!-- Cover security, data, compatibility, deployment, and operational risk. -->
+| Alternative | Benefits | Risks/costs | Recommendation |
+| --- | --- | --- | --- |
+| <option> | <benefits> | <risks> | Select / Reject |
 
-## Proposal approval
+## Risk and compatibility assessment
 
-- Status: Pending
+Cover security, privacy, authorization, data, migration, API compatibility, UI accessibility, external configuration, deployment, and recovery. State `Not applicable` with rationale where appropriate.
+
+## Delivery and rollout constraints
+
+State sequencing, compatibility windows, feature availability, migration dependencies, and evidence required before release.
+
+## Proposal decision
+
+- Status: Pending approval
 - Approved by: Project owner
-- Date: Pending
+- Date: Not yet approved
+- Conditions: <approval conditions or none>

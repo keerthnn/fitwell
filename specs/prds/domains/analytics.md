@@ -1,6 +1,6 @@
 ---
 id: prd-analytics
-title: Analytics
+title: Analytics Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: ANALYTICS
@@ -11,24 +11,27 @@ last_verified: null
 
 # Analytics PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs the meaning and presentation of workout-derived metrics. It owns user-visible definitions, date-range semantics, units, and trustworthy empty/partial states, not SQL or aggregation algorithms.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Metric names and product-language definitions.
+- Inclusion and exclusion rules expressed observably.
+- Timezone, day boundary, date-range, and comparison semantics.
+- Unit display and conversion expectations.
+- Treatment of incomplete, deleted, edited, or duplicate source activity.
+- Empty, insufficient-data, partial-data, and unavailable outcomes.
+- Recency and recalculation expectations.
+- Administrator analytics boundaries where applicable.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add ANALYTICS-NNN requirements. -->
+Link Workout Engine and Dashboard for source and presentation, User Profiles for units/timezone, Administration for privileged summaries, and system qualities for privacy and integrity.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `ANALYTICS-NNN`. Every metric must have examples with boundary dates and source states before activation.

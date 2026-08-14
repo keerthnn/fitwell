@@ -1,6 +1,6 @@
 ---
 id: sdd-exercise-catalog
-title: Exercise Catalog
+title: Exercise Catalog SDD Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,19 +12,20 @@ last_verified: null
 
 # Exercise catalog SDD
 
-> Bootstrap required. Do not populate without inspecting the PRD, implementation, data, assets, and tests.
+## Purpose
 
-## Scope and non-goals
-## Linked requirements
-## Domain concepts and invariants
-## User and system flows
-## Frontend design
-## API design
-## Database design
-## Authentication and authorization
-## Failure and recovery behavior
-## Edge cases
-## Testing and verification
-## Related decisions
-## Known limitations
-## Code map
+This SDD must define exercise identity, taxonomy, retrieval, selection, administration, assets, and reference integrity.
+
+## Required design responsibilities
+
+Define canonical identity and uniqueness; equipment, movement, muscle, and tracking classifications; search/filter normalization; active/archive behavior; detail contracts; image and fallback resolution; seed/update ownership; administrator mutations; and effects on workouts/plans that reference an exercise.
+
+Link the Exercise Catalog PRD, Workout and Plan SDDs, administration SDD, database design, asset verification, and any content-governance decisions.
+
+## Required verification
+
+Cover search/filter combinations, empty results, unknown IDs, inactive records, media fallback, duplicate catalogue entries, admin rejection, reference preservation, and seed idempotency where applicable.
+
+## Change control
+
+Taxonomy, tracking-type semantics, uniqueness, archival/reference behavior, or seed migration changes require Full SDD when they can alter existing workout or plan meaning.

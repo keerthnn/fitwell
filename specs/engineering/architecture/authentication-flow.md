@@ -1,6 +1,6 @@
 ---
 id: architecture-authentication-flow
-title: Authentication Flow
+title: Authentication Flow Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,24 +12,33 @@ last_verified: null
 
 # Authentication flow
 
-> Bootstrap required. Authentication is a Full SDD area. Do not infer current behavior from this placeholder.
+## Purpose
 
-## Actors and trust boundaries
+This document governs how an external identity becomes a trusted server principal and an application-user state. It is stack-specific design; user-visible outcomes remain in the Authentication PRD.
 
-<!-- Document verified client, identity-provider, server, cookie, and database boundaries. -->
+## Required content
 
-## Sign-in and token lifecycle
+An active revision must define:
 
-<!-- Document verified flows. -->
+- Identity-provider responsibilities and enabled sign-in methods.
+- Client initialization and persistence.
+- Token acquisition, refresh, expiry, and revocation.
+- Secure browser-to-server credential transport.
+- Server verification and principal derivation.
+- Application-user creation or synchronization.
+- Signed-out, invalid, expired, disabled, deleted, and partially provisioned states.
+- Sign-out cleanup and multi-tab behavior.
+- Safe logging, errors, retries, and provider outages.
+- External console configuration and authorized-domain dependencies by link.
 
-## User synchronization
+## Rules
 
-<!-- Document verified identity-to-application-user behavior. -->
+- Never trust client claims without server verification.
+- Never store credential values in documentation or logs.
+- Distinguish identity-provider state from application-account state.
+- Authentication establishes identity; authorization still decides access.
+- Token or cookie changes require adversarial tests and Full SDD.
 
-## Failure and account states
+## Review
 
-<!-- Document verified invalid, expired, disabled, deleted, and signed-out behavior. -->
-
-## Traceability
-
-<!-- Populate after bootstrap. -->
+Activation requires inspection of both code and authorized identity-provider configuration. Any invisible state not verified remains an explicit gap.

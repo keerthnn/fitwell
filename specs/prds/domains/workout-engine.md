@@ -1,6 +1,6 @@
 ---
 id: prd-workout-engine
-title: Workout Engine
+title: Workout Engine Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: WORKOUT
@@ -11,24 +11,27 @@ last_verified: null
 
 # Workout engine PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs recording and managing performed workouts, exercises, sets, timing, notes, and lifecycle states. It owns observable workout behavior, not reusable plan definition or analytics aggregation.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Creation modes and initial state.
+- Valid workout lifecycle transitions and terminal behavior.
+- Exercise addition, update, reorder, and removal.
+- Set tracking across supported measurement types and units.
+- Save, pause, resume, complete, edit, duplicate, and delete outcomes.
+- Rest-timer behavior where it affects the user contract.
+- Partial save, retry, duplicate action, stale state, and interruption behavior.
+- Ownership, historical integrity, and date/time interpretation.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add WORKOUT-NNN requirements. -->
+Link Exercise Catalog for selectable exercises, Workout Plans for plan-derived workouts, Analytics for downstream metrics, and system qualities for ownership and data durability.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `WORKOUT-NNN`. State-machine redesign, data-loss risk, or lifecycle changes require Full SDD.

@@ -1,6 +1,6 @@
 ---
 id: sdd-authentication
-title: Authentication
+title: Authentication SDD Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,19 +12,20 @@ last_verified: null
 
 # Authentication SDD
 
-> Bootstrap required. Do not populate without inspecting the PRD, architecture, implementation, tests, and external configuration.
+## Purpose
 
-## Scope and non-goals
-## Linked requirements
-## Domain concepts and invariants
-## User and system flows
-## Frontend design
-## API design
-## Database design
-## Authentication and authorization
-## Failure and recovery behavior
-## Edge cases
-## Testing and verification
-## Related decisions
-## Known limitations
-## Code map
+This SDD must explain how authentication requirements are implemented from user action through trusted server identity and application-user readiness.
+
+## Required design responsibilities
+
+The active SDD must define client/provider/server boundaries; credential and refresh lifecycle; server verification; application-user synchronization; redirect/readiness behavior; sign-out cleanup; disabled/deleted/incomplete account handling; provider outage and retry behavior; and safe error/logging rules.
+
+It must link the Authentication PRD, system security qualities, authentication-flow architecture, authorization model, Firebase integration, configuration guidance, and relevant ADRs.
+
+## Required verification
+
+Map success and recovery flows plus invalid, expired, revoked, signed-out, disabled, duplicate-identity, and interrupted-provisioning cases to tests or authorized manual evidence. Verify external configuration rather than inferring it.
+
+## Change control
+
+Provider, token, cookie, persistence, identity mapping, or account-state changes require Full SDD. The Code map must distinguish browser-safe modules from server-only administration and verification code.

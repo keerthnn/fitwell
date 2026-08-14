@@ -1,6 +1,6 @@
 ---
 id: prd-onboarding
-title: Onboarding
+title: Onboarding Requirements Standard
 status: draft
 authority: binding-product
 requirement_prefix: ONBOARD
@@ -11,24 +11,26 @@ last_verified: null
 
 # Onboarding PRD
 
-> Bootstrap required. Do not treat this placeholder as current behavior.
+## Purpose and boundary
 
-## Purpose and actors
+This document governs the first-run experience that takes an authenticated person from an incomplete application state to a usable FitWell state. It owns user-visible progression and completion, not route names, component layouts, or persistence mechanics.
 
-<!-- Define the user outcomes and actors. -->
+## Required requirement areas
 
-## Scope and non-goals
+An active revision must define:
 
-<!-- Define boundaries without stack details. -->
+- Entry conditions and eligible actors.
+- Required information and optional steps.
+- Progress, validation, back navigation, cancellation, and resumption.
+- Completion criteria and post-completion outcome.
+- Re-entry prevention or correction behavior.
+- Partial failure, duplicate submission, and interrupted-session behavior.
+- Mobile, keyboard, and understandable error outcomes.
 
-## Requirements
+## Cross-domain responsibilities
 
-<!-- Add ONBOARD-NNN requirements. -->
+Link Authentication for identity entry, User Profiles for collected data, Dashboard for the post-onboarding destination when applicable, and system qualities for accessibility and data integrity.
 
-## Acceptance examples and edge cases
+## Review rules
 
-<!-- Add observable examples. -->
-
-## Traceability
-
-<!-- Confirm links after bootstrapping the SDD and tests. -->
+Requirements use `ONBOARD-NNN`. Because onboarding combines identity, first-run state, and routing, material behavior changes require Full SDD.

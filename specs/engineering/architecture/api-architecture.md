@@ -1,6 +1,6 @@
 ---
 id: architecture-api
-title: API Architecture
+title: API Architecture Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,24 +12,33 @@ last_verified: null
 
 # API architecture
 
-> Bootstrap required. Do not treat this placeholder as verified architecture.
+## Purpose
 
-## Request lifecycle
+This document governs the server-side lifecycle of requests handled by the FitWell monolith. It complements the detailed [API conventions](../api/api-conventions.md).
 
-<!-- Document verified method, authentication, authorization, validation, persistence, and response ordering. -->
+## Required request lifecycle
 
-## Route and domain boundaries
+An active revision must define the order and responsibility for:
 
-<!-- Document verified organization and dependency direction. -->
+1. Method enforcement.
+2. Authentication.
+3. Role and ownership authorization.
+4. Runtime validation and normalization.
+5. Domain invariant checks.
+6. Persistence and transaction boundaries.
+7. Response serialization.
+8. Error translation, logging, and observability.
 
-## Persistence and transactions
+## Rules
 
-<!-- Document verified database access and transaction rules. -->
+- Treat all request data as untrusted.
+- Derive user authority from verified server identity, never a request field.
+- Keep database and administrator SDK access server-only.
+- Scope reads and writes at the query boundary where possible.
+- Use shared infrastructure rather than reproducing method/auth/error behavior in each route.
+- Define idempotency and partial-failure behavior for mutations that can be repeated.
+- Do not expose internal errors, secrets, or sensitive record existence.
 
-## Failure behavior
+## Review
 
-<!-- Link to API error conventions and verified exception handling. -->
-
-## Traceability
-
-<!-- Populate after bootstrap. -->
+New request pipelines, middleware, public API surfaces, background execution, or error-contract changes require architecture review and coordinated API documentation.

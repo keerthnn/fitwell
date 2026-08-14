@@ -1,6 +1,6 @@
 ---
 id: sdd-onboarding
-title: Onboarding
+title: Onboarding SDD Standard
 status: draft
 authority: engineering
 requirements: []
@@ -12,19 +12,20 @@ last_verified: null
 
 # Onboarding SDD
 
-> Bootstrap required. Do not populate without inspecting the PRD, architecture, implementation, tests, and routing behavior.
+## Purpose
 
-## Scope and non-goals
-## Linked requirements
-## Domain concepts and invariants
-## User and system flows
-## Frontend design
-## API design
-## Database design
-## Authentication and authorization
-## Failure and recovery behavior
-## Edge cases
-## Testing and verification
-## Related decisions
-## Known limitations
-## Code map
+This SDD must define the implementation state machine that turns an authenticated but not-ready account into a usable FitWell account.
+
+## Required design responsibilities
+
+Define entry guards, source of completion truth, step order, validation, draft persistence, navigation, resumption, duplicate completion, redirect precedence, and behavior when profile, identity, or server state is inconsistent. Specify accessible form behavior and mobile progression.
+
+Link the Onboarding, Authentication, and User Profiles PRDs plus routing, frontend, authorization, and data-lifecycle architecture.
+
+## Required verification
+
+Cover new, returning, completed, incomplete, signed-out, disabled, interrupted, duplicate-submit, invalid-input, and API-failure scenarios. Verify that client navigation cannot bypass server-required readiness.
+
+## Change control
+
+Onboarding is Full SDD by default because it combines identity, persistent readiness, and route access. Any completion-criterion or routing change must synchronize all three domain documents.

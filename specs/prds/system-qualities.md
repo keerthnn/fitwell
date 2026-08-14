@@ -1,6 +1,6 @@
 ---
 id: prd-system-qualities
-title: FitWell System Qualities
+title: FitWell System Qualities Standard
 status: draft
 authority: binding-product
 requirement_prefixes:
@@ -11,26 +11,38 @@ engineering: []
 last_verified: null
 ---
 
-# FitWell system qualities
+# System qualities
 
-> Bootstrap required. Add only verified or explicitly approved cross-domain requirements.
+## Purpose
 
-## Security and privacy
+This PRD owns cross-domain guarantees that must be applied consistently by multiple feature SDDs. It is a requirements standard until the existing product is bootstrapped; it must not be activated until each concrete requirement is reviewed and traced.
 
-<!-- Add SEC-NNN requirements. -->
+## Required requirement groups
 
-## Data integrity and lifecycle
+### Security and privacy — `SEC-NNN`
 
-<!-- Add DATA-NNN requirements. -->
+Define authentication expectations, user-data isolation, administrator boundaries, sensitive-data handling, safe errors, and privacy outcomes. State observable or incident-preventing guarantees without prescribing libraries or query shapes.
 
-## Accessibility and responsive behavior
+### Data integrity and lifecycle — `DATA-NNN`
 
-<!-- Add A11Y-NNN requirements. -->
+Define durability, ownership, deletion, retention, consistency, unit/time interpretation, and recovery outcomes shared across domains.
 
-## Reliability and error behavior
+### Accessibility and responsive behavior — `A11Y-NNN`
 
-<!-- Add cross-domain observable requirements. -->
+Define keyboard access, focus, labels, error communication, contrast-independent meaning, mobile usability, and supported viewport outcomes.
 
-## Traceability
+### Reliability and compatibility
 
-<!-- Link requirements to architecture/feature SDDs after bootstrap. -->
+Add stable IDs for user-visible failure handling, duplicate-action behavior, latency states, supported environments, and graceful degradation when those promises are genuinely cross-domain.
+
+## Rules
+
+- Put a quality here only when at least two domains must obey it or when it defines a foundational trust guarantee.
+- Domain-specific edge cases remain in the domain PRD.
+- Each requirement must identify implementing architecture or feature SDDs.
+- Security and data-isolation guarantees take precedence over feature convenience.
+- Do not use aspirational words such as “secure,” “fast,” or “accessible” without a testable outcome.
+
+## Responsibilities
+
+Every feature author checks this document during planning. The project owner approves new cross-domain guarantees. Reviewers verify adversarial and failure evidence before activation.

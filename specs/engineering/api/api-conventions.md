@@ -1,6 +1,6 @@
 ---
 id: api-conventions
-title: API Conventions
+title: API Conventions Standard
 status: draft
 authority: binding-engineering
 requirements: []
@@ -12,32 +12,44 @@ last_verified: null
 
 # API conventions
 
-> Bootstrap required. Record only verified conventions.
+## Purpose
 
-## Routing and methods
+This document defines mandatory behavior shared by future API endpoints. It must be activated only after bootstrap confirms or intentionally migrates existing routes.
 
-<!-- Document route naming and method handling. -->
+## Request order
 
-## Authentication and authorization
+Handlers must enforce concerns in this order unless an approved design explains an exception:
 
-<!-- Document ordering and ownership rules; link to the authorization model. -->
+1. Reject unsupported methods.
+2. Verify identity for protected routes.
+3. Verify administrator role or resource ownership.
+4. Parse and validate untrusted input.
+5. Enforce domain invariants.
+6. Execute persistence with an explicit transaction boundary.
+7. Serialize a typed response.
+8. Translate and log failures safely.
 
-## Request validation
+## Contract rules
 
-<!-- Document validator and client-contract conventions. -->
+- Route names use one stable domain vocabulary.
+- GET is read-only; mutations use an appropriate non-GET method.
+- Request and response shapes have shared TypeScript types when consumed by browser code.
+- Runtime validation occurs even when TypeScript types exist.
+- Dates use an explicitly documented wire representation and time basis.
+- Units are named in types or accompanied by a documented unit system.
+- Identifiers are opaque strings unless a PRD exposes meaning.
+- Filtering, ordering, pagination, and limits are deterministic.
+- Mutations document side effects, repeat behavior, and idempotency.
+- Database/client/provider errors do not escape as public contracts.
 
-## Responses and status codes
+## Authentication and ownership
 
-<!-- Document shared response rules. -->
+Public, authenticated, and administrator endpoints are declared explicitly. User-owned queries derive the owner from verified server identity. Ownership must apply to reads and mutations, including nested records. Client-side route protection never satisfies this rule.
 
-## Dates, units, identifiers, filtering, and pagination
+## Client responsibilities
 
-<!-- Document verified serialization conventions. -->
+Browser pages and components call typed shared wrappers rather than scattering raw HTTP calls. Wrappers do not reinterpret authorization or hide contract-breaking errors.
 
-## Persistence, transactions, and idempotency
+## Review
 
-<!-- Document verified rules. -->
-
-## Traceability
-
-<!-- Populate after bootstrap. -->
+Every endpoint review checks method, input, auth, role/ownership, output, errors, side effects, idempotency, requirements, implementation path, and tests.
