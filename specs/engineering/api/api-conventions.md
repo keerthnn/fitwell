@@ -1,55 +1,37 @@
 ---
 id: api-conventions
-title: API Conventions Standard
-status: draft
+title: API Conventions
+status: active
 authority: binding-engineering
-requirements: []
+requirements: [SEC-001, SEC-002, SEC-003, SEC-004, DATA-002, DATA-003]
 decisions: []
-code: []
+code: [src/pages/api/, src/lib/api/api-utils.ts, src/lib/auth/utils.ts, src/lib/auth/requireAdmin.ts, src/utils/spec.ts, src/utils/types.ts]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # API conventions
 
-## Purpose
+## Implemented contract
 
-This document defines mandatory behavior shared by future API endpoints. It must be activated only after bootstrap confirms or intentionally migrates existing routes.
+FitWell exposes same-origin Next.js Pages Router handlers under `/api`. Each file represents one operation and accepts one method through `checkIfGetOrSetError`, `checkIfPostOrSetError`, `checkIfPatchOrSetError`, or `checkIfDeleteOrSetError`. Unsupported methods return 405 with `{ "message": "Only <METHOD> requests allowed" }`.
 
-## Request order
+Browser calls are centralized in `src/utils/spec.ts`; shared request and response shapes live in `src/utils/types.ts`. Axios sends the `token` cookie automatically to same-origin handlers. There is no version prefix, OpenAPI document, REST resource controller, or separately deployed API service.
 
-Handlers must enforce concerns in this order unless an approved design explains an exception:
+## Access classes
 
-1. Reject unsupported methods.
-2. Verify identity for protected routes.
-3. Verify administrator role or resource ownership.
-4. Parse and validate untrusted input.
-5. Enforce domain invariants.
-6. Execute persistence with an explicit transaction boundary.
-7. Serialize a typed response.
-8. Translate and log failures safely.
+- **Authenticated:** `getUserIdOrSetError` verifies the Firebase ID token cookie and rejects missing, disabled, or deleted local users. All member-owned queries include that user identifier.
+- **Administrator:** `requireAdmin` performs the authenticated check and then requires an `AdminAccess` row. Client guards are navigation aids only.
+- No general application endpoint is anonymous. The authentication synchronization endpoints require a valid token even though they create the local user record.
 
-## Contract rules
+## Validation, queries, and persistence
 
-- Route names use one stable domain vocabulary.
-- GET is read-only; mutations use an appropriate non-GET method.
-- Request and response shapes have shared TypeScript types when consumed by browser code.
-- Runtime validation occurs even when TypeScript types exist.
-- Dates use an explicitly documented wire representation and time basis.
-- Units are named in types or accompanied by a documented unit system.
-- Identifiers are opaque strings unless a PRD exposes meaning.
-- Filtering, ordering, pagination, and limits are deterministic.
-- Mutations document side effects, repeat behavior, and idempotency.
-- Database/client/provider errors do not escape as public contracts.
+Handlers validate request bodies and query parameters with functions under `src/lib/api/validators/` or focused inline checks. List routes use bounded limits; cursor support is endpoint-specific. Prisma access uses the shared client from `src/lib/prisma.ts`. Multi-write aggregate replacement, creation, deletion, and audited administrator actions use transactions where the handlers explicitly define them.
 
-## Authentication and ownership
+## Responses
 
-Public, authenticated, and administrator endpoints are declared explicitly. User-owned queries derive the owner from verified server identity. Ownership must apply to reads and mutations, including nested records. Client-side route protection never satisfies this rule.
+Reads generally return 200; creations return 201; updates and deletes return 200. Responses are direct JSON objects rather than a universal envelope. Dates serialize as ISO JSON strings. Identifiers are strings. The endpoint catalog records operation-specific payloads and side effects; executable TypeScript and validators remain exact shape authority.
 
-## Client responsibilities
+## Current constraints
 
-Browser pages and components call typed shared wrappers rather than scattering raw HTTP calls. Wrappers do not reinterpret authorization or hide contract-breaking errors.
-
-## Review
-
-Every endpoint review checks method, input, auth, role/ownership, output, errors, side effects, idempotency, requirements, implementation path, and tests.
+The route vocabulary includes action names such as `get-by-id`, `start-workout`, and `complete-workout`. Several lists return `nextCursor: null`; others implement cursors. This document describes that current contract and does not normalize it.

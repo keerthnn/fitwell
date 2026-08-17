@@ -1,37 +1,62 @@
 ---
 id: prd-exercise-catalog
-title: Exercise Catalog Requirements Standard
-status: draft
+title: Exercise Catalog
+status: active
 authority: binding-product
 requirement_prefix: EXERCISE
 engineering:
   - specs/engineering/features/exercise-catalog.md
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Exercise catalog PRD
 
-## Purpose and boundary
+## Purpose
 
-This document governs how users and authorized administrators discover, understand, and select exercises. It owns catalogue outcomes and terminology, not seed-file formats, asset paths, database columns, or search algorithms.
+The exercise catalog lets members find active exercises and supplies the exercise definitions used by workouts and workout plans.
 
-## Required requirement areas
+## Requirements
 
-An active revision must define:
+### EXERCISE-001 — Active catalog
 
-- Exercise identity and distinguishability.
-- Browse, search, filter, and empty-result outcomes.
-- Exercise detail and instruction expectations.
-- Equipment, movement, muscle, and tracking terminology where product-visible.
-- Active, archived, unavailable, and restored exercise behavior.
-- Image or media fallback outcomes.
-- Selection behavior when used by workouts or plans.
-- Administrator catalogue-maintenance outcomes.
+A member may browse active exercises. Inactive exercises are not returned to a normal member.
 
-## Cross-domain responsibilities
+### EXERCISE-002 — Search and filters
 
-Link Workout Engine and Workout Plans for exercise references, Administration for privileged mutation, system qualities for accessibility, and data requirements for deletion/reference integrity.
+A member may search exercises by name and filter by category, equipment, and movement.
 
-## Review rules
+### EXERCISE-003 — Exercise information
 
-Requirements use `EXERCISE-NNN`. Catalogue content policy and catalogue software behavior must be distinguished explicitly.
+An exercise may present name, description, instructions, equipment, movement, category, primary and secondary muscles, compound status, tracking type, and available image information.
+
+### EXERCISE-004 — Tracking types
+
+An exercise declares one of the supported tracking outcomes: repetitions and weight, repetitions only, duration, distance, or duration and distance.
+
+### EXERCISE-005 — Stable identity
+
+Two catalog entries may not use the same name-and-equipment combination.
+
+### EXERCISE-006 — Start from exercise
+
+A member may start a live workout from an active exercise, with that exercise added to the new workout.
+
+### EXERCISE-007 — Catalog page size
+
+Exercise listing accepts a result limit from 1 through 100 and may return a continuation cursor.
+
+### EXERCISE-008 — Administrator visibility
+
+An administrator may inspect inactive exercises in addition to active ones.
+
+### EXERCISE-009 — Image fallback
+
+When a requested exercise image is unavailable, the UI presents an approved fallback rather than a broken remote dependency.
+
+## Current limitation
+
+The member exercise page consumes the first result page but does not expose continuation loading.
+
+## Traceability
+
+Implementation design is defined by the [Exercise Catalog SDD](../../engineering/features/exercise-catalog.md).

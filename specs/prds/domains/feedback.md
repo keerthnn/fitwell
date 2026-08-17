@@ -1,36 +1,62 @@
 ---
 id: prd-feedback
-title: Feedback Requirements Standard
-status: draft
+title: Feedback
+status: active
 authority: binding-product
 requirement_prefix: FEEDBACK
 engineering:
   - specs/engineering/features/feedback.md
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Feedback PRD
 
-## Purpose and boundary
+## Purpose
 
-This document governs user-to-administrator feedback conversations and their observable lifecycle. It does not define external customer-support systems unless one is explicitly introduced.
+Feedback lets a signed-in member open and continue a private conversation with FitWell administrators.
 
-## Required requirement areas
+## Requirements
 
-An active revision must define:
+### FEEDBACK-001 — Create conversation
 
-- Feedback creation, categorization, subject, and content outcomes.
-- Conversation viewing and reply behavior.
-- Open, responded, closed, reopened, deleted, or retained states as applicable.
-- User ownership and administrator visibility.
-- Ordering, timestamps, unread/recency semantics if exposed.
-- Validation, abuse boundaries, empty states, and safe error behavior.
-- Effects of account disablement or deletion.
+A member may create feedback with one of the supported categories, a required subject up to 120 characters, and a required initial message up to 4,000 characters.
 
-## Cross-domain responsibilities
+### FEEDBACK-002 — Categories
 
-Link Administration for privileged triage/reply, User Profiles for account lifecycle, and system qualities for privacy, retention, and authorization.
+Supported categories are technical issue, account issue, workout content, suggestion, and other.
 
-## Review rules
+### FEEDBACK-003 — Owned list
 
-Requirements use `FEEDBACK-NNN`. Content privacy and cross-user access require adversarial acceptance cases and Full SDD for material changes.
+A member may list only their feedback conversations, ordered by most recent message, and filter by search text, category, and status.
+
+### FEEDBACK-004 — Pagination
+
+Feedback listing accepts a page size from 1 through 100, defaults to 25, and may return a continuation cursor.
+
+### FEEDBACK-005 — Conversation detail
+
+A member may view an owned conversation with messages ordered from oldest to newest.
+
+### FEEDBACK-006 — User reply
+
+A member may reply to an owned conversation that is not closed. A user reply sets the conversation status to open and updates its most-recent-message time.
+
+### FEEDBACK-007 — Closed conversation
+
+A closed feedback conversation rejects additional member or administrator replies.
+
+### FEEDBACK-008 — Deletion before support reply
+
+A member may delete an owned conversation only while no administrator message exists. After an administrator reply, deletion is rejected.
+
+### FEEDBACK-009 — Statuses
+
+Feedback status is open, responded, or closed. An administrator reply sets responded; an administrator close action sets closed.
+
+### FEEDBACK-010 — Privacy
+
+A member must not list, view, reply to, or delete another member's feedback.
+
+## Traceability
+
+Implementation design is defined by the [Feedback SDD](../../engineering/features/feedback.md).

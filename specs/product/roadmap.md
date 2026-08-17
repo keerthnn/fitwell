@@ -1,40 +1,45 @@
 ---
 id: product-roadmap
-title: FitWell Roadmap Standard
+title: FitWell Current-State Roadmap
 status: active
 authority: informational
-last_verified: null
+last_verified: 2026-08-15
 ---
 
-# Roadmap
+# Current-state roadmap
 
 ## Purpose
 
-The roadmap records prioritized outcomes and deliberate deferrals. It supports planning but does not create binding scope, dates, or implementation commitments.
+This document records only the implemented and partially implemented product baseline visible in the repository. It contains no proposed future features, priority promises, or delivery dates.
 
-## Horizons
+## Implemented baseline
 
-- **Now:** outcomes actively being clarified or proposed.
-- **Next:** plausible outcomes expected after current priorities.
-- **Later:** valuable possibilities without committed timing.
-- **Not planned:** explicit boundaries that prevent repeated reconsideration without new evidence.
+- Public landing and Firebase-backed authentication pages.
+- Profile onboarding, profile editing, appearance preference, sign-out, and local account deletion.
+- Exercise catalogue browsing, filtering, imagery, and start-from-exercise.
+- Workout history, live workout creation, tracking-type-aware set recording, pause/resume/completion, quick entry, edit, duplication, deletion, and a persistent rest timer.
+- Private and built-in workout-plan discovery, authoring, duplication, archive, and start-from-plan.
+- Dashboard summaries and personal workout analytics.
+- User/admin feedback conversations.
+- Guarded administration for users, exercises, built-in plans, workouts, analytics, admin access, feedback, and audit logs.
+- Local database migration, seeding, asset generation/verification, and local admin bootstrap scripts.
 
-Each item should state the user problem, desired outcome, rationale, dependencies, and promotion condition. Avoid solution detail unless the choice is itself a product constraint.
+## Partially exposed or incomplete current capabilities
 
-## Promotion workflow
+- Exercise API cursor pagination is not surfaced as subsequent-page loading in the member catalogue.
+- Workout list cursor behavior is documented in the existing current-state audit as requiring correction before UI pagination is added.
+- More than one in-progress workout is possible; the dashboard selects the most recently updated one.
+- Generic workout creation accepts a plan entry mode even though plan-derived creation has a dedicated endpoint.
+- Member restoration of archived private plans is supported by the API but not clearly exposed through a recovery UI.
+- Workout-plan browsing is search-only and capped; category/difficulty filters and pagination are absent.
+- Analytics UI does not expose all data returned by the API; current streak is returned as zero, and volume display does not adapt to profile unit preference.
+- Profile-only deletion exists as an API but is not clearly exposed as a primary profile action.
+- Several authenticated, provider-dependent, migration, and administrator invariants still require automated or manual verification.
 
-1. Select a roadmap outcome.
-2. Clarify the problem and affected domains.
-3. Create or amend the appropriate PRD through Lightweight or Full SDD.
-4. Remove or update the roadmap entry after approval.
+## Explicitly absent
 
-## Rules
+Nutrition, calorie tracking, medical/injury data, weight history, achievements, social/community features, sharing, public user-authored plans, and Firebase identity deletion are not implemented.
 
-- Roadmap order expresses priority, not a guaranteed schedule.
-- Do not cite a roadmap item as acceptance criteria.
-- Do not list already shipped behavior; use the feature catalog.
-- Record why an item is deferred or rejected when that context prevents churn.
+## Interpretation
 
-## Responsibilities
-
-The project owner maintains prioritization. Feature authors may suggest updates but must not silently promote roadmap language into binding requirements.
+The implemented baseline and partial capabilities above are inventory, not approval for expansion. Any new behavior must enter the normal Lightweight or Full SDD workflow and update the relevant PRDs before implementation.

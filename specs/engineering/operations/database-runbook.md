@@ -1,38 +1,21 @@
 ---
 id: operations-database-runbook
-title: Database Runbook Standard
-status: draft
+title: Database Runbook
+status: active
 authority: operational
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Database runbook
 
-## Purpose
+## Local setup and catalogue data
 
-This document defines safe operational procedures for database setup, migration, seeding, inspection, administrative grants, and integrity verification.
+1. Set `DATABASE_URL` to local PostgreSQL database `fitness`.
+2. Run `pnpm run db:assert-local`; stop unless its host and database checks pass.
+3. The repository setup guide uses `pnpm prisma migrate reset --force` only for that confirmed local database.
+4. Run `pnpm run db:seed-all` to upsert exercise and built-in plan catalogues. Individual seed commands are available.
+5. `pnpm run db:grant-local-admin -- <firebase-uid>` grants local admin access through a guarded script; use only a verified local UID/target.
 
-## Required procedure sections
+## Shared/hosted target
 
-- Local target validation and setup.
-- Migration generation and SQL review.
-- Applying migrations to local, preview, and production targets.
-- Seed scope, idempotency, and target restrictions.
-- Administrative access procedure and audit evidence.
-- Schema/migration status inspection.
-- Connection and health diagnosis.
-- Integrity queries after migration or recovery.
-- Stop conditions and project-owner escalation.
-
-## Binding safety rules
-
-- Resolve and display the exact target before destructive or migration commands.
-- Never use broad environment-variable assumptions as the only target guard.
-- Never reset a hosted database.
-- Never edit migration history already applied to a shared target.
-- Seed only data classes explicitly designed for repeatable seeding.
-- Preserve command output needed for Full SDD Verification without retaining secrets.
-
-## Review
-
-Migration tooling, provider, connection strategy, seed model, or admin-access changes require this runbook to be updated and reverified.
+Apply only committed migrations using `pnpm run db:migrate:deploy`. Never reset a hosted database, edit applied migrations, or assume seed commands are safe for an unresolved target. Review migration SQL and verify schema/application behavior afterward. Provider backup/restore, hosted migration status, integrity queries, and monitoring are not defined in repository evidence.

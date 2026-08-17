@@ -1,44 +1,56 @@
 ---
 id: architecture-api
-title: API Architecture Standard
-status: draft
+title: API Architecture
+status: active
 authority: engineering
-requirements: []
+requirements: [SEC-001, SEC-002, SEC-003, SEC-004, DATA-006]
 decisions: []
-code: []
+code: [src/pages/api/, src/lib/api/api-utils.ts, src/lib/api/validators/, src/lib/auth/, src/utils/spec.ts, src/utils/types.ts]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # API architecture
 
-## Purpose
+## Surface
 
-This document governs the server-side lifecycle of requests handled by the FitWell monolith. It complements the detailed [API conventions](../api/api-conventions.md).
+FitWell exposes same-origin Pages Router endpoints below `/api`. The UI calls them with Axios wrappers; there is no GraphQL, generated API client, or separate public API version.
 
-## Required request lifecycle
+## Method enforcement
 
-An active revision must define the order and responsibility for:
+Each handler accepts one method through shared GET, POST, PATCH, DELETE, or PUT guards. Unsupported methods return 405 with a message naming the accepted method.
 
-1. Method enforcement.
-2. Authentication.
-3. Role and ownership authorization.
-4. Runtime validation and normalization.
-5. Domain invariant checks.
-6. Persistence and transaction boundaries.
-7. Response serialization.
-8. Error translation, logging, and observability.
+## Authentication modes
 
-## Rules
+- Local-user synchronization requires a valid ID-token cookie but creates or updates the local user.
+- Member endpoints call `getUserIdOrSetError` and use the verified Firebase UID.
+- Administrator endpoints call `requireAdmin`, which first authenticates and then requires an `AdminAccess` row.
 
-- Treat all request data as untrusted.
-- Derive user authority from verified server identity, never a request field.
-- Keep database and administrator SDK access server-only.
-- Scope reads and writes at the query boundary where possible.
-- Use shared infrastructure rather than reproducing method/auth/error behavior in each route.
-- Define idempotency and partial-failure behavior for mutations that can be repeated.
-- Do not expose internal errors, secrets, or sensitive record existence.
+There are no anonymous product-data endpoints.
 
-## Review
+## Validation
 
-New request pipelines, middleware, public API surfaces, background execution, or error-contract changes require architecture review and coordinated API documentation.
+Validators parse `RequestInputValue` into concrete domain inputs and collect field-level `ValidationError` records. APIs return 400 for invalid filters, bodies, identifiers, dates, ranges, or domain inputs.
+
+## Authorization
+
+Member handlers use the verified UID in Prisma predicates or load an owning aggregate before nested mutations. Workout-plan visibility is the union of owned private plans and active/non-archived built-in plans. Administrator routes rely on server membership, not client guard state.
+
+## Persistence and pagination
+
+Handlers select/include explicit Prisma shapes or return mutated records. Dates serialize through JSON. Cursor endpoints fetch `limit + 1`, slice to the requested limit, and return `nextCursor`. Several calculate that cursor from `rows[limit - 1]`, identified by the current-state audit as a pagination risk.
+
+## Client contract
+
+`src/utils/spec.ts` owns browser wrappers and uses type assertions or typed Axios responses from `src/utils/types.ts`. No automated contract generation or runtime response validation exists.
+
+## Error outcomes
+
+- 400 invalid input/query/identifier.
+- 401 missing, invalid, or expired authentication.
+- 403 disabled application access or missing administrator permission.
+- 404 inaccessible or missing resource.
+- 409 state conflict.
+- 405 wrong method.
+
+Exact routes are maintained in the [Endpoint Catalog](../api/endpoint-catalog.md).

@@ -1,43 +1,23 @@
 ---
 id: integration-vercel
-title: Vercel Integration Standard
-status: draft
+title: Vercel Integration
+status: active
 authority: engineering
-requirements: []
-decisions: []
-code: []
+requirements: [SEC-005, DATA-003]
+decisions: [ADR-0001]
+code: [README.md, package.json, next.config.ts, .env.example]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Vercel integration
 
-## Purpose
+## Repository-visible contract
 
-This document governs FitWell's hosting integration, including repository linkage, build/runtime behavior, environment separation, and dashboard-only configuration.
+The repository documents Vercel as the deployment target for the single Next.js application. `package.json` pins Node `22.x`, uses pnpm, generates Prisma during `postinstall`, and builds with `next build --webpack`. `README.md` says the repository may be imported as a Next.js project with default install/build settings, environment variables copied from `.env.example`, and a pooled PostgreSQL URL used for `DATABASE_URL`.
 
-## Required integration record
+Committed migrations must be applied separately with `pnpm run db:migrate:deploy`; no Vercel build hook applies them. New databases may receive the explicit catalogue seeds. After deployment the generated Vercel hostname must be authorized in Firebase.
 
-An active revision must define:
+## External state not proven
 
-- Project and Git linkage.
-- Production and preview branch behavior.
-- Runtime and package-manager selection.
-- Install, build, generated-client, migration, and start responsibilities.
-- Environment variable scoping and ownership.
-- Serverless execution, filesystem, timeout, and connection constraints.
-- Deployment protection, observability, logs, and rollback capabilities.
-- Custom/authorized domain dependencies.
-- Verified limits and failure behavior.
-
-## Rules
-
-- Repository configuration and Vercel dashboard state are distinct authorities.
-- Never record environment values or deployment tokens.
-- Database migration must not occur implicitly unless an approved design and runbook make concurrency safe.
-- Preview environments must not silently use production identity or data.
-- Hosting/runtime architecture changes require Full SDD.
-
-## Review
-
-Before activating, compare repository settings, Vercel project settings, and a clean deployment. Record environment and verification date.
+There is no `vercel.json` and no repository evidence for a Vercel project identifier, Git/branch linkage, preview configuration, variable values/scopes, regions, function duration, deployment protection, custom domains, observability, or rollback settings. No live Vercel dashboard was inspected. Those facts remain unknown.

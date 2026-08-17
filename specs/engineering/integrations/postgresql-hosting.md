@@ -1,43 +1,23 @@
 ---
 id: integration-postgresql-hosting
-title: PostgreSQL Hosting Standard
-status: draft
+title: PostgreSQL Hosting Integration
+status: active
 authority: engineering
-requirements: []
-decisions: []
-code: []
+requirements: [DATA-001, DATA-003, DATA-006, SEC-005]
+decisions: [ADR-0004]
+code: [.env.example, prisma.config.ts, src/lib/prisma.ts, README.md, scripts/assert-local-database.mjs]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
-# PostgreSQL hosting
+# PostgreSQL hosting integration
 
-## Purpose
+## Repository-visible contract
 
-This document governs externally controlled PostgreSQL hosting facts that affect correctness, capacity, deployment, backup, and recovery.
+PostgreSQL is configured only through server-side `DATABASE_URL`. Prisma configuration uses it for migrations and `src/lib/prisma.ts` supplies it to the `pg` adapter. Seed scripts also connect with `pg`. The repository recommends a pooled connection URL on Vercel and a local database named `fitness` for local work.
 
-## Required integration record
+`scripts/assert-local-database.mjs` rejects production mode, non-local hosts, recognized cloud-provider hostnames, and database names other than `fitness` before local destructive/setup workflows. This protects the documented local process; it is not proof of hosted isolation.
 
-An active revision must define:
+## External state not proven
 
-- Provider and environment mapping.
-- Direct versus pooled connection purpose.
-- SSL/TLS and certificate requirements.
-- Connection, transaction, storage, compute, and timeout limits.
-- Region and latency assumptions.
-- Backup schedule, retention, point-in-time recovery, and restore testing.
-- Maintenance windows and version policy.
-- Monitoring, alerting, access control, and incident procedure.
-- Migration connectivity and operational ownership.
-
-## Rules
-
-- Never store connection strings, passwords, or database contents.
-- A backup claim requires provider evidence; a recovery claim requires a tested restore procedure.
-- Serverless connection behavior must be reconciled with pooling and Prisma configuration.
-- Production and non-production targets must be unmistakable before destructive operations.
-- Provider, pooling, region, or recovery changes require Full SDD.
-
-## Review
-
-Reverify after provider plan/configuration changes and before relying on recovery guarantees.
+No provider, host, region, PostgreSQL version, TLS policy, pool size, connection/transaction limits, storage capacity, monitoring, backups, point-in-time recovery, maintenance window, or tested restore exists in repository evidence. No live database was inspected, so deployed migration state and data health are unknown. Connection strings and credentials must never enter documentation.

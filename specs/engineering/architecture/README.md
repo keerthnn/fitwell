@@ -9,6 +9,7 @@ Architecture documents define constraints shared by multiple FitWell domains. Th
 - [System overview](system-overview.md) governs context, topology, and major flows.
 - [Application boundaries](application-boundaries.md) governs source-layer and domain dependency direction.
 - [Frontend architecture](frontend-architecture.md) governs routing, state, UI composition, and client data access.
+- [Backend architecture](backend-architecture.md) governs server runtime, persistence, and shared backend concerns.
 - [API architecture](api-architecture.md) governs request processing and server boundaries.
 - [Authentication flow](authentication-flow.md) governs identity and session design.
 - [Authorization model](authorization-model.md) governs ownership, roles, and access enforcement.

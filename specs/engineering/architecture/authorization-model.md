@@ -1,44 +1,55 @@
 ---
 id: architecture-authorization-model
-title: Authorization Model Standard
-status: draft
+title: Authorization Model
+status: active
 authority: binding-engineering
-requirements: []
+requirements: [SEC-002, SEC-003, SEC-004, SEC-005, ADMIN-001, PLAN-002, PLAN-003, FEEDBACK-010]
 decisions: []
-code: []
+code: [src/lib/auth/utils.ts, src/lib/auth/requireAdmin.ts, src/lib/workoutPlans/access.ts, src/pages/api/]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Authorization model
 
-## Purpose
+## Principals
 
-This document is the mandatory engineering contract for resource access. It defines how FitWell converts an authenticated principal into permitted actions while preserving user isolation and administrator boundaries.
+- **Visitor:** no verified Firebase token.
+- **Member:** verified Firebase UID whose local user is not disabled or deleted.
+- **Administrator:** member whose UID has an `AdminAccess` row.
 
-## Required content
+## Resource classes
 
-An active revision must define:
+| Resource | Access rule |
+| --- | --- |
+| User/Profile/Activity | Current UID; explicit administrator user endpoints are separate |
+| Workout and nested exercises/sets | Workout owner, except administrator inspection/deletion |
+| Private workout plan | Matching owner and not built-in |
+| Built-in workout plan | Null owner, built-in, active, non-archived for members; admin endpoints manage lifecycle |
+| Exercise | Active for members; admins may include/manage inactive |
+| Feedback/messages | Conversation owner; admin feedback endpoints access all |
+| Admin access/audit logs | Administrator only |
 
-- Principals, roles, and trust sources.
-- User-owned, platform-owned, shared, and public resource classes.
-- Read, create, update, delete, archive, restore, and administrative permissions.
-- Ownership inheritance across related records.
-- Administrator grant, removal, and loss-of-access behavior.
-- Effects of disabled, deleted, or partially provisioned accounts.
-- Error-disclosure policy for forbidden versus missing resources.
-- Audit requirements for privileged actions.
+## Enforcement patterns
 
-## Binding rules
+- Top-level member queries include `userId` in the Prisma predicate.
+- Nested workout-exercise/set handlers traverse to the workout owner before mutation.
+- Visible-plan lookup uses a shared OR predicate for owned private or active built-in plans.
+- Admin handlers call `requireAdmin` before reading or mutating.
+- Client guards and hidden navigation improve UX but are not authorization.
 
-- Authenticate and authorize on the server for every protected operation.
-- Never accept user ID, role, or ownership from the client as authority.
-- Verify ownership for both reads and mutations.
-- A null owner is not public authorization unless the resource class explicitly defines it.
-- Client-side routing and hidden controls never replace API authorization.
-- Use least privilege; administrator access does not imply unrestricted data access without a documented requirement.
-- Test signed-out, cross-user, normal-user-on-admin, revoked-admin, and stale-reference cases as applicable.
+## Account state
 
-## Change control
+Disabled or deleted local accounts receive 403. Restore applies only to disabled, non-deleted accounts. Local deletion removes owned data and leaves a disabled/deleted user tombstone.
 
-Any permission, ownership, public/private boundary, or admin-role change requires Full SDD, linked security requirements, and adversarial verification.
+## Last-admin invariant
+
+Admin access removal and account deletion check that at least one active administrator remains. The invariant lacks automated test evidence.
+
+## Disclosure
+
+Member ownership failures commonly return 404, avoiding disclosure of another member's resource. Missing administrator access returns 403. Error shapes are not uniform.
+
+## Verification gap
+
+There are no automated cross-user or non-admin rejection tests. Authorization was derived statically from predicates and helper use.

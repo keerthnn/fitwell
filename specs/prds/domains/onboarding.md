@@ -1,36 +1,54 @@
 ---
 id: prd-onboarding
-title: Onboarding Requirements Standard
-status: draft
+title: Onboarding
+status: active
 authority: binding-product
 requirement_prefix: ONBOARD
 engineering:
   - specs/engineering/features/onboarding.md
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Onboarding PRD
 
-## Purpose and boundary
+## Purpose
 
-This document governs the first-run experience that takes an authenticated person from an incomplete application state to a usable FitWell state. It owns user-visible progression and completion, not route names, component layouts, or persistence mechanics.
+Onboarding creates the first profile required for the member experience and records that initial setup is complete.
 
-## Required requirement areas
+## Requirements
 
-An active revision must define:
+### ONBOARD-001 — Entry
 
-- Entry conditions and eligible actors.
-- Required information and optional steps.
-- Progress, validation, back navigation, cancellation, and resumption.
-- Completion criteria and post-completion outcome.
-- Re-entry prevention or correction behavior.
-- Partial failure, duplicate submission, and interrupted-session behavior.
-- Mobile, keyboard, and understandable error outcomes.
+A signed-in member whose profile setup is incomplete is routed from public/authentication entry points to onboarding.
 
-## Cross-domain responsibilities
+### ONBOARD-002 — Setup form
 
-Link Authentication for identity entry, User Profiles for collected data, Dashboard for the post-onboarding destination when applicable, and system qualities for accessibility and data integrity.
+Onboarding collects the required and optional profile fields defined by the User Profiles PRD.
 
-## Review rules
+### ONBOARD-003 — No duplicate profile
 
-Requirements use `ONBOARD-NNN`. Because onboarding combines identity, first-run state, and routing, material behavior changes require Full SDD.
+Onboarding must not create a second profile when the member already has one.
+
+### ONBOARD-004 — Completion
+
+Submitting valid onboarding data creates the member profile, marks onboarding complete, and routes the member to the dashboard.
+
+### ONBOARD-005 — Validation failure
+
+Invalid onboarding input remains on the onboarding experience and presents field or form feedback.
+
+### ONBOARD-006 — Existing completed member
+
+A member whose onboarding is already complete is not required to complete onboarding again.
+
+### ONBOARD-007 — Signed-out access
+
+A signed-out visitor cannot complete onboarding as a member.
+
+## Current flow boundary
+
+The current onboarding experience is a single profile form rather than a persisted multi-step wizard. There is no skip outcome.
+
+## Traceability
+
+Implementation design is defined by the [Onboarding SDD](../../engineering/features/onboarding.md).

@@ -25,4 +25,15 @@ Use `NNNN-semantic-decision.md` and ID `ADR-NNNN`. Allocate the next unused numb
 
 ## Review
 
-The project owner accepts or rejects ADRs. Every active SDD citing a superseded ADR must be reviewed. This index lists accepted and historically relevant records once they exist; no fictitious example ADR occupies the sequence.
+The project owner accepts or rejects ADRs. Every active SDD citing a superseded ADR must be reviewed.
+
+## Accepted records
+
+- [ADR-0001: Next.js Pages Router monolith](0001-nextjs-pages-router-monolith.md)
+- [ADR-0002: Firebase Authentication](0002-firebase-authentication.md)
+- [ADR-0003: Firebase UID as User ID](0003-firebase-uid-user-id.md)
+- [ADR-0004: PostgreSQL through Prisma](0004-postgresql-prisma.md)
+- [ADR-0005: Shared Axios browser client](0005-shared-axios-browser-client.md)
+- [ADR-0006: Database-backed administrator access](0006-database-backed-admin-access.md)
+
+These records capture decisions evident from source. Their dates are bootstrap acceptance dates, not reconstructed original implementation dates.

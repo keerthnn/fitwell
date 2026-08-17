@@ -1,38 +1,15 @@
 ---
 id: operations-recovery-runbook
-title: Recovery Runbook Standard
+title: Recovery Runbook and Known Limitations
 status: draft
 authority: operational
-last_verified: null
+last_verified: 2026-08-15
 ---
 
-# Recovery runbook
+# Recovery runbook and known limitations
 
-## Purpose
+The repository contains no tested application rollback, database restore, point-in-time recovery, Firebase recovery, or automated incident procedure. Therefore no destructive recovery step is currently authorized by documentation.
 
-This document governs incident stabilization and recovery for failed deployment, migration, authentication, database, configuration, and data-integrity events.
+For an incident: stop harmful writes/deployments when safe, identify the exact environment and failing boundary, preserve non-secret logs and deployment/migration identifiers, and use only provider capabilities confirmed by the project owner. Validate authentication, authorization, database integrity, and critical flows after containment. Prefer a reviewed roll-forward for application/migration defects because database rollback is unproven.
 
-## Incident sequence
-
-1. Detect and record symptoms, time, environment, and affected capabilities.
-2. Stop harmful writes or deployments when continued operation increases risk.
-3. Preserve logs and evidence without sensitive data.
-4. Identify the failure domain: application, identity provider, hosting, database, or configuration.
-5. Choose only a verified containment or recovery procedure.
-6. Validate data integrity, authorization, authentication, and critical flows after recovery.
-7. Document residual impact and follow-up changes.
-
-## Scenario requirements
-
-An active revision must provide scenario-specific steps for failed deployment, failed migration, identity outage, database unavailability, wrong configuration, and catalogue/user-data corruption. Each scenario defines authority, stop conditions, recovery prerequisites, and proof of success.
-
-## Rules
-
-- Do not improvise destructive recovery under uncertainty.
-- Prefer roll-forward when database rollback is untested.
-- A provider backup is not a recovery plan until restore is tested.
-- Security incidents prioritize containment and user-data protection over availability.
-
-## Maintenance
-
-Exercise or tabletop critical recovery paths periodically and update `last_verified` with evidence.
+This document cannot become active until provider backup/retention is verified, a restore target and authority are named, application rollback is proven, and scenario-specific checks are exercised. A provider claim that backups exist is not restore evidence.

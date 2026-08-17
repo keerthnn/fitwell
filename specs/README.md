@@ -8,6 +8,8 @@ The system follows Docs-as-Contracts: intentional changes to active requirements
 
 ## Start here
 
+The current reverse-engineering outcome, verification evidence, unknowns, and manual-review list are recorded in the [Documentation Bootstrap Report](bootstrap-report.md).
+
 Read the smallest set relevant to the task:
 
 1. [Documentation policy](handbook/documentation-policy.md) for authority, synchronization, lifecycle, and conflict resolution.

@@ -1,40 +1,19 @@
 ---
 id: operations-configuration
-title: Configuration Standard
-status: draft
+title: Configuration Inventory
+status: active
 authority: operational
-last_verified: null
+last_verified: 2026-08-15
 ---
 
-# Configuration
+# Configuration inventory
 
-## Purpose
+`.env.example` is authoritative for names; values never belong in documentation.
 
-This document governs configuration metadata without storing values. The environment example file owns the canonical variable-name inventory; this document explains responsibility and behavior.
+| Variables | Exposure | Purpose and failure |
+| --- | --- | --- |
+| `DATABASE_URL` | Server-only | PostgreSQL connection for Prisma/runtime/migrations/seeds. Missing prevents database work; Vercel is documented to use a pooled URL. |
+| `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTHDOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID` | Browser-visible | Firebase web initialization. Missing API key prevents client initialization; project ID is also used by Admin initialization. |
+| `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` | Server-only secret | Firebase Admin credential and token verification. Escaped newlines in the key are normalized at runtime. |
 
-## Required configuration entry
-
-For each variable or configuration group record:
-
-- Name.
-- Purpose.
-- Client-exposed or server-only classification.
-- Required or optional status by environment.
-- Source and responsible integration.
-- Expected format without a real value.
-- Startup/runtime validation.
-- Rotation or update procedure.
-- Failure symptom and safe response.
-
-## Rules
-
-- Public-prefixed variables are assumed visible to the browser and must never contain secrets.
-- Secret values exist only in approved local/hosting secret stores.
-- Missing required configuration should fail clearly and safely.
-- Do not log configuration values during diagnostics.
-- Rename/remove changes update code, example files, integration docs, runbooks, and deployment environments atomically.
-- Console-only flags are documented with environment, source, and last verification.
-
-## Review
-
-Configuration changes that alter trust, provider, environment, or deployment behavior may require Full SDD.
+Local values are expected in `.env`; production values are documented as Vercel environment variables. The repository has no startup schema validator, rotation procedure, preview scope proof, or secret-store evidence. Never log values or place Admin/database secrets in `NEXT_PUBLIC_*` variables.

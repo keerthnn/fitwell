@@ -21,7 +21,7 @@ Feature SDDs define how each FitWell domain fulfills its PRD within shared archi
 
 Each SDD author must trace active PRD IDs, respect architecture and accepted ADRs, define boundaries and failure states, link exact code/tests, and disclose gaps. Shared rules are linked rather than copied.
 
-These documents define domain-specific authoring standards until the codebase bootstrap is performed. They remain `draft` and make no current implementation claims.
+The ten domain SDDs are active current-state documents populated from repository source and verified on 2026-08-15. They claim only implemented behavior, expose known gaps explicitly, and contain no test links because the configured test directory is empty.
 
 ## Change control
 

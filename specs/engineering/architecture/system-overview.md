@@ -1,41 +1,64 @@
 ---
 id: architecture-system-overview
-title: System Overview Standard
-status: draft
+title: System Overview
+status: active
 authority: engineering
-requirements: []
+requirements: [SEC-001, SEC-002, SEC-003, DATA-001]
 decisions: []
-code: []
+code: [src/pages/, src/components/, src/lib/, src/utils/, prisma/schema.prisma]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # System overview
 
-## Purpose
+## System context
 
-This document governs the future system-level description of FitWell. It must let a new engineer understand the deployed context and major data flows without reading every feature SDD.
+FitWell is a full-stack Next.js Pages Router monolith. The browser renders React/MUI pages and sends same-origin requests to Next.js API Routes. Firebase Authentication supplies external identity; Firebase Admin verifies the browser's ID token on the server. PostgreSQL stores application users and fitness data through Prisma.
 
-## Required content
+~~~text
+Browser
+  |-- React/MUI Pages Router UI
+  |-- Firebase Authentication client
+  |-- idToken cookie
+  v
+Next.js API Routes
+  |-- method/auth/validation/authorization
+  |-- shared Prisma client
+  v
+PostgreSQL
 
-An active revision must define:
+Firebase Admin verifies identity tokens.
+Vercel is the documented deployment target; repository evidence does not prove a live project.
+~~~
 
-- Actors and external systems.
-- Browser, application runtime, identity service, database, and hosting boundaries.
-- Trust boundaries and where credentials or user data cross them.
-- Major product domains and their ownership.
-- Primary request, authentication, persistence, and deployment flows.
-- Synchronous versus asynchronous behavior, if any.
-- Environment topology and links to operational detail.
+## Runtime topology
 
-## Rules
+- Node.js 22 is the declared runtime.
+- Next.js 16 and React 19 provide the UI and API runtime.
+- Pages under `src/pages/` define public, member, onboarding, and administrator screens.
+- Handlers under `src/pages/api/` form the server API.
+- The shared Prisma client uses the PostgreSQL adapter and `DATABASE_URL`.
+- Firebase client configuration uses public environment variables; Firebase Admin uses server-only service-account fields.
+- Local PNG/WebP assets are served from `public/`; asset and seed scripts are run with Node.
 
-- Stay above route, component, and table detail.
-- Use a system-context diagram when three or more boundaries interact.
-- Link feature SDDs for domain internals and integrations/runbooks for external state.
-- Distinguish verified current topology from planned changes.
-- Add an ADR when changing the fundamental application shape or external system boundary.
+## Application partitions
 
-## Responsibilities
+| Partition | Routes | Shell/guard |
+| --- | --- | --- |
+| Public | `/`, `/auth/*` | `PublicShell` |
+| Onboarding | `/onboarding` | Standalone page with authentication behavior |
+| Member | All non-public, non-admin pages | `AppShell` plus page-level `AuthenticatedPage` use |
+| Administrator | `/system-admin/*` | `AdminLayout` and `AdminPageGuard` |
 
-Cross-domain and infrastructure changes review this document. Activation requires comparison with deployment configuration, integration records, and representative code paths.
+## Major domains
+
+Authentication; profiles/onboarding; exercise catalog; workouts and rest timer; workout plans; dashboard; analytics; feedback; and administration.
+
+## Persistence domains
+
+The database persists users/profiles, exercises, workout aggregates, plan aggregates, daily activity, administrator membership/audit logs, and feedback conversations. Firebase Authentication identity is external and is not deleted by local account deletion.
+
+## Operational boundaries
+
+The repository includes local database target checks, Prisma migrations, catalogue/plan seeds, local admin grant, asset generation, and asset verification. Vercel/PostgreSQL/Firebase hosted state is not discoverable from Git and remains unverified.

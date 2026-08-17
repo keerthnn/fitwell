@@ -1,36 +1,58 @@
 ---
 id: prd-dashboard
-title: Dashboard Requirements Standard
-status: draft
+title: Dashboard
+status: active
 authority: binding-product
 requirement_prefix: DASH
 engineering:
   - specs/engineering/features/dashboard.md
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Dashboard PRD
 
-## Purpose and boundary
+## Purpose
 
-This document governs the user's summary and navigation experience. It owns which product questions the dashboard answers and how stale, absent, or failed summary data is communicated; metric definitions remain in Analytics.
+The dashboard summarizes the signed-in member's recent and cumulative workout activity and provides direct paths to resume or begin training.
 
-## Required requirement areas
+## Requirements
 
-An active revision must define:
+### DASH-001 — Member greeting
 
-- Eligible actors and entry outcomes.
-- Summary concepts and their product meaning.
-- Recent, upcoming, or actionable information where applicable.
-- Empty, first-use, loading, partial-data, and error states.
-- Refresh and recency communication.
-- Navigation actions and safe fallbacks.
-- Mobile information priority and accessible presentation.
+The dashboard greets the member using profile name when available, then account display name, then a general fallback.
 
-## Cross-domain responsibilities
+### DASH-002 — Weekly progress
 
-Link Analytics for metric definitions, Workouts and Plans for source concepts, Onboarding for readiness, and system qualities for accessibility and data isolation.
+The dashboard shows completed workouts since the start of the current week and compares them with the member's weekly workout target or the default target when no profile exists.
 
-## Review rules
+### DASH-003 — Streak
 
-Requirements use `DASH-NNN`. Do not duplicate analytics formulas or promise real-time behavior without a measurable recency contract.
+The dashboard shows the current consecutive-day streak calculated from days containing completed workouts.
+
+### DASH-004 — Lifetime summary
+
+The dashboard shows total completed workouts and total recorded workout duration for the member.
+
+### DASH-005 — Recent workouts
+
+The dashboard shows up to five most recent completed workouts.
+
+### DASH-006 — Active workout
+
+When in-progress workouts exist, the dashboard surfaces the most recently updated one for resumption.
+
+### DASH-007 — Saved plans
+
+The dashboard shows up to four recently updated, active, non-archived private plans belonging to the member.
+
+### DASH-008 — Frequent exercises
+
+The dashboard shows up to four exercises most frequently present in the member's completed workouts.
+
+### DASH-009 — Page states
+
+The dashboard provides loading and retryable error states and presents meaningful empty sections when the member has no matching data.
+
+## Traceability
+
+Implementation design is defined by the [Dashboard SDD](../../engineering/features/dashboard.md).

@@ -1,46 +1,35 @@
 ---
 id: api-errors-and-validation
-title: API Errors and Validation Standard
-status: draft
+title: API Errors and Validation
+status: active
 authority: binding-engineering
-requirements: []
+requirements: [SEC-003, SEC-004, DATA-002]
 decisions: []
-code: []
+code: [src/lib/api/api-utils.ts, src/lib/api/validators/, src/pages/api/]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # API errors and validation
 
-## Purpose
+## Error behavior present in the repository
 
-This document governs predictable client-safe errors and runtime input validation across every endpoint.
+| Status | Current meaning |
+| --- | --- |
+| 400 | Invalid identifier, query, date range, confirmation, body, or domain precondition such as completing with no completed set. |
+| 401 | Token cookie absent, invalid, or unverifiable. |
+| 403 | Valid user is disabled/deleted, or a valid member lacks administrator access. |
+| 404 | Resource absent or concealed by owner/built-in predicates. |
+| 409 | Existing profile, closed feedback update, disallowed feedback deletion, non-resumable workout, or last-administrator invariant. |
+| 405 | Handler method mismatch. |
+| 500 | Unexpected failure, with a generic response in handlers that catch errors. |
 
-## Error categories
+There is no single error envelope. Existing handlers return one of `{ error: string }`, `{ errors: Record<string,string[]> }`, `{ message: string }`, or a plain `"Internal Server Error"` string in authentication synchronization. Clients must follow their specific wrapper contract.
 
-- **400 Bad Request:** malformed, missing, out-of-range, or semantically invalid input.
-- **401 Unauthorized:** no valid authenticated principal.
-- **403 Forbidden:** identity is known but lacks a required role where revealing that distinction is safe.
-- **404 Not Found:** target does not exist or must be concealed from an unauthorized caller.
-- **409 Conflict:** valid request conflicts with current resource state and the client can act on that distinction.
-- **405 Method Not Allowed:** unsupported method.
-- **500 Internal Server Error:** unexpected server failure with no sensitive detail.
+## Validation boundaries
 
-An active revision must define the shared JSON envelope and field-error structure after bootstrap. Endpoints may specialize error codes only when clients need deterministic handling.
+Runtime validation occurs before writes. Validators constrain identifiers, enumerations, numeric ranges, array sizes, strings, pagination, and dates. Member ownership and administrator authority are persistence predicates, not client validation. Prisma unique constraints and transactional predicates provide additional conflict protection. Client form checks improve usability but never replace server checks.
 
-## Validation rules
+## Information boundaries
 
-- Validate at the server boundary; client validation is usability only.
-- Reject unknown or unsafe fields where practical.
-- Normalize only well-defined representations; do not silently reinterpret ambiguous values.
-- Validate identifiers, strings, dates, enums, arrays, units, ordering, and cross-field constraints.
-- Domain invariant failures are distinct from syntax failures when the client needs a different response.
-- Validation functions are pure where possible and tested with boundary tables.
-
-## Disclosure and logging
-
-Errors must not expose credentials, tokens, cookies, database details, stack traces, internal IDs beyond contract, or another user's record existence. Server logs retain correlation and operational detail without sensitive payloads.
-
-## Verification
-
-Each endpoint tests malformed input, missing authentication, insufficient privilege/ownership, absent target, relevant conflict, and unexpected failure translation.
+Owner-scoped handlers normally return 404 when the caller cannot access a record. Administrator absence is distinguished as 403. Responses do not include credentials, Firebase token contents, connection strings, or raw Prisma errors. Logged failures must preserve that boundary.

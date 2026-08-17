@@ -1,43 +1,27 @@
 ---
 id: integration-firebase
-title: Firebase Integration Standard
-status: draft
+title: Firebase Integration
+status: active
 authority: engineering
-requirements: []
-decisions: []
-code: []
+requirements: [AUTH-001, AUTH-002, AUTH-003, AUTH-004, AUTH-005, SEC-001, SEC-005]
+decisions: [ADR-0002, ADR-0003]
+code: [src/lib/firebaseConfig.ts, src/lib/firebaseAdmin.ts, src/components/context.tsx, .env.example, README.md]
 tests: []
-last_verified: null
+last_verified: 2026-08-15
 ---
 
 # Firebase integration
 
-## Purpose
+## Repository-visible contract
 
-This document governs what must be recorded about Firebase as an external identity dependency. It does not duplicate SDK documentation.
+Firebase Authentication is FitWell's identity provider. The browser initializes a Firebase app from six `NEXT_PUBLIC_FIREBASE_*` variables, uses local persistence, supports email/password and Google popup sign-in, observes token changes, and writes the ID token to the `token` cookie. Server code initializes Firebase Admin from project ID, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY`, then verifies the cookie token.
 
-## Required integration record
+Firebase UID becomes `User.id`; email, display name, and photo URL synchronize to PostgreSQL. Local disabled/deleted state and `AdminAccess` are application concerns, not Firebase claims. Account deletion preserves the Firebase identity according to repository documentation and code behavior.
 
-An active revision must define:
+## Configuration and failure behavior
 
-- Project/environment mapping without secret identifiers where inappropriate.
-- Enabled sign-in methods and who may change them.
-- Authorized domains and verification source.
-- Client SDK versus Admin SDK responsibilities.
-- Required configuration variable names and client/server exposure.
-- Token verification, revocation, persistence, and outage assumptions.
-- Identity deletion/disablement relationship to application accounts.
-- Quotas, limits, audit/log availability, and incident contacts when relevant.
-- Safe rotation and recovery procedure.
+Public variable names are browser-visible and contain no Admin secret. The client initializes only when the public API key exists; missing configuration leaves authentication unavailable. Server credentials are required for token verification and newline escapes in the private key are converted at runtime. Secrets must exist only in environment stores.
 
-## Rules
+## External state not proven
 
-- Verify Firebase Console state through an authorized source.
-- Never include service-account private keys, token values, or user records.
-- Link authentication and authorization architecture for application behavior.
-- Treat provider availability and application database availability as separate failure domains.
-- Any sign-in-method, token, credential-transport, or identity-lifecycle change uses Full SDD.
-
-## Review
-
-Record evidence date and environment. Stale or inaccessible console state is an explicit operational risk, not silently accepted truth.
+The repository does not identify Firebase project IDs, enabled providers in Console, authorized domains, quota, audit/log retention, credential rotation, or environment-to-project mapping. `README.md` instructs adding the Vercel hostname as an authorized domain after deployment, but does not prove it is configured.

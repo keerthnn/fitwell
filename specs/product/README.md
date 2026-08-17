@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Product documents explain why FitWell exists, which user problems matter, what capabilities have been verified as shipped, and what outcomes may be pursued next. They orient PRD and design authors but do not authorize implementation.
+Product documents explain why FitWell exists, which user problems matter, and what capabilities are present in the current repository. They orient PRD and design authors but do not authorize implementation.
 
 ## Documents
 
 - [Product brief](product-brief.md) owns vision, audiences, journeys, boundaries, and product principles.
 - [Feature catalog](feature-catalog.md) owns the verified inventory of shipped user-visible capabilities.
-- [Roadmap](roadmap.md) owns prioritization hypotheses and deferred opportunities.
+- [Roadmap](roadmap.md) records the current implemented and partial state only; it contains no speculative future commitments.
 
 ## Authority
 

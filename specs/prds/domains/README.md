@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Domain PRDs partition FitWell's observable behavior into stable product areas. Each file defines the questions, requirement categories, and review responsibilities that must govern that domain. Concrete current behavior is added only during the dedicated bootstrap process.
+Domain PRDs partition FitWell's observable behavior into stable product areas. The ten active PRDs were populated from current source during the 2026-08-15 bootstrap and link to their implementing feature SDDs.
 
 ## Domain map
 
@@ -27,6 +27,6 @@ Domain PRDs partition FitWell's observable behavior into stable product areas. E
 
 When behavior spans domains, one PRD owns the outcome and links supporting requirements. Do not copy the same rule into multiple PRDs.
 
-## Activation
+## Current status and future activation
 
-A domain PRD remains `draft` until its behavior is researched, requirement IDs are assigned, edge cases are reviewed, system qualities are linked, an implementing SDD exists, and traceability gaps are explicit.
+All listed domain PRDs are active. A new domain PRD remains `draft` until behavior is researched, requirement IDs are assigned, edge cases are reviewed, system qualities and an implementing SDD are linked, and traceability gaps are explicit.
