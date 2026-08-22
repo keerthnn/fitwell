@@ -23,7 +23,8 @@ export default function ActiveWorkoutBanner({
         minHeight: { xs: 230, sm: 190 },
         mb: 3,
         overflow: "hidden",
-        background: (theme) => theme.fitwell.colors.sidebar.start,
+        background: (theme) =>
+          theme.palette.mode === "dark" ? "#0F172A" : "#1E3A8A",
         color: "common.white",
         border: 0,
       }}

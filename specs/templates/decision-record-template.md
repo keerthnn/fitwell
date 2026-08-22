@@ -65,6 +65,6 @@ Link driving PRDs, affected SDDs, operations, and earlier decisions. Populate re
 ## Decision outcome
 
 - Status: Proposed | Accepted | Superseded | Rejected
-- Decided by: Project owner
+- Decided by: Keerthan K (project owner)
 - Date: YYYY-MM-DD
 - Review trigger: <condition that should reopen the decision>

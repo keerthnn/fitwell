@@ -3,7 +3,7 @@ id: product-roadmap
 title: FitWell Current-State Roadmap
 status: active
 authority: informational
-last_verified: 2026-08-15
+last_verified: 2026-08-23
 ---
 
 # Current-state roadmap
@@ -18,7 +18,7 @@ This document records only the implemented and partially implemented product bas
 - Profile onboarding, profile editing, appearance preference, sign-out, and local account deletion.
 - Exercise catalogue browsing, filtering, imagery, and start-from-exercise.
 - Workout history, live workout creation, tracking-type-aware set recording, pause/resume/completion, quick entry, edit, duplication, deletion, and a persistent rest timer.
-- Private and built-in workout-plan discovery, authoring, duplication, archive, and start-from-plan.
+- Private and built-in workout-plan discovery, authoring, named duplication, private-plan archive/permanent deletion, and start-from-plan.
 - Dashboard summaries and personal workout analytics.
 - User/admin feedback conversations.
 - Guarded administration for users, exercises, built-in plans, workouts, analytics, admin access, feedback, and audit logs.

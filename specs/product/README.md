@@ -16,7 +16,7 @@ All documents in this folder are **informational**. If a statement conflicts wit
 
 ## Responsibilities
 
-The project owner maintains product direction. A change author reviews the feature catalog after user-visible work. Product documents must use product language and avoid routes, data models, libraries, algorithms, and deployment mechanics.
+Keerthan K, the project owner, maintains product direction. A change author reviews the feature catalog after user-visible work. Product documents must use product language and avoid routes, data models, libraries, algorithms, and deployment mechanics.
 
 ## Update rules
 

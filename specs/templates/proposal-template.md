@@ -71,6 +71,6 @@ State sequencing, compatibility windows, feature availability, migration depende
 ## Proposal decision
 
 - Status: Pending approval
-- Approved by: Project owner
+- Approved by: Keerthan K (project owner)
 - Date: Not yet approved
 - Conditions: <approval conditions or none>

@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: PLAN
 engineering:
   - specs/engineering/features/workout-plans.md
-last_verified: 2026-08-15
+last_verified: 2026-08-23
 ---
 
 # Workout plans PRD
@@ -55,7 +55,7 @@ A member may archive or restore their private non-built-in plan.
 
 ### PLAN-010 — Duplication
 
-A member may duplicate a visible plan into a new private plan whose name indicates it is a copy.
+A member may duplicate a visible plan into a new private plan after accepting or editing a suggested valid copy name.
 
 ### PLAN-011 — Start workout
 
@@ -64,6 +64,10 @@ A member may start a visible plan as an in-progress workout. The new workout con
 ### PLAN-012 — Historical independence
 
 Changing or deleting a plan does not rewrite the exercises and sets already materialized into a workout.
+
+### PLAN-013 — Permanent private-plan deletion
+
+A member may permanently delete their private non-built-in plan only after an explicit confirmation that the action cannot be undone.
 
 ## Current limitations
 

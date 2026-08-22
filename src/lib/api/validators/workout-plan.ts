@@ -24,6 +24,20 @@ export interface PlanInput {
   exercises: WorkoutPlanExercise[];
 }
 
+export function validateDuplicateWorkoutPlan(value: RequestInputValue) {
+  const input = record(value);
+  if (!input)
+    return invalid<{ id: string; name: string }>([
+      { field: "request", message: "Invalid request body" },
+    ]);
+  const errors: ValidationError[] = [];
+  const id = idValue(input.id, "id", errors);
+  const name = text(input.name, "name", errors, { required: true, max: 120 });
+  if (errors.length || !id || !name)
+    return invalid<{ id: string; name: string }>(errors);
+  return valid({ id, name });
+}
+
 export function validateWorkoutPlan(value: RequestInputValue) {
   const input = record(value);
   if (!input)

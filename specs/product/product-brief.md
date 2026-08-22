@@ -3,7 +3,7 @@ id: product-brief
 title: FitWell Product Brief
 status: active
 authority: informational
-last_verified: 2026-08-15
+last_verified: 2026-08-23
 ---
 
 # FitWell product brief
@@ -27,7 +27,7 @@ FitWell is a workout-tracking application for people who want to plan training, 
 3. A member browses and filters the exercise catalogue.
 4. A member starts an empty or preselected live workout, records sets, uses the rest timer, pauses/resumes, and completes the session.
 5. A member records a past workout through quick entry and edits its exercises and sets.
-6. A member creates, edits, duplicates, archives, and starts a private workout plan.
+6. A member creates, edits, duplicates with a chosen copy name, archives, permanently deletes, and starts a private workout plan.
 7. A member starts a workout from an active built-in plan.
 8. A member reviews dashboard summaries and workout analytics.
 9. A member submits feedback and continues the conversation with administrators.

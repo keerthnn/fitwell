@@ -19,4 +19,4 @@ Exact current behavior remains executable in code, validators, the Prisma schema
 
 ## Responsibilities
 
-Feature authors update the smallest authoritative set of documents. Reviewers check upstream PRD links, downstream code/test links, and cross-domain effects. The project owner approves architecture and decision changes. No engineering document may invent external dashboard state or store secrets.
+Feature authors update the smallest authoritative set of documents. Reviewers check upstream PRD links, downstream code/test links, and cross-domain effects. Keerthan K, the project owner, approves architecture and decision changes. No engineering document may invent external dashboard state or store secrets.

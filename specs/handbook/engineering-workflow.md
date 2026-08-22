@@ -4,7 +4,7 @@ Authority: **Binding process**
 
 ## Purpose
 
-This workflow converts an idea or defect into verified code and synchronized documentation. It limits long-running ambiguity, makes risk visible, and gives the project owner explicit control over high-impact decisions.
+This workflow converts an idea or defect into verified code and synchronized documentation. It limits long-running ambiguity, makes risk visible, and gives Keerthan K, the project owner, explicit control over high-impact decisions.
 
 FitWell has two operating modes. Select the mode per change, before implementation, from risk and blast radius rather than estimated line count.
 
@@ -72,7 +72,7 @@ Required work:
 - List questions whose answers could change scope or architecture.
 - Explain why Full SDD applies.
 
-Exit gate: the project owner agrees the problem is understood, material unknowns are resolved or explicitly bounded, and Proposal may begin.
+Exit gate: Keerthan K, the project owner, agrees the problem is understood, material unknowns are resolved or explicitly bounded, and Proposal may begin.
 
 ### 2. Proposal
 
@@ -86,7 +86,7 @@ Required work:
 - Compare high-level approaches.
 - Identify compatibility, security, data, operational, and rollout risk.
 
-Exit gate: the project owner approves the outcome and scope. An unapproved proposal does not authorize design or implementation.
+Exit gate: Keerthan K, the project owner, approves the outcome and scope. An unapproved proposal does not authorize design or implementation.
 
 ### 3. Design
 
@@ -101,7 +101,7 @@ Required work:
 - Identify decisions that deserve ADRs.
 - Compare credible technical alternatives and consequences.
 
-Exit gate: the design is internally consistent, every acceptance criterion has an implementation and verification approach, risky unknowns are resolved, and the project owner approves it.
+Exit gate: the design is internally consistent, every acceptance criterion has an implementation and verification approach, risky unknowns are resolved, and Keerthan K, the project owner, approves it.
 
 ### 4. Tasks
 
@@ -144,7 +144,7 @@ Required work:
 - Synchronize canonical PRDs, SDDs, ADRs, API/data documents, runbooks, and product inventory.
 - Record known gaps and their disposition.
 
-Exit gate: required evidence passes, deviations are accepted or corrected, canonical documents are synchronized, and the project owner approves Archive.
+Exit gate: required evidence passes, deviations are accepted or corrected, canonical documents are synchronized, and Keerthan K, the project owner, approves Archive.
 
 ### 7. Archive
 
@@ -167,7 +167,7 @@ Phase gates prevent error compounding; they do not prohibit learning. Return to 
 
 Lightweight work may be escalated at any time. Preserve useful tests and notes, create a change package, and begin Clarify with the discovered evidence.
 
-Full SDD should not normally be downgraded after Proposal approval. If Clarify proves the work is low-risk and fully governed by existing contracts, the project owner may record that conclusion in `clarify.md`, close the unused package, and continue Lightweight.
+Full SDD should not normally be downgraded after Proposal approval. If Clarify proves the work is low-risk and fully governed by existing contracts, Keerthan K, the project owner, may record that conclusion in `clarify.md`, close the unused package, and continue Lightweight.
 
 ## Completion standard
 

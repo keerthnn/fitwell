@@ -33,7 +33,7 @@ Copy each artifact from [templates](../templates/README.md). Use one shared chan
 
 ## Responsibilities
 
-The change author maintains phase artifacts and returns to an earlier phase when evidence changes scope or design. The project owner approves Clarify, Proposal, Design, Verification, and Archive. Reviewers verify traceability, risk treatment, evidence, and canonical synchronization.
+The change author maintains phase artifacts and returns to an earlier phase when evidence changes scope or design. Keerthan K, the project owner, approves Clarify, Proposal, Design, Verification, and Archive. Reviewers verify traceability, risk treatment, evidence, and canonical synchronization.
 
 ## Archive gate
 
@@ -44,6 +44,6 @@ Before moving a package:
 3. Deviations and known gaps are explicitly resolved or accepted.
 4. Affected PRDs, SDDs, ADRs, API/data docs, integrations, runbooks, quality docs, and product inventory are synchronized.
 5. No current rule exists only in the package.
-6. The project owner authorizes Archive.
+6. Keerthan K, the project owner, authorizes Archive.
 
 Move the entire directory unchanged to `archive/YYYY/`. Archived packages are historical evidence and never outrank active canonical documents.

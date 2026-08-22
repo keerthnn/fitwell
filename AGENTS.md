@@ -37,7 +37,7 @@ Lightweight work does not create a change package. It still ends with proportion
 - Do not infer Firebase Console, Vercel, or hosted-database state. Inspect it through an authorized source or report it as unknown.
 - Preserve unrelated user changes and do not perform destructive Git or database operations without explicit authorization.
 - Add or update tests in proportion to risk and include stable requirement IDs in test names when verifying binding requirements.
-- Stop and ask the project owner when binding documents materially conflict.
+- Stop and ask Keerthan K, the project owner, when binding documents materially conflict.
 - Do not create decision records or Full SDD packages for routine implementation that follows established conventions.
 
 ## Common commands

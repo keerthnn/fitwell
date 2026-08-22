@@ -1,5 +1,5 @@
 import { checkIfPostOrSetError } from "fitness/lib/api/api-utils";
-import { validateIdBody } from "fitness/lib/api/validators/workout";
+import { validateDuplicateWorkoutPlan } from "fitness/lib/api/validators/workout-plan";
 import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
 import {
@@ -15,7 +15,7 @@ export default async function handler(
   if (!checkIfPostOrSetError(req, res)) return;
   const userId = await getUserIdOrSetError(req, res);
   if (!userId) return;
-  const validation = validateIdBody(req.body);
+  const validation = validateDuplicateWorkoutPlan(req.body);
   if (!validation.valid)
     return res.status(400).send({ errors: validation.errors });
   const source = await findVisibleWorkoutPlan(validation.data.id, userId);
@@ -23,7 +23,7 @@ export default async function handler(
   const copy = await prisma.workoutPlan.create({
     data: {
       userId,
-      name: `${source.name} Copy`,
+      name: validation.data.name,
       description: source.description,
       difficulty: source.difficulty,
       category: source.category,

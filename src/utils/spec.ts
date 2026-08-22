@@ -111,8 +111,12 @@ export const updateWorkoutPlan = async (input: Partial<WorkoutPlan> & { id: stri
   (await axios.patch("/api/workout-plans/update", input)).data as WorkoutPlan;
 export const archiveWorkoutPlan = async (id: string, archived: boolean) =>
   (await axios.post("/api/workout-plans/archive", { id, archived })).data as WorkoutPlan;
-export const duplicateWorkoutPlan = async (id: string) =>
-  (await axios.post("/api/workout-plans/duplicate", { id })).data as WorkoutPlan;
+export const duplicateWorkoutPlan = async (id: string, name: string) =>
+  (await axios.post("/api/workout-plans/duplicate", { id, name })).data as WorkoutPlan;
+export const deleteWorkoutPlan = async (id: string) =>
+  (await axios.delete("/api/workout-plans/delete", { params: { id } })).data as {
+    success: true;
+  };
 export const startWorkoutFromPlan = async (id: string) =>
   (await axios.post("/api/workout-plans/start-workout", { id })).data as { id: string };
 

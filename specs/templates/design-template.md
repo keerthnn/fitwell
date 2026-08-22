@@ -87,6 +87,6 @@ List canonical PRDs, SDDs, ADRs, API/data docs, integrations, operations, qualit
 ## Design decision
 
 - Status: Pending approval
-- Approved by: Project owner
+- Approved by: Keerthan K (project owner)
 - Date: Not yet approved
 - Conditions: <conditions or none>

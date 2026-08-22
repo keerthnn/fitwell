@@ -90,6 +90,6 @@ List each gap, severity, disposition, owner, and follow-up. A critical requireme
 ## Verification decision
 
 - Status: Pending approval
-- Verified by: Project owner
+- Verified by: Keerthan K (project owner)
 - Date: Not yet verified
 - Archive authorized: No

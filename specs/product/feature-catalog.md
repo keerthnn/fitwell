@@ -3,7 +3,7 @@ id: product-feature-catalog
 title: FitWell Feature Catalog
 status: active
 authority: informational
-last_verified: 2026-08-15
+last_verified: 2026-08-23
 ---
 
 # FitWell feature catalog
@@ -65,8 +65,9 @@ last_verified: 2026-08-15
 | --- | --- | --- | --- |
 | Plan library | Lists active built-in plans and the member's non-archived private plans | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Private plan authoring | Creates and edits ordered exercise prescriptions | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
-| Plan duplication | Copies a visible plan into a private plan | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
+| Plan duplication | Collects an editable copy name, then copies a visible plan into a private plan | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Plan archive | Archives member-owned private plans | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
+| Private plan deletion | Permanently deletes a member-owned private plan after an irreversible-action confirmation | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Private plan restore | API accepts restoring an archived private plan | Partial: member recovery UI is not evident | [Workout plans](../prds/domains/workout-plans.md) |
 | Start from plan | Creates an in-progress workout with prescribed exercises and sets | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Plan filtering/pagination | Rich difficulty/category filters and pagination | Not implemented; current list is search-only and capped | [Workout plans](../prds/domains/workout-plans.md) |

@@ -16,7 +16,7 @@ The handbook is the binding operating manual for FitWell's documentation system.
 
 The documentation policy, workflow, and traceability guide have **binding process** authority. The authoring guide and review checklist provide engineering guidance except where they restate a binding rule from those documents.
 
-The change author applies the handbook. The reviewer checks compliance. The project owner approves Full SDD phase transitions and resolves conflicts. Agents must follow the same rules and must not invent missing requirements or external state.
+The change author applies the handbook. The reviewer checks compliance. Keerthan K, the project owner, approves Full SDD phase transitions and resolves conflicts. Agents must follow the same rules and must not invent missing requirements or external state.
 
 ## Maintenance
 

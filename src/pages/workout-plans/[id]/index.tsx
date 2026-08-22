@@ -3,11 +3,7 @@ import ErrorState from "fitness/components/common/ErrorState";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import WorkoutPlanDetail from "fitness/components/workout-plans/WorkoutPlanDetail";
-import {
-  duplicateWorkoutPlan,
-  getWorkoutPlan,
-  startWorkoutFromPlan,
-} from "fitness/utils/spec";
+import { getWorkoutPlan, startWorkoutFromPlan } from "fitness/utils/spec";
 import type { WorkoutPlan } from "fitness/utils/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -19,7 +15,6 @@ export default function WorkoutPlanDetailPage() {
   const [loadError, setLoadError] = useState("");
   const [actionError, setActionError] = useState("");
   const [isStarting, setIsStarting] = useState(false);
-  const [isDuplicating, setIsDuplicating] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -41,19 +36,6 @@ export default function WorkoutPlanDetailPage() {
     } catch {
       setActionError("The workout could not be started. Please try again.");
       setIsStarting(false);
-    }
-  }
-
-  async function duplicatePlan() {
-    if (!plan) return;
-    setActionError("");
-    setIsDuplicating(true);
-    try {
-      const copy = await duplicateWorkoutPlan(plan.id);
-      await router.push(`/workout-plans/${copy.id}`);
-    } catch {
-      setActionError("The workout plan could not be duplicated.");
-      setIsDuplicating(false);
     }
   }
 
@@ -85,9 +67,7 @@ export default function WorkoutPlanDetailPage() {
             plan={plan}
             error={actionError}
             isStarting={isStarting}
-            isDuplicating={isDuplicating}
             onStart={() => void startWorkout()}
-            onDuplicate={() => void duplicatePlan()}
           />
         </>
       )}

@@ -64,7 +64,7 @@ Clarify and Proposal remain separate artifacts. Implementation follows approved 
 
 - The change author selects the mode, loads relevant context, maintains traceability, and synchronizes documentation.
 - Reviewers check authority, placement, security/data impact, evidence, and link accuracy.
-- The project owner approves Full SDD phase transitions, active PRDs/SDDs, accepted ADRs, destructive operations, and conflict resolution.
+- Keerthan K, the project owner, approves Full SDD phase transitions, active PRDs/SDDs, accepted ADRs, destructive operations, and conflict resolution.
 - Agents follow the same rules, do not invent unknown state, and stop for unresolved binding contradictions.
 
 ## Maintenance rules

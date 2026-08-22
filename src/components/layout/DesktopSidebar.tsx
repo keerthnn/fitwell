@@ -48,7 +48,7 @@ export default function DesktopSidebar({
             ? theme.fitwell.sidebarCollapsedWidth
             : theme.fitwell.sidebarWidth,
         background: (theme) => theme.fitwell.colors.sidebar.gradient,
-        color: "white",
+        color: (theme) => theme.fitwell.colors.sidebar.foreground,
         px: collapsed ? 1 : 2,
         py: 2,
         flexDirection: "column",
@@ -75,7 +75,7 @@ export default function DesktopSidebar({
         <IconButton
           onClick={onToggle}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          sx={{ color: "white" }}
+          sx={{ color: "inherit" }}
         >
           {collapsed ? <ChevronRight /> : <ChevronLeft />}
         </IconButton>
@@ -111,13 +111,16 @@ export default function DesktopSidebar({
                 px: collapsed ? 1.5 : 2,
                 justifyContent: collapsed ? "center" : "flex-start",
                 "&:hover": {
-                  bgcolor: "rgba(255, 255, 255, 0.08)",
+                  bgcolor: (theme) => theme.fitwell.colors.sidebar.hover,
+                  color: (theme) => theme.fitwell.colors.sidebar.foreground,
                 },
                 "&.Mui-selected": {
                   bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
                   color: (theme) => theme.fitwell.colors.sidebar.selectedText,
                   "&:hover": {
                     bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                    color: (theme) =>
+                      theme.fitwell.colors.sidebar.selectedText,
                   },
                 },
               }}
@@ -146,7 +149,8 @@ export default function DesktopSidebar({
               px: collapsed ? 1.5 : 2,
               justifyContent: collapsed ? "center" : "flex-start",
               "&:hover": {
-                bgcolor: "rgba(255, 255, 255, 0.08)",
+                bgcolor: (theme) => theme.fitwell.colors.sidebar.hover,
+                color: (theme) => theme.fitwell.colors.sidebar.foreground,
               },
             }}
           >

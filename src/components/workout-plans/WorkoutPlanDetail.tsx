@@ -1,7 +1,6 @@
 import {
   Barbell,
   CalendarMonth,
-  ContentCopy,
   PlayArrow,
   Schedule,
 } from "fitness/components/common/icons";
@@ -18,6 +17,8 @@ import FitWellImage from "fitness/components/common/FitWellImage";
 import HeroSurface from "fitness/components/common/HeroSurface";
 import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
 import WorkoutPlanVisual from "fitness/components/workout-plans/WorkoutPlanVisual";
+import DeleteWorkoutPlanButton from "fitness/components/workout-plans/DeleteWorkoutPlanButton";
+import DuplicateWorkoutPlanButton from "fitness/components/workout-plans/DuplicateWorkoutPlanButton";
 import { formatCount, pluralize } from "fitness/utils/copy";
 import type { WorkoutPlan, WorkoutPlanExercise } from "fitness/utils/types";
 
@@ -146,16 +147,12 @@ export default function WorkoutPlanDetail({
   plan,
   error,
   isStarting,
-  isDuplicating,
   onStart,
-  onDuplicate,
 }: {
   plan: WorkoutPlan;
   error?: string;
   isStarting: boolean;
-  isDuplicating: boolean;
   onStart: () => void;
-  onDuplicate: () => void;
 }) {
   return (
     <Stack gap={3}>
@@ -235,19 +232,22 @@ export default function WorkoutPlanDetail({
               <Button
                 variant="contained"
                 startIcon={<PlayArrow />}
-                disabled={isStarting || isDuplicating}
+                disabled={isStarting}
                 onClick={onStart}
               >
                 {isStarting ? "Starting…" : "Start workout"}
               </Button>
-              <Button
-                variant="outlined"
-                startIcon={<ContentCopy />}
-                disabled={isStarting || isDuplicating}
-                onClick={onDuplicate}
-              >
-                {isDuplicating ? "Duplicating…" : "Duplicate plan"}
-              </Button>
+              <DuplicateWorkoutPlanButton
+                planId={plan.id}
+                planName={plan.name}
+                disabled={isStarting}
+              />
+              {!plan.isBuiltIn && (
+                <DeleteWorkoutPlanButton
+                  planId={plan.id}
+                  planName={plan.name}
+                />
+              )}
             </Stack>
           </Stack>
         </Box>

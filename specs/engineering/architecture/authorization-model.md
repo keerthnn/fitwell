@@ -6,8 +6,8 @@ authority: binding-engineering
 requirements: [SEC-002, SEC-003, SEC-004, SEC-005, ADMIN-001, PLAN-002, PLAN-003, FEEDBACK-010]
 decisions: []
 code: [src/lib/auth/utils.ts, src/lib/auth/requireAdmin.ts, src/lib/workoutPlans/access.ts, src/pages/api/]
-tests: []
-last_verified: 2026-08-15
+tests: [test cases/pages/api/workout-plans/]
+last_verified: 2026-08-23
 ---
 
 # Authorization model
@@ -35,6 +35,7 @@ last_verified: 2026-08-15
 - Top-level member queries include `userId` in the Prisma predicate.
 - Nested workout-exercise/set handlers traverse to the workout owner before mutation.
 - Visible-plan lookup uses a shared OR predicate for owned private or active built-in plans.
+- Permanent private-plan deletion binds the verified owner ID and `isBuiltIn: false` classification to the database mutation; built-in, cross-user, and absent targets share a not-found outcome.
 - Admin handlers call `requireAdmin` before reading or mutating.
 - Client guards and hidden navigation improve UX but are not authorization.
 
@@ -52,4 +53,4 @@ Member ownership failures commonly return 404, avoiding disclosure of another me
 
 ## Verification gap
 
-There are no automated cross-user or non-admin rejection tests. Authorization was derived statically from predicates and helper use.
+Workout-plan duplicate/delete handler tests cover authenticated identity propagation, visible-source rejection, and the owner/private deletion predicate. Representative database-backed cross-user rejection and non-admin administrator-route tests remain gaps.

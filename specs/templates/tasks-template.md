@@ -57,7 +57,7 @@ opened: <YYYY-MM-DD>
 ## 6. Archive
 
 - [ ] Confirm no lasting rule remains only in this package.
-- [ ] Obtain project-owner Verification approval.
+- [ ] Obtain Verification approval from Keerthan K, the project owner.
 - [ ] Set status to `archived` and move the directory to `specs/changes/archive/YYYY/`.
 
 ## Discoveries and replanning

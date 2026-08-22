@@ -6,8 +6,8 @@ authority: binding-process
 requirements: []
 decisions: []
 code: [package.json, vitest.config.ts, scripts/verify-assets.mjs]
-tests: []
-last_verified: 2026-08-15
+tests: [test cases/]
+last_verified: 2026-08-23
 ---
 
 # Verification matrix and bootstrap evidence
@@ -18,7 +18,7 @@ last_verified: 2026-08-15
 | --- | --- | --- |
 | Lint | `pnpm run lint` | ESLint checks repository source. |
 | Types | `pnpm run typecheck` | Strict TypeScript no-emit check. |
-| Automated tests | `pnpm run test` | Runs configured Vitest suite; currently no test files exist. |
+| Automated tests | `pnpm run test` | Runs configured Vitest unit, handler, component, theme, and schema-contract tests. |
 | Production build | `pnpm run build` | Generates Prisma during lifecycle and builds Next.js with webpack. |
 | Static assets | `pnpm run verify:assets` | Verifies seeded exercise/plan asset references. |
 
@@ -36,4 +36,4 @@ last_verified: 2026-08-15
 
 ## Requirement verification status
 
-All current PRD requirements map to feature SDDs and code, but none map to an automated test file. Source inspection is the bootstrap evidence; it is not release-level behavioral verification. Live Firebase, Vercel, and PostgreSQL state was not inspected.
+Current PRD requirements map to feature SDDs and code. Focused automated evidence exists for selected accessibility, workout creation, theme, workout-plan duplication/deletion, ownership-predicate, validation, and schema lifecycle contracts; most other requirements retain bootstrap source inspection rather than release-level behavioral verification. Live Firebase, Vercel, and hosted PostgreSQL state was not inspected.

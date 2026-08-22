@@ -68,6 +68,6 @@ List the evidence required for the entire change to complete, including contract
 ## Clarify decision
 
 - Status: Pending approval
-- Approved by: Project owner
+- Approved by: Keerthan K (project owner)
 - Date: Not yet approved
 - Notes: <conditions or explicitly bounded unknowns>

@@ -34,13 +34,16 @@ export default function createAppTheme(mode: PaletteMode) {
       },
     },
     sidebar: {
-      start: "#0F172A",
-      middle: "#111827",
-      end: "#0B1220",
-      gradient:
-        "linear-gradient(180deg, #0F172A 0%, #111827 50%, #0B1220 100%)",
-      selected: "#1E3A8A",
-      selectedText: "#F8FAFC",
+      start: dark ? "#0F172A" : "#FFFFFF",
+      middle: dark ? "#111827" : "#F8FAFC",
+      end: dark ? "#0B1220" : "#EEF2F7",
+      gradient: dark
+        ? "linear-gradient(180deg, #0F172A 0%, #111827 50%, #0B1220 100%)"
+        : "linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #EEF2F7 100%)",
+      foreground: dark ? "#F8FAFC" : "#0F172A",
+      hover: dark ? "#1E293B" : "#E2E8F0",
+      selected: dark ? "#1E3A8A" : "#DBEAFE",
+      selectedText: dark ? "#F8FAFC" : "#1D4ED8",
     },
     chart: ["#2563EB", "#16A34A", "#F59E0B", "#64748B", "#DC2626"],
   };

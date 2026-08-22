@@ -18,7 +18,7 @@ PRDs own outcomes; SDDs own stack-specific mechanisms. A requirement should rema
 
 ## Responsibilities
 
-The change author assigns stable IDs, identifies cross-domain qualities, and links implementing SDDs. Reviewers reject ambiguous, untestable, duplicated, or implementation-specific requirements. The project owner approves activation and material requirement changes.
+The change author assigns stable IDs, identifies cross-domain qualities, and links implementing SDDs. Reviewers reject ambiguous, untestable, duplicated, or implementation-specific requirements. Keerthan K, the project owner, approves activation and material requirement changes.
 
 ## Lifecycle
 

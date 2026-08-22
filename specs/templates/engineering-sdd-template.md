@@ -94,4 +94,4 @@ Explain stable path responsibilities and keep frontmatter mappings current. Do n
 
 ## Open questions and approval
 
-Resolve material questions before activation. Record the approving change package or project-owner review and update `last_verified` only after comparing the document with evidence.
+Resolve material questions before activation. Record the approving change package or review by Keerthan K, the project owner, and update `last_verified` only after comparing the document with evidence.

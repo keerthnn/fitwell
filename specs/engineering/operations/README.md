@@ -20,4 +20,4 @@ Operations documents define safe, repeatable procedures for environments, config
 - Do not claim a rollback or restore is available unless tested.
 - Reverify a runbook before high-impact use if dependencies changed or `last_verified` is stale.
 
-The operator executes the runbook; the project owner approves destructive production actions and accepts residual risk.
+The operator executes the runbook; Keerthan K, the project owner, approves destructive production actions and accepts residual risk.
