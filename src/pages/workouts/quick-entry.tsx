@@ -11,7 +11,10 @@ export default function QuickEntryPage() {
         description="Create a past-workout draft, then add exercises and complete it."
         backLink={{ label: "Back to workouts", href: "/workouts" }}
       />
-      <Paper variant="outlined" sx={{ p: 4, maxWidth: 640 }}>
+      <Paper
+        variant="outlined"
+        sx={{ p: { xs: 2, sm: 4 }, width: "100%", maxWidth: 640, mx: "auto" }}
+      >
         <WorkoutCreateForm mode="QUICK_ENTRY" />
       </Paper>
     </AuthenticatedPage>

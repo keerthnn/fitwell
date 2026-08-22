@@ -6,8 +6,8 @@ authority: engineering
 requirements: [WORKOUT-001, WORKOUT-002, WORKOUT-003, WORKOUT-004, WORKOUT-005, WORKOUT-006, WORKOUT-007, WORKOUT-008, WORKOUT-009, WORKOUT-010, WORKOUT-011, WORKOUT-012, WORKOUT-013, WORKOUT-014, WORKOUT-015, WORKOUT-016, WORKOUT-017, SEC-002, DATA-002, DATA-006]
 decisions: [ADR-0004, ADR-0005]
 code: [src/pages/workouts/, src/components/workouts/, src/components/RestTimerProvider.tsx, src/utils/restTimer.ts, src/pages/api/workouts/, src/pages/api/workout-exercises/, src/lib/api/validators/workout.ts]
-tests: []
-last_verified: 2026-08-15
+tests: [test cases/components/workouts/WorkoutCreateForm.test.tsx]
+last_verified: 2026-08-23
 ---
 
 # Workout engine SDD
@@ -39,7 +39,7 @@ Completion is allowed from any owned workout with at least one completed set; th
 
 ## Component responsibilities
 
-`WorkoutCreateForm` and `WorkoutExercisePicker` build initial workouts. `WorkoutExerciseEditor` and `SetEditor` edit tracking-type-specific values and save sets. `WorkoutList/Card` present history. `WorkoutSummaryVisual` selects representative imagery. `DeleteWorkoutButton` owns confirmed deletion.
+`WorkoutCreateForm` and `WorkoutExercisePicker` build initial workouts. The centered creation surface starts with an empty required workout name and uses a compact calendar picker that defaults to today. `WorkoutExerciseEditor` and `SetEditor` edit tracking-type-specific values and save sets. `WorkoutList/Card` present history. `WorkoutSummaryVisual` selects representative imagery. `DeleteWorkoutButton` owns confirmed deletion.
 
 `RestTimerProvider` supplies a member/workout-scoped browser timer. It serializes a versioned timer to local storage, reconciles deadlines, handles restricted storage, announces completion, and exposes workout lifecycle controls.
 

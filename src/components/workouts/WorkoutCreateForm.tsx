@@ -7,6 +7,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs, { type Dayjs } from "dayjs";
 import WorkoutExercisePicker from "fitness/components/workouts/WorkoutExercisePicker";
 import { createWorkout } from "fitness/utils/spec";
 import type { Exercise, WorkoutEntryMode } from "fitness/utils/types";
@@ -21,8 +25,9 @@ export default function WorkoutCreateForm({
   initialExercises?: Exercise[];
 }) {
   const router = useRouter();
-  const [name, setName] = useState(mode === "QUICK_ENTRY" ? "Quick workout" : "My workout");
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [name, setName] = useState("");
+  const [date, setDate] = useState<Dayjs | null>(() => dayjs());
+  const [dateHasError, setDateHasError] = useState(false);
   const [duration, setDuration] = useState("45");
   const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,11 +36,17 @@ export default function WorkoutCreateForm({
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError("");
+    if (!date || dateHasError) {
+      setError("Choose a valid workout date.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const result = await createWorkout({
         name,
-        workoutDate: new Date(`${date}T12:00:00`).toISOString(),
+        workoutDate: new Date(
+          `${date.format("YYYY-MM-DD")}T12:00:00`,
+        ).toISOString(),
         entryMode: mode,
         durationMinutes: mode === "QUICK_ENTRY" ? Number(duration) : undefined,
         exerciseIds:
@@ -71,18 +82,31 @@ export default function WorkoutCreateForm({
           <TextField
             required
             label="Workout name"
+            name="workoutName"
             value={name}
             onChange={(event) => setName(event.target.value)}
             inputProps={{ maxLength: 120 }}
+            sx={{ flex: 1, minWidth: { sm: 260 } }}
           />
-          <TextField
-            required
-            type="date"
-            label="Workout date"
-            InputLabelProps={{ shrink: true }}
-            value={date}
-            onChange={(event) => setDate(event.target.value)}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Workout date"
+              value={date}
+              onChange={setDate}
+              onError={(pickerError) => setDateHasError(pickerError !== null)}
+              format="DD MMM YYYY"
+              slotProps={{
+                openPickerButton: {
+                  "aria-label": "Open workout date calendar",
+                },
+                textField: {
+                  required: true,
+                  size: "small",
+                  sx: { width: 190, maxWidth: "100%" },
+                },
+              }}
+            />
+          </LocalizationProvider>
           {mode === "QUICK_ENTRY" && (
             <TextField
               required
