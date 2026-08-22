@@ -9,6 +9,7 @@ export default function CreateWorkoutPlanPage() {
       <PageHeader
         title="Create Workout Plan"
         description="Build a reusable programme with clear exercise targets."
+        backLink={{ label: "Back to workout plans", href: "/workout-plans" }}
       />
       <Paper
         variant="outlined"

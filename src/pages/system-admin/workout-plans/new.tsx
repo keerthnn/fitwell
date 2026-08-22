@@ -8,6 +8,10 @@ export default function NewAdminWorkoutPlanPage() {
       <PageHeader
         title="New built-in Workout Plan"
         description="Create a reusable training programme for FitWell users."
+        backLink={{
+          label: "Back to workout plans",
+          href: "/system-admin/workout-plans",
+        }}
       />
       <Paper variant="outlined" sx={{ p: 3 }}>
         <WorkoutPlanForm admin />

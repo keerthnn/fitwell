@@ -68,6 +68,10 @@ export default function WorkoutPlanDetailPage() {
           <PageHeader
             title={plan.name}
             description="Review the programme and start when you are ready."
+            backLink={{
+              label: "Back to workout plans",
+              href: "/workout-plans",
+            }}
             action={
               !plan.isBuiltIn
                 ? {

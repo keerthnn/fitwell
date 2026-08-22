@@ -21,7 +21,13 @@ export default function EditWorkoutPlanPage() {
         <LoadingState />
       ) : (
         <>
-          <PageHeader title="Edit Workout Plan" />
+          <PageHeader
+            title="Edit Workout Plan"
+            backLink={{
+              label: "Back to workout plan",
+              href: `/workout-plans/${plan.id}`,
+            }}
+          />
           <Paper variant="outlined" sx={{ p: 4 }}>
             <WorkoutPlanForm initial={plan} />
           </Paper>

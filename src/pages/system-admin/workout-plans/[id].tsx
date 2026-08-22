@@ -28,6 +28,10 @@ export default function AdminWorkoutPlanPage() {
           <PageHeader
             title={`Edit ${plan.name}`}
             description="Update programme details, exercises, and availability."
+            backLink={{
+              label: "Back to workout plans",
+              href: "/system-admin/workout-plans",
+            }}
           />
           <Paper variant="outlined" sx={{ p: 3 }}>
             <Stack gap={3}>

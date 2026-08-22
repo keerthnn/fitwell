@@ -1,4 +1,3 @@
-import { ArrowBack } from "fitness/components/common/icons";
 import { Alert, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import AuthenticatedPage from "fitness/components/AuthenticatedPage";
 import ConfirmDialog from "fitness/components/common/ConfirmDialog";
@@ -15,7 +14,6 @@ import {
   replyToFeedback,
 } from "fitness/utils/spec";
 import type { FeedbackThread } from "fitness/utils/types";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
@@ -52,9 +50,6 @@ export default function FeedbackDetailPage() {
 
   return (
     <AuthenticatedPage>
-      <Button component={Link} href="/feedback" startIcon={<ArrowBack />} sx={{ mb: 2 }}>
-        All feedback
-      </Button>
       {error ? (
         <ErrorState message={error} onRetry={() => void load()} />
       ) : !feedback ? (
@@ -64,6 +59,7 @@ export default function FeedbackDetailPage() {
           <PageHeader
             title={feedback.subject}
             description={`Started ${new Date(feedback.createdAt).toLocaleString()}`}
+            backLink={{ label: "Back to feedback", href: "/feedback" }}
           />
           {feedback.canDelete && (
             <Button

@@ -8,6 +8,10 @@ export default function NewAdminExercisePage() {
       <PageHeader
         title="New exercise"
         description="Add a new exercise to the FitWell catalogue."
+        backLink={{
+          label: "Back to exercises",
+          href: "/system-admin/exercises",
+        }}
       />
       <Paper variant="outlined" sx={{ p: 3 }}>
         <ExerciseAdminForm />

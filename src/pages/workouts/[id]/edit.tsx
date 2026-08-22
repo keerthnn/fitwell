@@ -35,7 +35,13 @@ export default function EditWorkoutPage() {
         <LoadingState />
       ) : (
         <>
-          <PageHeader title="Edit workout" />
+          <PageHeader
+            title="Edit workout"
+            backLink={{
+              label: "Back to workout",
+              href: `/workouts/${workout.id}`,
+            }}
+          />
           <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 }, maxWidth: 900 }}>
             <Stack
               component="form"

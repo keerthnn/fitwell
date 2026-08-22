@@ -28,6 +28,10 @@ export default function AdminExercisePage() {
           <PageHeader
             title={`Edit ${exercise.name}`}
             description="Update exercise details, tracking, and availability."
+            backLink={{
+              label: "Back to exercises",
+              href: "/system-admin/exercises",
+            }}
           />
           <Paper variant="outlined" sx={{ p: 3 }}>
             <Stack gap={3}>
