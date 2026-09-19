@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: PROFILE
 engineering:
   - specs/engineering/features/user-profiles.md
-last_verified: 2026-08-15
+last_verified: 2026-09-19
 ---
 
 # User profiles PRD
@@ -31,7 +31,7 @@ Names must not exceed 80 characters. Weekly workout target must be an integer fr
 
 ### PROFILE-004 — View profile
 
-A signed-in member may view their profile. When no profile exists, the member is shown an incomplete-profile outcome rather than another member's data.
+A signed-in member may view their profile. The profile experience separates profile and session actions from application-account deletion, provides profile editing and sign-out with the profile data, and provides account deletion in a dedicated destructive-action section. When no profile exists, the member is shown an incomplete-profile outcome rather than another member's data.
 
 ### PROFILE-005 — Edit profile
 
@@ -47,7 +47,7 @@ A signed-in member may delete the profile without deleting the local user accoun
 
 ### PROFILE-008 — Application-account deletion
 
-A signed-in member may request deletion of local application data after explicit confirmation. The resulting local account remains disabled and marked deleted.
+A signed-in member may request deletion of local application data from the dedicated Delete account section of Profile after explicit confirmation. The resulting local account remains disabled and marked deleted.
 
 ### PROFILE-009 — Theme preference
 

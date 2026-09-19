@@ -5,9 +5,9 @@ status: active
 authority: engineering
 requirements: [PROFILE-001, PROFILE-002, PROFILE-003, PROFILE-004, PROFILE-005, PROFILE-006, PROFILE-007, PROFILE-008, PROFILE-009, DATA-003, DATA-004]
 decisions: [ADR-0003, ADR-0004, ADR-0005]
-code: [src/pages/profile/, src/pages/settings.tsx, src/components/profile/ProfileForm.tsx, src/components/ThemeModeProvider.tsx, src/utils/units.ts, src/pages/api/user/]
-tests: []
-last_verified: 2026-08-23
+code: [src/pages/profile/, src/components/profile/ProfileForm.tsx, src/components/ThemeModeProvider.tsx, src/utils/units.ts, src/pages/api/user/]
+tests: [test cases/pages/profile/index.test.tsx, test cases/components/layout/navigation.test.ts]
+last_verified: 2026-09-19
 ---
 
 # User profiles SDD
@@ -18,9 +18,9 @@ Profiles store one member's fitness preferences and optional body measurements. 
 
 ## User flows
 
-- `/profile` loads the current profile and shows name, goal, experience, weekly target, units, and optional height/weight; absence links to onboarding.
+- `/profile` provides two tabs. Profile loads the current profile and shows name, goal, experience, weekly target, units, optional height/weight, profile editing, and sign-out; absence links to onboarding. Delete account contains the warning and confirmed local-account deletion action.
 - `/profile/edit` loads the profile into `ProfileForm` and saves through update.
-- `/settings` presents a red labeled sign-out action and confirmed local-account deletion in separate session and destructive-action panels. Account actions are kept in Settings rather than duplicated in the mobile More drawer.
+- Member navigation exposes Profile without a separate Settings destination. The mobile More drawer reaches the same Profile page rather than duplicating account actions.
 - Profile-only deletion has a client wrapper/API but no evident primary UI action.
 
 ## Component responsibilities
@@ -53,7 +53,7 @@ All operations derive `userId` from the verified token. Create returns conflict 
 
 | Responsibility | Code |
 | --- | --- |
-| View/edit/settings | `src/pages/profile/`, `src/pages/settings.tsx` |
+| View/edit/account actions | `src/pages/profile/` |
 | Form | `src/components/profile/ProfileForm.tsx` |
 | Theme | `src/components/ThemeModeProvider.tsx`, `ThemeModeSelector.tsx` |
 | Units | `src/utils/units.ts` |

@@ -3,7 +3,7 @@ id: product-feature-catalog
 title: FitWell Feature Catalog
 status: active
 authority: informational
-last_verified: 2026-08-23
+last_verified: 2026-09-19
 ---
 
 # FitWell feature catalog
@@ -24,12 +24,12 @@ last_verified: 2026-08-23
 | Password reset | Visitor | Requests a reset email | Repository-visible only | [Authentication](../prds/domains/authentication.md) |
 | Session-aware routing | Member | Routes to onboarding or dashboard according to local profile state | Implemented | [Authentication](../prds/domains/authentication.md) |
 
-## Profile, onboarding, and settings
+## Profile and onboarding
 
 | Capability | Current outcome | Status | PRD |
 | --- | --- | --- | --- |
 | Onboarding profile | Collects identity, body metrics, units, fitness goal, experience, and training preferences | Implemented | [Onboarding](../prds/domains/onboarding.md) |
-| Profile view and edit | Displays and updates the signed-in member's profile | Implemented | [User profiles](../prds/domains/user-profiles.md) |
+| Profile view and edit | Displays and updates the signed-in member's profile; Profile also contains sign-out and a separate Delete account tab | Implemented | [User profiles](../prds/domains/user-profiles.md) |
 | Metric/imperial preference | Converts displayed profile measurements while retaining metric values for persistence | Implemented | [User profiles](../prds/domains/user-profiles.md) |
 | Theme preference | Supports light, dark, and system theme persisted in the browser | Implemented | [User profiles](../prds/domains/user-profiles.md) |
 | Application-account deletion | Deletes local member data, leaves a disabled local tombstone, and preserves the Firebase identity | Implemented; manual verification needed | [User profiles](../prds/domains/user-profiles.md) |
