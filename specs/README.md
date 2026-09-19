@@ -12,11 +12,12 @@ The current reverse-engineering outcome, verification evidence, unknowns, and ma
 
 Read the smallest set relevant to the task:
 
-1. [Documentation policy](handbook/documentation-policy.md) for authority, synchronization, lifecycle, and conflict resolution.
-2. [Engineering workflow](handbook/engineering-workflow.md) to select Lightweight or Full SDD.
-3. [Authoring guide](handbook/authoring-guide.md) when writing or editing specifications.
-4. [Traceability guide](handbook/traceability-guide.md) when mapping requirements to design, code, tests, and evidence.
-5. [Review checklist](handbook/review-checklist.md) before completion.
+1. [Developer guide](DEVELOPER_GUIDE.md) for the complete Lightweight and Full SDD path.
+2. [Documentation policy](handbook/documentation-policy.md) for authority, synchronization, lifecycle, and conflict resolution.
+3. [Engineering workflow](handbook/engineering-workflow.md) for detailed phase responsibilities.
+4. [Traced knowledge graph](traced-knowledge-graph.md) when following requirements to design, code, tests, and evidence.
+5. [Authoring guide](handbook/authoring-guide.md) when writing or editing specifications.
+6. [Review guide](review/REVIEW_GUIDE.md) and [Testing guide](review/TESTING_GUIDE.md) before completion.
 
 ## Documentation map
 
@@ -28,6 +29,7 @@ Read the smallest set relevant to the task:
 | [Engineering](engineering/README.md) | Architecture, feature SDDs, APIs, data, ADRs, integrations, operations, quality | Engineering, binding engineering, decision, operational |
 | [Changes](changes/README.md) | Full SDD deltas and verification history | Temporary while active; historical after Archive |
 | [Templates](templates/README.md) | Required canonical and Full SDD document structure | Binding process |
+| [Meta](meta/README.md) | Shared domain vocabulary | Vocabulary contract |
 
 ## Authority and conflict
 

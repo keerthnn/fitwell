@@ -15,16 +15,18 @@ description: >-
 - Red-phase tests drafted and failing; human assertion audit done.
 - No-code rule satisfied — deltas committed and reviewed.
 
-## Implementation conventions (GloX)
+## Implementation conventions (FitWell)
 
 Before editing application code:
 
-1. Load [`AGENTS.md`](../../../AGENTS.md) (auth, document ownership, FloDown lifecycle, export).
+1. Load [`AGENTS.md`](../../../AGENTS.md), especially authentication, ownership, admin, Prisma, and secret-state guardrails.
 2. Read the craft skill for what you touch:
-   - UI / routes / components → [frontend-skill](../frontend-skill/SKILL.md)
-   - Server functions / Prisma / auth / FTML → [backend-skill](../backend-skill/SKILL.md)
+   - UI / routes / components → [frontend guidance](../../frontend.md)
+   - API routes → [API guidance](../../api.md)
+   - Firebase identity and authorization → [auth guidance](../../auth.md)
+   - Prisma/data lifecycle → [data-model guidance](../../data-model.md)
 
-Craft skills apply at **implementation** only — they do not override signed deltas, PRDs, SDDs, or ADRs.
+Craft guidance applies at **implementation** only — it does not override signed deltas, PRDs, SDDs, or ADRs.
 
 ## Steps (agent)
 

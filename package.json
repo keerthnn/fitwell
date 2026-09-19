@@ -20,7 +20,8 @@
     "db:seed-all": "pnpm run db:seed-exercises && pnpm run db:seed-workout-plans",
     "db:grant-local-admin": "node scripts/grant-local-admin.mjs",
     "generate:assets": "node scripts/generate-assets.mjs",
-    "verify:assets": "node scripts/verify-assets.mjs"
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "specs:check": "node scripts/check-specs.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

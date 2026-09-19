@@ -1,283 +1,180 @@
 ---
 kind: testing-guide
-canonical_for:
-  - automated-testing
-  - agent-test-generation
+canonical_for: [test-authoring, test-layer-selection, red-phase-evidence]
 informed_by:
-  - /specs/review/REVIEW_GUIDE.md
-  - /specs/engineering/spec-authoring.md
   - /AGENTS.md
-  - /specs/organization/organization.md
-see_also:
-  - /specs/DEVELOPER_GUIDE.md
-applies_to:
-  - full-sdd
-  - critical-areas
-  - backfill-tests
+  - /specs/review/REVIEW_GUIDE.md
+  - /specs/engineering/quality/testing-strategy.md
+  - /specs/engineering/quality/verification-matrix.md
 ---
 
-# Testing Guide
+# FitWell testing guide
 
-**Canonical for how to write and generate automated tests** in GloX. Agents MUST read this before
-generating tests for critical-area work. Humans use it when reviewing AI-written tests.
+Tests are executable evidence for selected contracts. They do not create product requirements and a
+green suite does not replace design comparison, manual verification, or external-state evidence.
 
-| Question | Read instead |
-| --- | --- |
-| Review gates, Testing Trophy, red-phase TDD | [REVIEW_GUIDE.md](./REVIEW_GUIDE.md) §2 |
-| EARS rules → Gap / test rows in SDDs | [spec-authoring.md](../engineering/spec-authoring.md) §2–3 |
-| Workflow / when full SDD applies | [DEVELOPER_GUIDE.md](../DEVELOPER_GUIDE.md) |
-| Who owns integration / CI / QA | [organization.md](../organization/organization.md) |
+## 1. Testing Trophy for FitWell
 
-**Naming:** This repo uses the **Testing Trophy** (static → unit → **integration bulk** → thin E2E).
-Do not introduce alternate shape names in specs or AGENTS.md.
-
----
-
-## 1. Testing Trophy — GloX interpretation
-
-Follow [Kent C. Dodds' Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
-as stated in REVIEW_GUIDE §2:
-
-```
-        ╱ ╲
-       ╱E2E ╲          Thin — browser journeys (when Playwright is added)
-      ╱──────╲
-     ╱ Integr.╲       Bulk — server functions, domain helpers, real Postgres
-    ╱──────────╲
-    ╲   Unit   ╱     Narrow — pure transforms (FTML URI rewrite, text offsets)
-    ╱──────────╲
-   ╱   Static   ╲  Always — `pnpm typecheck`, lint when added
-  ╱──────────────╲
+```text
+       / E2E/manual \     Few — critical member/admin journeys and external environments
+      /-------------\
+     /  Integration  \    Most — API/auth/Prisma and component behavior
+     \---------------/
+      \     Unit     /    Focused — pure transformations and validation helpers
+       \-----------/
+        \  Static  /      Always — TypeScript, ESLint, build, asset validation
 ```
 
-### 1.1 Coverage goal
+Do not chase 100% line coverage. Prioritize feature and risk coverage for Firebase identity,
+authorization/ownership, database-backed admin access, account lifecycle, destructive data behavior,
+workout/plan integrity, migrations, and every SDD `must not`.
 
-Do **not** chase 100% line coverage. Chase **feature coverage** on critical areas
-([AGENTS.md](../../AGENTS.md)): auth & sessions, document ownership, FloDown block lifecycle,
-MathHub duplicate, URI retarget, FTML/sTeX export, role gates — especially every SDD `MUST NOT`.
+### 1.1 Layers
 
-### 1.2 Layers
+| Layer | Use for | Avoid |
+| --- | --- | --- |
+| Static | Type contracts, lint rules, production compilation, generated asset consistency | Product behavior claims |
+| Unit (Vitest) | Pure helpers, transformations, deterministic validators | Prisma/auth flows |
+| Integration (Vitest) | API/domain behavior, Firebase boundary plus authorization, Prisma lifecycle, component interactions | Reproducing a full browser/environment |
+| E2E/manual | Critical journeys, responsive/keyboard behavior, deployed configuration, provider state | Exhaustive branch matrices |
 
-| Layer | Use for | Do not use for | Speed (guidance) |
-| --- | --- | --- | --- |
-| **Static** | `pnpm typecheck` | Business rules | PR gate |
-| **Unit (Vitest)** | Pure functions (no I/O) | Prisma-wrapped helpers | < 50 ms / test |
-| **Integration (Vitest + DB)** | `src/serverFns/*`, `src/server/*` with real Postgres | Full browser UI | 100–500 ms / test |
-| **E2E (Playwright)** | Critical UI journeys | Branch matrices | Deferred — not configured yet |
-
-**Critical-area mandate:** every `MUST NOT` in the governing SDD MUST have an automated negative test
-(or explicit `Gap` + owner in the SDD Test mapping).
-
----
+Every prohibited behavior needs an automated negative test or an explicit verification gap with owner,
+risk, reason, and follow-up.
 
 ## 2. Layout and runners
 
-GloX is a **single TanStack Start app** at repo root — not a monorepo with separate app packages.
+FitWell is a Next.js Pages Router application. Tests live under the root `test cases/` directory and
+mirror the relevant `src/` area.
 
-| Kind | Location (target) | Runner |
+| Evidence | Location | Command |
 | --- | --- | --- |
-| Unit | Colocated `*.test.ts` next to pure helpers | `pnpm test` (Vitest) |
-| Integration | `src/**/*.integration.test.ts` or `tests/integration/` | `pnpm test` + `DATABASE_URL` |
-| E2E | `e2e/*.spec.ts` (future) | Playwright — **not configured yet** |
+| Unit/component/API/Prisma Vitest | `test cases/**/*.test.ts(x)` | `pnpm run test` |
+| TypeScript | repository | `pnpm run typecheck` |
+| ESLint | repository | `pnpm run lint` |
+| Production compilation | repository | `pnpm run build` |
+| Generated exercise assets | repository | `pnpm run verify:assets` |
+| Manual journey | local or authorized target environment | `pnpm run dev` plus recorded scenario |
 
-**Today:** Vitest is wired (`pnpm test`) but **no test files exist yet**. Priority seams for first
-integration tests:
-
-| Seam | Path | Why critical |
-| --- | --- | --- |
-| Auth / session | `src/serverFns/login.server.ts`, `src/server/auth/requireUser.ts` | JWT + password fingerprint |
-| Document ownership | `src/serverFns/deleteDocument.server.ts`, `myDocuments.server.ts` | AGENTS.md guardrail |
-| FloDown cascade | `src/server/floDownBlockDeletion.ts` | Symref rewrite on delete |
-| FTML export | `src/server/ftml/generateStexFromFtml.ts` | MathHub URI correctness |
-| LLM suggestions | `src/serverFns/llmSuggestion.server.ts` | Auth-scoped, no auto-persist (`E-OPENAI-03`) |
-
-### 2.1 Naming
-
-| Pattern | Meaning |
-| --- | --- |
-| `foo.test.ts` | Unit (no DB) |
-| `foo.integration.test.ts` | Integration (real DB; externals mocked) |
-| `e2e/bar.spec.ts` | Playwright (future) |
-
-Name cases with **rule IDs** when mapped:
+Use the `fitness/*` alias for `src/` imports. Keep test names tied to stable requirement IDs when the
+case verifies a binding contract, for example:
 
 ```ts
-it("S-FLO-03 MUST NOT delete block without rewriting symrefs in sibling blocks", async () => {
-  // …
+it("AUTHZ-001 rejects cross-member access without mutating the workout", async () => {
+  // evidence for deny signal + no forbidden side effect
 });
 ```
 
----
+## 3. Spec-to-test workflow
 
-## 3. Spec → test workflow
+For each changed PRD/SDD rule:
 
-SDD **Test mapping** (`SDD rule | PRD rule | Test`) is the backlog.
+1. Read the rule, rationale, actor, state/event, and failure outcome.
+2. Select the lowest layer that exercises the real boundary.
+3. Write a test that fails if the protected behavior is deleted or inverted.
+4. Add a negative/adversarial case for `must not`, ownership, role, disclosure, or destructive behavior.
+5. Record the stable test path/name in the SDD mapping and Verification evidence.
 
-### 3.1 For each `Gap` row
+### 3.1 Red phase
 
-1. Read the EARS rule (and **Rationale**).
-2. Choose layer (§1.2).
-3. Write the smallest test that **fails if the rule is deleted or inverted**.
-4. One focused case per rule when practical.
-5. After CI green, replace `Gap` with a file pointer + rule id.
+For new Full SDD behavior, run the focused test before implementation. Record command, expected
+failure, actual failure, and why it proves the behavior is missing. Syntax errors, broken imports,
+unavailable databases, or invalid fixtures are not meaningful Red evidence.
 
-### 3.2 Positive vs negative
+For backfill of existing behavior, the initial test may pass. Validate it by temporarily deleting or
+inverting the relevant implementation in a controlled working tree and confirming the test fails;
+restore the implementation afterward.
 
-| Rule shape | Test shape |
+## 4. Negative and authorization tests
+
+A strong negative test asserts all applicable dimensions:
+
+1. Correct deny signal/status without sensitive disclosure.
+2. No forbidden database or external side effect.
+3. Ownership/role/data invariant remains intact.
+4. Logs and response bodies contain no secret or private record details.
+
+Minimum actor matrix for user-owned API behavior:
+
+| Actor/state | Expected evidence |
 | --- | --- |
-| `MUST <do X>` | Assert X (DB row, redirect, exported sTeX fragment) |
-| `MUST NOT <do Y>` | Assert deny signal **and** no forbidden side effect |
+| Signed out / invalid Firebase token | Rejected before data access or mutation |
+| Owning member | Contracted success behavior |
+| Different authenticated member | Rejected or non-disclosing not-found; no side effect |
+| Normal member on admin operation | Rejected; no side effect |
+| Database-authorized administrator | Only the explicitly permitted behavior succeeds |
 
-### 3.3 Red phase vs backfill
+Never authorize with a client-supplied user ID. Test that attempts to substitute another member's ID
+do not change the principal derived from Firebase verification.
 
-- **New behavior (full SDD):** tests fail before implementation (REVIEW_GUIDE §2.3).
-- **Backfill:** tests may pass against current code but MUST fail under delete-the-implementation check.
+## 5. Fixtures and database safety
 
----
-
-## 4. Negative tests (`MUST NOT`)
-
-A negative test proves the forbidden outcome is unreachable.
-
-### 4.1 Required assertions (all that apply)
-
-1. **Deny signal** — thrown error, forbidden UI state, or empty result set.
-2. **No side effect** — e.g. `document.ownerId` unchanged; no FloDown block deleted; no symref rewritten incorrectly.
-3. **Invariant** — role unchanged; block version history intact.
-
-### 4.2 Example (document ownership)
-
-```ts
-const doc = await createTestDocument({ ownerId: userA });
-await expect(
-  deleteDocumentAsUser({ documentId: doc.id, userId: userB }),
-).rejects.toThrow(/forbidden|not authorized/i);
-const still = await prisma.document.findUnique({ where: { id: doc.id } });
-expect(still).not.toBeNull();
-```
-
-### 4.3 Waivers
-
-Keep `Gap` + owner + reason in the SDD Test mapping. Do not silently skip.
-
----
-
-## 5. Fixtures and roles
-
-GloX uses **roles**, not multi-tenant deployments:
-
-| Role | Typical capabilities |
-| --- | --- |
-| `EXTRACTOR` | Upload, extract, annotate |
-| `CURATOR` | Curation, symbol management, export prep |
-| `ADMIN` | User management, cross-user reads where allowed |
-
-### 5.1 Builders (target)
-
-| Builder | Seeds |
-| --- | --- |
-| `createTestUser({ email, role, verified? })` | `User` |
-| `createTestDocument({ ownerId, … })` | `Document` + pages |
-| `createFloDownBlock({ documentId, statement })` | `FloDownBlock` |
-
-Unique emails per test; truncate/cleanup with **localhost URL guard** on `DATABASE_URL`.
-
-### 5.2 Database state
-
-| Suite | Pattern |
-| --- | --- |
-| Vitest integration | Wipe/re-seed allowlisted tables before each test or `describe` |
-| Future E2E | Isolated fixtures per test — no shared global users |
-
----
+- Use unique member IDs/emails and isolated records per test.
+- Model ownership through the same relationships used by production code.
+- Exercise representative empty, duplicate, stale, terminal, retry, and interrupted states.
+- Use a safely isolated test database for Prisma integration tests. Never truncate or seed an
+  unverified remote/production database; reuse repository local-database guards.
+- Verify referential actions and transactions by inspecting persisted state after both success and failure.
 
 ## 6. Mocking
 
-### 6.1 Rules
+- Mock Firebase Admin token verification at the boundary when testing API authorization, but assert the
+  handler/domain behavior and ownership queries for real.
+- Mock remote providers/network calls at their boundary and cover timeout, invalid response, and retry behavior.
+- Prefer real Prisma behavior against an isolated PostgreSQL database for data invariants.
+- Do not mock the handler, domain helper, Prisma operation, or component behavior the test claims to prove.
+- Do not make tests depend on live Firebase, Vercel, or hosted-database state unless Verification
+  explicitly targets an authorized environment and records that evidence separately.
 
-- Mock **third-party** systems at the boundary: OpenAI, MathHub HTTP, nodemailer.
-- Use a **real database** for integration tests.
-- **Never mock the thing under test** (whole Prisma client, or the deletion helper you claim to prove).
-- LLM output tests: assert caching and auth boundaries — not exact model wording.
+## 7. Component and UI tests
 
-### 6.2 Where to mock
+Cover behavior rather than MUI implementation details:
 
-| Call site | Technique |
-| --- | --- |
-| Vitest integration | Stub `openai` module or inject fake client |
-| FloDown / MathHub | Stub `fetch` or mock `initFloDown` boundary in UI tests |
-| Email | Stub nodemailer in auth/signup tests |
+- Loading, empty, error, and success states.
+- Disabled/pending and duplicate-action protection.
+- Keyboard-accessible controls, focus behavior, labels, and useful error text.
+- Ownership/admin visibility only as presentation; server/API tests remain the authorization proof.
+- Responsive layout and high-value journeys through manual/E2E evidence when jsdom cannot prove them.
 
----
+## 8. AI-written test audit
 
-## 7. Harness — current vs near-term
+Before accepting an agent-authored test:
 
-| Capability | Status |
-| --- | --- |
-| Vitest runner | **Adopted** — `pnpm test` |
-| Test files | **Missing** — zero `*.test.ts` in repo |
-| Vitest + Postgres integration | **Missing** — priority |
-| Fixture builders | **Missing** |
-| Playwright E2E | **Not configured** |
-| CI test job | **Missing** |
+- Read every assertion and confirm it checks the requirement, not an incidental mock call.
+- Confirm fixtures actually reach the intended branch.
+- Confirm failure is caused by missing/inverted behavior.
+- For denial, assert no side effect and no disclosure.
+- Reject snapshots or broad truthy assertions that obscure the contract.
+- Apply the delete/invert heuristic: protected behavior removed means test red.
 
-Agents MUST NOT pretend missing harness already exists.
+## 9. Verification command selection
 
-### 7.1 Minimum viable integration harness
+Run focused tests while iterating, then the broader required matrix for the change. The normal full set is:
 
-1. Vitest config with `DATABASE_URL` → localhost test DB.
-2. `tests/integration/helpers/db.ts` — truncate allowlisted tables; refuse non-localhost URLs.
-3. Fixture builders (§5.1).
-4. Call server handlers or exported `src/server/` functions directly.
-5. One sample test: create user + document, assert ownership gate.
+```bash
+pnpm run lint
+pnpm run test
+pnpm run typecheck
+pnpm run build
+pnpm run verify:assets
+pnpm run specs:check
+```
 
-**Exit criteria:** one integration test runs in CI against ephemeral Postgres.
+Not every change requires every command, but Full SDD Verification must explain each omitted relevant
+check and whether the omission blocks Archive. Record material warnings; do not report a command as
+passing when it did not run in the stated environment.
 
----
+## 10. Manual and operational evidence
 
-## 8. Seam selection (GloX examples)
+Use actor, precondition, action, observed result, environment, and date. Include signed-out,
+cross-member, normal-member/admin, responsive, keyboard, error, interruption, retry, and duplicate
+actions as applicable. For migrations or deployments, record compatibility, affected-row/integrity
+checks, stop conditions, rollback or roll-forward path, logs, and post-deploy smoke evidence without
+including secrets.
 
-| Concern | Preferred seam | Layer |
-| --- | --- | --- |
-| Login before email verified | `login.server.ts` | Integration |
-| Password fingerprint invalidation | `requireUser.ts` | Integration |
-| Document upload ownership | `upload.server.ts` | Integration |
-| FloDown block delete + symref cascade | `floDownBlockDeletion.ts` | Integration |
-| MathHub duplicate URI replace | `uriRetarget.server.ts` | Integration |
-| sTeX URI rewrite | `generateStexFromFtml.ts` | Unit + integration |
-| LLM suggestion auth scope | `llmSuggestion.server.ts` | Integration |
-| FloDown preview mount | `FtmlPreview.tsx` | E2E (future) |
+## 11. Relationship to other documents
 
----
-
-## 9. Anti-patterns (agents)
-
-| Do not | Why |
-| --- | --- |
-| Mock the helper under test | Tautology |
-| Assert only toast copy for authz | Misses DB side effects |
-| Use non-localhost `DATABASE_URL` in tests | Safety |
-| Auto-persist LLM output in tests | Violates `E-OPENAI-03` product model |
-| Skip role-gate tests because “admin can do anything” | EXTRACTOR vs CURATOR gaps |
-| Chase line coverage % | Wrong goal (§1.1) |
-| Weaken a `MUST NOT` to green CI | Needs superseding ADR |
-
----
-
-## 10. Validating AI-written tests
-
-1. **Delete-the-implementation:** guard removed → test fails for the right reason.
-2. Assert **outcomes**, not private call order.
-3. Humans review **assertions + fixtures**, not coverage %.
-
----
-
-## 11. Relationship to other docs
-
-| Doc | Role |
-| --- | --- |
-| [REVIEW_GUIDE.md](./REVIEW_GUIDE.md) | Testing Trophy **strategy** + review gates |
-| **This guide** | How agents generate tests for GloX |
-| SDD Test mapping | Per-rule backlog / evidence |
-| [backend-skill](../../.cursor/skills/backend-skill/SKILL.md) | Server function conventions |
-| [organization.md](../organization/organization.md) | Accountability |
+- [Review guide](REVIEW_GUIDE.md) owns gates and reviewer responsibilities.
+- [Testing strategy](../engineering/quality/testing-strategy.md) owns durable quality architecture.
+- [Verification matrix](../engineering/quality/verification-matrix.md) maps change types to checks.
+- [Verification template](../templates/verification-template.md) records change-specific evidence.
+- [Agent verification guidance](../../.agents/verification.md) is the short execution checklist.

@@ -7,7 +7,7 @@ description: >-
 
 # OPSX — Clarify
 
-**Policy:** [CLARIFY_AND_PROPOSE § Phase A](../../../specs/changes/CLARIFY_AND_PROPOSE.md#phase-a--clarify-clarifymd-no-delta-files), [DEVELOPER_GUIDE §4](../../../specs/DEVELOPER_GUIDE.md#4-full-sdd-path-critical-areas).
+**Policy:** [CLARIFY_AND_PROPOSE § Phase A](../../../specs/changes/CLARIFY_AND_PROPOSE.md#phase-a--clarify), [Engineering workflow §Clarify](../../../specs/handbook/engineering-workflow.md#1-clarify).
 
 ## Prerequisites
 
@@ -16,11 +16,12 @@ description: >-
 
 ## Steps (agent)
 
-1. Copy [`specs/changes/_TEMPLATE/clarify.md`](../../../specs/changes/_TEMPLATE/clarify.md) into `/specs/changes/clarify.md` if not present.
+1. Create `specs/changes/active/YYYY-MM-DD-semantic-change-name/` and copy
+   [`clarify-template.md`](../../../specs/templates/clarify-template.md) to `clarify.md`.
 2. **Do NOT draft proposal.md, design.md, or tasks.md yet.**
 3. In `clarify.md`:
    - Restate the ask; list material gaps only.
-   - Fill upstream audit (specs, ADRs, compliance, blast radius). HALT on compliance contradiction per [organization.md](../../../specs/organization/organization.md).
+   - Fill upstream audit (specs, ADRs, security/privacy, data, external state, blast radius). HALT on unresolved binding conflict.
    - Where tradeoffs exist, add options with product impact, effort, and risk; otherwise state one recommendation (P0 — no Clarify theater).
    - Split v1 / v2 only if scope warrants it; record non-goals and v2.
    - Flag creep when the FR implies more than agreed v1.
@@ -35,7 +36,7 @@ I have a feature request for full SDD.
 
 **FR:** <paste>
 
-**Phase: Clarify** — maintain clarify.md in /specs/changes/. Do NOT draft proposal.md, design.md, or tasks.md yet.
+**Phase: Clarify** — maintain clarify.md in one dated package under /specs/changes/active/. Do NOT draft proposal.md, design.md, tasks.md, or verification.md yet.
 
 1. Restate the ask in clarify.md; list material gaps only.
 2. Fill upstream audit (specs, ADRs, compliance, blast radius).
@@ -49,7 +50,7 @@ When clarify.md is signed off (Lock it), hand off to opsx-propose.
 
 ## Human gate
 
-**Lock it** on `clarify.md` — Human decisions checklist complete ([CLARIFY_AND_PROPOSE Clarify checklist](../../../specs/changes/CLARIFY_AND_PROPOSE.md#clarify-checklist-human)).
+**Lock it** on `clarify.md` — every Human decision in the template is complete.
 
 ## Done when
 

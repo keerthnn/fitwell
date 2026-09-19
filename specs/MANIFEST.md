@@ -1,50 +1,38 @@
-# Specs manifest — GloX
+# FitWell specifications manifest
 
-Inventory of the `/specs` documentation harness for the GloX repository.
-
-## Included (scheme / process)
+## Process and navigation
 
 | Path | Purpose |
 | --- | --- |
-| `README.md` | Entry point and folder taxonomy |
-| `BACKFILL.md` | Adoption guide for harness setup |
-| `DEVELOPER_GUIDE.md` | Human/agent workflow (lightweight vs full SDD, OPSX) |
-| `ai-native-development-architecture.md` | Layered spec model, operating modes, classifier |
-| `traced-knowledge-graph.md` | Node kinds, upstream graph, engagement inputs |
-| `changes/` | OPSX delta workflow + `_TEMPLATE/` + `CLARIFY_AND_PROPOSE.md` |
-| `engineering/spec-authoring.md` | EARS, frontmatter, PRD/SDD/decision craft |
-| `engineering/glossary.md` | Redirect to domain dictionary |
-| `engineering/decisions/_TEMPLATE.md` | Decision atom template |
-| `engineering/features/_TEMPLATE/` | SDD + topic index templates |
-| `engineering/featured.md` | Gold-standard examples index |
-| `prds/_TEMPLATE/prd.md` | PRD template |
-| `product/_TEMPLATE.md` | Product brief template |
-| `meta/domain-dictionary.yaml` | Ubiquitous language |
-| `review/REVIEW_GUIDE.md` | Upstream review, Verify, Testing Trophy |
-| `review/TESTING_GUIDE.md` | GloX test layout and CI strategy |
+| `README.md` | Entry point, authority model, and folder map |
+| `DEVELOPER_GUIDE.md` | Linear Lightweight/Full SDD workflow |
+| `ai-native-development-architecture.md` | Rationale, layered model, and operating modes |
+| `traced-knowledge-graph.md` | Node kinds and upstream/verification edges |
+| `handbook/` | Documentation policy, authoring, traceability, workflow, review checklist |
+| `changes/CLARIFY_AND_PROPOSE.md` | Clarify/Proposal decision discipline |
+| `review/` | Upstream review, Testing Trophy, code review, and Verification |
 
-## GloX-specific content (populated)
+## Product and engineering truth
+
+| Path | Authority |
+| --- | --- |
+| `product/` | Informational direction and verified capability inventory |
+| `prds/domains/`, `prds/system-qualities.md` | Binding observable outcomes |
+| `engineering/features/` | Feature SDDs and implementation invariants |
+| `engineering/architecture/` | System and trust boundaries |
+| `engineering/decisions/` | Accepted durable technical decisions |
+| `engineering/api/`, `database/`, `integrations/`, `operations/`, `quality/` | Engineering and operational contracts |
+| `meta/domain-dictionary.yaml` | Shared domain vocabulary |
+
+## Change execution
 
 | Path | Purpose |
 | --- | --- |
-| `product/glox.md` | Product brief |
-| `product/glox-features.md` | Shipped feature inventory |
-| `prds/domains/*.md` | Domain PRDs (auth, documents, FloDown, …) |
-| `engineering/features/*/` | SDDs for critical areas (auth, documents, FloDown, symbols, modules, curation) |
-| `engineering/decisions/` | JWT fingerprint, password storage |
-| `engineering/external-deps/` | OpenAI, MathHub, FloDown, FTML vendor facts |
-| `engineering/featured.md` | Featured PRD/SDD gold-standard index |
-| `meta/domain-dictionary.yaml` + FloDown/FTML SDDs | Entity ↔ FloDown/FTML mapping |
+| `changes/active/YYYY-MM-DD-slug/` | One active five-file Full SDD package per change |
+| `changes/archive/YYYY/YYYY-MM-DD-slug/` | Historical package after canonical sync |
+| `templates/` | Clarify, Proposal, Design, Tasks, Verification, PRD, SDD, ADR templates |
+| `.agents/skills/opsx-*` | Executable Full SDD phase guidance |
+| `.agents/skills/lightweight-plan-archive/` | Executable Lightweight guidance |
+| `.agents/skills/opsx/_manifest.yaml` | Skill-to-policy manifest |
 
-## Optional / not yet implemented
-
-| Item | Notes |
-| --- | --- |
-| `pnpm run specs:check-*` | CI lint scripts — see BACKFILL §6, `backfill_todo.md` |
-| Playwright E2E | Not configured — see TESTING_GUIDE |
-| Vitest integration tests | Runner exists; no test files yet |
-
-## Cursor skills
-
-Agent execution: `.cursor/skills/opsx-*`, `lightweight-plan-archive`, `frontend-skill`, `backend-skill`.
-Manifest: `.cursor/skills/opsx/_manifest.yaml`.
+Run `pnpm run specs:check` after process/spec changes.

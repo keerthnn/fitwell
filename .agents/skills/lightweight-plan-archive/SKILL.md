@@ -30,14 +30,15 @@ description: >-
 When touching application code (`src/`):
 
 1. Load [`AGENTS.md`](../../../AGENTS.md).
-2. Read [frontend-skill](../frontend-skill/SKILL.md) and/or [backend-skill](../backend-skill/SKILL.md) for the
-   layers in the approved plan (UI vs server functions / Prisma).
+2. Read the relevant repository guidance for the approved layers:
+   [frontend](../../frontend.md), [API](../../api.md), [auth](../../auth.md), and/or
+   [data model](../../data-model.md).
 
 ### After code + review
 
 4. Execute Archive (spec sync) from the approved plan:
    - Update PRDs, SDDs, operations docs, or product inventory in the same PR, **or**
-   - Record **No spec change** in the plan/PR description.
+   - Record **No specification change** with a reason in the plan/PR description.
 5. Lightweight does **not** use `/specs/changes/` deltas or dated `archive/` folders.
 
 ## Human gate
@@ -46,7 +47,7 @@ Plan approval before code. PR records Archive outcome.
 
 ## Done when
 
-Code merged with spec sync done or **No spec change** recorded.
+Code merged with spec sync done or **No specification change** recorded.
 
 ## Do not
 

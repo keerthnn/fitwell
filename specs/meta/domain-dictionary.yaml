@@ -1,0 +1,34 @@
+version: 1
+terms:
+  - term: member
+    definition: An authenticated FitWell user who owns personal profile, workout, and plan data.
+    aliases: [user]
+    owners: [user-profiles]
+    references:
+      - /specs/prds/domains/user-profiles.md
+  - term: administrator
+    definition: An authenticated member with database-backed authority to perform protected catalog and administration operations.
+    aliases: [admin]
+    owners: [administration]
+    references:
+      - /specs/prds/domains/administration.md
+      - /specs/engineering/architecture/authorization-model.md
+  - term: workout plan
+    definition: A member-owned reusable prescription of exercises and planned work, distinct from a performed workout.
+    aliases: [plan]
+    owners: [workout-plans]
+    references:
+      - /specs/prds/domains/workout-plans.md
+  - term: workout
+    definition: A member-owned performed or in-progress training session containing exercised movements and recorded sets.
+    aliases: [workout session]
+    owners: [workout-engine]
+    references:
+      - /specs/prds/domains/workout-engine.md
+  - term: exercise catalog
+    definition: The shared collection of exercise definitions available for plans, workouts, and administration.
+    aliases: [exercise library]
+    owners: [exercise-catalog]
+    references:
+      - /specs/prds/domains/exercise-catalog.md
+

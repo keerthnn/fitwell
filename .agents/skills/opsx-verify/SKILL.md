@@ -2,7 +2,7 @@
 name: opsx-verify
 description: >-
   OPSX Verify — post-review artifact ↔ implementation check before Archive.
-  Agent runs REVIEW_GUIDE §1.5 checklist; human gives cursory sign-off.
+  Agent completes verification.md with evidence; human authorizes Archive.
 ---
 
 # OPSX — Verify
@@ -25,14 +25,15 @@ description: >-
    - `proposal.md` PRD delta (or **No PRD change**) matches what shipped.
    - Teach-back: summarize each shipped rule without relying only on git diff.
 3. On mismatch: **inform the human** — human chooses fix **code** vs update **deltas**; re-run Verify.
-4. Record Verify block in PR description or `tasks.md` footer per §1.5.
-5. Request **cursory** human sign-off (not a second full upstream review).
+4. Copy [`verification-template.md`](../../../specs/templates/verification-template.md) to
+   `verification.md` in the active package and record the complete evidence set.
+5. Request human verification approval and explicit Archive authorization.
 
 Optional residual tasks: if gaps remain, list them for human decision (Spec Kit converge-style) — do not auto-append to `tasks.md` without human approval.
 
 ## Human gate
 
-**Cursory** human sign-off on Verify report. **Blocks Archive** until recorded.
+Human approval of `verification.md` and explicit Archive authorization. **Blocks Archive** until recorded.
 
 ## Done when
 

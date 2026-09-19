@@ -7,7 +7,7 @@ description: >-
 
 # OPSX — Propose
 
-**Policy:** [CLARIFY_AND_PROPOSE § Phase B](../../../specs/changes/CLARIFY_AND_PROPOSE.md#phase-b--propose-write-deltas-from-signed-clarifymd), [REVIEW_GUIDE §1.2](../../../specs/review/REVIEW_GUIDE.md#12-upstream-review-checklist).
+**Policy:** [CLARIFY_AND_PROPOSE § Phase B](../../../specs/changes/CLARIFY_AND_PROPOSE.md#phase-b--propose), [REVIEW_GUIDE §1.2](../../../specs/review/REVIEW_GUIDE.md#12-upstream-review-checklist).
 
 ## Prerequisites
 
@@ -17,7 +17,11 @@ description: >-
 ## Steps (agent)
 
 1. Confirm **Lock it** is present on `clarify.md`. If not, stop and return to [opsx-clarify](../opsx-clarify/SKILL.md).
-2. Copy remaining [`specs/changes/_TEMPLATE/`](../../../specs/changes/_TEMPLATE/) files into `/specs/changes/` if needed.
+2. In the same active package, copy
+   [`proposal-template.md`](../../../specs/templates/proposal-template.md),
+   [`design-template.md`](../../../specs/templates/design-template.md), and
+   [`tasks-template.md`](../../../specs/templates/tasks-template.md) to `proposal.md`, `design.md`, and
+   `tasks.md` only as their prerequisite gates are reached.
 3. Draft in order — **translate clarify.md only; no new decisions:**
    - `proposal.md` — Intent, Non-goals, Iteration plan, Upstream audit, Resolved questions, PRD delta or **No PRD change**.
    - `design.md` — SDD policy and boundaries only; trace every PRD rule; plan tests ([spec-authoring §7](../../../specs/engineering/spec-authoring.md#what-belongs-in-prd-sdd-and-code)).
@@ -28,7 +32,7 @@ description: >-
 ### Agent prompt (after Lock it)
 
 ```markdown
-clarify.md is signed off (Lock it). Copy /specs/changes/_TEMPLATE/ into /specs/changes/ if needed.
+clarify.md is signed off (Lock it). Use the FitWell templates in /specs/templates/ inside the same dated active package.
 
 Draft in order — translate clarify.md only; no new decisions:
 1. proposal.md — Intent, Non-goals, Iteration plan, Upstream audit, Resolved questions, PRD delta from clarify.md.

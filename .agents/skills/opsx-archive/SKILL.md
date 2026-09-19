@@ -21,10 +21,11 @@ description: >-
    - `proposal.md` → `## PRD delta` into `/specs/prds/...` (skip if **No PRD change**).
    - `design.md` → `## SDD delta` into `/specs/engineering/features/...`.
    - Fold clarify rationale into PRD/SDD notes as needed.
-3. Move active set (`clarify.md`, `proposal.md`, `design.md`, `tasks.md`) to
-   `/specs/changes/archive/YYYY-MM-DD-<feature-slug>/`.
-4. Update [`/specs/product/`](../../../specs/product/) feature inventory if user-visible behavior changed.
-5. Prepare diff; **human commits** in full SDD.
+3. Confirm `verification.md` records evidence and Archive authorization. Mark package status archived.
+4. Move the entire unchanged package directory (`clarify.md`, `proposal.md`, `design.md`, `tasks.md`,
+   `verification.md`) to `/specs/changes/archive/YYYY/<original-directory-name>/`.
+5. Update [`/specs/product/`](../../../specs/product/) feature inventory if user-visible behavior changed.
+6. Prepare diff; **human commits** in full SDD.
 
 ## Human gate
 
@@ -32,10 +33,10 @@ Human commit and merge. Agent does not commit in full SDD unless instructed.
 
 ## Done when
 
-Canonical specs updated, dated archive folder contains the four files, active `/specs/changes/` root has no stale delta set.
+Canonical specs updated, the five-file package is archived under the year folder, and no stale package remains in `changes/active/`.
 
 ## Do not
 
 - Archive before Verify sign-off.
-- Leave stale active files under `/specs/changes/` (except `_TEMPLATE/` and `archive/`).
+- Leave stale package directories under `/specs/changes/active/`.
 - Edit canonical PRDs/SDDs during Apply — only at Archive after Verify.

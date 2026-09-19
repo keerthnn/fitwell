@@ -1,0 +1,8 @@
+version: 1
+terms:
+  - term: Preferred term
+    definition: One precise domain meaning.
+    aliases: []
+    owners: []
+    references: []
+

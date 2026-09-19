@@ -1,5 +1,5 @@
 # OPSX harness contract — skills execute procedure; /specs owns policy.
-# Validated by: pnpm run specs:check-opsx-skills
+# Validated by: pnpm run specs:check
 
 phases:
   - id: mode
@@ -18,7 +18,7 @@ phases:
     canonical:
       - specs/changes/CLARIFY_AND_PROPOSE.md
       - specs/DEVELOPER_GUIDE.md
-      - specs/changes/_TEMPLATE/clarify.md
+      - specs/templates/clarify-template.md
     required_gate_tokens:
       - Lock it
       - clarify.md
@@ -63,8 +63,8 @@ phases:
     canonical:
       - specs/review/REVIEW_GUIDE.md
     required_gate_tokens:
-      - §1.5
-      - cursory
+      - verification.md
+      - Archive authorization
       - Blocks Archive
 
   - id: archive
@@ -74,7 +74,7 @@ phases:
       - specs/changes/README.md
       - specs/DEVELOPER_GUIDE.md
     required_gate_tokens:
-      - archive/YYYY-MM-DD
+      - archive/YYYY
       - Verify sign-off
 
   - id: lightweight-plan-archive
@@ -84,5 +84,5 @@ phases:
       - specs/DEVELOPER_GUIDE.md
       - specs/review/REVIEW_GUIDE.md
     required_gate_tokens:
-      - No spec change
+      - No specification change
       - Archive
