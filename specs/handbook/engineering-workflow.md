@@ -4,7 +4,7 @@ Authority: **Binding process**
 
 ## Purpose
 
-This workflow converts an idea or defect into verified code and synchronized documentation. It limits long-running ambiguity, makes risk visible, and gives the project owner explicit control over high-impact decisions.
+This workflow converts an idea or defect into verified code and synchronized documentation. It limits long-running ambiguity, makes risk visible, and gives Keerthan K, the project owner, explicit control over high-impact decisions.
 
 FitWell has two operating modes. Select the mode per change, before implementation, from risk and blast radius rather than estimated line count.
 
@@ -62,58 +62,61 @@ Clarify and Proposal are separate phases and must not be merged.
 
 ### 1. Clarify
 
-Clarify defines the problem before choosing a solution. Create `clarify.md` from the template and record evidence, actors, constraints, affected domains, unknowns, risks, and definition of done.
+Clarify is the signed decision record before any delta file is drafted. Create `clarify.md` from the template, update it iteratively, and do not create Proposal, Design, or Tasks until every applicable Human decision is complete.
 
 Required work:
 
-- Identify the request and why it matters.
-- Separate observed facts from assumptions.
-- Identify potentially affected PRDs, SDDs, decisions, code, tests, data, and external state.
-- List questions whose answers could change scope or architecture.
-- Explain why Full SDD applies.
+- Preserve the feature-request input and write a one-paragraph restatement for human approval.
+- Audit relevant specifications, ADR alignment, compliance, code blast radius, and blocking questions.
+- Resolve each open question, or defer it with an owner and date.
+- Compare genuine options; when only one path is credible, record and approve the recommendation.
+- Bind the smallest shippable v1 scope, explicit non-goals, and separately requested v2 work.
+- Decide whether v1 requires a PRD delta and record any accepted product tradeoff.
+- Check every Human decision and add the `Clarify approved` sign-off.
 
-Exit gate: the project owner agrees the problem is understood, material unknowns are resolved or explicitly bounded, and Proposal may begin.
+Exit gate: Keerthan K, the project owner, signs the Lock it block, all applicable Human decisions are checked, material unknowns are resolved or explicitly deferred with owner and date, and the record says Proposal may begin.
 
 ### 2. Proposal
 
-Proposal defines what FitWell should change without locking detailed mechanics. Create `proposal.md` and link `clarify.md`.
+Proposal defines *what* FitWell changes without locking detailed mechanics. Create `proposal.md` only after signed Clarify and preserve its decisions without drift.
 
 Required work:
 
-- Define outcome, scope, and non-goals.
-- State requirement additions, amendments, or retirements.
-- Write measurable acceptance criteria.
-- Compare high-level approaches.
-- Identify compatibility, security, data, operational, and rollout risk.
+- Define intent, v1 scope, non-goals, and separately requested v2 work.
+- Repeat the upstream audit and record compliance, ADR alignment, and remaining blockers.
+- State the PRD delta as stable-ID outcome requirements, or record `No PRD change` with governing links.
+- Link compliance, commercial context when applicable, product orientation, and existing PRDs.
+- Copy resolved questions from Clarify without changing their meaning.
+- Obtain upstream review and confirmed teach-back.
 
-Exit gate: the project owner approves the outcome and scope. An unapproved proposal does not authorize design or implementation.
+Exit gate: Keerthan K, the project owner, approves the outcome and scope. An unapproved proposal does not authorize design or implementation.
 
 ### 3. Design
 
-Design defines how the approved proposal will be implemented. Create `design.md` and traverse only the upstream context needed to assess the entire blast radius.
+Design defines *how* the reviewed Proposal will be implemented on the current stack. Create `design.md` as an SDD delta, not pseudo-code, and traverse only the upstream context needed to assess the blast radius.
 
 Required work:
 
-- Define architecture boundaries and dependency direction.
-- Specify user/system flows and state transitions.
-- Specify frontend, API, data, authorization, failure, observability, migration, rollout, and recovery behavior as applicable.
-- Map requirements to planned tests.
-- Identify decisions that deserve ADRs.
-- Compare credible technical alternatives and consequences.
+- Write binding stack-specific rules, including platform wiring, data contracts, and error states where applicable.
+- Name code, data, tenant, and tier boundaries explicitly.
+- Confirm alignment with accepted ADRs or identify the superseding ADR to draft.
+- Link vendor and deployment/flag guidance, or record `N/A` with a reason.
+- Map every binding rule in Proposal and Design to a test; every `must not` requires a negative test.
+- Obtain upstream review and confirmed teach-back.
 
-Exit gate: the design is internally consistent, every acceptance criterion has an implementation and verification approach, risky unknowns are resolved, and the project owner approves it.
+Exit gate: the design is internally consistent, every acceptance criterion has an implementation and verification approach, risky unknowns are resolved, and Keerthan K, the project owner, approves it.
 
 ### 4. Tasks
 
-Tasks turn the design into deterministic execution units. Create `tasks.md`; treat it as working state and keep it current.
+Tasks turn the reviewed Design into deterministic Apply steps. Create `tasks.md`; treat it as working state and keep it current. Tasks must not introduce requirements.
 
 Required work:
 
-- Order work by dependency.
-- Separate Red-phase tests, implementation, migration/configuration, documentation synchronization, and verification.
-- Make tasks small enough to verify independently.
-- Include failure and rollback checks where relevant.
-- Record any design discovery that requires returning to an earlier phase.
+- Run Red-phase test tasks before implementation tasks and record the expected failure.
+- Make every implementation step atomic and trace it to Proposal or Design.
+- End with mapped verification proving all tests are green and no binding rule is untraced.
+- Put migration, configuration, documentation, rollout, and recovery work under the traced Implementation or Verify checklist as applicable.
+- Return to an earlier phase when execution discovers a new requirement or invalidates an approved decision.
 
 Exit gate: the task sequence covers the approved design and can be executed without inventing missing requirements.
 
@@ -144,7 +147,7 @@ Required work:
 - Synchronize canonical PRDs, SDDs, ADRs, API/data documents, runbooks, and product inventory.
 - Record known gaps and their disposition.
 
-Exit gate: required evidence passes, deviations are accepted or corrected, canonical documents are synchronized, and the project owner approves Archive.
+Exit gate: required evidence passes, deviations are accepted or corrected, canonical documents are synchronized, and Keerthan K, the project owner, approves Archive.
 
 ### 7. Archive
 
@@ -167,7 +170,7 @@ Phase gates prevent error compounding; they do not prohibit learning. Return to 
 
 Lightweight work may be escalated at any time. Preserve useful tests and notes, create a change package, and begin Clarify with the discovered evidence.
 
-Full SDD should not normally be downgraded after Proposal approval. If Clarify proves the work is low-risk and fully governed by existing contracts, the project owner may record that conclusion in `clarify.md`, close the unused package, and continue Lightweight.
+Full SDD should not normally be downgraded after Proposal approval. If Clarify proves the work is low-risk and fully governed by existing contracts, Keerthan K, the project owner, may record that conclusion in `clarify.md`, close the unused package, and continue Lightweight.
 
 ## Completion standard
 

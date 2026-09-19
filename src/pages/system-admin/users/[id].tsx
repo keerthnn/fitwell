@@ -30,6 +30,10 @@ export default function AdminUserPage() {
           <PageHeader
             title={user.displayName ?? user.email}
             description="Account details, status, and administrative actions."
+            backLink={{
+              label: "Back to users",
+              href: "/system-admin/users",
+            }}
           />
           <Paper variant="outlined" sx={{ p: 3, maxWidth: 760 }}>
             <Stack gap={2}>

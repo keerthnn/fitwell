@@ -17,7 +17,7 @@ export default async function handler(
   if (!validation.valid || !validation.data) {
     return res.status(400).send({ errors: validation.errors });
   }
-  const { search, equipment, category, movement, limit, cursor } =
+  const { search, equipment, category, categories, movement, limit, cursor } =
     validation.data;
   const includeInactive = req.query.includeInactive === "true";
   const isAdmin = includeInactive
@@ -31,10 +31,14 @@ export default async function handler(
         ? { name: { contains: search, mode: "insensitive" as const } }
         : {}),
       ...(equipment ? { equipment } : {}),
-      ...(category ? { category } : {}),
+      ...(categories
+        ? { category: { in: categories } }
+        : category
+          ? { category }
+          : {}),
       ...(movement ? { movement } : {}),
     },
-    orderBy: { name: "asc" },
+    orderBy: [{ name: "asc" }, { id: "asc" }],
     take: limit + 1,
     ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
   });

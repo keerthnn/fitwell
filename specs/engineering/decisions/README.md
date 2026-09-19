@@ -25,7 +25,7 @@ Use `NNNN-semantic-decision.md` and ID `ADR-NNNN`. Allocate the next unused numb
 
 ## Review
 
-The project owner accepts or rejects ADRs. Every active SDD citing a superseded ADR must be reviewed.
+Keerthan K, the project owner, accepts or rejects ADRs. Every active SDD citing a superseded ADR must be reviewed.
 
 ## Accepted records
 

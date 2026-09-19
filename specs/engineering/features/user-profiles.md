@@ -7,7 +7,7 @@ requirements: [PROFILE-001, PROFILE-002, PROFILE-003, PROFILE-004, PROFILE-005, 
 decisions: [ADR-0003, ADR-0004, ADR-0005]
 code: [src/pages/profile/, src/pages/settings.tsx, src/components/profile/ProfileForm.tsx, src/components/ThemeModeProvider.tsx, src/utils/units.ts, src/pages/api/user/]
 tests: []
-last_verified: 2026-08-15
+last_verified: 2026-08-23
 ---
 
 # User profiles SDD
@@ -20,7 +20,7 @@ Profiles store one member's fitness preferences and optional body measurements. 
 
 - `/profile` loads the current profile and shows name, goal, experience, weekly target, units, and optional height/weight; absence links to onboarding.
 - `/profile/edit` loads the profile into `ProfileForm` and saves through update.
-- `/settings` exposes theme selection, sign-out, and confirmed local-account deletion.
+- `/settings` presents a red labeled sign-out action and confirmed local-account deletion in separate session and destructive-action panels. Account actions are kept in Settings rather than duplicated in the mobile More drawer.
 - Profile-only deletion has a client wrapper/API but no evident primary UI action.
 
 ## Component responsibilities

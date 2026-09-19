@@ -1,4 +1,3 @@
-import { ArrowBack } from "fitness/components/common/icons";
 import { Alert, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import AdminLayout from "fitness/components/AdminLayout";
 import ConfirmDialog from "fitness/components/common/ConfirmDialog";
@@ -15,7 +14,6 @@ import {
   getAdminFeedbackById,
 } from "fitness/utils/spec";
 import type { AdminFeedbackThread } from "fitness/utils/types";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
@@ -52,14 +50,6 @@ export default function AdminFeedbackDetailPage() {
 
   return (
     <AdminLayout>
-      <Button
-        component={Link}
-        href="/system-admin/feedback"
-        startIcon={<ArrowBack />}
-        sx={{ mb: 2 }}
-      >
-        Feedback queue
-      </Button>
       {error ? (
         <ErrorState message={error} onRetry={() => void load()} />
       ) : !feedback ? (
@@ -69,6 +59,10 @@ export default function AdminFeedbackDetailPage() {
           <PageHeader
             title={feedback.subject}
             description={`Submitted by ${feedback.user.displayName ?? feedback.user.email}`}
+            backLink={{
+              label: "Back to feedback queue",
+              href: "/system-admin/feedback",
+            }}
           />
           <Paper variant="outlined" sx={{ p: 2, mb: 3 }}>
             <Stack gap={1}>

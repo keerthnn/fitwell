@@ -13,64 +13,72 @@ affected_decisions: []
 
 # Proposal: <Change title>
 
-> **Phase purpose:** Define the approved outcome and scope separately from detailed engineering design. Link the completed `clarify.md`.
+> **Layer:** *what* — intent, scope, and optional **PRD delta**. Copy this template into
+> `specs/changes/active/`. Do not edit canonical PRDs until Archive.
+>
+> **Policy:** `proposal.md` records *what* (including an optional PRD delta). `design.md` records *how*
+> (the SDD delta). `tasks.md` records *do* — atomic Apply steps only, with no new requirements.
+>
+> **Prerequisite:** A signed `clarify.md`. Complete
+> [Clarify](../handbook/engineering-workflow.md#1-clarify) before drafting this file.
 
-## Clarification source
+---
 
-Link `clarify.md` and summarize the resolved problem, decisive evidence, and bounded unknowns.
+## Intent and scope
 
-## Proposed outcome
-
-State what becomes true for users, administrators, operators, and data after this change.
-
-## Scope
-
-List included behavior, domains, environments, data, and operational work.
+*<!-- Why now? What does v1 deliver? Tie it to the feature request. -->*
 
 ## Non-goals
 
-List tempting adjacent work intentionally excluded and where it belongs.
+*<!-- Explicitly list what is not in this change, including deferred product asks. -->*
 
-## Requirement delta
+## Iteration plan
 
-Record each proposed requirement addition, amendment, retirement, or unchanged cross-domain dependency.
+### v1 (this change)
 
-| Requirement | Action | Proposed outcome | Reason |
+*<!-- Minimal shippable slice for this change. -->*
+
+### v2 (after user feedback — separate feature request)
+
+*<!-- Bullets only; these items must not appear in the v1 PRD delta, SDD delta, or tasks. -->*
+
+## Upstream audit
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Specs read | | paths |
+| ADR alignment | pass / conflict / needs ADR | |
+| Compliance | pass / HALT → owner | |
+| Blocking questions | none / list | |
+
+## PRD delta
+
+*<!-- Write critical product outcomes as stable-ID requirements using the forms in the Authoring guide. -->*
+*<!-- If no binding PRD change: **No PRD change** — governed by: <links> -->*
+
+## Upstream links
+
+| Kind | Link |
+| --- | --- |
+| Compliance | |
+| Commercial | |
+| Product context (orientation) | |
+| Existing PRDs | |
+
+## Resolved questions
+
+*<!-- Decisions from signed clarify.md. They must match without drift. -->*
+
+| Question | Resolution | Owner | Date |
 | --- | --- | --- | --- |
-| <ID or new prefix> | Add / Amend / Retire / Unchanged | <outcome> | <reason> |
+| | | | |
 
-Do not edit active canonical PRDs as if approved until this proposal is accepted; retain proposed wording here or in an explicitly marked draft.
+---
 
-## Acceptance criteria
+*<!-- Add after upstream review: -->*
 
-Write independently verifiable criteria. Use stable IDs where available.
+*Upstream review: <name> — <date>*
 
-- [ ] Given <precondition>, when <action>, then <observable outcome>.
-- [ ] If <failure or unauthorized condition>, the system produces <safe outcome>.
+*Scope: proposal*
 
-## High-level approach
-
-Describe the intended direction and boundary changes without route, schema, or algorithm detail better left to Design.
-
-## Alternatives
-
-Compare credible outcome-level or architectural directions.
-
-| Alternative | Benefits | Risks/costs | Recommendation |
-| --- | --- | --- | --- |
-| <option> | <benefits> | <risks> | Select / Reject |
-
-## Risk and compatibility assessment
-
-Cover security, privacy, authorization, data, migration, API compatibility, UI accessibility, external configuration, deployment, and recovery. State `Not applicable` with rationale where appropriate.
-
-## Delivery and rollout constraints
-
-State sequencing, compatibility windows, feature availability, migration dependencies, and evidence required before release.
-
-## Proposal decision
-
-- Status: Pending approval
-- Approved by: Project owner
-- Date: Not yet approved
-- Conditions: <approval conditions or none>
+*Teach-back: confirmed*

@@ -10,8 +10,17 @@ export default function CreateWorkoutPage() {
         title="Start a workout"
         description="Set up the session and choose exercises before you begin."
         action={{ label: "Choose a workout plan", href: "/workout-plans" }}
+        backLink={{ label: "Back to workouts", href: "/workouts" }}
       />
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 }, maxWidth: 1180 }}>
+      <Paper
+        variant="outlined"
+        sx={{
+          p: { xs: 2, sm: 4 },
+          width: "100%",
+          maxWidth: 1180,
+          mx: "auto",
+        }}
+      >
         <WorkoutCreateForm mode="LIVE" />
       </Paper>
     </AuthenticatedPage>

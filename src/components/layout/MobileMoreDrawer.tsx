@@ -1,7 +1,6 @@
 import {
   AdminPanelSettings,
   Close,
-  Logout,
   Palette,
 } from "fitness/components/common/icons";
 import {
@@ -15,10 +14,8 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { signOut } from "firebase/auth";
 import ThemeModeSelector from "fitness/components/ThemeModeSelector";
 import { primaryNavigation } from "fitness/components/layout/navigation";
-import { auth } from "fitness/lib/firebaseConfig";
 import { getAdminStatus } from "fitness/utils/spec";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -87,17 +84,6 @@ export default function MobileMoreDrawer({
             <ListItemText primary="Theme" />
             <ThemeModeSelector />
           </ListItem>
-          <ListItemButton
-            onClick={async () => {
-              if (auth) await signOut(auth);
-              onClose();
-            }}
-          >
-            <ListItemIcon>
-              <Logout />
-            </ListItemIcon>
-            <ListItemText primary="Sign out" />
-          </ListItemButton>
         </List>
       </Box>
     </Drawer>

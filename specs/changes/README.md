@@ -16,7 +16,7 @@ Clarify
   -> Archive
 ```
 
-Clarify and Proposal are separate documents. Implementation follows Tasks and has no separate Markdown artifact. The [engineering workflow](../handbook/engineering-workflow.md) defines phase responsibilities and approval gates.
+Clarify and Proposal are separate documents. Proposal must not be drafted until Clarify's Human decisions are complete and its Lock it block is signed. Implementation follows Tasks and has no separate Markdown artifact. The [engineering workflow](../handbook/engineering-workflow.md) defines phase responsibilities and approval gates.
 
 ## Active package
 
@@ -29,11 +29,11 @@ active/YYYY-MM-DD-semantic-change-name/
 └── verification.md
 ```
 
-Copy each artifact from [templates](../templates/README.md). Use one shared change ID in frontmatter. The package's documents are temporary authority only after their phase approval.
+Copy each artifact from [templates](../templates/README.md) only when its prerequisite gate is satisfied. Use one shared change ID in frontmatter. Proposal owns *what*, Design owns *how*, and Tasks owns atomic *do* steps. The package's documents are temporary authority only after their phase approval.
 
 ## Responsibilities
 
-The change author maintains phase artifacts and returns to an earlier phase when evidence changes scope or design. The project owner approves Clarify, Proposal, Design, Verification, and Archive. Reviewers verify traceability, risk treatment, evidence, and canonical synchronization.
+The change author maintains phase artifacts and returns to an earlier phase when evidence changes scope or design. Keerthan K, the project owner, approves Clarify, Proposal, Design, Verification, and Archive. Reviewers verify traceability, risk treatment, evidence, and canonical synchronization.
 
 ## Archive gate
 
@@ -44,6 +44,6 @@ Before moving a package:
 3. Deviations and known gaps are explicitly resolved or accepted.
 4. Affected PRDs, SDDs, ADRs, API/data docs, integrations, runbooks, quality docs, and product inventory are synchronized.
 5. No current rule exists only in the package.
-6. The project owner authorizes Archive.
+6. Keerthan K, the project owner, authorizes Archive.
 
 Move the entire directory unchanged to `archive/YYYY/`. Archived packages are historical evidence and never outrank active canonical documents.

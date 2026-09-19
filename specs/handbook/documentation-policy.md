@@ -86,7 +86,7 @@ When code and a binding document disagree, classify the mismatch before editing:
 
 - **Implementation defect:** restore the contract and add regression evidence.
 - **Outdated contract:** approve the behavior change and synchronize documentation.
-- **Ambiguous contract:** clarify with the project owner before implementation.
+- **Ambiguous contract:** clarify with Keerthan K, the project owner, before implementation.
 - **Contradictory contracts:** stop and obtain an explicit precedence decision; create an ADR if the resolution is durable and technical.
 
 ## Documentation lifecycle
@@ -113,7 +113,7 @@ The change completed Verification, synchronized canonical documents, and moved t
 
 ## Maintenance responsibilities
 
-The author of a change owns documentation synchronization. Reviewers verify both content and placement. The project owner resolves contract conflicts and approves Full SDD phase transitions.
+The author of a change owns documentation synchronization. Reviewers verify both content and placement. Keerthan K, the project owner, resolves contract conflicts and approves Full SDD phase transitions.
 
 Documents are reviewed when touched, before a release if they describe shipped behavior, before an operational procedure is executed, and whenever evidence shows an assumption is stale. Do not perform meaningless date-only updates; `last_verified` changes only after comparison with authoritative evidence.
 

@@ -85,6 +85,14 @@ A member may delete an owned workout and its contained workout exercises and set
 
 A workout created from a plan retains source-plan context while the source exists and remains usable if the source plan is later deleted.
 
+### WORKOUT-018 — Muscle-guided live setup
+
+Before starting a custom live workout, a member must be able to use muscle-guided discovery and explicitly choose active exercises. Discovery alone must not create a workout or start its timer. Starting without exercises must remain available subject to existing session-detail validation.
+
+### WORKOUT-019 — Muscle-guided past-workout entry
+
+When adding exercises to a past-workout draft, a member must be able to use muscle-guided discovery while retaining the draft's metadata, exercises, order, and entered sets. Discovery must not start a live workout, complete the draft, or alter its recorded date or duration.
+
 ## Current implementation boundaries
 
 The repository does not enforce a single in-progress workout per member. Generic workout creation accepts the plan entry mode even though plan start has a dedicated flow. Completed-workout metadata updates are not globally blocked by status.

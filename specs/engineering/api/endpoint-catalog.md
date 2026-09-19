@@ -3,10 +3,10 @@ id: api-endpoint-catalog
 title: API Endpoint Catalog
 status: active
 authority: binding-engineering
-requirements: [AUTH-005, PROFILE-001, ONBOARD-005, EXERCISE-001, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
+requirements: [AUTH-005, PROFILE-001, ONBOARD-005, EXERCISE-001, EXERCISE-011, EXERCISE-012, EXERCISE-013, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
 code: [src/pages/api/]
-tests: []
-last_verified: 2026-08-15
+tests: [test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
+last_verified: 2026-08-23
 ---
 
 # API endpoint catalog
@@ -32,7 +32,7 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 
 | Method and path | Access | Input/result and side effect | Requirement | Handler |
 | --- | --- | --- | --- | --- |
-| GET `/api/exercises/get-exercises` | Member | Validated search/filter/pagination query; returns active exercises and cursor | EXERCISE-001 | `src/pages/api/exercises/get-exercises.ts` |
+| GET `/api/exercises/get-exercises` | Member | Validated search/singular-category or comma-separated category-union/equipment/movement/limit/cursor query; returns active exercises ordered by name then ID with cursor | EXERCISE-001, EXERCISE-011–013 | `src/pages/api/exercises/get-exercises.ts` |
 | GET `/api/exercises/get-exercise-by-id` | Member | `id`; returns active exercise or 404 | EXERCISE-005 | `src/pages/api/exercises/get-exercise-by-id.ts` |
 | POST `/api/admin/exercises/create` | Admin | Valid exercise body; creates exercise and audit entry; 201 | ADMIN-004 | `src/pages/api/admin/exercises/create.ts` |
 | PATCH `/api/admin/exercises/update` | Admin | `id` plus valid fields; updates exercise and audits | ADMIN-004 | `src/pages/api/admin/exercises/update.ts` |
@@ -64,11 +64,12 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 | --- | --- | --- | --- | --- |
 | GET `/api/workout-plans/list` | Member | Search/visibility query; returns owned private and active built-in plans | PLAN-001 | `src/pages/api/workout-plans/list.ts` |
 | GET `/api/workout-plans/get-by-id` | Member | `id`; returns visible plan with ordered exercises or 404 | PLAN-002 | `src/pages/api/workout-plans/get-by-id.ts` |
-| POST `/api/workout-plans/create` | Member | Valid plan and exercises; creates owned plan transactionally; 201 | PLAN-003 | `src/pages/api/workout-plans/create.ts` |
-| PATCH `/api/workout-plans/update` | Member | Valid owned plan; replaces exercise prescription transactionally | PLAN-004 | `src/pages/api/workout-plans/update.ts` |
-| POST `/api/workout-plans/archive` | Member | `id`, `archived`; updates only owned non-built-in plan | PLAN-005 | `src/pages/api/workout-plans/archive.ts` |
-| POST `/api/workout-plans/duplicate` | Member | Visible source `id`; creates owned copy with exercises; 201 | PLAN-006 | `src/pages/api/workout-plans/duplicate.ts` |
-| POST `/api/workout-plans/start-workout` | Member | Visible plan `id`; creates PLAN workout and prescribed nested sets; 201 id | PLAN-007 | `src/pages/api/workout-plans/start-workout.ts` |
+| POST `/api/workout-plans/create` | Member | Valid plan and 1–100 active exercise prescriptions; creates one owned private plan aggregate; 201 | PLAN-004, PLAN-014 | `src/pages/api/workout-plans/create.ts` |
+| PATCH `/api/workout-plans/update` | Member | Valid owned plan; replaces exercise prescription transactionally | PLAN-008 | `src/pages/api/workout-plans/update.ts` |
+| POST `/api/workout-plans/archive` | Member | `id`, `archived`; updates only owned non-built-in plan | PLAN-009 | `src/pages/api/workout-plans/archive.ts` |
+| POST `/api/workout-plans/duplicate` | Member | Visible source `id` and valid destination `name`; creates owned copy with exercises; 201 | PLAN-010 | `src/pages/api/workout-plans/duplicate.ts` |
+| DELETE `/api/workout-plans/delete` | Member | Query `id`; permanently deletes only caller-owned non-built-in plan; cascades prescriptions and nulls workout source links | PLAN-013 | `src/pages/api/workout-plans/delete.ts` |
+| POST `/api/workout-plans/start-workout` | Member | Visible plan `id`; creates PLAN workout and prescribed nested sets; 201 id | PLAN-011 | `src/pages/api/workout-plans/start-workout.ts` |
 | POST `/api/admin/workout-plans/create` | Admin | Valid built-in plan; creates with exercises and audits; 201 | ADMIN-005 | `src/pages/api/admin/workout-plans/create.ts` |
 | PATCH `/api/admin/workout-plans/update` | Admin | Valid built-in plan; replaces prescription and audits | ADMIN-005 | `src/pages/api/admin/workout-plans/update.ts` |
 | POST `/api/admin/workout-plans/archive` | Admin | Built-in `id`; archives and audits | ADMIN-005 | `src/pages/api/admin/workout-plans/archive.ts` |
@@ -117,4 +118,4 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 
 ## Count and authority
 
-The tables contain 65 concrete routes: 64 implementation handlers plus `/api/auth/sync-user`, which re-exports the create-user handler. Route existence and exact executable shapes are authoritative in `src/pages/api`, `src/utils/types.ts`, and validators. Any route addition, removal, method change, access change, or side-effect change must update this catalog in the same change.
+The tables contain 66 concrete routes: 65 implementation handlers plus `/api/auth/sync-user`, which re-exports the create-user handler. Route existence and exact executable shapes are authoritative in `src/pages/api`, `src/utils/types.ts`, and validators. Any route addition, removal, method change, access change, or side-effect change must update this catalog in the same change.

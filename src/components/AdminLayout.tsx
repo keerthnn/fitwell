@@ -94,11 +94,18 @@ export function AdminLayoutContent({ children }: { children: ReactNode }) {
               px: collapsed ? 1.5 : 2,
               justifyContent: collapsed ? "center" : "flex-start",
               ...(onDarkSurface && {
+                color: (theme) => theme.fitwell.colors.sidebar.foreground,
+                "&:hover": {
+                  bgcolor: (theme) => theme.fitwell.colors.sidebar.hover,
+                  color: (theme) => theme.fitwell.colors.sidebar.foreground,
+                },
                 "&.Mui-selected": {
                   bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
                   color: (theme) => theme.fitwell.colors.sidebar.selectedText,
                   "&:hover": {
                     bgcolor: (theme) => theme.fitwell.colors.sidebar.selected,
+                    color: (theme) =>
+                      theme.fitwell.colors.sidebar.selectedText,
                   },
                 },
               }),
@@ -148,7 +155,7 @@ export function AdminLayoutContent({ children }: { children: ReactNode }) {
           sx={{
             display: { md: "none" },
             background: (theme) => theme.fitwell.colors.sidebar.gradient,
-            color: "common.white",
+            color: (theme) => theme.fitwell.colors.sidebar.foreground,
             borderRadius: 0,
             border: 0,
           }}
@@ -175,7 +182,7 @@ export function AdminLayoutContent({ children }: { children: ReactNode }) {
             "& .MuiDrawer-paper": {
               width: 280,
               background: (theme) => theme.fitwell.colors.sidebar.gradient,
-              color: "common.white",
+              color: (theme) => theme.fitwell.colors.sidebar.foreground,
               border: 0,
               borderRadius: 0,
             },
@@ -202,7 +209,7 @@ export function AdminLayoutContent({ children }: { children: ReactNode }) {
                   ? theme.fitwell.sidebarCollapsedWidth
                   : theme.fitwell.sidebarWidth,
               background: (theme) => theme.fitwell.colors.sidebar.gradient,
-              color: "white",
+              color: (theme) => theme.fitwell.colors.sidebar.foreground,
               border: 0,
               borderRadius: 0,
               overflowX: "hidden",

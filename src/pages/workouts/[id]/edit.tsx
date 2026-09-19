@@ -19,7 +19,11 @@ export default function EditWorkoutPage() {
   const [workout, setWorkout] = useState<Workout>();
   const [error, setError] = useState("");
   const reload = async () => {
-    if (id) setWorkout(await getWorkoutById(id));
+    if (!id) return;
+    const refreshed = await getWorkoutById(id);
+    setWorkout((current) => current?.id === refreshed.id
+      ? { ...refreshed, name: current.name, notes: current.notes }
+      : refreshed);
   };
   useEffect(() => {
     if (id)
@@ -35,7 +39,13 @@ export default function EditWorkoutPage() {
         <LoadingState />
       ) : (
         <>
-          <PageHeader title="Edit workout" />
+          <PageHeader
+            title="Edit workout"
+            backLink={{
+              label: "Back to workout",
+              href: `/workouts/${workout.id}`,
+            }}
+          />
           <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 }, maxWidth: 900 }}>
             <Stack
               component="form"
@@ -79,7 +89,14 @@ export default function EditWorkoutPage() {
             sx={{ p: { xs: 2, sm: 3 }, maxWidth: 1040, mt: 3 }}
           >
             <Stack gap={3}>
-              <WorkoutExerciseEditor workout={workout} onReload={reload} />
+              <WorkoutExerciseEditor
+                workout={workout}
+                onReload={reload}
+                enableMuscleDiscovery={
+                  workout.entryMode === "QUICK_ENTRY" &&
+                  workout.status !== "COMPLETED"
+                }
+              />
               {workout.status !== "COMPLETED" && (
                 <Button
                   onClick={async () => {

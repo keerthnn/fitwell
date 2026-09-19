@@ -1,7 +1,7 @@
 ---
 id: change-<YYYY-MM-DD>-<slug>
 title: <Change title>
-status: approved
+status: proposed
 authority: temporary
 mode: full-sdd
 phase: design
@@ -14,79 +14,55 @@ tests: []
 
 # Design: <Change title>
 
-> **Phase purpose:** Define how the approved Proposal will be implemented and verified. Link `proposal.md`; do not broaden approved scope silently.
+> **Layer:** *how* — **SDD / technical-specification delta** for the current stack. Copy this template into
+> `specs/changes/active/`. Do not edit canonical technical specifications until Archive.
+>
+> **Depends on:** Signed `clarify.md`; reviewed `proposal.md`. SDD means policy and boundaries on the
+> current stack, not pseudo-code. See the [Authoring guide](../handbook/authoring-guide.md#layer-placement-test).
 
-## Approved proposal
+---
 
-Link the approved Proposal and list its acceptance criteria and requirement deltas by ID.
+## SDD delta
 
-## Upstream context reviewed
+*<!-- Write critical stack-specific rules in the requirement forms defined by the Authoring guide. Include wiring, data contracts, and error states. -->*
 
-List PRDs, system qualities, architecture, feature SDDs, ADRs, API/data standards, runbooks, code, tests, incidents, and authorized external state reviewed. Record gaps rather than guessing.
+## Boundaries
 
-## Design summary
+*<!-- Name files, modules, API routes, database tables, tenants, tiers, and blast radius. -->*
 
-Explain the chosen approach, major boundaries, and why it satisfies the Proposal.
+| Area | Paths / identifiers |
+| --- | --- |
+| Code | |
+| Data | |
+| Tenants / tiers | |
 
-## Architecture and dependency changes
+## ADR alignment
 
-Define components, responsibilities, dependency direction, trust boundaries, cross-domain calls, and external-system interactions. Include a diagram when several boundaries interact.
+*<!-- Cite existing ADRs, or write: **Supersede:** draft ADR-NNNN in this change. -->*
 
-## Detailed flows and state transitions
+## Operations
 
-Describe success, invalid, unauthorized, interrupted, duplicate, partial-failure, retry, terminal, and recovery paths. Use a state or sequence diagram for non-trivial behavior.
+*<!-- Cover vendors, zero-data-retention requirements, deployment, flags, and secrets. Link canonical integration/operations docs or write N/A with a reason. -->*
 
-## Frontend design
+| Concern | Link or N/A |
+| --- | --- |
+| Vendors | |
+| Deployment / flags | |
 
-Define routes/pages/components, state ownership, typed data access, forms, responsive layout, accessibility, and loading/empty/error/success/partial states.
+## Test mapping
 
-## API contracts
+*<!-- Map every binding rule in proposal.md and design.md to a test. Every MUST NOT needs a negative test. -->*
 
-For every operation specify method/path, input/type/validator, authentication, role/ownership, success output, status codes, errors, side effects, transaction, and repeat/idempotency semantics.
+| Rule ID / summary | Test (file or describe block) | Layer (integration / unit / E2E) |
+| --- | --- | --- |
+| | | |
 
-## Data design and migration
+---
 
-Define model/field/relation changes, invariants, uniqueness, referential actions, indexes/query rationale, backfill, compatibility window, destructive risk, integrity checks, and recovery.
+*<!-- Add after upstream review: -->*
 
-## Authentication, authorization, and privacy
+*Upstream review: <name> — <date>*
 
-Define principal source, resource classes, permission checks, disclosure policy, sensitive data, logs, and adversarial cases.
+*Scope: design*
 
-## Failure handling and observability
-
-Define expected failures, safe client behavior, consistency, retry, logging, metrics, correlation, alerts, and information excluded from telemetry.
-
-## Test design and Red phase
-
-Map each requirement and acceptance criterion to a planned test or manual/operational scenario. Name the expected pre-implementation failure.
-
-| Requirement/criterion | Test layer | Planned evidence | Expected Red failure |
-| --- | --- | --- | --- |
-| <ID> | Unit/API/UI/Manual/Operational | <test or scenario> | <why it fails before implementation> |
-
-## Deployment, rollout, and recovery
-
-Define environment configuration, sequencing, migration timing, backwards compatibility, post-deploy checks, stop conditions, and roll-forward/recovery procedure.
-
-## Alternatives and ADRs
-
-Record technical alternatives and identify decisions that require proposed ADRs before Implementation.
-
-## Risks and mitigations
-
-Maintain a concrete risk table.
-
-| Risk | Likelihood/impact | Prevention | Detection | Recovery |
-| --- | --- | --- | --- | --- |
-| <risk> | <rating> | <control> | <evidence> | <procedure> |
-
-## Documentation impact
-
-List canonical PRDs, SDDs, ADRs, API/data docs, integrations, operations, quality docs, and product inventory that Verification must synchronize.
-
-## Design decision
-
-- Status: Pending approval
-- Approved by: Project owner
-- Date: Not yet approved
-- Conditions: <conditions or none>
+*Teach-back: confirmed*

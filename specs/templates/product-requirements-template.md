@@ -10,7 +10,7 @@ last_verified: null
 
 # <Domain> PRD
 
-> **Writing instruction:** Replace bracketed values, remove instructional text after use, and keep the document stack-independent. Activation requires project-owner approval.
+> **Writing instruction:** Replace bracketed values, remove instructional text after use, and keep the document stack-independent. Activation requires approval from Keerthan K, the project owner.
 
 ## Purpose
 

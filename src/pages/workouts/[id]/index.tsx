@@ -48,6 +48,7 @@ export default function WorkoutDetailPage() {
           <PageHeader
             title={workout.name}
             description={new Date(workout.workoutDate).toLocaleDateString()}
+            backLink={{ label: "Back to workouts", href: "/workouts" }}
             action={{
               label: "Edit workout",
               href: `/workouts/${workout.id}/edit`,

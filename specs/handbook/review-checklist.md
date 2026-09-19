@@ -92,10 +92,11 @@ Use this checklist to review specifications and implementation proportionally. R
 
 ## Full SDD phase review
 
-- [ ] Clarify defines the problem and resolves material unknowns.
-- [ ] Proposal separately defines scope, non-goals, requirement deltas, and acceptance criteria.
-- [ ] Design implements the approved proposal and records alternatives.
-- [ ] Tasks cover Red tests, implementation, data/configuration, docs, verification, and archive.
+- [ ] Clarify preserves the request, has an approved restatement and audit, resolves or owns every question, selects an approach, separates v1/non-goals/v2, confirms the PRD decision and tradeoffs, and has a signed Lock it block.
+- [ ] Proposal separately defines intent, v1/non-goals/v2, repeats the upstream audit, records the PRD delta or governing requirements, links upstream sources, and matches Clarify's resolved questions.
+- [ ] Proposal and Design have upstream review with confirmed teach-back before the next phase begins.
+- [ ] Design expresses the SDD delta, boundaries, ADR alignment, operations, and complete positive/negative test mapping without pseudo-code.
+- [ ] Tasks contain only traced atomic Apply steps ordered Red phase, Implementation, and Verify; they add no requirements.
 - [ ] Implementation did not silently diverge from approved design.
 - [ ] Verification maps every criterion to evidence.
 - [ ] Canonical documents were synchronized before Archive.

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import FitWellImage from "fitness/components/common/FitWellImage";
 import SearchInput from "fitness/components/common/SearchInput";
+import ExerciseDiscovery from "fitness/components/exercise-discovery/ExerciseDiscovery";
 import { resolveExerciseImageCandidates } from "fitness/lib/images/assetRegistry";
 import { getExercises } from "fitness/utils/spec";
 import type { Exercise } from "fitness/utils/types";
@@ -41,11 +42,13 @@ export default function WorkoutExercisePicker({
   onChange,
   initialExercises,
   emptyDescription = "You can still start empty and add exercises during the workout.",
+  variant = "legacy",
 }: {
   selected: Exercise[];
   onChange: (exercises: Exercise[]) => void;
   initialExercises?: Exercise[];
   emptyDescription?: string;
+  variant?: "legacy" | "muscle-guided";
 }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState<Exercise[] | undefined>(
@@ -54,7 +57,7 @@ export default function WorkoutExercisePicker({
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (initialExercises) return;
+    if (variant === "muscle-guided" || initialExercises) return;
     const timeout = window.setTimeout(() => {
       void getExercises({
         limit: "12",
@@ -70,7 +73,7 @@ export default function WorkoutExercisePicker({
         });
     }, 250);
     return () => window.clearTimeout(timeout);
-  }, [initialExercises, search]);
+  }, [initialExercises, search, variant]);
 
   const selectedIds = new Set(selected.map((exercise) => exercise.id));
 
@@ -83,6 +86,14 @@ export default function WorkoutExercisePicker({
         alignItems: "start",
       }}
     >
+      {variant === "muscle-guided" ? (
+        <ExerciseDiscovery
+          selectedExerciseIds={selected.map((exercise) => exercise.id)}
+          onAdd={(exercise) => {
+            if (!selectedIds.has(exercise.id)) onChange([...selected, exercise]);
+          }}
+        />
+      ) : (
       <Paper variant="outlined" sx={{ overflow: "hidden" }}>
         <Box p={2}>
           <Typography variant="h6">Exercise catalogue</Typography>
@@ -158,6 +169,7 @@ export default function WorkoutExercisePicker({
           </Stack>
         )}
       </Paper>
+      )}
 
       <Paper
         variant="outlined"

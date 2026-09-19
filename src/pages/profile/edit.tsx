@@ -23,6 +23,7 @@ export default function EditProfilePage() {
       <PageHeader
         title="Edit profile"
         description="Update your personal fitness preferences."
+        backLink={{ label: "Back to profile", href: "/profile" }}
       />
       {error ? (
         <ErrorState message={error} />

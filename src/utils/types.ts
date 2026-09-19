@@ -114,6 +114,17 @@ export interface Exercise {
   equipmentImagePath: string | null;
 }
 
+export interface ExerciseListQuery {
+  search?: string;
+  category?: string;
+  categories?: string;
+  equipment?: string;
+  movement?: string;
+  limit?: string;
+  cursor?: string;
+  includeInactive?: string;
+}
+
 export interface WorkoutSet {
   id?: string;
   setNumber: number;

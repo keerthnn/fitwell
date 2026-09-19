@@ -19,6 +19,16 @@ export default async function handler(
       .send({ error: "Invalid Workout Plan", details: result.errors });
   }
   const { exercises, ...plan } = result.data;
+  const exerciseIds = [...new Set(exercises.map((item) => item.exerciseId))];
+  const activeExercises = await prisma.exercise.findMany({
+    where: { id: { in: exerciseIds }, isActive: true },
+    select: { id: true },
+  });
+  if (activeExercises.length !== exerciseIds.length) {
+    return res.status(400).send({
+      error: "One or more selected exercises are unavailable",
+    });
+  }
   const created = await prisma.workoutPlan.create({
     data: {
       ...plan,

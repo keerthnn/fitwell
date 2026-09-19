@@ -30,6 +30,8 @@ declare module "@mui/material/styles" {
       middle: string;
       end: string;
       gradient: string;
+      foreground: string;
+      hover: string;
       selected: string;
       selectedText: string;
     };

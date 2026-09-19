@@ -149,7 +149,10 @@ export default function LiveWorkoutPage() {
         <LoadingState />
       ) : (
         <>
-          <PageHeader title={workout.name} />
+          <PageHeader
+            title={workout.name}
+            backLink={{ label: "Back to workouts", href: "/workouts" }}
+          />
           <HeroSurface tone="warning" sx={{ p: { xs: 2, sm: 3 }, mb: 3 }}>
             <Stack
               direction={{ xs: "column", sm: "row" }}
