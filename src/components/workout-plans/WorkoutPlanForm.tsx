@@ -203,6 +203,7 @@ export default function WorkoutPlanForm({
           selected={selectedExercises}
           onChange={changeSelected}
           initialExercises={initialExercises}
+          variant={!initial && !admin ? "muscle-guided" : "legacy"}
           emptyDescription="Select at least one exercise to build this Workout Plan."
         />
       </Box>

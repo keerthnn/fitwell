@@ -2,6 +2,10 @@ import type {
   RequestInputValue,
   ValidationError,
 } from "fitness/utils/types";
+import {
+  parseMuscleGroups,
+  type MuscleGroup,
+} from "fitness/utils/exerciseDiscovery";
 import { enumValue, invalid, record, text, valid } from "./common";
 
 const equipment = [
@@ -132,6 +136,21 @@ export function validateExerciseQuery(value: RequestInputValue) {
   const errors: ValidationError[] = [];
   const search = text(input.search, "search", errors, { max: 120 });
   const category = text(input.category, "category", errors, { max: 80 });
+  let categories: MuscleGroup[] | undefined;
+  if (input.categories !== undefined) {
+    const parsed = parseMuscleGroups(input.categories);
+    if (!parsed) {
+      errors.push({ field: "categories", message: "Invalid categories" });
+    } else {
+      categories = parsed;
+    }
+  }
+  if (input.category !== undefined && input.categories !== undefined) {
+    errors.push({
+      field: "categories",
+      message: "category and categories cannot be combined",
+    });
+  }
   const selectedEquipment =
     input.equipment === undefined
       ? undefined
@@ -151,6 +170,7 @@ export function validateExerciseQuery(value: RequestInputValue) {
   return valid({
     search,
     category,
+    categories,
     equipment: selectedEquipment,
     movement,
     limit: parsedLimit,

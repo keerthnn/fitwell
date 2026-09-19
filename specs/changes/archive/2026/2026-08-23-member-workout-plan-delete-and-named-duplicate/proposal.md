@@ -20,15 +20,50 @@ affected_decisions: []
 
 # Proposal: Member workout-plan deletion and named duplication
 
-## Clarification source
+
+> **Layer:** *what* — intent, scope, and PRD delta.
+>
+> **Prerequisite:** Originally approved [Clarify](clarify.md). This format migration preserves historical approval evidence.
+
+---
+
+## Intent and scope
+
+### Clarification source
 
 The approved [Clarify](clarify.md) establishes that permanent deletion supplements the existing archive/restore lifecycle, is available only for the caller's private non-built-in plans, warns before deletion, and returns to the plan library on success. Duplication presents an editable name prefilled with `<source name> Copy` before creating the private copy.
 
-## Proposed outcome
+### Proposed outcome
 
 Members can permanently delete a workout plan they own, including a plan created through duplication, only after confirming an irreversible warning. Members retain archive/restore as the recoverable lifecycle choice. When duplicating any visible plan, members can accept or edit a suggested copy name before creation. Historical workouts retain their materialized exercise and set data after source-plan deletion.
 
-## Scope
+### High-level approach
+
+Extend the existing member workout-plan domain rather than creating a new module. Add an owner-scoped permanent-delete operation for private plans and reuse the database's existing cascade and nullable source relation. Convert immediate duplication into a two-step interaction: collect and validate the destination name, then clone the visible source as one caller-owned aggregate. Keep identity and resource authority entirely server-side, and keep archive/restore as the separate recoverable option.
+
+### Alternatives
+
+| Alternative | Benefits | Risks/costs | Recommendation |
+| --- | --- | --- | --- |
+| Continue using archive as “delete” | No irreversible data operation or new endpoint. | Does not satisfy the approved permanent-delete outcome and makes warning language misleading. | Reject |
+| Replace archive/restore with permanent delete | Simplifies visible lifecycle choices. | Removes an approved recoverable behavior and broadens scope unnecessarily. | Reject |
+| Add permanent delete alongside archive/restore | Satisfies the request while preserving recoverability for members who want it. | Requires clear destructive copy, owner checks, and lifecycle documentation. | Select |
+| Duplicate immediately, then redirect to edit | Reuses the existing edit form. | Creates data before name confirmation, can leave unwanted copies, and weakens failure semantics. | Reject |
+| Ask for the copy name before duplication | Avoids unwanted records and makes the resulting name deliberate. | Adds dialog validation and pending/error state. | Select |
+
+## Non-goals
+
+- Deleting, renaming, or changing the archive/restore lifecycle of built-in plans.
+- Adding bulk deletion, trash, delayed purge, undo, retention periods, or backup/restore operations.
+- Exposing archived-plan recovery through new member UI.
+- Renaming an existing plan as part of duplication after the copy has already been created.
+- Rewriting or deleting workouts previously started from a deleted plan.
+- Changing workout-plan uniqueness rules; different plans may continue to share a name.
+- Changing administrator audit policy for member-owned plan actions.
+
+## Iteration plan
+
+### v1 (this change)
 
 - Add permanent deletion for member-owned, private, non-built-in workout plans.
 - Expose deletion only on an owned private plan's detail experience.
@@ -41,17 +76,39 @@ Members can permanently delete a workout plan they own, including a plan created
 - Add automated API and component evidence for success, validation, ownership, built-in protection, failure, and confirmation behavior.
 - Synchronize workout-plan product, feature, API, authorization, and data-lifecycle documentation.
 
-## Non-goals
+### v2 (after user feedback — separate feature request)
 
-- Deleting, renaming, or changing the archive/restore lifecycle of built-in plans.
-- Adding bulk deletion, trash, delayed purge, undo, retention periods, or backup/restore operations.
-- Exposing archived-plan recovery through new member UI.
-- Renaming an existing plan as part of duplication after the copy has already been created.
-- Rewriting or deleting workouts previously started from a deleted plan.
-- Changing workout-plan uniqueness rules; different plans may continue to share a name.
-- Changing administrator audit policy for member-owned plan actions.
+- N/A — no committed v2 scope was recorded.
 
-## Requirement delta
+## Upstream audit
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Specs read | Recorded in the original package | Workout Plans PRD/SDD, System Qualities, authorization, API, and data lifecycle; see evidence below and linked documents |
+| ADR alignment | No new ADR required | Established Pages Router, Axios, MUI, Prisma, and ownership conventions |
+| Compliance | Existing constraints retained | Ownership, server authority, history preservation, and destructive confirmation |
+| Blocking questions | Resolved in original approval | Permanent deletion, editable name default, library navigation, and retained archive/restore |
+
+### Risk and compatibility assessment
+
+- **Security/authorization:** High consequence if incorrect. The server must derive the caller identity and restrict deletion to matching owner plus non-built-in status; duplication continues to use the established visibility boundary.
+- **Privacy/disclosure:** Inaccessible, built-in, and absent deletion targets should share a 404-style response so resource existence is not disclosed.
+- **Data integrity:** Existing plan-prescription cascade and workout source `SetNull` relation support the desired deletion outcome. Design must include tests demonstrating historical workout independence.
+- **Migration:** No schema or data migration is expected because current relations already support physical deletion and nullable historical source links.
+- **API compatibility:** Duplication changes from source ID only to source ID plus name. The in-repository browser caller will be updated atomically; no documented public client compatibility window exists. A new delete operation increases the endpoint catalog count.
+- **Accessibility:** The naming and confirmation dialogs need labels, error association, keyboard dismissal where safe, deliberate destructive confirmation, and visible pending states.
+- **Operations/external services:** No external configuration or provider state is involved.
+- **Recovery:** Individual hard-deleted plans have no application-level recovery. The UI must say so before confirmation; cancellation is the prevention mechanism.
+
+### Delivery and rollout constraints
+
+- Proposal, Design, and Tasks require separate approval from Keerthan K, the project owner, before implementation.
+- Red-phase tests must prove the current lack of deletion, name input/validation, and authorization evidence before implementation.
+- API, client wrapper/types, UI, and canonical documentation must ship together to avoid an incompatible partial flow.
+- No database migration or deployment sequencing is expected, but Verification must confirm the generated client/schema behavior and production build.
+- Release is blocked by failing owner/built-in/cross-user deletion evidence, historical-workout integrity evidence, or accessible confirmation/name validation gaps.
+
+## PRD delta
 
 | Requirement | Action | Proposed outcome | Reason |
 | --- | --- | --- | --- |
@@ -64,7 +121,7 @@ Members can permanently delete a workout plan they own, including a plan created
 | `A11Y-002`, `A11Y-004` | Unchanged | Duplication/deletion expose pending and failure states; deletion requires labeled confirmation. | Existing request-state and destructive-action requirements apply. |
 | `DATA-002`, `DATA-006` | Unchanged | Historical workouts remain intact and aggregate mutations do not leave partial data. | Existing integrity requirements cover plan deletion and cloning. |
 
-## Acceptance criteria
+### Acceptance criteria
 
 - [ ] `AC-01`: Given an owned private non-built-in plan, when the member chooses delete, the UI shows a labeled confirmation naming the plan and warning that deletion is permanent before any delete request is sent.
 - [ ] `AC-02`: Given an open deletion confirmation, when the member cancels, no data is changed and the plan remains visible.
@@ -78,42 +135,35 @@ Members can permanently delete a workout plan they own, including a plan created
 - [ ] `AC-10`: While duplicate or delete is pending, the affected dialog communicates progress and prevents repeat submission.
 - [ ] `AC-11`: Existing plan start, edit, archive/restore, and administrator built-in lifecycle behavior remains unchanged.
 
-## High-level approach
+## Upstream links
 
-Extend the existing member workout-plan domain rather than creating a new module. Add an owner-scoped permanent-delete operation for private plans and reuse the database's existing cascade and nullable source relation. Convert immediate duplication into a two-step interaction: collect and validate the destination name, then clone the visible source as one caller-owned aggregate. Keep identity and resource authority entirely server-side, and keep archive/restore as the separate recoverable option.
+| Kind | Link |
+| --- | --- |
+| Compliance | [System Qualities](../../../../prds/system-qualities.md) |
+| Commercial | N/A — no commercial change recorded |
+| Product context (orientation) | [Feature catalog](../../../../product/feature-catalog.md) |
+| Existing PRDs | [Workout Plans](../../../../prds/domains/workout-plans.md) |
 
-## Alternatives
+## Resolved questions
 
-| Alternative | Benefits | Risks/costs | Recommendation |
+| Question | Status | Resolution / owner | Date |
 | --- | --- | --- | --- |
-| Continue using archive as “delete” | No irreversible data operation or new endpoint. | Does not satisfy the approved permanent-delete outcome and makes warning language misleading. | Reject |
-| Replace archive/restore with permanent delete | Simplifies visible lifecycle choices. | Removes an approved recoverable behavior and broadens scope unnecessarily. | Reject |
-| Add permanent delete alongside archive/restore | Satisfies the request while preserving recoverability for members who want it. | Requires clear destructive copy, owner checks, and lifecycle documentation. | Select |
-| Duplicate immediately, then redirect to edit | Reuses the existing edit form. | Creates data before name confirmation, can leave unwanted copies, and weakens failure semantics. | Reject |
-| Ask for the copy name before duplication | Avoids unwanted records and makes the resulting name deliberate. | Adds dialog validation and pending/error state. | Select |
+| Permanent deletion or archive? | resolved | Permanent deletion supplements archive/restore — Keerthan K | 2026-08-23 |
+| Editable suggested duplicate name? | resolved | Prefill with `<source name> Copy`, allow edits — Keerthan K | 2026-08-23 |
+| Where to go after deletion? | resolved | Return to the workout-plan library — Keerthan K | 2026-08-23 |
+| Retain archive/restore? | resolved | Yes — Keerthan K | 2026-08-23 |
 
-## Risk and compatibility assessment
+---
 
-- **Security/authorization:** High consequence if incorrect. The server must derive the caller identity and restrict deletion to matching owner plus non-built-in status; duplication continues to use the established visibility boundary.
-- **Privacy/disclosure:** Inaccessible, built-in, and absent deletion targets should share a 404-style response so resource existence is not disclosed.
-- **Data integrity:** Existing plan-prescription cascade and workout source `SetNull` relation support the desired deletion outcome. Design must include tests demonstrating historical workout independence.
-- **Migration:** No schema or data migration is expected because current relations already support physical deletion and nullable historical source links.
-- **API compatibility:** Duplication changes from source ID only to source ID plus name. The in-repository browser caller will be updated atomically; no documented public client compatibility window exists. A new delete operation increases the endpoint catalog count.
-- **Accessibility:** The naming and confirmation dialogs need labels, error association, keyboard dismissal where safe, deliberate destructive confirmation, and visible pending states.
-- **Operations/external services:** No external configuration or provider state is involved.
-- **Recovery:** Individual hard-deleted plans have no application-level recovery. The UI must say so before confirmation; cancellation is the prevention mechanism.
-
-## Delivery and rollout constraints
-
-- Proposal, Design, and Tasks require separate approval from Keerthan K, the project owner, before implementation.
-- Red-phase tests must prove the current lack of deletion, name input/validation, and authorization evidence before implementation.
-- API, client wrapper/types, UI, and canonical documentation must ship together to avoid an incompatible partial flow.
-- No database migration or deployment sequencing is expected, but Verification must confirm the generated client/schema behavior and production build.
-- Release is blocked by failing owner/built-in/cross-user deletion evidence, historical-workout integrity evidence, or accessible confirmation/name validation gaps.
-
-## Proposal decision
+### Original proposal approval
 
 - Status: Approved
 - Approved by: Keerthan K (project owner)
 - Date: 2026-08-23
 - Conditions: None proposed
+
+*Upstream review: Keerthan K — 2026-08-23 (original approval)*
+
+*Scope: proposal*
+
+*Teach-back: not separately recorded in the historical package.*

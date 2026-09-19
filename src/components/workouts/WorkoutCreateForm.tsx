@@ -132,6 +132,7 @@ export default function WorkoutCreateForm({
               selected={selectedExercises}
               onChange={setSelectedExercises}
               initialExercises={initialExercises}
+              variant="muscle-guided"
             />
           </Box>
         </>

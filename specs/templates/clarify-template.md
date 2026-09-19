@@ -9,65 +9,108 @@ opened: <YYYY-MM-DD>
 affected_prds: []
 affected_sdds: []
 affected_decisions: []
+code: []
 ---
 
 # Clarify: <Change title>
 
-> **Phase purpose:** Establish the real problem and constraints before proposing a solution. Replace every bracketed field and remove instructions after authoring.
+> **Phase:** Clarify — decision record before delta files. Copy this template at the start of Clarify;
+> update it iteratively until the human signs off. Do **not** draft `proposal.md`, `design.md`, or
+> `tasks.md` until **Human decisions** below are complete and signed.
+>
+> **Canonical guide:** [Engineering workflow](../handbook/engineering-workflow.md#1-clarify).
 
-## Request
+---
 
-State who requested the change, what was asked, and the source of the request. Preserve the original intent without accepting an assumed solution.
+## Feature request (input)
 
-## Problem statement
+*<!-- Paste or link the feature request, issue, brief, or discussion. -->*
 
-Describe the observed problem or opportunity in one paragraph.
+## Restatement
 
-Example: “Users can enter state X, but the product contract does not define recovery after interruption, creating inconsistent outcomes.”
+*<!-- Agent: one paragraph describing the outcome we intend to bind. Human must approve before lock. -->*
 
-## Evidence
+**Human approval:** *<!-- approved / revised on <date> by <name> -->*
 
-List facts with sources: observed behavior, requirement text, incident, user report, test, metric, external configuration, or code path. Label unverified reports and assumptions.
+## Upstream audit
 
-| Evidence | Source | Confidence |
+| Check | Result | Notes |
 | --- | --- | --- |
-| <fact> | <link or observation> | Verified / Unverified |
+| Specs read | | paths |
+| ADR alignment | pass / conflict / needs ADR | |
+| Compliance | pass / HALT → owner | |
+| Blast radius (`code` in frontmatter) | | |
+| Blocking questions | none / list | |
 
-## Actors and affected outcomes
+## Open questions
 
-Identify users, administrators, operators, external systems, and data classes affected. Explain the outcome for each.
+*<!-- Gaps that block binding specs. Each row needs resolution, deferral with owner + date, or owner escalation. -->*
 
-## Constraints
-
-Cover product requirements, security/privacy, data lifecycle, compatibility, architecture, external services, operations, time, and explicit non-goals already imposed.
-
-## Initial blast radius
-
-List candidate PRDs, SDDs, ADRs, code areas, tests, schema/migrations, runbooks, and external state that must be inspected. This is an investigation map, not yet a final design.
-
-## Risks and Full SDD rationale
-
-Explain the failure impact and which Full SDD trigger applies. Consider unauthorized access, data loss, migration failure, cross-domain drift, irreversible decisions, and operational uncertainty.
-
-## Unknowns and questions
-
-For each question state why the answer matters, how it will be resolved, and whether it blocks Proposal.
-
-| Question | Why it matters | Resolution source | Status |
+| Question | Status | Resolution / owner | Date |
 | --- | --- | --- | --- |
-| <question> | <impact> | <person, code, test, or provider> | Open |
+| | open / deferred / resolved | | |
 
-## Desired outcome
+## Options
 
-Describe success at the outcome level without selecting detailed mechanics.
+*<!-- When a genuine fork exists, list approaches with product impact, engineering cost, and risk. -->*
+*<!-- When the path is obvious, write “N/A — single recommended path” and state the recommendation. -->*
 
-## Definition of done
+| Option | Product impact | Engineering cost | Risk | Recommendation |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
-List the evidence required for the entire change to complete, including contract, implementation, tests, operational readiness, documentation sync, and user-visible verification.
+**Chosen approach:** *<!-- human fills after engineering + product agree when tradeoffs matter -->*
 
-## Clarify decision
+## v1 scope
 
-- Status: Pending approval
-- Approved by: Keerthan K (project owner)
-- Date: Not yet approved
-- Notes: <conditions or explicitly bounded unknowns>
+*<!-- Smallest shippable slice for this change. -->*
+
+## Non-goals and v2
+
+### Non-goals (not in this change)
+
+*<!-- Explicit scope stops. -->*
+
+### v2 (separate feature request later)
+
+*<!-- Deferred items must not appear in v1 deltas. Write “N/A” if scope was not split. -->*
+
+## PRD change decision
+
+*<!-- Agent recommends; human confirms. -->*
+
+- [ ] **PRD delta required** — new or changed binding outcomes for v1
+- [ ] **No PRD change** — governed by: *<!-- links -->*
+
+**Human confirmation:** *<!-- name, date -->*
+
+## Accepted tradeoffs
+
+*<!-- When the request was adjusted, record the options, compromise, and engineering + product agreement. -->*
+*<!-- Write “N/A” if v1 ships as originally requested. -->*
+
+| Original ask | What v1 ships instead | Why acceptable | Agreed by | Date |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
+---
+
+## Human decisions (required before Propose)
+
+Complete every applicable item. **Propose must not start** until all are checked and signed.
+
+- [ ] **Restatement** — outcome matches what the requester asked for, or the adjustment is documented.
+- [ ] **Upstream audit** — compliance passes or HALT is escalated; ADR conflicts are resolved or a superseding ADR is planned.
+- [ ] **Open questions** — no unresolved blocking questions; deferrals have an owner and date.
+- [ ] **Approach** — an option is chosen, or the single recommended path is accepted.
+- [ ] **v1 scope** — the shippable slice is approved.
+- [ ] **Non-goals / v2** — deferred work is explicit; nothing is smuggled into v1.
+- [ ] **PRD change** — PRD delta versus **No PRD change** is confirmed.
+- [ ] **Tradeoffs** — engineering + product sign-off exists when the product promise changed.
+
+**Lock it — sign-off**
+
+```text
+Clarify approved: <name> — <date>
+Propose may begin.
+```

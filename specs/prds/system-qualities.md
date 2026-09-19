@@ -87,6 +87,10 @@ Important workout, timer, account, feedback, and administrator states must not b
 
 Destructive actions exposed in the UI must provide a labeled confirmation step.
 
+### A11Y-005 — Accessible muscle selection
+
+Every muscle offered by the body diagram must also be selectable and deselectable through labeled controls with equivalent results. Muscle selection, view switching, and clearing must be operable by keyboard, have visible focus and understandable accessible names/states, and remain usable by touch on supported mobile layouts. Selection must not rely on color alone, and discovery-state changes must be available to assistive technology.
+
 ## Reliability boundaries
 
 Authentication activity analytics is best-effort and must not block an otherwise valid authenticated request. Local browser preferences and the rest timer may survive navigation/reload but are not server-authoritative fitness records.

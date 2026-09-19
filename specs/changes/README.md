@@ -16,7 +16,7 @@ Clarify
   -> Archive
 ```
 
-Clarify and Proposal are separate documents. Implementation follows Tasks and has no separate Markdown artifact. The [engineering workflow](../handbook/engineering-workflow.md) defines phase responsibilities and approval gates.
+Clarify and Proposal are separate documents. Proposal must not be drafted until Clarify's Human decisions are complete and its Lock it block is signed. Implementation follows Tasks and has no separate Markdown artifact. The [engineering workflow](../handbook/engineering-workflow.md) defines phase responsibilities and approval gates.
 
 ## Active package
 
@@ -29,7 +29,7 @@ active/YYYY-MM-DD-semantic-change-name/
 └── verification.md
 ```
 
-Copy each artifact from [templates](../templates/README.md). Use one shared change ID in frontmatter. The package's documents are temporary authority only after their phase approval.
+Copy each artifact from [templates](../templates/README.md) only when its prerequisite gate is satisfied. Use one shared change ID in frontmatter. Proposal owns *what*, Design owns *how*, and Tasks owns atomic *do* steps. The package's documents are temporary authority only after their phase approval.
 
 ## Responsibilities
 

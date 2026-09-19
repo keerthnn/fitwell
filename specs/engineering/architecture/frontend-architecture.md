@@ -3,10 +3,10 @@ id: architecture-frontend
 title: Frontend Architecture
 status: active
 authority: engineering
-requirements: [A11Y-001, A11Y-002, A11Y-003, A11Y-004]
+requirements: [A11Y-001, A11Y-002, A11Y-003, A11Y-004, A11Y-005, EXERCISE-010, EXERCISE-014, EXERCISE-015]
 decisions: []
 code: [src/pages/_app.tsx, src/pages/_document.tsx, src/pages/, src/components/, src/theme.ts, src/utils/spec.ts, src/utils/types.ts]
-tests: [test cases/components/common/PageHeader.test.tsx]
+tests: [test cases/components/common/PageHeader.test.tsx, test cases/components/exercise-discovery/]
 last_verified: 2026-08-23
 ---
 
@@ -34,11 +34,14 @@ Nested member and administrator pages use the shared `PageHeader` icon-only back
 - Rest-timer state is context plus local storage.
 - Pages generally own server loading/error/data and mutation state.
 - Form components own input state and call typed wrapper functions.
+- Muscle discovery owns only view/filter/search/pagination/request state. Its parent workflow owns chosen exercises, prescriptions, workout metadata, and sets.
 - There is no Redux, TanStack Query, or server-state cache layer.
 
 ## Data access
 
 Browser calls use Axios wrappers in `src/utils/spec.ts` with same-origin `/api/...` URLs. Shared request/response interfaces live in `src/utils/types.ts`. Authentication is sent implicitly by the same-origin cookie.
+
+Muscle discovery uses a typed exercise-list query and optional AbortSignal. A normalized criteria key and monotonically increasing generation prevent responses for obsolete muscle/search criteria from updating visible results. Chosen exercise state is outside this request lifecycle.
 
 ## Design system
 
@@ -48,10 +51,12 @@ MUI 7 and Emotion provide components/styling. `src/theme.ts` defines light/dark 
 
 Shared loading, error, empty, confirmation, filter, status, header, image-fallback, and stat-card components are reused across pages. Mutations show pending labels or disabled actions. Exposed destructive actions use confirmation dialogs.
 
+The muscle selector uses local inline SVG regions with button semantics plus an always-available labeled-control collection for all twelve groups. Front/back repetitions share state; visible outline/text supplement color; request states are announced. The controls and results reflow without page-level horizontal scrolling on supported narrow layouts.
+
 ## Responsive behavior
 
 MUI breakpoints switch navigation and layout. Member content reserves mobile-navigation and rest-timer space. Administrator content offsets the mobile app bar and expands around a collapsible desktop drawer.
 
 ## Verification gap
 
-The configured test directory is empty. Responsive, keyboard, focus, screen-reader, and authenticated browser flows require manual review.
+Component tests cover diagram keyboard/pointer state, equivalent labels, discovery request states, stale responses, paging, retry, and three-flow boundaries. Responsive, focus appearance, screen-reader behavior, touch, zoom, and authenticated end-to-end flows still require manual review.

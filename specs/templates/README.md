@@ -30,3 +30,6 @@ Use these as separate artifacts in exact order:
 - Do not activate a document with unresolved material questions or example-only content.
 - Keep frontmatter fields and use repository-relative references.
 - Add detail proportional to risk; never omit security, authorization, data, migration, or recovery analysis when applicable.
+- Treat Clarify's checked Human decisions and signed Lock it block as the only authorization to begin Proposal.
+- Keep Proposal at the *what* layer, Design at the *how* layer, and Tasks at the atomic *do* layer.
+- Existing active and archived change artifacts use these phase formats. When migrating historical documents, preserve requirements, evidence, task completion, and original approvals; identify review fields that were not recorded rather than inventing retrospective sign-off.

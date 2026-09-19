@@ -69,6 +69,10 @@ Changing or deleting a plan does not rewrite the exercises and sets already mate
 
 A member may permanently delete their private non-built-in plan only after an explicit confirmation that the action cannot be undone.
 
+### PLAN-014 — Muscle-guided plan creation
+
+While creating a private workout plan, a member must be able to use muscle-guided discovery to choose active exercises and then configure the existing exercise prescriptions. Discovery must not discard entered plan details or prescriptions, and selecting a muscle must not create a plan or start a workout.
+
 ## Current limitations
 
 Member plan listing is search-only and capped at 100 results. The API can restore an archived private plan, but the member UI does not clearly expose archived-plan recovery.

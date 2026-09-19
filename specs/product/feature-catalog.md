@@ -43,6 +43,7 @@ last_verified: 2026-08-23
 | Search and filtering | Filters by name, equipment, muscle/category, and movement | Implemented | [Exercise catalog](../prds/domains/exercise-catalog.md) |
 | Start from exercise | Creates a live workout containing the selected exercise | Implemented; manual verification needed | [Exercise catalog](../prds/domains/exercise-catalog.md) |
 | Cursor continuation | API returns a continuation cursor | Partial: member page does not expose loading subsequent pages | [Exercise catalog](../prds/domains/exercise-catalog.md) |
+| Muscle-guided discovery | Selects twelve broad groups on a front/back body or equivalent labels, unions active matching exercises, searches and loads subsequent pages | Implemented; responsive/authenticated manual verification pending | [Exercise catalog](../prds/domains/exercise-catalog.md) |
 
 ## Workouts and rest timer
 
@@ -50,11 +51,13 @@ last_verified: 2026-08-23
 | --- | --- | --- | --- |
 | Workout history | Lists the member's workouts with name/status filtering | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Live workout creation | Starts a live workout with zero or more selected exercises | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
+| Muscle-guided live setup | Discovers and explicitly adds exercises before live start without preventing empty start | Implemented; authenticated manual verification pending | [Workout engine](../prds/domains/workout-engine.md) |
 | Live set recording | Records tracking-type-aware reps, weight, duration, distance, rest, and completion | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Exercise editing | Adds, updates, removes, and reorders workout exercises | Implemented; reorder flow needs manual verification | [Workout engine](../prds/domains/workout-engine.md) |
 | Pause and resume | Moves a live workout between in-progress and draft and coordinates the rest timer | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Workout completion | Requires at least one completed set and records completion/duration | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Quick entry | Creates a past quick-entry draft for later exercise/set editing and completion | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
+| Muscle-guided past entry | Adds exercises to an incomplete quick-entry draft without changing metadata, sets, or lifecycle | Implemented; authenticated manual verification pending | [Workout engine](../prds/domains/workout-engine.md) |
 | Workout edit, duplicate, delete | Supports member-owned metadata/exercise editing, draft duplication, and deletion | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Persistent rest timer | Starts from set/exercise actions; supports pause, resume, add time, reset, skip, expiry, and browser persistence | Implemented | [Workout engine](../prds/domains/workout-engine.md) |
 | Single active workout invariant | Prevents more than one in-progress workout | Not implemented | [Workout engine](../prds/domains/workout-engine.md) |
@@ -65,6 +68,7 @@ last_verified: 2026-08-23
 | --- | --- | --- | --- |
 | Plan library | Lists active built-in plans and the member's non-archived private plans | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Private plan authoring | Creates and edits ordered exercise prescriptions | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
+| Muscle-guided plan creation | Discovers active exercises during member plan creation while preserving prescription ownership in the form | Implemented; authenticated manual verification pending | [Workout plans](../prds/domains/workout-plans.md) |
 | Plan duplication | Collects an editable copy name, then copies a visible plan into a private plan | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Plan archive | Archives member-owned private plans | Implemented | [Workout plans](../prds/domains/workout-plans.md) |
 | Private plan deletion | Permanently deletes a member-owned private plan after an irreversible-action confirmation | Implemented | [Workout plans](../prds/domains/workout-plans.md) |

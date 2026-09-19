@@ -12,6 +12,7 @@ import type {
   CreateWorkoutRequest,
   DashboardSummary,
   Exercise,
+  ExerciseListQuery,
   FeedbackListItem,
   FeedbackReplyRequest,
   FeedbackThread,
@@ -86,8 +87,16 @@ export const deleteWorkout = async (id: string) =>
     success: true;
   };
 
-export const getExercises = async (params?: Record<string, string>) =>
-  (await axios.get("/api/exercises/get-exercises", { params })).data as Paginated<Exercise>;
+export const getExercises = async (
+  params?: ExerciseListQuery,
+  options?: { signal?: AbortSignal },
+) =>
+  (
+    await axios.get("/api/exercises/get-exercises", {
+      params,
+      signal: options?.signal,
+    })
+  ).data as Paginated<Exercise>;
 export const getExerciseById = async (id: string, includeInactive = false) =>
   (await axios.get("/api/exercises/get-exercise-by-id", { params: { id, includeInactive } })).data as Exercise;
 export const addExerciseToWorkout = async (
