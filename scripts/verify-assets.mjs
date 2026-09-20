@@ -135,18 +135,6 @@ for (const path of [
   }
 }
 
-const priorityExercises = new Set(
-  workoutPlans.flatMap((plan) => plan.exercises),
-);
-if (priorityExercises.size !== 40)
-  failures.push(`Expected 40 priority exercises, found ${priorityExercises.size}`);
-for (const name of priorityExercises) {
-  for (const size of [256, 512]) {
-    const path = `/images/exercises/specific/${slug(name)}-${size}.webp`;
-    if (!approved.has(path)) failures.push(`Missing specific exercise icon: ${name}`);
-  }
-}
-
 for (const plan of workoutPlans) {
   for (const size of [384, 768]) {
     const path = `/images/workout-plans/covers/${plan.slug}-${size}.webp`;
@@ -179,13 +167,10 @@ const catalogue = (
 if (catalogue.length !== 246)
   failures.push(`Expected 246 catalogue exercises, found ${catalogue.length}`);
 for (const exercise of catalogue) {
-  const equipment = `/images/equipment/${exercise.equipment.toLowerCase()}-512.webp`;
-  const resolved =
-    (priorityExercises.has(exercise.name) &&
-      approved.has(`/images/exercises/specific/${slug(exercise.name)}-512.webp`)) ||
-    approved.has(equipment) ||
-    approved.has("/images/fallbacks/full-body.png");
-  if (!resolved) failures.push(`Exercise cannot resolve an image: ${exercise.name}`);
+  for (const size of [256, 512]) {
+    const path = `/images/exercises/specific/${slug(exercise.name)}-${size}.webp`;
+    if (!approved.has(path)) failures.push(`Missing specific exercise icon: ${exercise.name}`);
+  }
 }
 
 if (failures.length)

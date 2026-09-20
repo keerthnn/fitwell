@@ -27,10 +27,10 @@ Live-workout setup, member private-plan creation, and incomplete quick-entry edi
 - `ExerciseList` renders result collections and states.
 - `ExerciseCard` presents classification/image metadata and start action.
 - `ExerciseDiscovery` owns only body view, selected group filters, search, bounded pages, current-request states, and retry. Its caller owns chosen exercises and workflow values.
-- Matching discovery rows show compact exercise thumbnails using the same `FitWellImage` and `resolveExerciseImageCandidates` pipeline as the Exercises page, including equipment/muscle fallbacks. Image failures do not block selection or Add actions.
+- Matching discovery rows show compact name-matched exercise thumbnails using the same `FitWellImage` and `resolveExerciseImageCandidates` pipeline as the Exercises page. A neutral fallback is reserved for a genuine image-load failure; image failures do not block selection or Add actions.
 - Below muscle controls, image-based equipment buttons offer Barbell, Dumbbell, Kettlebell, Machine, Bodyweight, Cable, and an All equipment reset. One equipment filter intersects the muscle/search criteria through the existing API parameter. Changing equipment resets result pages and invalidates old responses without changing chosen exercises. It applies to Browse all too; choosing equipment alone leaves the initial muscle-selection prompt unchanged. Buttons use existing equipment assets, accessible names, tooltips, focus outlines, and selected checkmarks.
 - `MuscleBodyDiagram` renders repository-owned anatomical SVG regions in a charcoal panel, with blue selection highlights and all-twelve labeled controls. Front/back figures appear side by side when the component has at least 480px available; narrower containers use the front/back switch. Repeated front/back and bilateral regions share one selection state; selected state uses text, checked labels, and outline in addition to color. Labeled controls retain 44px minimum heights and the diagram has visible keyboard focus.
-- `FitWellImage` and asset helpers choose approved specific/equipment/muscle/fallback candidates.
+- `FitWellImage` and asset helpers choose the approved exercise-specific WebP, followed only by an approved neutral fallback.
 - Admin `ExerciseAdminForm` supplies create/edit classification and image-path inputs.
 
 ## API usage

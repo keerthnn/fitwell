@@ -17,49 +17,6 @@ export interface ImageCandidate {
   srcSet?: string;
 }
 
-const priorityExercises = new Set([
-  "Arnold Press",
-  "Barbell Back Squat",
-  "Barbell Bench Press",
-  "Barbell Curl",
-  "Barbell Hip Thrust",
-  "Barbell Overhead Press",
-  "Barbell Row",
-  "Barbell Skull Crusher",
-  "Bench Dip",
-  "Bicycle Crunch",
-  "Cable Crunch",
-  "Cable Fly",
-  "Close-Grip Bench Press",
-  "Concentration Curl",
-  "Dumbbell Bicep Curl",
-  "Dumbbell Bulgarian Split Squat",
-  "Dumbbell Lateral Raise",
-  "Dumbbell Preacher Curl",
-  "Dumbbell Rear Delt Fly",
-  "Face Pull",
-  "Hammer Curl",
-  "Hanging Leg Raise",
-  "Incline Dumbbell Press",
-  "Lat Pulldown",
-  "Leg Press",
-  "Lying Leg Curl",
-  "Mountain Climber",
-  "Overhead Dumbbell Extension",
-  "Pec Deck Fly",
-  "Plank",
-  "Pull-Up",
-  "Push-Up",
-  "Romanian Deadlift",
-  "Russian Twist",
-  "Seated Cable Row",
-  "Standing Machine Calf Raise",
-  "Straight-Arm Cable Pulldown",
-  "Suitcase Carry",
-  "Tricep Pushdown",
-  "Walking Lunge",
-]);
-
 const planSlugs: Record<string, string> = {
   "Push Day": "push-day-simple",
   "Pull Day": "pull-day-simple",
@@ -215,25 +172,10 @@ export function resolveExerciseImageCandidates(
     | "movement"
   >,
 ) {
-  const specific = priorityExercises.has(exercise.name)
-    ? responsive("/images/exercises/specific", slug(exercise.name), "specific")
-    : null;
-  const equipment = resolveEquipmentImageCandidates(exercise.equipment)[0];
-  const muscle =
-    resolveMuscleImageCandidates(exercise.primaryMuscle).find(
-      (item) => item.kind === "muscle",
-    ) ??
-    resolveMuscleImageCandidates(exercise.category).find(
-      (item) => item.kind === "muscle",
-    );
   return unique([
+    responsive("/images/exercises/specific", slug(exercise.name), "specific"),
     candidate(exercise.imagePath, "specific"),
-    specific,
-    muscle,
-    candidate(exercise.equipmentImagePath, "equipment"),
-    equipment,
-    candidate("/images/muscle-groups/front/full-body.png", "generated"),
-    candidate("/images/fallbacks/full-body.png", "fallback"),
+    candidate("/images/equipment/machine-512.webp", "fallback"),
   ]);
 }
 
@@ -249,10 +191,8 @@ function workoutCoverKind(value: string) {
 }
 
 export function resolveWorkoutImageCandidates(workout: WorkoutListItem) {
-  const exercise = workout.representativeExercise;
   return unique([
     candidate(workout.sourcePlanCoverImagePath, "specific"),
-    ...(exercise ? resolveExerciseImageCandidates(exercise) : []),
     responsive(
       "/images/workouts",
       workoutCoverKind(workout.sourcePlanCategory ?? workout.name),
@@ -294,5 +234,3 @@ export function resolveWorkoutPlanImageCandidates(
     responsive("/images/workouts", "strength", "fallback", 768, 384),
   ]);
 }
-
-export { priorityExercises };

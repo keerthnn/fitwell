@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { workoutPlans } from "./data/workout-plans.mjs";
 
 const root = new URL("../public/images/", import.meta.url);
@@ -10,6 +10,17 @@ const slug = (value) =>
     .toLowerCase()
     .replaceAll(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+const catalogueDirectory = new URL("../src/utils/exercises/", import.meta.url);
+const catalogueFiles = (await readdir(catalogueDirectory)).filter((file) =>
+  file.endsWith(".json"),
+);
+const catalogue = (
+  await Promise.all(
+    catalogueFiles.map(async (file) =>
+      JSON.parse(await readFile(new URL(file, catalogueDirectory), "utf8")),
+    ),
+  )
+).flat();
 
 async function register(relative, kind, provenance) {
   const target = new URL(relative, root);
@@ -81,7 +92,7 @@ await copyApproved(
   "fallbacks/full-body.png",
 );
 
-for (const name of new Set(workoutPlans.flatMap((plan) => plan.exercises))) {
+for (const name of new Set(catalogue.map((exercise) => exercise.name))) {
   const nameSlug = slug(name);
   for (const size of [256, 512]) {
     await register(

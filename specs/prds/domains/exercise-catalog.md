@@ -51,7 +51,7 @@ An administrator may inspect inactive exercises in addition to active ones.
 
 ### EXERCISE-009 — Image fallback
 
-When a requested exercise image is unavailable, the UI presents an approved fallback rather than a broken remote dependency.
+Every catalogue exercise presents its own approved, local name-matched illustration. When that illustration cannot be loaded, the UI presents an approved neutral fallback rather than a broken remote dependency or a muscle-group image.
 
 ### EXERCISE-010 — Selectable body discovery
 

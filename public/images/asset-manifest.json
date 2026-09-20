@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-12T10:13:31.064Z",
+  "generatedAt": "2026-09-20T05:43:05.857Z",
   "assets": [
     {
       "path": "/images/muscle-groups/front/chest.png",
@@ -129,468 +129,6 @@
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/barbell-bench-press-256.webp",
-      "sha256": "fcf9368c80971357070741369381cc6f0743240dc03e1d7395957e881df89e8b",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-bench-press-512.webp",
-      "sha256": "0ffe40b3cbf5a8584109ff906e8c929f1730e5e2731a3dc8c6160358ce8eb23d",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/incline-dumbbell-press-256.webp",
-      "sha256": "a81a4eef362087023aff4738a44e6be1188b2168937569810ab052846db16b8c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/incline-dumbbell-press-512.webp",
-      "sha256": "c63729e946bc3368518b7d65b390a56062fab621f31355725c4ecb6c72f983e0",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-overhead-press-256.webp",
-      "sha256": "bafc820662c330bed65c948d02fb2c56628d7c4d335523b80b1cf2185d39f1dc",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-overhead-press-512.webp",
-      "sha256": "10c92d51423b4fa7783991b1e3edea050bd2d187e329a9332d230c7c18e97fd9",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-lateral-raise-256.webp",
-      "sha256": "a5b9ba9041f33fa8e0f540ba4bcfe44cdfb49f8aa01332e4d16c5e3a5e497a1b",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-lateral-raise-512.webp",
-      "sha256": "b0ff1594947c50dc1ef8b7128da163c678edfd795de1a5580d64931c9e6287a1",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/tricep-pushdown-256.webp",
-      "sha256": "bcdf9a7a81f90fedae5b96232ecad3cd820c91fa5655de047315186a68c1b15f",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/tricep-pushdown-512.webp",
-      "sha256": "1fcb2250d806c76f190227fca393440bdab672dd9a292ab1f0396d90fb9b8a24",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/overhead-dumbbell-extension-256.webp",
-      "sha256": "067c4a6817bc9e1ce56ae7a7ce116b7adfb6f4aac6a5bded81812f9cf023013b",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/overhead-dumbbell-extension-512.webp",
-      "sha256": "98b45bb813ca9fe3dfe09615871f7a1ac0472ade8dc4a50130d838d8680932f1",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/pull-up-256.webp",
-      "sha256": "78f17097981e8f22470b33e6386c0f4d8ebb4dba9a6b1c17ffb9b811d3429d8f",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/pull-up-512.webp",
-      "sha256": "1ba52e50420d89ec621379d77871873662aabbaecffbfe55a3dfcf2bd9c77ac1",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-row-256.webp",
-      "sha256": "877294bb001071e459ee88e212d99b10a0566ca480ee3261fa00a36b08072d3c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-row-512.webp",
-      "sha256": "3d45ff2e452f23cd9c28c014bd47f815ff345f6b2cb86ff0377a4924e9e3cb34",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/lat-pulldown-256.webp",
-      "sha256": "25063d2767c2e24c64f2d284b1b5c51b45e85169cadcdbca759d685ee198aa0d",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/lat-pulldown-512.webp",
-      "sha256": "ecd7b7a4f7aff45a420161a4efc243e16d844846ce9bbb9622caaea402db0b48",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/seated-cable-row-256.webp",
-      "sha256": "d4b29ad2f060c872f1684be5fae6c85f5b4aaf06a1068c089857acc5f8c56870",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/seated-cable-row-512.webp",
-      "sha256": "688eeb639936d327dfa8bde0874ff0aeeb9472e7f68ef9c8bee70467b8f3284f",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/face-pull-256.webp",
-      "sha256": "05789a456f7affd20efcc9a116104354244faa741f8a9699e1d1e5b7ef32cbcc",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/face-pull-512.webp",
-      "sha256": "0d055829c469ff6a132c6be7c0e7266b19f49c2019da4f8c51a7f784584853c7",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-bicep-curl-256.webp",
-      "sha256": "c8ecf194970428200e6ef76658dcc2a06350d71ee5f4c12f75850ff7ce2a816c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-bicep-curl-512.webp",
-      "sha256": "5638d9db0c6a8cbca90faa9197f0c336d82b51a37d22b820c32ad31c26adbce7",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-back-squat-256.webp",
-      "sha256": "f92245dccb1dae14c45337b31d6ffb91778b9b711f5e5a8a040b24d035642ea8",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-back-squat-512.webp",
-      "sha256": "feadab03022f7090510728be72dc260d2d2bcc24bc9ea90f10d59d8512b353da",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/romanian-deadlift-256.webp",
-      "sha256": "5d70cc090043aa874f125647e297c35283cb581bbfde9da5ad698a05ff86d205",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/romanian-deadlift-512.webp",
-      "sha256": "bf3bf5a234b538f83164d4eb53d77115a9ed3a4666e895b49f5d00a38fd7f05c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/leg-press-256.webp",
-      "sha256": "c151f009cfcbf1c2473d72c8a0a9a8540d88bfc64431dd713887a1069da43634",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/leg-press-512.webp",
-      "sha256": "24c7031d1b2d53b0df48dc67be9c433583a02272170a29d33a6f9e1c611e33ad",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/walking-lunge-256.webp",
-      "sha256": "c4e22f6303c8d315ff29d175d0a90f5e27909be8321d3681dcfe3d31c2ef6c10",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/walking-lunge-512.webp",
-      "sha256": "ecde910ac0a1cf3b339f846ec92da4a6c904ed06290a1130abc583731c3a325c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/lying-leg-curl-256.webp",
-      "sha256": "c7c66166b94167ea53e1a5f6804f22798aafe5bbbfaaeffab0cd1271f60a4f6e",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/lying-leg-curl-512.webp",
-      "sha256": "afeebae6b298653aa2803f690eee701a9ed507d3190cd54f815bc5268320b4df",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/standing-machine-calf-raise-256.webp",
-      "sha256": "aa86128095a55af2c5b9d847f2f13825e96bb949bcb7710cb263ac560aef1d63",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/standing-machine-calf-raise-512.webp",
-      "sha256": "09ba65f76c94505dd00da954070746139958eef7bb0c5b6089a12091532ed050",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-bulgarian-split-squat-256.webp",
-      "sha256": "baa6c5065803230154a33f016f09bc17d6e1f53a9fcb62e41e66b0bd384ff618",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-bulgarian-split-squat-512.webp",
-      "sha256": "d2fb5777e2a80f197acc2ef59fe34f6191a0b98cf4ee0052ce5ce6aaf5724a80",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-hip-thrust-256.webp",
-      "sha256": "d44f4aa90ab63d6d55c3edf3dbae3f22148eb2f3ba16757059b7dd3558d26d86",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-hip-thrust-512.webp",
-      "sha256": "04378ce825770d080b8495b7c32af035e74e50209ac80bcfe3421477d5eb2d03",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/pec-deck-fly-256.webp",
-      "sha256": "d0a5d727b3b5ac77fa7db0b5b7d7340918b9e9b3eacd27db15692a39bbf734ec",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/pec-deck-fly-512.webp",
-      "sha256": "0fde5a0435ea5d336daf3d02457a9a2d105ed87f1d434a3b6232344ace64f129",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/cable-fly-256.webp",
-      "sha256": "e60117951f73620f1b5ea46c7f80ff976b177ae619847149372a67830ef6bac3",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/cable-fly-512.webp",
-      "sha256": "15f78ce57a140e346c12a723bff75c07d513411628b5739c8416687ae7a79bc2",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/push-up-256.webp",
-      "sha256": "bfc215ff8efcc4091c04c1e76792e2bbbf8d161c6c3e3b48f0bda2d45907dc1b",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/push-up-512.webp",
-      "sha256": "1590d38375449da296d5e644bc12bbe7d8b2292daa6c16dcd3f46cf2af2a35d0",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/straight-arm-cable-pulldown-256.webp",
-      "sha256": "128d88ba80dc8e0b0e55931aff6218f3261fc68eacf0d127d90a42204e3fa0e6",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/straight-arm-cable-pulldown-512.webp",
-      "sha256": "82100990d8e229257173ee486dd8b5f4bd73e13a1fcc72fb99cffa54d1cdf92f",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/arnold-press-256.webp",
-      "sha256": "8ec23571f473c28ba501d4db2ec26b6c2028a51d507ef0c5733b05fb6bc9be3c",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/arnold-press-512.webp",
-      "sha256": "80e648e298cc8919b8c620371ff657f65a06e6b48bc07042c07dc7bf867bb79d",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-rear-delt-fly-256.webp",
-      "sha256": "010a2c70eb8201ad32d35e8e4a2bc7c467205f237c03e7da0ad7bb0aec175947",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-rear-delt-fly-512.webp",
-      "sha256": "74c1c7bf290ac25cccb9b4b53f1a25a81bec486b52c40244331dc03d302b5a08",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-curl-256.webp",
-      "sha256": "4a822039d29be73c635d7a84ac2ecbd552a1881b49485e4a0439149616c5f8f8",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-curl-512.webp",
-      "sha256": "1e3c37809c79834a31c011f219f12ef40ef8c0aecec1ef707476272bc40146c7",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/hammer-curl-256.webp",
-      "sha256": "f4ff9505d47865ed177e43be0a46ca49878d4a20960fb37347e2836597bf9d95",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/hammer-curl-512.webp",
-      "sha256": "a5528cf550fecac6a19bf893c4492fb634ea8826611ad92d157c3348eb4911f8",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-preacher-curl-256.webp",
-      "sha256": "485f0737421d1d4cf5d647a3ceb19188f10aae538da46eb5649092b37d2455e7",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/dumbbell-preacher-curl-512.webp",
-      "sha256": "5a1b1e1118dbdeda5e06e876225720177ec76f265c6014e6bf404269ac6855c2",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/concentration-curl-256.webp",
-      "sha256": "cbb38d4d40e0d0e81612f5e1cffe42c5cd963cf3a434a0c6d22aa5b6d40a01e1",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/concentration-curl-512.webp",
-      "sha256": "780160b31395916634d42d78094f14e847830bd48d1697ffa28d19668eaed5ff",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/close-grip-bench-press-256.webp",
-      "sha256": "9b5321b9b888364654768496184afb18d971397e896a543f7c06d276c2cada83",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/close-grip-bench-press-512.webp",
-      "sha256": "3411351c141fd4eb82a7e1334898dd6eadf052bc5f3236ddf09a894b5cccc448",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-skull-crusher-256.webp",
-      "sha256": "802ede4a4b742648702669d9afb98ee5542dbcac68176350c8d2ca90edfcccb5",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/barbell-skull-crusher-512.webp",
-      "sha256": "d7b4a08a34742ea57e8c573f60ea8accac813552f57cfb4d0c54c2a160753fe9",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/bench-dip-256.webp",
-      "sha256": "69def40b80917be1b3b1d2ac7991bfb21bd799c336cb15a2463f020a80ebc2ef",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
-      "path": "/images/exercises/specific/bench-dip-512.webp",
-      "sha256": "6ce00ebf4f56c20ca0f5b26a3c1bc340c3a681b3f2a69da1201f0f93aaf3b5dc",
-      "provenance": "openai-imagegen-fitwell-anatomical-reference",
-      "kind": "exercise",
-      "approved": true
-    },
-    {
       "path": "/images/exercises/specific/plank-256.webp",
       "sha256": "c4698d9914cb90f6d58df04bb8299f55c9d2f8814947993a4f4e44c2e6cde07c",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
@@ -605,43 +143,57 @@
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/hanging-leg-raise-256.webp",
-      "sha256": "f8cd6216383f7e43410131f7de48f7ab1720f61ccc563e0d89c62f664d06e668",
+      "path": "/images/exercises/specific/side-plank-256.webp",
+      "sha256": "171200cb1909185aaed31fa60efb6726de1a9cdd57f39b235a09346b565490db",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/hanging-leg-raise-512.webp",
-      "sha256": "7ef4968d3e54a8469512f75c3396d46e3b936d6b42333a969ba88b4f0957b76c",
+      "path": "/images/exercises/specific/side-plank-512.webp",
+      "sha256": "08af4e24ed8cc055f788ff737b17c4fd161fa82245560b9e2eeb4fe5e39709d8",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/cable-crunch-256.webp",
-      "sha256": "7d6f3624484f212c32474608b11f86c568ae2b214f6c1ed80579882ca8cc1432",
+      "path": "/images/exercises/specific/weighted-plank-256.webp",
+      "sha256": "0ff81163a7917b5daeffbc3a2cb25aa1189d63f3086fa4afcccce0753079f0c7",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/cable-crunch-512.webp",
-      "sha256": "32f5b6677f3bb59a1852a62c514b1a86db71039dae3f4e0188ba79389c672cac",
+      "path": "/images/exercises/specific/weighted-plank-512.webp",
+      "sha256": "9bb51d05c16e3a63767e8bb94e3b2054f48fd56a790fa7920fa1163433b3ad1b",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/russian-twist-256.webp",
-      "sha256": "073c9111a2aa377301333afeb1e826c961ec5a8a80ebf44544a990249e326fa1",
+      "path": "/images/exercises/specific/crunch-256.webp",
+      "sha256": "5fa70f617f96896cd8924a1c50aeb3b9b4111ae08fcbd94ae61845f6274ba864",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
     },
     {
-      "path": "/images/exercises/specific/russian-twist-512.webp",
-      "sha256": "f23b2a25994edc889b5791db380485ffc17c78ccee500895397d6e7af34b8fd5",
+      "path": "/images/exercises/specific/crunch-512.webp",
+      "sha256": "f07b93af1dba731e62630a7a500485625787a1c9b77be1ea4da500f9480b6441",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-crunch-256.webp",
+      "sha256": "e8d91eb3a78165bef50beb8b0a8b4dac08c92028d7f5461c70b7aba81a44db1c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-crunch-512.webp",
+      "sha256": "77460991a04359b05f200fb4f48bef295ec4b985a3bf74b3bb4b58faa1f2988d",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
@@ -661,6 +213,188 @@
       "approved": true
     },
     {
+      "path": "/images/exercises/specific/v-up-256.webp",
+      "sha256": "e0ab81ac3b4a9b3e82034ae1257ef5147c8b621199ce3ce2e9262c65bedfb5a2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/v-up-512.webp",
+      "sha256": "ce8be3a97b5eaf6c54ad46e96a6e7fd71bf7ad95fa6ae28975b87e4c50460657",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sit-up-256.webp",
+      "sha256": "a5cba75de709e07659beee92431566c007a8ea907d3f10f40e6b2045bdf77631",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sit-up-512.webp",
+      "sha256": "ab17953a1acaf71235a0ec4a8b51c9777912347fa850e18ec563360352d6f643",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-sit-up-256.webp",
+      "sha256": "dcc53d1153bcbe62538a5efb8e9c52a72ed88ea8dc5560061f3ad37c7de8d512",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-sit-up-512.webp",
+      "sha256": "1bba0c6397fadf90a51fb316fd2b969467d448d8d6f086dcaa00bc7e0d653a27",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hanging-knee-raise-256.webp",
+      "sha256": "8e99bf68f3f688aa4543a406af77a072e3cf7a999aeee8e7cef6801e31d9b7c0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hanging-knee-raise-512.webp",
+      "sha256": "b67a440a7c708aa55dec60c6724d63ec2e65d971cafa0951a7a90a72b8564880",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hanging-leg-raise-256.webp",
+      "sha256": "f8cd6216383f7e43410131f7de48f7ab1720f61ccc563e0d89c62f664d06e668",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hanging-leg-raise-512.webp",
+      "sha256": "7ef4968d3e54a8469512f75c3396d46e3b936d6b42333a969ba88b4f0957b76c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/captain-s-chair-knee-raise-256.webp",
+      "sha256": "190e7d9a7f1c8eeb59e764d47cb9555fc55f59f5e71ae498f5eed0d43d8fee7c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/captain-s-chair-knee-raise-512.webp",
+      "sha256": "1a23dfd8c06988acb3d6984eace210177419b32f9a7233947857194518b76d3b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-crunch-256.webp",
+      "sha256": "7d6f3624484f212c32474608b11f86c568ae2b214f6c1ed80579882ca8cc1432",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-crunch-512.webp",
+      "sha256": "32f5b6677f3bb59a1852a62c514b1a86db71039dae3f4e0188ba79389c672cac",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-cable-crunch-256.webp",
+      "sha256": "d24161641813c7403d80b6cd897fa2e21864ba190465e82fc024c50ccfe4350d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-cable-crunch-512.webp",
+      "sha256": "0206e911fac6f7d252bee08846a3f694882b8d3ea53423765bcea804ca6ef736",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-wood-chop-256.webp",
+      "sha256": "67ca4fc185b70bea6aaee110f1d3436bc1163089e26904489f83a39800b9664e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-wood-chop-512.webp",
+      "sha256": "b19ed30daa8a2e8fd35359a74381c4b95778bfcffb729d79317a221945dd03be",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-side-bend-256.webp",
+      "sha256": "5422ecf9ed4925f8b4cd72a7f11d6dd88d48630ba847286c1086c42370ba401d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-side-bend-512.webp",
+      "sha256": "0f513e53090e9dd594070c47848f9b37fa37931d5080261cd20aa0db9d9e4912",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-side-bend-256.webp",
+      "sha256": "0786de3d5789225754ee42eee996ed7341be8731e327a7f3f00c731fa293b480",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-side-bend-512.webp",
+      "sha256": "32b9f9188261edc379d83bade3c17d3c041d7658a07479bf110c5fabd7abdea4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/russian-twist-256.webp",
+      "sha256": "073c9111a2aa377301333afeb1e826c961ec5a8a80ebf44544a990249e326fa1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/russian-twist-512.webp",
+      "sha256": "f23b2a25994edc889b5791db380485ffc17c78ccee500895397d6e7af34b8fd5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-russian-twist-256.webp",
+      "sha256": "6eb3a33aef5cbf71f835d2696480a0b6d43ab1f0340f16a17111a3f98f8f4367",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-russian-twist-512.webp",
+      "sha256": "b46af486e52d68749d35b94b0b36f295286b86825e36a796e0e30d1a02fea59f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
       "path": "/images/exercises/specific/mountain-climber-256.webp",
       "sha256": "bd476acb26fc2827dc35cfc383d92a35994f922da832c7ac6a26287837f80bb1",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
@@ -675,6 +409,1630 @@
       "approved": true
     },
     {
+      "path": "/images/exercises/specific/dead-bug-256.webp",
+      "sha256": "d94243100d4594b7553f83a33daf74ff07afb44e3b3a5b48d1136ed9d231571f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dead-bug-512.webp",
+      "sha256": "a640a67bf696d3dafc62c28cea561707fe74840c7eb0d171642e71f09ffe665d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bird-dog-256.webp",
+      "sha256": "6352c4e28b41f092e5220c426a49ac50eedddf79a7b8869a762e60f5e7bfb05b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bird-dog-512.webp",
+      "sha256": "ec7fee33914fb3129dbd18ac29f66f801e5b8b9662be1cbeab68dfa56b2747ec",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hollow-body-hold-256.webp",
+      "sha256": "db72858912a6c57f6657ae52e628b7f32f76fe07a02d0569ae8a191eec1bbf6c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hollow-body-hold-512.webp",
+      "sha256": "1b3662ce1b7ab10782ffa32ef46c82a962a75dfc304851fab11f9c31fc249a65",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pallof-press-256.webp",
+      "sha256": "64252d4f4843e6ca2948340f62572b18e28b3294d657c534903cccef26cccc47",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pallof-press-512.webp",
+      "sha256": "11feb4db5ffec998878383f286df6b110b52fca4239291556aaf0f16a36cdfdd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/conventional-deadlift-256.webp",
+      "sha256": "e84155f8d6d8d9a334608613845c1a891783a0d8e78e4dd3eb24602e06c69fed",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/conventional-deadlift-512.webp",
+      "sha256": "95d97c513ddf0087d1fe5ceea37360c4ae8d24c4712fcdfe965c06f5097cb452",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sumo-deadlift-256.webp",
+      "sha256": "d2890949d87dcc2464f1104a4f97efb8b1f579bc697f3f1137e20c4206ce834c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sumo-deadlift-512.webp",
+      "sha256": "502cf885cb995d4132a6dc8aee6444af3adba6b750b43878de48902a827689e8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rack-pull-256.webp",
+      "sha256": "936239428f73c21862d7d904e40d54922f0e50de00b426b05edc54475916ca6e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rack-pull-512.webp",
+      "sha256": "98696962cd00a1263ab28fd98e16e3a4760f9a1c98eef158d3460e75146c5b97",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-row-256.webp",
+      "sha256": "877294bb001071e459ee88e212d99b10a0566ca480ee3261fa00a36b08072d3c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-row-512.webp",
+      "sha256": "3d45ff2e452f23cd9c28c014bd47f815ff345f6b2cb86ff0377a4924e9e3cb34",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pendlay-row-256.webp",
+      "sha256": "315754cd197252b9983de05b7ebb1912caada4e0894ead855375527f7f5b5793",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pendlay-row-512.webp",
+      "sha256": "8211333698a75a5b67ba7cc6bab60e26df1aacc4f669b16a892e2d6d432bdcc8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/underhand-barbell-row-256.webp",
+      "sha256": "efc63aff4d76268e5ab489068d1615d926f771abff9da699811462a6d80faf5f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/underhand-barbell-row-512.webp",
+      "sha256": "3023c633c0f6a2b586d7d8532ed51d0610c8795e1b9a47e46405d1b36b7018b2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/t-bar-row-256.webp",
+      "sha256": "baa7254ab2febab161a72e9e262a8038f1354af090499065edb234a091945851",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/t-bar-row-512.webp",
+      "sha256": "263ed2ae666a74e2da76a60f72ebe0da2b6d4cc08f00b2d9aa73557f40768018",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/meadows-row-256.webp",
+      "sha256": "162b045c0ba6f301a4de26302a992733a6128421c20303c1f633c58c3298217f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/meadows-row-512.webp",
+      "sha256": "699f6273f3f039f4bf2a78be4ffdb8d900f46e5da56d9d10b0ee0034ac86da83",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-dumbbell-row-256.webp",
+      "sha256": "a62665e70e85b23b7cacb540e193c097a041201c25eb892169343308c12a51e5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-dumbbell-row-512.webp",
+      "sha256": "129389bffd7b222291e714282ff1f57ee0c313f1e63b49572ab1282106ba7827",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-supported-dumbbell-row-256.webp",
+      "sha256": "410999f098dfd1f64c7d9386e97f70e49509853ab22f6b4a1ab38d0c67603e19",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-supported-dumbbell-row-512.webp",
+      "sha256": "6399ad54e69cfb66be0ca2a7dc51cba12b067ad7725ee42323b5b1958e58bed4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-pullover-256.webp",
+      "sha256": "5c528c5e6fc1f083383f550922a387a5f48a2f62f737b4636d24d8bcd7ab1ac7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-pullover-512.webp",
+      "sha256": "2b4fb2d2aa7c62cdf8beea167d2554007af9d84c9fa56c0f693400b249a5d5f8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-row-256.webp",
+      "sha256": "47950787ddebf5a4042d3bceb423357ac96a8814b0d26d5d1a90f6fda86a5610",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-row-512.webp",
+      "sha256": "240914ca97531fb697014a85d3b2f65332c189bf35a00d2f820ab2db41cde759",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pull-up-256.webp",
+      "sha256": "78f17097981e8f22470b33e6386c0f4d8ebb4dba9a6b1c17ffb9b811d3429d8f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pull-up-512.webp",
+      "sha256": "1ba52e50420d89ec621379d77871873662aabbaecffbfe55a3dfcf2bd9c77ac1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-pull-up-256.webp",
+      "sha256": "805abfc341de7faf383f7fb477d7c7316aad496a229477acb2ca4798a2f51921",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-pull-up-512.webp",
+      "sha256": "3ea09bb81766c35f2b8e7d7c57e60150b2838b20cacb867849d0f9bbc3f514eb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/neutral-grip-pull-up-256.webp",
+      "sha256": "ce8fd0400956a463ab897c52a4db0cc22a700cfce8b658428e35d384b632d49d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/neutral-grip-pull-up-512.webp",
+      "sha256": "0c7922c49e2bd756b9080abb38c829771a46f78627177b07a13470d1a3a263b8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chin-up-256.webp",
+      "sha256": "05039d95d466cce014839026e0bd5a5ab6020592aca73cb59a7f532af19c23da",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chin-up-512.webp",
+      "sha256": "66ad56cf93d88df2747d904c3403797e01cdc2164ed79248e96f4d8101ca7b76",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/inverted-row-256.webp",
+      "sha256": "521b477eb50ba2d47da77666f0d656083bd0ae97e9057e11a46b7385dec9925f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/inverted-row-512.webp",
+      "sha256": "4ccf685183a72a298e998cc0a79ec64204544b3ac8dea23de60efcfdf6a392d6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lat-pulldown-256.webp",
+      "sha256": "25063d2767c2e24c64f2d284b1b5c51b45e85169cadcdbca759d685ee198aa0d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lat-pulldown-512.webp",
+      "sha256": "ecd7b7a4f7aff45a420161a4efc243e16d844846ce9bbb9622caaea402db0b48",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-lat-pulldown-256.webp",
+      "sha256": "9a924ab1745d826f66a2062e326ce7c22326d7721c387cf463fbee92c54eab58",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-lat-pulldown-512.webp",
+      "sha256": "5b7b86275b7c158e76bd028c7c7ebbbab94a6199739c62aa725243e45874c963",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-lat-pulldown-256.webp",
+      "sha256": "9e0f4fce17e951041daa9af21de99409bcc969b88fb568415d0fad3e9f2da3be",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-lat-pulldown-512.webp",
+      "sha256": "937da2a2e29f3ac5162df240e746d0632c875cb9040070dfb254232c5cce2fce",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/underhand-lat-pulldown-256.webp",
+      "sha256": "49fe7ecf56092965edc782cdad58a74cf7b25939e5678b93595c3a27fe6369d9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/underhand-lat-pulldown-512.webp",
+      "sha256": "a7aee3a9475a1d4c59c1530584a28ce02765217dbf7146e30abc729aa2bb56c2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-lat-pulldown-256.webp",
+      "sha256": "6752c2808d8c610cc4df45b9c7575a23631c93bc8aab64d1d95fceaaf724ad86",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-lat-pulldown-512.webp",
+      "sha256": "6cfd2e32dbe98bc0a0040e3fd49681d9ad708fc24c68eecc2f753a7a7c584de4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-cable-row-256.webp",
+      "sha256": "d4b29ad2f060c872f1684be5fae6c85f5b4aaf06a1068c089857acc5f8c56870",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-cable-row-512.webp",
+      "sha256": "688eeb639936d327dfa8bde0874ff0aeeb9472e7f68ef9c8bee70467b8f3284f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-cable-row-256.webp",
+      "sha256": "6522ebed10d897a9baeb06e35c5d08a219eb383d7c216b25a68ed96e132c2deb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-cable-row-512.webp",
+      "sha256": "c0eb1c04108402e66233598d00542112eadd6ca812deac8124fc78bcfb670291",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-row-256.webp",
+      "sha256": "e485b70ba1d87c24e27815fc37c99f21051d057b7fca22b038415d0e8de9ed40",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-row-512.webp",
+      "sha256": "f3d1d795decdfb79bb392423b2f3be07eed6a60a243b2632b60cfa00456f2088",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/straight-arm-cable-pulldown-256.webp",
+      "sha256": "128d88ba80dc8e0b0e55931aff6218f3261fc68eacf0d127d90a42204e3fa0e6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/straight-arm-cable-pulldown-512.webp",
+      "sha256": "82100990d8e229257173ee486dd8b5f4bd73e13a1fcc72fb99cffa54d1cdf92f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-row-256.webp",
+      "sha256": "83d18ef61d655bc25b4f8286d348a82d7071c91db7eacd8dcb0b89b383005a8c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-row-512.webp",
+      "sha256": "b1cc0defd281fea7a95b51190acbc81389f7e17f808296ab587f4ee0df7fb478",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-supported-machine-row-256.webp",
+      "sha256": "f490df851fcdb36ea14d3f40704c6bf92f3b98ce091bc831e51ffe548183f77b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-supported-machine-row-512.webp",
+      "sha256": "77cd710b45e593a1e1a4c50285915777df3b426c74c793e97c55f6d5ab15dbcf",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-pullover-256.webp",
+      "sha256": "b201b8380b51f7229700ae16d0a650239979b841e0621703072c6139eb48dedc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-pullover-512.webp",
+      "sha256": "3372df4a9522d019ba0b7d889c41073648b87cf5daa7eb053b966655406cfe2e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/back-extension-256.webp",
+      "sha256": "185a898e200f03d86f660f794887fe983a54b75c5d0a5884c09bf5b3db6cfbd7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/back-extension-512.webp",
+      "sha256": "3562ef13ad64247091a6e954425db6d7b37d9174d7e72346bd803f11609f89f1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/weighted-back-extension-256.webp",
+      "sha256": "a44b46d8cebc4125e50825e1594d8054698630c3cdb6dfb35e61c628521e9ec7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/weighted-back-extension-512.webp",
+      "sha256": "dc3c7c78b06149561e5997c75ca4d8d6a589335e3df375a1d84f22f962c5d03a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/superman-hold-256.webp",
+      "sha256": "505f1059a00b5c8a28e98047e5c9b3e39ce49deea58d3b7aee703ddb93ea2e43",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/superman-hold-512.webp",
+      "sha256": "9c304092215da57820f137740e3be81993b0a98224f7a5f7069a04ccad33de3c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-curl-256.webp",
+      "sha256": "4a822039d29be73c635d7a84ac2ecbd552a1881b49485e4a0439149616c5f8f8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-curl-512.webp",
+      "sha256": "1e3c37809c79834a31c011f219f12ef40ef8c0aecec1ef707476272bc40146c7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-barbell-curl-256.webp",
+      "sha256": "fa33522855ed17dc1123d9dbf3748494cf5b3c35bde94efa8658202e4a51bc18",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-barbell-curl-512.webp",
+      "sha256": "f917967855599e5460ca44b2f275159f3a93acd9f38f3a020283bf27a43513e2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-barbell-curl-256.webp",
+      "sha256": "056a205e6429106db51e07d7edf26a08dcea9df126efc241d94726548293da92",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-barbell-curl-512.webp",
+      "sha256": "45696199b1fda64e69c736b4c6270c0e7bb75d817f815d39e4e4764693a4da86",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-barbell-curl-256.webp",
+      "sha256": "bb3fb16a1c3416c90eef39f41e699f93adadc1c893c01fbc39e81f7ca8c71365",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-barbell-curl-512.webp",
+      "sha256": "e37b81dae8b9c15b9906b224b67354f273e2522b5709fda82f7cb41511caca5a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-drag-curl-256.webp",
+      "sha256": "e8af1ef9689ad8c2fabb6917aeeb2532976c31acf008cc93fde9c59fe5e66e9c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-drag-curl-512.webp",
+      "sha256": "9e0833cd923e1e04bad4dcffaed8927a263f4abf4c9301ba26a49c06b5e62bfc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bicep-curl-256.webp",
+      "sha256": "c8ecf194970428200e6ef76658dcc2a06350d71ee5f4c12f75850ff7ce2a816c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bicep-curl-512.webp",
+      "sha256": "5638d9db0c6a8cbca90faa9197f0c336d82b51a37d22b820c32ad31c26adbce7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/alternating-dumbbell-curl-256.webp",
+      "sha256": "8c0da1290a5fd461d4b634ec7b6e279253e9f4d0be1183a30a15c50974d58644",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/alternating-dumbbell-curl-512.webp",
+      "sha256": "7182a9f9fc7c415d31aaf7cad59bb1d6e6a36d9f5bbc4363160befb12a1ddbf7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-curl-256.webp",
+      "sha256": "be4b4ebc3e3be9848ceb13a9019cabc4039e2825d7dedbedf907411fffd165a0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-curl-512.webp",
+      "sha256": "6ce90c53b4ec76b0c44f63f9812873b3dab2362e54ceb68325ea48310b3c7b91",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hammer-curl-256.webp",
+      "sha256": "f4ff9505d47865ed177e43be0a46ca49878d4a20960fb37347e2836597bf9d95",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hammer-curl-512.webp",
+      "sha256": "a5528cf550fecac6a19bf893c4492fb634ea8826611ad92d157c3348eb4911f8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cross-body-hammer-curl-256.webp",
+      "sha256": "eb6a0d6eba1630ff4cc5470f7c6635c9730819fd9ddf43dd989b23e826186385",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cross-body-hammer-curl-512.webp",
+      "sha256": "ef416b7c3e4b53de86ae904fbfb250fd2363e6c16a9f436aa389e84b3d9e24c9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/concentration-curl-256.webp",
+      "sha256": "cbb38d4d40e0d0e81612f5e1cffe42c5cd963cf3a434a0c6d22aa5b6d40a01e1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/concentration-curl-512.webp",
+      "sha256": "780160b31395916634d42d78094f14e847830bd48d1697ffa28d19668eaed5ff",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/spider-curl-256.webp",
+      "sha256": "92866db04be82360e8ddfd2fc98c1c675e811dbd9f0ca7b994d625698160f47c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/spider-curl-512.webp",
+      "sha256": "e75cead443bd79c4a390abbfbe75ca6919e51a2c46233c0b3bdc798892a0bdd4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/zottman-curl-256.webp",
+      "sha256": "fff4181d7f31ef6ec5534dd88009044fbd7ccc74c2577a102190fd34b7f595ec",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/zottman-curl-512.webp",
+      "sha256": "2b88a2504b77101e24c9385bb0e638fdbf58132fb343d0ae4410b14afc6cbbe7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-preacher-curl-256.webp",
+      "sha256": "485f0737421d1d4cf5d647a3ceb19188f10aae538da46eb5649092b37d2455e7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-preacher-curl-512.webp",
+      "sha256": "5a1b1e1118dbdeda5e06e876225720177ec76f265c6014e6bf404269ac6855c2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-bicep-curl-256.webp",
+      "sha256": "d5861da45de2baf481f9b4e72a27fa8e271cc99179b4a5971b9c31b51d3ed302",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-bicep-curl-512.webp",
+      "sha256": "99ff79af7d620de7cea029e72f48e6c98fad3a456a25a59965d80b70250e71ab",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rope-hammer-curl-256.webp",
+      "sha256": "ade49b5e5be18e5ce94262560f8718cf6187cce83ac0ac997bc2301f2c3dbb82",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rope-hammer-curl-512.webp",
+      "sha256": "1b49b4aa5ced422554cb63b1f5b72cf0e3b171349ddd7abbbfddff967e93735d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-curl-256.webp",
+      "sha256": "895822f0e49cd80ebe5c95ef95a4533f9317ea96f530fee62adf8e0c8b104157",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-curl-512.webp",
+      "sha256": "17aae30a48efc0bdef80c5b6a0e40715219f0a1bcbd899604f373d3206c1ce47",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/high-cable-curl-256.webp",
+      "sha256": "68fea74b07a9839aa07f68369edbf38de6636ffc7632b7670c0e5fb6a88dc051",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/high-cable-curl-512.webp",
+      "sha256": "f48c9416838da54eac2ed4b441a41ac6558d6a288fe1ec9eb9d7a658b6ac8ba7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bayesian-cable-curl-256.webp",
+      "sha256": "fe919dec807b672434cd1c9505320b13532a7ef2c7bcf4ffe0d53eb2eb39432a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bayesian-cable-curl-512.webp",
+      "sha256": "88d71bcc43b7bd2d3df5801374c734894f58bb521e172fd8622034de96faa0de",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-preacher-curl-256.webp",
+      "sha256": "2d910ef64d3590d0cabaf920c5af7eba11391e14a220d482f6f441671514b90a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-preacher-curl-512.webp",
+      "sha256": "f170c37a86af86482a111292e0503b628f7e7ce94ead26a5bac63d3d7794a4a0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-bicep-curl-256.webp",
+      "sha256": "fe8317565f2772a6218698b0c9e95ff603ad6af8eb5ad1e9590153412abe9c74",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-bicep-curl-512.webp",
+      "sha256": "a733bb86a7f798b17d6729bc226798c43ef4375d70c49368373f1f26735bdb96",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-barbell-calf-raise-256.webp",
+      "sha256": "498de7fbbfbe2e47adfccb20aac7ba6287cd09f997ddd206d0fcdb767f365f7a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-barbell-calf-raise-512.webp",
+      "sha256": "e5ae71dc70e940930d0bf85bd19a32560899454c6082c5b8515ac6889c3b0c7f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-dumbbell-calf-raise-256.webp",
+      "sha256": "5fa18f3178123aafcafefbabc3187d0547f5859cf42b27a3c07144f5647fe8d3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-dumbbell-calf-raise-512.webp",
+      "sha256": "10327d2a441c67dbc9b3dd43c6aa0deb63099d3048556c294b7700eccb60fa61",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-dumbbell-calf-raise-256.webp",
+      "sha256": "7ac10b665661932dd704d2ec67de7fedb5511a6e569fd2c8624ab45bade6f79b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-dumbbell-calf-raise-512.webp",
+      "sha256": "11a790d721d3d2ec1d41f69b3cc491819c1e7caa5cd77905d18bb845f158363b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-bodyweight-calf-raise-256.webp",
+      "sha256": "1e393ec29da10bdfe62a31c543e92d9aee9b93325c052af7733c9e4672ffc3cf",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-bodyweight-calf-raise-512.webp",
+      "sha256": "5a32b6e6035b9d3797eeb5ad04883d24690e68073a6d1976ea050228cb31ee53",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-calf-raise-256.webp",
+      "sha256": "ef45bb3c4071f031dae8b99c9771f54139e3b243fcc1981bc96b179946bceed8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-calf-raise-512.webp",
+      "sha256": "64042f453dd86e12feadec6b66ec0e7b8f0b97dde4a15d83cb40c308865fe9ef",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-calf-raise-256.webp",
+      "sha256": "dae4b4c16afd875f604905b777c0198f8ee476e9fc15581594f1efa7ecf5d155",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-calf-raise-512.webp",
+      "sha256": "5dc4e862bf710e8f8d3c2ef76877f0bc7784e229f27a08bdc882e116494b6235",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-machine-calf-raise-256.webp",
+      "sha256": "aa86128095a55af2c5b9d847f2f13825e96bb949bcb7710cb263ac560aef1d63",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-machine-calf-raise-512.webp",
+      "sha256": "09ba65f76c94505dd00da954070746139958eef7bb0c5b6089a12091532ed050",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-press-calf-raise-256.webp",
+      "sha256": "5879601c1fb230bb179f74315dd1c22eb621474eb6652cba3eccfcec20556f1a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-press-calf-raise-512.webp",
+      "sha256": "5bf149f47571c00c1aa84f71eeb5cd06f3617afc401ced0360107c67c639afe2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-calf-raise-256.webp",
+      "sha256": "f233ff46d778158fea908f1975d698f7c81bef9d1b606c859145d817841357b4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-calf-raise-512.webp",
+      "sha256": "8307386ce2c0eafc1ca4ebf6853dbe9af08830bcfef2079890063878ea8641da",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/donkey-calf-raise-256.webp",
+      "sha256": "f45faf2aff57bbd6996241062cfe74d2fa9e73f552a8ac27eeac441c42fcd592",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/donkey-calf-raise-512.webp",
+      "sha256": "e3df7fd006f24c14a85819443cb1bcde63c14f664e6b26ea73bac23fd8bc88f5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/tibialis-raise-256.webp",
+      "sha256": "7674d60efe7475cecd59ab7226d7365833998b77bd93f258862a7eebfb3cdae1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/tibialis-raise-512.webp",
+      "sha256": "5beda2b2e1c3180c2caf674d04bdeaa4e795f3713137c8c9dfe2a7635e07190d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-bench-press-256.webp",
+      "sha256": "fcf9368c80971357070741369381cc6f0743240dc03e1d7395957e881df89e8b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-bench-press-512.webp",
+      "sha256": "0ffe40b3cbf5a8584109ff906e8c929f1730e5e2731a3dc8c6160358ce8eb23d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-barbell-bench-press-256.webp",
+      "sha256": "dfe7e883ae3f57aa30ee57e10c8dbecf6a32b9adcc72ddfca7c0ec0a8d417b39",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-barbell-bench-press-512.webp",
+      "sha256": "2eded7a34a9fb2794c5a56a5668f58ea2de496138acf6fff2a013d4e539e6bc9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-barbell-bench-press-256.webp",
+      "sha256": "04fe61579a1928032e267daa36441380f485fb1c5a4b910dafe8c3832bd1c565",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-barbell-bench-press-512.webp",
+      "sha256": "383324222ec0feacb5f53afdf0e4c01ea29874ac52275d274a2458853180fa64",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bench-press-256.webp",
+      "sha256": "b50215cdfde84370f309e37dab792c6289c1b77598d7a6512efdb711dabee74a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bench-press-512.webp",
+      "sha256": "fc08bd3f2d36189cf83ff223c974ecfaab1f50a632aa0757024865d938493a22",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-press-256.webp",
+      "sha256": "a81a4eef362087023aff4738a44e6be1188b2168937569810ab052846db16b8c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-press-512.webp",
+      "sha256": "c63729e946bc3368518b7d65b390a56062fab621f31355725c4ecb6c72f983e0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-dumbbell-press-256.webp",
+      "sha256": "a766e47e37307a0fbd33f2c78cc5bf68ae52959860b808bb429793ba5af2047c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-dumbbell-press-512.webp",
+      "sha256": "f3eefb6568aeb518bfdf7ce85669e31018161732062d55a74e8a528dc0e11697",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-floor-press-256.webp",
+      "sha256": "4d67c180df16ded2bcc9cbc9111832a6ea08d7d0b7e579d95d44d544887cef6b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-floor-press-512.webp",
+      "sha256": "e5b84dd5318ebee6c04f028f54f8dc4bd68aa5af3c958ec6476379375327f931",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-squeeze-press-256.webp",
+      "sha256": "50c80e016017cde00304aa350dbfcea51b1f8c92e47aef32e5b2de76b796f9bb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-squeeze-press-512.webp",
+      "sha256": "265836c00c8892234dd56f8be96e66e9ad3096f097a1567648b481d620e5b124",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-chest-press-256.webp",
+      "sha256": "4a7fadd6a58cc1720967121ced0253dfce3f1ef23c12e74375a8da82ebc5ff96",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-chest-press-512.webp",
+      "sha256": "311bb3eee090888d4e7ac78350359c8ea7b7785d7af70adf52568bcc3c67c547",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-machine-chest-press-256.webp",
+      "sha256": "93454ad7170a838be220d37dba8eb94be35a6fc13f90c53a1866e0ff83672528",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-machine-chest-press-512.webp",
+      "sha256": "d5e1a186d1d72ab618e598cf651ae1a2aa8b65278f88cefc8b3b2f8d650cc0b0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-machine-chest-press-256.webp",
+      "sha256": "06a18703138ef08f0d2453f64d0cf0615bdc70eea6aec6c68cb634f135898fe5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-machine-chest-press-512.webp",
+      "sha256": "e976a7c9b36950c8d573bf18928327c0690e6e737ac0928894eef9ae14486f6f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-bench-press-256.webp",
+      "sha256": "3cc5768d99e1e33976d103a5987b614bfe42b9bc7c007d33afd8f24744bf16dc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-bench-press-512.webp",
+      "sha256": "df22f15ab26c8eeb0b72ef6475d6142e3ce99a28eac3b0a6de1bc0753e9f8c04",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-incline-press-256.webp",
+      "sha256": "5cce9affdea7ba4a29ee605f050bb5a43b162f811de797a0a8ea06bc6c8a1179",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-incline-press-512.webp",
+      "sha256": "392a70d261756c4507c4b99ea34ff40925b492906b56dcd9481dd630f681ed93",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/push-up-256.webp",
+      "sha256": "bfc215ff8efcc4091c04c1e76792e2bbbf8d161c6c3e3b48f0bda2d45907dc1b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/push-up-512.webp",
+      "sha256": "1590d38375449da296d5e644bc12bbe7d8b2292daa6c16dcd3f46cf2af2a35d0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-push-up-256.webp",
+      "sha256": "d31268ee27cda55c0aaeb3df19947b1a7fa3469a4945451b2cadb19de7fd0fca",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wide-grip-push-up-512.webp",
+      "sha256": "7595580a474e80a4a4cc2957e40f70959a61be322728ee242377cf2116cca70f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-push-up-256.webp",
+      "sha256": "9c87c9f2b264b64e4eda33d4f9c58939ecd3afe0669b7e49d83b82197c9773cc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-push-up-512.webp",
+      "sha256": "9b5480528be5178513e3b160f319260a22d59493591e84b896b123cf012c1827",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-push-up-256.webp",
+      "sha256": "702bd5ea2095f5d9c42d5f0b54adc03373b1bc68d6d9509c14a1ccbab8b5f93d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-push-up-512.webp",
+      "sha256": "bc6b18ee173e692078206c6d18a73d953cb5975c573027f5ae11dbdc5f458e24",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/diamond-push-up-256.webp",
+      "sha256": "36d5af59a644726ff207d8d11857b2f7b8543efd1a7a51675318377aa7aed8bd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/diamond-push-up-512.webp",
+      "sha256": "576d597d12a587d1b08c76b99020e7d10c5e982c8d10d4c3b85eca5a48ea7b0c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-dip-256.webp",
+      "sha256": "2216e5050ecaddecb0b6e86a3b612b3dcebd4f9a99194993f3d9d0b57902b3eb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/chest-dip-512.webp",
+      "sha256": "c502215c220bc556cbae2dc992dc8e0fe20762e1c2a62cb69a6d51ed2de9f316",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-fly-256.webp",
+      "sha256": "353e1cbfbbfcde79fc2e1d22d4f090189e26e3f7bea091143b677a298128556b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-fly-512.webp",
+      "sha256": "db5a9c776ca2ea6c715f4bf46755a8cea460d10209cb14ba3996d4ed49fcfefb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-fly-256.webp",
+      "sha256": "d886a879b59e8d816d69551041a5d3550418d17846a561ac8533aa8e873c5d8e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-dumbbell-fly-512.webp",
+      "sha256": "ef571c9b42783d912f6fec836d77348706c2004b7d77460f507ebc4437457fca",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-dumbbell-fly-256.webp",
+      "sha256": "dc7e2462a1d22ce227eccccaf3b8c46c54c09e32e038b442ccee0dd7d33bfe95",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/decline-dumbbell-fly-512.webp",
+      "sha256": "0770da0d60a2e71644ea01d0dd491c9778ecae403a8af4e6f491e0ba501a3b28",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-fly-256.webp",
+      "sha256": "e60117951f73620f1b5ea46c7f80ff976b177ae619847149372a67830ef6bac3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-fly-512.webp",
+      "sha256": "15f78ce57a140e346c12a723bff75c07d513411628b5739c8416687ae7a79bc2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/low-to-high-cable-fly-256.webp",
+      "sha256": "3e1796e7a44b80f91fc865989b9eeb9f307ec67fc2e50d39c0a12430430eed4e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/low-to-high-cable-fly-512.webp",
+      "sha256": "40a743c35cc62213a0795ff54124b54d004a61fc8dfdd702bfa4b822332c0b21",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/high-to-low-cable-fly-256.webp",
+      "sha256": "47c3e53c0bc0a1b0910f6d1feee052d87b0272850f81be38263f95d1c14d679c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/high-to-low-cable-fly-512.webp",
+      "sha256": "7d0057d41415b028b4c1365e49a1c1aba414b54d47981852dc92cf0c6e787f3d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-fly-256.webp",
+      "sha256": "f14aa4569ed627ffda1c9af0a66b5a1b263c6494d4000acff5a3e7517393dbe9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-fly-512.webp",
+      "sha256": "0b8428b7250750bef0760e55102e6e78fc784e5cf361b80d6f75eeea85f32852",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pec-deck-fly-256.webp",
+      "sha256": "d0a5d727b3b5ac77fa7db0b5b7d7340918b9e9b3eacd27db15692a39bbf734ec",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pec-deck-fly-512.webp",
+      "sha256": "0fde5a0435ea5d336daf3d02457a9a2d105ed87f1d434a3b6232344ace64f129",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-floor-press-256.webp",
+      "sha256": "5155d90e980f4586516a8e1b0084250cfd85de605b3f7b6651ccb2f8a5ed0e4e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-floor-press-512.webp",
+      "sha256": "2533989b148a332da33757109f2da3e7dc6d2db04b7f3d55e1e434e312a9d0c1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-wrist-curl-256.webp",
+      "sha256": "0ef7b523847168908fe96bed453254b5efa552ec5f66acb394241583c8ac1806",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-wrist-curl-512.webp",
+      "sha256": "c406824d02d6d4380f720f6c83b7d869cfa4d743a7edd3dff64f1b8244e99710",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-barbell-wrist-curl-256.webp",
+      "sha256": "20da467009da6f344df6345ec257a89d97f74d7470eb4d7ba5bb92af82cb8ef8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-barbell-wrist-curl-512.webp",
+      "sha256": "c1dd79cb788521e6ed3aa4126d0731d8281653037eb235a8e610f09c6fd2aee8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-wrist-curl-256.webp",
+      "sha256": "525c748565f223a324c32e38077c46e39807089fa4b7d35c4ac72f195e2d5471",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-wrist-curl-512.webp",
+      "sha256": "a40e424c1d6eb65365017fefcfb4b7ca6e9c7c2b26a0b1e5f0f957e970069533",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-dumbbell-wrist-curl-256.webp",
+      "sha256": "7ca466a59278984ed59976d4afae13e0c1d11297d85b85b5678d63151528c1cd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-dumbbell-wrist-curl-512.webp",
+      "sha256": "381fa44ade577bea2210f21f6735fb48501891d8ea6ba94c6a653bff976f2854",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-back-wrist-curl-256.webp",
+      "sha256": "b85dc283af1f39d5ddf2455856528783f82861d7cb2cea4f2f4bec4a1dfdc17b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-back-wrist-curl-512.webp",
+      "sha256": "da6f922132a18336bf30c5b422506dea3bb6ad20a4dc068bde1de9cc0df6f4ed",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-wrist-curl-256.webp",
+      "sha256": "813895137515451adf471581a0cdf6ab33d4c5653423d3eb091410fa59ff4f57",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-wrist-curl-512.webp",
+      "sha256": "6a08423b0778a1dc9120042f45fb4ee8e78c03ae635224099b3744e6bd2b2ce4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-reverse-wrist-curl-256.webp",
+      "sha256": "f9edc5298df2f8e3adf696c4245e30f0663d1505da048d97d0ef0457f8219add",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-reverse-wrist-curl-512.webp",
+      "sha256": "a098c6fda4bba9a0a2993d816a8ce0e4817bb290f90dabd9f64f2c38a1f01760",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wrist-roller-256.webp",
+      "sha256": "1ba3c17cb3039689a3c193c85abd1dc9574d629149ac95d4fe243afdd6291e62",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wrist-roller-512.webp",
+      "sha256": "af4347d600b078bcc9ece8ea0197daffc209ec81d47d7ee8bc5676a817ed442a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dead-hang-256.webp",
+      "sha256": "6cc7cc3c3a09c3fcf70a05dacd46ba19bc0b21ae46840c7d1278ea281343d606",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dead-hang-512.webp",
+      "sha256": "680281defbc4b42f4ada1bf5c5d7fc045b39831c91a02573272e92ec68e0866e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/towel-dead-hang-256.webp",
+      "sha256": "07e4515b2e27fec4a22ef44d78a770bb2b8982762568ee175ebe0df305b192d3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/towel-dead-hang-512.webp",
+      "sha256": "f646b1d20d0873fe15530df57167d81eddb1e211a06c7c5a173825c4cdc37aa4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/plate-pinch-hold-256.webp",
+      "sha256": "10f10ccc21f05d3cf350a082b5e74f91ec39691eef99bf65b52e5b0c95239fde",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/plate-pinch-hold-512.webp",
+      "sha256": "5ddf0b8901d481f2e1af635ca42aa99786480642a02a6d4398cb5a86745f1574",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-clean-256.webp",
+      "sha256": "fcea764eea8f5bc968eb9ac2e781525f9f6dc7f12672d960294cd134602c0f37",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-clean-512.webp",
+      "sha256": "307158b6276190c11f97406d48b23c3497b996362d9eba9564d74d3834e5d6ed",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/clean-and-press-256.webp",
+      "sha256": "020c28a157c61813a04fce70f243b6c73f44033b1ccad621a14c57b7f347f627",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/clean-and-press-512.webp",
+      "sha256": "477d87af8714714951dd91114ef5edc4b35ca42ec5672fba6fc742343a614cf2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-thruster-256.webp",
+      "sha256": "b06830c2aa582d1b58dd62db8384a83227a58492927f1d160f63f2f265220f7d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-thruster-512.webp",
+      "sha256": "3c3c7d5893c528dbb500066ca16b2b693d9e2e9dd8aa7251e245f4daa13769ab",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-thruster-256.webp",
+      "sha256": "ae24d0a13dc95b4a92e80d5115afbb6c354dc80d0e6c7f565b79ee82179de9db",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-thruster-512.webp",
+      "sha256": "a1f1b0d5f4a3f48ed8529d6e8ce9ad330967935931366631bf5a14d9ff12ddb0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-clean-and-press-256.webp",
+      "sha256": "991fbc369157e24add41016905092d43216ac28c6b8ecc09e7b3e55cea49dd37",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-clean-and-press-512.webp",
+      "sha256": "d5df0b7c9da4502bea121de19da3af53425f719d2eb2a72a573a7c9dbb1e62f6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-goblet-squat-256.webp",
+      "sha256": "78a8faddc30718b47a48ce74a2996d63cc323ca3bea848da5017d0266e0dfeb4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-goblet-squat-512.webp",
+      "sha256": "b98f027ba8116c2368167c3502cc6b750c8b6c5d88c1243a236437c4c6fa1fd5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/turkish-get-up-256.webp",
+      "sha256": "b38fbd87f4f49af262b8eaadfd715fa0f32a1bd6745f0355ffe2b00af979aae6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/turkish-get-up-512.webp",
+      "sha256": "654efb38c7d206269a968f06647d68513de9c37eb91ae5dcf22ce38320d8b253",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/burpee-256.webp",
+      "sha256": "7d9a0e61bb6a7de6e70d4babfc96dcb566bfe5a601e3d2341c35fc1311e7399a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/burpee-512.webp",
+      "sha256": "2b5dd677a6dabd52b447f2cc540acb8ab9c66d304e28e186fde01223e5da944b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bear-crawl-256.webp",
+      "sha256": "1079ad8585d37778fd28542e9de36c5438936bb67233cd3a34069256104d83ce",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bear-crawl-512.webp",
+      "sha256": "825570d57e732703870bc6e0a383e6e710b0a4d7a847f0c9a7d30b44d3966e06",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
       "path": "/images/exercises/specific/suitcase-carry-256.webp",
       "sha256": "8abd42f0a936d2d03a16c717e202042cc433f38d729335dee28d1f19234cc064",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
@@ -684,6 +2042,1532 @@
     {
       "path": "/images/exercises/specific/suitcase-carry-512.webp",
       "sha256": "9ca774d2ebdef5df43fc66f946f786cf5cd627bd1f22c668ba2ba53eacf9b076",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/overhead-carry-256.webp",
+      "sha256": "9682f2059cd47db42f6fdc387d31f715266e637e998860c141c52890e6440163",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/overhead-carry-512.webp",
+      "sha256": "7910b667e7b559ce3795f123c6849123126b263f49e237f582e31795b80c0b3a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-hip-thrust-256.webp",
+      "sha256": "d44f4aa90ab63d6d55c3edf3dbae3f22148eb2f3ba16757059b7dd3558d26d86",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-hip-thrust-512.webp",
+      "sha256": "04378ce825770d080b8495b7c32af035e74e50209ac80bcfe3421477d5eb2d03",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-glute-bridge-256.webp",
+      "sha256": "2e371b7ba3beb73948a6e565bf0432b15eb2a8251fd43398b15672de3171a105",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-glute-bridge-512.webp",
+      "sha256": "6f4ed6596c0f5d68400bdacb0032d569cf208cd3630c1bcb9f8d5696f6b743cc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-hip-thrust-256.webp",
+      "sha256": "94d166e336dafb2e97ba4cf11d009700ca04c5d3e869dcb727883906538b4de7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-hip-thrust-512.webp",
+      "sha256": "3d7f36a0fe0afca1b56484b3d1efb5dfbe595c6ef1ebd9ff6f0443d525ff9e70",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-glute-bridge-256.webp",
+      "sha256": "8c93f5b6602c933da6277fabdeba44f6bfb47670fc7bfc9f603631f2188068e5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-glute-bridge-512.webp",
+      "sha256": "5ff6422482671e7799c24a267958bfedec1132e5bf54222812fda798fda345ce",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-hip-thrust-256.webp",
+      "sha256": "ec7c7a52cdc0e0ac3f1ea1d2d50845711b55c5a47a3facd77134d3e27b5d7b02",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-hip-thrust-512.webp",
+      "sha256": "7587d1569928a4dd9f9bede47b674dcb366a8babaa4578c2912109763aab417f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bodyweight-glute-bridge-256.webp",
+      "sha256": "e85282d446d5e772faa2250f920721a367c9c5b30fb1ff6d0d31a6dba3299409",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bodyweight-glute-bridge-512.webp",
+      "sha256": "d695de61830892d5e85e5082f87d72c4810f93c831037206116bff23c29b0e47",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/frog-pump-256.webp",
+      "sha256": "534197ef531d4691b6f9e614dfac614dd1ddec674e4244b3b242db89c02a9f61",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/frog-pump-512.webp",
+      "sha256": "2be13c06ea966c7d392f570fea11cfd7423d0673999211a652784d304762b01f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-glute-kickback-256.webp",
+      "sha256": "fdc6e44cea9c79802de193c3e61bad04cb494e4437f7055bac3e16f0ac5b5a5f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-glute-kickback-512.webp",
+      "sha256": "74bd0aef6f32dc22abe42e92dd39edd648c0bc40aa13e400d58cb3bc81e4ee49",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-pull-through-256.webp",
+      "sha256": "d533a7fdd1d865586d1cd7dfee1a369fa45ed67f7e90b55a5e27fcf3b62e159c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-pull-through-512.webp",
+      "sha256": "687f094c5eddc7d9116e0af51d1f0e4417592914fac146fd01980a15484a308e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-hip-abduction-256.webp",
+      "sha256": "76d8cd7ea1256dd425d6073de5c8190061ffab9e99cc844941722003ee8e59fc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-hip-abduction-512.webp",
+      "sha256": "797db72fd0cb0ab02af27eef5a432daeaf7707b26683e9121fc08ed191282aaf",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hip-abduction-machine-256.webp",
+      "sha256": "4eb0d66d38b362e28db4cc2acc924c04db21670450c48d3ab7153ccc4ff9ff78",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hip-abduction-machine-512.webp",
+      "sha256": "9a6607b297e610f19803b805bd010eabd34065246758f9da57ef0e8e10385b77",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hip-adduction-machine-256.webp",
+      "sha256": "605f0ae79e7a19aa19697be5494c2130dcbd2a2081315d88b684515dfc863c39",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hip-adduction-machine-512.webp",
+      "sha256": "f445ffcd1620a33746b92494eef15561ff19b150a2cf2fc4f83ae386354e8946",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-glute-kickback-256.webp",
+      "sha256": "d41ba2fef6da8e2caf9fc08f21090301391b45fedc2988784447891a18d78326",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-glute-kickback-512.webp",
+      "sha256": "8d350938736e8a08cd17e63780831b5ab07c0d05317db9ad53d24a3dcc20a7e7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/donkey-kick-256.webp",
+      "sha256": "2abf42834f7875f248575da11b4c376e2a2c938357ff41918c407fd32433dab7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/donkey-kick-512.webp",
+      "sha256": "663aecbcb3d0bfec7ce0ed36c961611d187bb633ef1b4a5a46945fdf45569804",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/fire-hydrant-256.webp",
+      "sha256": "06b6038943a1f97c61e7a85c473ca3aab72d2d05a8c51e8161a16f186448cdcc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/fire-hydrant-512.webp",
+      "sha256": "acca91af9f4b6f5f75e57f1074ae7c7f88fbf7e6494c8582d63a2e62a0ddad77",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lateral-lunge-256.webp",
+      "sha256": "d6602930d74feb05b4f19f319c9a0a7bc8948f6005316792d0bf9c4040f6713c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lateral-lunge-512.webp",
+      "sha256": "6d6a129dddda28856294b9c5491f7adb63e1537abd4957aeed1a73ef6fee7717",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/curtsy-lunge-256.webp",
+      "sha256": "0c2dae9b5c10116523dbf8bb833e1051b4d9da31bebac07ae50de4ea24e4293e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/curtsy-lunge-512.webp",
+      "sha256": "7750efed3d6bcb2d6bf8a35fbc6b2a8dc499162a327ee3ec2fbc3d57676d3e7e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/romanian-deadlift-256.webp",
+      "sha256": "5d70cc090043aa874f125647e297c35283cb581bbfde9da5ad698a05ff86d205",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/romanian-deadlift-512.webp",
+      "sha256": "bf3bf5a234b538f83164d4eb53d77115a9ed3a4666e895b49f5d00a38fd7f05c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/stiff-leg-deadlift-256.webp",
+      "sha256": "a650e20c6ecfce41bcc1ace68b504b4ebdb398869dcf1a1c9b3e4bc1ca0c73a3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/stiff-leg-deadlift-512.webp",
+      "sha256": "4b7c2e781c52a5a4621a8b3974194390fdc6196ea3d3bc72b578605767863318",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/good-morning-256.webp",
+      "sha256": "1cc0da3dac98b6d50cf99f91feec02f592c9ec20c7046a5675955f32bd5be602",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/good-morning-512.webp",
+      "sha256": "c08b3eb4a139a3928a8c13f0863933845c2c8796ed6bff4c84314a5c9141ac38",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-romanian-deadlift-256.webp",
+      "sha256": "93bb1a9da7b4d0435a10fdbb3a570464e4fdfb889a2787137efb7484e965e00b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-romanian-deadlift-512.webp",
+      "sha256": "fdf51f308895660ec511fb4734fb55850914236ebc99014f1872b69c395ab2bc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-romanian-deadlift-256.webp",
+      "sha256": "c57b2723d7204f9b876048776f26a79eaa84fac2c6fe0608c4b7d98430638954",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-romanian-deadlift-512.webp",
+      "sha256": "863c17b077560b8a5dc7a5c8c6aabb58fe168d672ac2bad6f3278b51217ecaab",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-romanian-deadlift-256.webp",
+      "sha256": "7c50b884c4bb2289d3a09bdbecabe410dbb4275bd8f397004ce832de401ce7c4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-romanian-deadlift-512.webp",
+      "sha256": "de3bed0becd9b4bfaba123f0d9bd7b0cf42c97ea280cb7a820896bae0d8f6a4f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-swing-256.webp",
+      "sha256": "19bec3bf936b5a63e577ee31062d38dd3d1a9629752cb0f13441774bd6e2fedb",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-swing-512.webp",
+      "sha256": "aef02c73c12befe55bc3a0c7c22d379292316fb995a6878b43898e1ffafe220b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lying-leg-curl-256.webp",
+      "sha256": "c7c66166b94167ea53e1a5f6804f22798aafe5bbbfaaeffab0cd1271f60a4f6e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lying-leg-curl-512.webp",
+      "sha256": "afeebae6b298653aa2803f690eee701a9ed507d3190cd54f815bc5268320b4df",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-leg-curl-256.webp",
+      "sha256": "24dec907ef99176334b936ec97782722ec72003e75cbdb61b0c1f6aff45507a8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-leg-curl-512.webp",
+      "sha256": "367ca1405b1bad7008ab6dae6c26fce941c8a6095f5bc8a73b5aa7fc19e08d90",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-single-leg-curl-256.webp",
+      "sha256": "65f094f288567e1b4336231c546ae68e27fd68668c82132dff6b0460ff467670",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/standing-single-leg-curl-512.webp",
+      "sha256": "6995df61f60d194d0550c7cacaeafaa1d7e675d248a3838148e870c34e106fa0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-leg-curl-256.webp",
+      "sha256": "744ac1ca335bd774956bd80157dbffd696d3be567563aa49e2b8ec002b88401f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-leg-curl-512.webp",
+      "sha256": "4e7fb4b0b800cd4e962890e5c4b7b843bf0c51cb0808e421f799fb97b923eb50",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/nordic-hamstring-curl-256.webp",
+      "sha256": "948f88a1510d79cb0ab638aded17f155ee1fa1d12cf42148c3d145f600755658",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/nordic-hamstring-curl-512.webp",
+      "sha256": "fbae57bcbdf80fa8afed36c0a46935e9f7162ad0cbef0a5cc47b077c55182d11",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sliding-leg-curl-256.webp",
+      "sha256": "fcaa7f1eb72c5bd3f3fa0d6393f785120501f349c80a10ff769f8266a40b8f5b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sliding-leg-curl-512.webp",
+      "sha256": "1c4ec81c0ae3aebfbb3a5025f313fdedac459a44c6bbe96842609e9a79002cfc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/glute-ham-raise-256.webp",
+      "sha256": "220ab98181372bcc3ae026c0d37fe29253e73ebd65b570c9978b2fdaac8ddba1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/glute-ham-raise-512.webp",
+      "sha256": "884ad6dc5786f37baade94170986e2a54a3ee5dd61d9b791e0c3c40b61d2abb4",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-back-squat-256.webp",
+      "sha256": "f92245dccb1dae14c45337b31d6ffb91778b9b711f5e5a8a040b24d035642ea8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-back-squat-512.webp",
+      "sha256": "feadab03022f7090510728be72dc260d2d2bcc24bc9ea90f10d59d8512b353da",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-front-squat-256.webp",
+      "sha256": "cba67a74c44b9d2083534c36af78a1e10678ceabd91fb7cfbbb3a3e686ec0556",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-front-squat-512.webp",
+      "sha256": "5f8081244bcaf1ada184289f55bf0390f06e9efad36ab63292c2b3f23c33dc85",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/zercher-squat-256.webp",
+      "sha256": "956567cc3a84500ecdeecbdab4bbe0d5dd6a41b2370d213c6577d3d47c61146c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/zercher-squat-512.webp",
+      "sha256": "33383cecab5b3870387419be9001e70e660b0412e201b21417057c861dbd97b1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hack-squat-256.webp",
+      "sha256": "dfdaf78371c31ac288df3175fd70e308c8efdfed4dbdd767bde565bd99555dd5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/hack-squat-512.webp",
+      "sha256": "04790f1f291d72f44c6191dd408fdf220bbe327b69df0653c88d8163572c5147",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pendulum-squat-256.webp",
+      "sha256": "58aa48e44afcbf16ec6056f5f46259d0926ce8f1350fecf2b71988bbd5bb41c8",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pendulum-squat-512.webp",
+      "sha256": "467e25c30a5ab72b47b9a240624cc3836bb70a0bd0f1fc2fa1f79b5c15e6d454",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-squat-256.webp",
+      "sha256": "9a09edde46d61d1bda8df6d08f67860d9a9446bfec5152ec8509501604f5d16c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-squat-512.webp",
+      "sha256": "983503d6a85466debc471a436225807e8ebf8d71623be2384c60e0bf99f10a3b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-press-256.webp",
+      "sha256": "c151f009cfcbf1c2473d72c8a0a9a8540d88bfc64431dd713887a1069da43634",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-press-512.webp",
+      "sha256": "24c7031d1b2d53b0df48dc67be9c433583a02272170a29d33a6f9e1c611e33ad",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/narrow-stance-leg-press-256.webp",
+      "sha256": "4f8d06e6522e0bb056ae39a7a29d103dda96b3d567fe4aa10b5945643beb50ad",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/narrow-stance-leg-press-512.webp",
+      "sha256": "b16206d796c4f5e33da891dd9cde5576d99f2b88498637111ceb3efc32a3d5af",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-press-256.webp",
+      "sha256": "e0725ba908b0518cba4626e7b3cee4f873dee1010d8df9c66366331941a4fd8b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-press-512.webp",
+      "sha256": "02727e1ce13e87610a26028bc55c64f28dbb82d6dfa0530c879419b89bec5fa2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-extension-256.webp",
+      "sha256": "93960cd638bb0100adb24525be2f2373fc8fb5064e72e5768180feb3e4f3eee0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/leg-extension-512.webp",
+      "sha256": "13641eb3c134061f7a09d6bb0cb8bb51e54cb8a2dcbb96f7b27ea7290f2ac550",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-extension-256.webp",
+      "sha256": "55cf8fdbc6e8bc32e6a452261330e987b0d2108d158b68e8816731b657456fa0",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-leg-extension-512.webp",
+      "sha256": "17bd02b6e497b526f9b752b0bd22439568511c9f85f6858092a5011225112fb6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/goblet-squat-256.webp",
+      "sha256": "55010959a9fb03612b77768c177e6254ac522bbf86c4c42630debcf1e3fce84a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/goblet-squat-512.webp",
+      "sha256": "e6fdd88e83e03e999b4e9f28f0ee9ad50db11b2af87d561218e64ad432dcf921",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-squat-256.webp",
+      "sha256": "f186b40504249627d1558e4dbe3620f215781826947514ddff46ba79d5489d23",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-squat-512.webp",
+      "sha256": "6e113bc69d65e0f979adcf2195df67a384c18cab9cc02332f724c9e8a9f26753",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bulgarian-split-squat-256.webp",
+      "sha256": "baa6c5065803230154a33f016f09bc17d6e1f53a9fcb62e41e66b0bd384ff618",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-bulgarian-split-squat-512.webp",
+      "sha256": "d2fb5777e2a80f197acc2ef59fe34f6191a0b98cf4ee0052ce5ce6aaf5724a80",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/walking-lunge-256.webp",
+      "sha256": "c4e22f6303c8d315ff29d175d0a90f5e27909be8321d3681dcfe3d31c2ef6c10",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/walking-lunge-512.webp",
+      "sha256": "ecde910ac0a1cf3b339f846ec92da4a6c904ed06290a1130abc583731c3a325c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-lunge-256.webp",
+      "sha256": "2e11336ed70443eec9df90c28378e54e589e9cca5a93a316c3abd218cfd54f05",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-lunge-512.webp",
+      "sha256": "3206bd45c91ef7946393ae54a465f2e9bcd56081873bc9db81685817a02366e9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/forward-lunge-256.webp",
+      "sha256": "8e62afce75c1e152c4b22cc6dc8489d9f12374f5b37bc0f9decd7699102751be",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/forward-lunge-512.webp",
+      "sha256": "fce581e8b67939964dfe118966d2412b8a9284ed767542f9b2ec91ad70d77c8d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/step-up-256.webp",
+      "sha256": "a17b79f4c418d86933d66f9e7055eec46053a28a7f76e3999d530e190fffe053",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/step-up-512.webp",
+      "sha256": "67b90424659ad1db55af859e2ed06ba0b7bccbd08202ec2507bbc77979cf999c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bodyweight-squat-256.webp",
+      "sha256": "edd3583ff4879cc329b806f5c099ab698deb737ea7c6825a8b183d81c7e81552",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bodyweight-squat-512.webp",
+      "sha256": "c09f21b4f522130d565d6289184be998c243c45e1cd718b58065b2214917a2ad",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/jump-squat-256.webp",
+      "sha256": "893bf862195ac7f6c6f8db825c2ba4a91a4cc84bbb8b6213983e9f3ba60707ed",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/jump-squat-512.webp",
+      "sha256": "f38dc00df6e5994cd84a1774bdd289d9ca8a7245571e1dbd76e2d06126034538",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sissy-squat-256.webp",
+      "sha256": "b2445c75f394c77089ecec970a691b965cb9ca40650fda8e34f7a238b5b73a32",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/sissy-squat-512.webp",
+      "sha256": "bb0beca2c35b16691e5c054981b84c2693f2deb7389ad59cc287e5a39498b954",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wall-sit-256.webp",
+      "sha256": "325b1a62b2eb8381f1cfe84a01c7d3ce98adcf55a3394ab6967e0c445ac02a12",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/wall-sit-512.webp",
+      "sha256": "2b1479eb1322f5943df81dc493bce794b7a6ac50af31198deff3a80757870d8d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-overhead-press-256.webp",
+      "sha256": "bafc820662c330bed65c948d02fb2c56628d7c4d335523b80b1cf2185d39f1dc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-overhead-press-512.webp",
+      "sha256": "10c92d51423b4fa7783991b1e3edea050bd2d187e329a9332d230c7c18e97fd9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-barbell-shoulder-press-256.webp",
+      "sha256": "be08b2fe9465754413271cad3530dba0fbe6d24df8c257f2d94673653d774bb9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-barbell-shoulder-press-512.webp",
+      "sha256": "87d822f5cc77fb304906d75837d3e086855e28fe2f5261c2e7ea1dbbc3d2aef5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-neck-press-256.webp",
+      "sha256": "fd8840093bdf7d2497262a9abd1e474413dd8510b78ac2c08dbb2ac2d8e285ab",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-neck-press-512.webp",
+      "sha256": "330d3f49913d96805882a7201835eaf0a02bb2d60733c1134fa86b2c5140cd6a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-shoulder-press-256.webp",
+      "sha256": "741b4e9505efa3ecc2ab9f34e91a8019cc9514bdf352bba684312e7cc715afff",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-shoulder-press-512.webp",
+      "sha256": "67f1a001820588f950cafba1a63616d092552b211425db6d12c571f7c7bb46ae",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-dumbbell-shoulder-press-256.webp",
+      "sha256": "f656722448bdf610f61ea5eb0ffc5d133205ced53746653df46fdad6967a7b5b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-dumbbell-shoulder-press-512.webp",
+      "sha256": "b4fe1e1ad4fd86f68bf8c2b120f17db6c8b4f86b05f1a0c69a5264cc1c1405b2",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/arnold-press-256.webp",
+      "sha256": "8ec23571f473c28ba501d4db2ec26b6c2028a51d507ef0c5733b05fb6bc9be3c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/arnold-press-512.webp",
+      "sha256": "80e648e298cc8919b8c620371ff657f65a06e6b48bc07042c07dc7bf867bb79d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-dumbbell-shoulder-press-256.webp",
+      "sha256": "6965c5f6e428c17ca921930bc70cd519ff2562783b6161fd645c1d8ac18a5fb7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-dumbbell-shoulder-press-512.webp",
+      "sha256": "92eedbbe83b74d128f6bf03f03150959a0768a2aa1e258b3da1de67432a987da",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-shoulder-press-256.webp",
+      "sha256": "0c9aa5c807c494fc563668fb346d0a4e984b7723767627db6f3e669105d63371",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-shoulder-press-512.webp",
+      "sha256": "0835099f507c3cb0fe8c5667e473dec578853defbbb70cae844cb3ee21428c26",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-shoulder-press-256.webp",
+      "sha256": "80d9510109a3b3c13b2b8cb36115e2067d26dc55514d73953617cbb4fc9faf4a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-shoulder-press-512.webp",
+      "sha256": "854fa98160225b70bb5d8270e573cd64382985cbeb4acb2e4334b537e38ec82e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-shoulder-press-256.webp",
+      "sha256": "7349766a62fca1a25f4eea75ab08042d3092185bee39accfddc696b45ce79b71",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/smith-machine-shoulder-press-512.webp",
+      "sha256": "7471f1706a9bfaf8e546ac7f78a9cdc4f3b78b49629860b3ae14b793f4b5cb5d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pike-push-up-256.webp",
+      "sha256": "64ab3c204539e0ea2b78e72a9fbadebf352188a5086474d6e9ac8b67f3a926a6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/pike-push-up-512.webp",
+      "sha256": "0ac728c872b784b00f5d3ecebe599496c83da5d81bf936296a364fbe5602e3d6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/handstand-push-up-256.webp",
+      "sha256": "ccbf7aa7c0f6ef329838d93b65bbab88d7dcc2577882702ee9e00c34f2d8fab6",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/handstand-push-up-512.webp",
+      "sha256": "44f26f93625b1ad9a12dfff029a02ddaef2c6dd53412fbde3e0fd001bf94cb3c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-lateral-raise-256.webp",
+      "sha256": "a5b9ba9041f33fa8e0f540ba4bcfe44cdfb49f8aa01332e4d16c5e3a5e497a1b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-lateral-raise-512.webp",
+      "sha256": "b0ff1594947c50dc1ef8b7128da163c678edfd795de1a5580d64931c9e6287a1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-dumbbell-lateral-raise-256.webp",
+      "sha256": "1ebace02aed7a9252a2afecaad8ca69e7d97ad25a616c2459ff3964e6e777256",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/seated-dumbbell-lateral-raise-512.webp",
+      "sha256": "ac6dee6146d20afd259af82465ff210d41a66029ae488a957545f0e16d6d3bb3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lean-away-dumbbell-lateral-raise-256.webp",
+      "sha256": "dfc63dc458ebca5221e2699465b393cc74274dac263a33972611069000ac0047",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/lean-away-dumbbell-lateral-raise-512.webp",
+      "sha256": "6d39109f61d60db0f98698b6e7fbe4e9ad6743aaf015bc8dc0658caf6a599d1a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-lateral-raise-256.webp",
+      "sha256": "d549e5b4105eab4b3a4121c1e626b1851ad7445ea857ae34b5f59318cc4f20a7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-lateral-raise-512.webp",
+      "sha256": "14f736a08ae3669fc7cb25736e4dcf55145cc28e44a7913bc81796a753850b39",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-lateral-raise-256.webp",
+      "sha256": "821d5678f62eeb678c5856431ac6d3a8177d751826a267d3aca1c79c529ae736",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-lateral-raise-512.webp",
+      "sha256": "e5d07820c872f403f27551076a4f8e0431d88d2a17f157022e2ca1505a2f4619",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-lateral-raise-256.webp",
+      "sha256": "77f0da238ceb93b17117770e8a78d87830e722d3cab0ee561a92fe731792aa0d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-lateral-raise-512.webp",
+      "sha256": "d4ef85e98fe51e8a6c309c9bb9ae4ef93487b1d0b10e127756901524bb2eca50",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-front-raise-256.webp",
+      "sha256": "bc268cb42db98149172485d8a10c3f49b9b373ec0d10930df0368c4ccc9afa22",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-front-raise-512.webp",
+      "sha256": "c4e862046d25eb3d73cfb2e7cec286a084cf21d49ee3d85058e30729130a1bad",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-front-raise-256.webp",
+      "sha256": "6d96136da0b341954c37677f0b344042fc7c587a98d5cc26e7b05e45e74d5520",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-front-raise-512.webp",
+      "sha256": "b044c709d6bdc7e60980fcffc6385e9b4442bd1efd1f3700d53c81a86ce2de91",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-front-raise-256.webp",
+      "sha256": "28c8a64c429f8320345f8f602e3ee8f5fe71e6f14f007b28bfba16413ed536e7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-front-raise-512.webp",
+      "sha256": "209af05fcb3244f04df2c7233edcd1f84f7f927973ea8f00a691213a13031a23",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-rear-delt-fly-256.webp",
+      "sha256": "010a2c70eb8201ad32d35e8e4a2bc7c467205f237c03e7da0ad7bb0aec175947",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-rear-delt-fly-512.webp",
+      "sha256": "74c1c7bf290ac25cccb9b4b53f1a25a81bec486b52c40244331dc03d302b5a08",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-pec-deck-256.webp",
+      "sha256": "17686344690419136da75828567386d92de7a46b07de99b4d4c54fea7571de33",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-pec-deck-512.webp",
+      "sha256": "0ec0ec21774053db4e722465b1e3de2b6f2bdae27afcea140a2ece41ec1c92bc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-rear-delt-fly-256.webp",
+      "sha256": "bb8070b392d283c0c22bd5d5688a5cdcf42d85095def97f8c22d8da4d0b62edd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-rear-delt-fly-512.webp",
+      "sha256": "bcdca7461ce77b55fdbc4a04ab02c7728465e1f04a5c1499d5ac00431d8c0b0b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/face-pull-256.webp",
+      "sha256": "05789a456f7affd20efcc9a116104354244faa741f8a9699e1d1e5b7ef32cbcc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/face-pull-512.webp",
+      "sha256": "0d055829c469ff6a132c6be7c0e7266b19f49c2019da4f8c51a7f784584853c7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-upright-row-256.webp",
+      "sha256": "deb90dc56cc3c5b44545b44998237af5f55ea1c2ce6a17a51c2caa148ab819ee",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-upright-row-512.webp",
+      "sha256": "9807619100fb2951e8dd6c04228cfaae907ec0420c5bfcbb618207fc8e897ca7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-upright-row-256.webp",
+      "sha256": "c3a14e267d487f5cbd406850d521fcddbacf823c85d294df812f1d5569d8582b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-upright-row-512.webp",
+      "sha256": "2fef64b3522e8d958a4ff8a75ed735c6d879ad07bebf8d6cd762d41ad657277b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-upright-row-256.webp",
+      "sha256": "744f3cd7d7d715d81ca72b89daeaea593e11558af30f29ded6d3bd735ee3e624",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-upright-row-512.webp",
+      "sha256": "3d33821014612b6efe89c9c590b6c9662fea07ce43cf5212532889effba1b950",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-shrug-256.webp",
+      "sha256": "d0980ed4f136048236789f39a4a9f923a37928dbc6806a7ea22a29efaf3b83bd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-shrug-512.webp",
+      "sha256": "6fa2b1de3b524e5e2246c46b5b7571950212e5bfaa813931b048217abe53e0f3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-back-barbell-shrug-256.webp",
+      "sha256": "3dbc98d17642ad305271cd57a477b9ca6c2d66a0b5ecbc2e5f82f2ca3173aa20",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/behind-the-back-barbell-shrug-512.webp",
+      "sha256": "59f003b57a1a77e4abdca5050a879fb96c33935fb8b38d5b40a77fbdb3591ffc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-shrug-256.webp",
+      "sha256": "def8ce973feaee54dbab8777d5bba49fb4ff09ff55527e0cfb8b595067afb601",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-shrug-512.webp",
+      "sha256": "4d703e74fd88ef6d2f09b15c9f81e453975c7ddf078c56c5f6347afb4e3cbf2a",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-shrug-256.webp",
+      "sha256": "241902e115c94b887c71514ce03f6bd78724578b4aff3d0da9015389a95e41c5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-shrug-512.webp",
+      "sha256": "12c7d94275b82a376135284ceed7f35cbac524927524aa1ea21bcc5b2f533728",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-shrug-256.webp",
+      "sha256": "caca64b773e75123eaf756a8fe0b1b856a362e9b8d8b97af25b640ba469a7b59",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-shrug-512.webp",
+      "sha256": "2a208d35f1fa4d59d1b55a395ecce70796671765cc9c131b3246316ad964fb4c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-shrug-256.webp",
+      "sha256": "4b797699316324e06d6d2775389e906e32248c75e7a20d4b4c57b8846bfd0c5d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-shrug-512.webp",
+      "sha256": "7515e98fbd13bb12b1eb294236a11aee51c75b556dd290429e2db5ecad374035",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/farmer-s-carry-256.webp",
+      "sha256": "50fcd789545869c7277df8e2e02bf28494814c7b202f8c5b83491b9a3a176346",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/farmer-s-carry-512.webp",
+      "sha256": "5c72d6e5d385f0fa877e0199490aae918c5c1ba651c6117460a9493974cf6d67",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-farmer-s-carry-256.webp",
+      "sha256": "34c67f438576d2ff23cfa21d6576eb0b88fef81343fc975b2ccfff14ece5d352",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/kettlebell-farmer-s-carry-512.webp",
+      "sha256": "dc7513cc4c2b548606470859a9b23a779e6747eceeefc1a414624f6f8ca156ad",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-bench-press-256.webp",
+      "sha256": "9b5321b9b888364654768496184afb18d971397e896a543f7c06d276c2cada83",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/close-grip-bench-press-512.webp",
+      "sha256": "3411351c141fd4eb82a7e1334898dd6eadf052bc5f3236ddf09a894b5cccc448",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/jm-press-256.webp",
+      "sha256": "47a60780bca4c3b46098216a1058a0a6dfd9478f1eac70056f5ffaa5f2458953",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/jm-press-512.webp",
+      "sha256": "7ac157f122dd2aba42cb28d8866bf6ba4ed1796ef843c400fae709d57b27a5c5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-skull-crusher-256.webp",
+      "sha256": "802ede4a4b742648702669d9afb98ee5542dbcac68176350c8d2ca90edfcccb5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/barbell-skull-crusher-512.webp",
+      "sha256": "d7b4a08a34742ea57e8c573f60ea8accac813552f57cfb4d0c54c2a160753fe9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-barbell-skull-crusher-256.webp",
+      "sha256": "ffd0bcd14d22c56f4a7f8e19d6506e608f72bdf5afd7626371392b59d788f233",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/incline-barbell-skull-crusher-512.webp",
+      "sha256": "96e2996358f22f2e11cfed79ff84ea5bd90a1b5271a2e689c29ad1d4e20a844f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-skull-crusher-256.webp",
+      "sha256": "6183762b4bb72e02b0a0d5a62dedfd565c881cb3dc4fa87ea9fb9538151cb852",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-skull-crusher-512.webp",
+      "sha256": "a991dde6d19d3ec2705dc34c4aca1ced522f713e8aedc896cd71635dd61ff903",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/overhead-dumbbell-extension-256.webp",
+      "sha256": "067c4a6817bc9e1ce56ae7a7ce116b7adfb6f4aac6a5bded81812f9cf023013b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/overhead-dumbbell-extension-512.webp",
+      "sha256": "98b45bb813ca9fe3dfe09615871f7a1ac0472ade8dc4a50130d838d8680932f1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-overhead-dumbbell-extension-256.webp",
+      "sha256": "c8e0b7e375bb49f9949cf960f8a97a221fed2a69f92f6527aec52798d12ae575",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-overhead-dumbbell-extension-512.webp",
+      "sha256": "66cbaf0b1522f9e255e459b23c7affdf87b03265efc92e25dfd793b6dc7e53f5",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-tricep-kickback-256.webp",
+      "sha256": "0f8fe2c8c6a5468c8eb6ad0f33c751a91deb58057718a694226ed343092fcb6e",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/dumbbell-tricep-kickback-512.webp",
+      "sha256": "7dc1da9c6ec6ff957cf1b3d53c0fe5586647a9b79c5aa4098ba15de2663938e9",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/tricep-pushdown-256.webp",
+      "sha256": "bcdf9a7a81f90fedae5b96232ecad3cd820c91fa5655de047315186a68c1b15f",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/tricep-pushdown-512.webp",
+      "sha256": "1fcb2250d806c76f190227fca393440bdab672dd9a292ab1f0396d90fb9b8a24",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rope-tricep-pushdown-256.webp",
+      "sha256": "2541f9e6842d0a3a68f93be026b041108008e00cc1f02f543f147f0cf8c4b705",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/rope-tricep-pushdown-512.webp",
+      "sha256": "edaaa6ad80a1ad444ec04f49e51664e4085d09b1789bd854df517c6f358c0433",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-grip-tricep-pushdown-256.webp",
+      "sha256": "f617c87238191aa5af36ef60e2441ad92ac3346c501b12374495e79ee8ffc9a1",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/reverse-grip-tricep-pushdown-512.webp",
+      "sha256": "3292e5e7e8ba3ef1a05b237ebf352a4efd53810366bf51045f6e729de74a784b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-pushdown-256.webp",
+      "sha256": "6f7568054935c48d19c21e8e2c30733dfddff30efffe33469cdf0e1e2512e8d7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-pushdown-512.webp",
+      "sha256": "527a89fad619dc94a37a1d2f9bda9910903968346a55413b70bc68a48d5cc2d7",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-overhead-tricep-extension-256.webp",
+      "sha256": "2e7b7509c29c0f53e377fe040e9fea2e7a2462ec7a7358d77151f7565527de63",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-overhead-tricep-extension-512.webp",
+      "sha256": "cd43a62feaa8d79db7dbd689627801acaa19fe38ecbee6697d1bd47eb8bf3722",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-overhead-extension-256.webp",
+      "sha256": "0b895a0e9d32847237850619220262598f21233a12f28c1e77d2042d4afce370",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/single-arm-cable-overhead-extension-512.webp",
+      "sha256": "6e279f7f0aa3dae469a82adff782390f00c43e34b046375905e8a2f36add6856",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-tricep-kickback-256.webp",
+      "sha256": "35e84aca032d0124158c181fbaf9fe5b52898d4fafa4990b0f3fc24196ed2a4b",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/cable-tricep-kickback-512.webp",
+      "sha256": "399b40c370f2858997eed4f568c5c03c5ce2c4a9ee4ca4a1a4bf8536f5157406",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bench-dip-256.webp",
+      "sha256": "69def40b80917be1b3b1d2ac7991bfb21bd799c336cb15a2463f020a80ebc2ef",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/bench-dip-512.webp",
+      "sha256": "6ce00ebf4f56c20ca0f5b26a3c1bc340c3a681b3f2a69da1201f0f93aaf3b5dc",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/parallel-bar-dip-256.webp",
+      "sha256": "0d8a4d78cb2e2712329effd16d514f2ab9e9badab5e6a15f2433771ab873e923",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/parallel-bar-dip-512.webp",
+      "sha256": "e0f27c52e13276310ac251b638e0baa87dee861e7267a7aa0115bab3ffbe687d",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-tricep-extension-256.webp",
+      "sha256": "e3ad7d0666c3c112b841db52461e87adca75a521cdc6253c8b1c1d3ca86a04c3",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/machine-tricep-extension-512.webp",
+      "sha256": "7691ff98afdb4a2cddb8dd4d68b8b5af755508ead4e0a9c433664ce0708f6f2c",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/assisted-dip-machine-256.webp",
+      "sha256": "69a0138ef3710e5a88d9ff9a703f1d430b6009781db5ddab8dcf3d011aab90cd",
+      "provenance": "openai-imagegen-fitwell-anatomical-reference",
+      "kind": "exercise",
+      "approved": true
+    },
+    {
+      "path": "/images/exercises/specific/assisted-dip-machine-512.webp",
+      "sha256": "3101433c00808dcc4a8eb23878352ff712b8db67edd0f64888920796a583b570",
       "provenance": "openai-imagegen-fitwell-anatomical-reference",
       "kind": "exercise",
       "approved": true
