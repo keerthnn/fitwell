@@ -3,19 +3,14 @@ import type {
   ValidationError,
 } from "fitness/utils/types";
 import {
+  equipmentTypes,
+  parseEquipmentTypes,
   parseMuscleGroups,
+  type EquipmentType,
   type MuscleGroup,
 } from "fitness/utils/exerciseDiscovery";
 import { enumValue, invalid, record, text, valid } from "./common";
 
-const equipment = [
-  "BARBELL",
-  "DUMBBELL",
-  "KETTLEBELL",
-  "MACHINE",
-  "BODYWEIGHT",
-  "CABLE",
-] as const;
 const movements = [
   "PUSH",
   "PULL",
@@ -37,7 +32,7 @@ export interface ExerciseInput {
   name: string;
   description?: string;
   instructions?: string;
-  equipment: (typeof equipment)[number];
+  equipment: EquipmentType;
   movement: (typeof movements)[number];
   category: string;
   primaryMuscle: string;
@@ -67,7 +62,7 @@ export function validateExercise(value: RequestInputValue) {
   const selectedEquipment = enumValue(
     input.equipment,
     "equipment",
-    equipment,
+    equipmentTypes,
     errors,
   );
   const movement = enumValue(input.movement, "movement", movements, errors);
@@ -154,7 +149,22 @@ export function validateExerciseQuery(value: RequestInputValue) {
   const selectedEquipment =
     input.equipment === undefined
       ? undefined
-      : enumValue(input.equipment, "equipment", equipment, errors);
+      : enumValue(input.equipment, "equipment", equipmentTypes, errors);
+  let selectedEquipments: EquipmentType[] | undefined;
+  if (input.equipments !== undefined) {
+    const parsed = parseEquipmentTypes(input.equipments);
+    if (!parsed) {
+      errors.push({ field: "equipments", message: "Invalid equipments" });
+    } else {
+      selectedEquipments = parsed;
+    }
+  }
+  if (input.equipment !== undefined && input.equipments !== undefined) {
+    errors.push({
+      field: "equipments",
+      message: "equipment and equipments cannot be combined",
+    });
+  }
   const movement =
     input.movement === undefined
       ? undefined
@@ -172,6 +182,7 @@ export function validateExerciseQuery(value: RequestInputValue) {
     category,
     categories,
     equipment: selectedEquipment,
+    equipments: selectedEquipments,
     movement,
     limit: parsedLimit,
     cursor,

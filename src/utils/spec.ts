@@ -19,6 +19,7 @@ import type {
   Paginated,
   Profile,
   Workout,
+  WorkoutActivityCalendarResponse,
   WorkoutListItem,
   WorkoutPlan,
   WorkoutSet,
@@ -55,6 +56,9 @@ export const getProfileStatus = async () =>
   };
 export const getUserProfile = async () =>
   (await axios.get("/api/user/get-user-profile")).data as Profile | null;
+export const getWorkoutActivity = async () =>
+  (await axios.get("/api/user/workout-activity"))
+    .data as WorkoutActivityCalendarResponse;
 export const createProfile = async (input: Profile) =>
   (await axios.post("/api/user/create-profile", input)).data as { success: true };
 export const updateProfile = async (input: Profile) =>

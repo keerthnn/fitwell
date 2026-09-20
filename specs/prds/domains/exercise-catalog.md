@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: EXERCISE
 engineering:
   - specs/engineering/features/exercise-catalog.md
-last_verified: 2026-08-15
+last_verified: 2026-09-20
 ---
 
 # Exercise catalog PRD
@@ -51,7 +51,7 @@ An administrator may inspect inactive exercises in addition to active ones.
 
 ### EXERCISE-009 — Image fallback
 
-When a requested exercise image is unavailable, the UI presents an approved fallback rather than a broken remote dependency.
+Every catalogue exercise presents its own approved, local name-matched illustration. When that illustration cannot be loaded, the UI presents an approved neutral fallback rather than a broken remote dependency or a muscle-group image.
 
 ### EXERCISE-010 — Selectable body discovery
 
@@ -63,7 +63,7 @@ When one or more muscle groups are selected, the system must show active exercis
 
 ### EXERCISE-012 — Complete and refinable results
 
-Members must be able to reach every matching active exercise across result pages. Optional name search and equipment selection must narrow the current group results, and changing discovery criteria must not mix results from different criteria.
+Members must be able to reach every matching active exercise across result pages. Optional name search and one or more equipment selections must narrow the current group results; an exercise matches when its equipment is any selected option. Changing discovery criteria must not mix results from different criteria.
 
 ### EXERCISE-013 — Explicit unfiltered browsing
 

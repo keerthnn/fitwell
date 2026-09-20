@@ -3,17 +3,17 @@ id: api-endpoint-catalog
 title: API Endpoint Catalog
 status: active
 authority: binding-engineering
-requirements: [AUTH-005, PROFILE-001, ONBOARD-005, EXERCISE-001, EXERCISE-011, EXERCISE-012, EXERCISE-013, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
+requirements: [AUTH-005, PROFILE-001, PROFILE-011, PROFILE-012, ONBOARD-005, EXERCISE-001, EXERCISE-011, EXERCISE-012, EXERCISE-013, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
 code: [src/pages/api/]
-tests: [test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
-last_verified: 2026-08-23
+tests: [test cases/pages/api/user/workout-activity.test.ts, test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
+last_verified: 2026-09-20
 ---
 
 # API endpoint catalog
 
 ## Reading the catalog
 
-This inventory contains all 65 route files exposed by `src/pages/api`. `Member` means a verified Firebase token plus an active local `User`; `Admin` additionally means a current `AdminAccess` row. All member resource operations are owner-scoped unless stated otherwise. Standard 401/403/405 and unexpected-error behavior is defined in [Errors and validation](errors-and-validation.md). `Input/result` summarizes observable data and is not a substitute for `src/utils/types.ts` or runtime validators. No direct automated endpoint tests exist.
+This inventory contains all 67 route files exposed by `src/pages/api`. `Member` means a verified Firebase token plus an active local `User`; `Admin` additionally means a current `AdminAccess` row. All member resource operations are owner-scoped unless stated otherwise. Standard 401/403/405 and unexpected-error behavior is defined in [Errors and validation](errors-and-validation.md). `Input/result` summarizes observable data and is not a substitute for `src/utils/types.ts` or runtime validators. Direct handler tests cover selected endpoints, including workout activity.
 
 ## Authentication and profiles
 
@@ -23,6 +23,7 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 | POST `/api/auth/sync-user` | Token | Exact re-export of `create-user`; used by the browser authentication context | AUTH-005 | `src/pages/api/auth/sync-user.ts` |
 | GET `/api/user/get-profile-status` | Member | Returns whether the caller has a profile and whether onboarding is complete | ONBOARD-001 | `src/pages/api/user/get-profile-status.ts` |
 | GET `/api/user/get-user-profile` | Member | Returns caller profile or null/absence result implemented by handler | PROFILE-002 | `src/pages/api/user/get-user-profile.ts` |
+| GET `/api/user/workout-activity` | Member | Returns effective timezone, 53-week date range/today, and unique completed-workout date keys for the verified owner; read-only | PROFILE-011, PROFILE-012 | `src/pages/api/user/workout-activity.ts` |
 | POST `/api/user/create-profile` | Member | Valid profile body; creates one owner profile; 201, 409 if present | PROFILE-001 | `src/pages/api/user/create-profile.ts` |
 | POST `/api/user/update-profile` | Member | Valid partial profile body; updates owner profile; 200, 404 absent | PROFILE-003 | `src/pages/api/user/update-profile.ts` |
 | DELETE `/api/user/delete-profile` | Member | Deletes caller profile and returns success | PROFILE-008 | `src/pages/api/user/delete-profile.ts` |
@@ -32,7 +33,7 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 
 | Method and path | Access | Input/result and side effect | Requirement | Handler |
 | --- | --- | --- | --- | --- |
-| GET `/api/exercises/get-exercises` | Member | Validated search/singular-category or comma-separated category-union/equipment/movement/limit/cursor query; returns active exercises ordered by name then ID with cursor | EXERCISE-001, EXERCISE-011–013 | `src/pages/api/exercises/get-exercises.ts` |
+| GET `/api/exercises/get-exercises` | Member | Validated search, singular category or category union, singular equipment or equipment union, movement, limit, and cursor query; returns active exercises ordered by name then ID with cursor | EXERCISE-001, EXERCISE-011–013 | `src/pages/api/exercises/get-exercises.ts` |
 | GET `/api/exercises/get-exercise-by-id` | Member | `id`; returns active exercise or 404 | EXERCISE-005 | `src/pages/api/exercises/get-exercise-by-id.ts` |
 | POST `/api/admin/exercises/create` | Admin | Valid exercise body; creates exercise and audit entry; 201 | ADMIN-004 | `src/pages/api/admin/exercises/create.ts` |
 | PATCH `/api/admin/exercises/update` | Admin | `id` plus valid fields; updates exercise and audits | ADMIN-004 | `src/pages/api/admin/exercises/update.ts` |
@@ -118,4 +119,4 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 
 ## Count and authority
 
-The tables contain 66 concrete routes: 65 implementation handlers plus `/api/auth/sync-user`, which re-exports the create-user handler. Route existence and exact executable shapes are authoritative in `src/pages/api`, `src/utils/types.ts`, and validators. Any route addition, removal, method change, access change, or side-effect change must update this catalog in the same change.
+The tables contain 67 concrete routes: 66 implementation handlers plus `/api/auth/sync-user`, which re-exports the create-user handler. Route existence and exact executable shapes are authoritative in `src/pages/api`, `src/utils/types.ts`, and validators. Any route addition, removal, method change, access change, or side-effect change must update this catalog in the same change.

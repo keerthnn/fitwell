@@ -5,9 +5,9 @@ status: active
 authority: binding-engineering
 requirements: [SEC-002, SEC-003, SEC-004, SEC-005, ADMIN-001, PLAN-002, PLAN-003, FEEDBACK-010]
 decisions: []
-code: [src/lib/auth/utils.ts, src/lib/auth/requireAdmin.ts, src/lib/workoutPlans/access.ts, src/pages/api/]
-tests: [test cases/pages/api/workout-plans/]
-last_verified: 2026-08-23
+code: [src/lib/auth/utils.ts, src/lib/auth/requireAdmin.ts, src/lib/workoutPlans/access.ts, src/pages/api/, src/pages/api/user/workout-activity.ts]
+tests: [test cases/pages/api/workout-plans/, test cases/pages/api/user/workout-activity.test.ts]
+last_verified: 2026-09-20
 ---
 
 # Authorization model
@@ -33,6 +33,7 @@ last_verified: 2026-08-23
 ## Enforcement patterns
 
 - Top-level member queries include `userId` in the Prisma predicate.
+- Profile workout activity derives ownership only from the verified UID, accepts no client-supplied authority, selects only completed workout dates for that owner, and returns no workout-level fields.
 - Nested workout-exercise/set handlers traverse to the workout owner before mutation.
 - Visible-plan lookup uses a shared OR predicate for owned private or active built-in plans.
 - Permanent private-plan deletion binds the verified owner ID and `isBuiltIn: false` classification to the database mutation; built-in, cross-user, and absent targets share a not-found outcome.
@@ -53,4 +54,4 @@ Member ownership failures commonly return 404, avoiding disclosure of another me
 
 ## Verification gap
 
-Workout-plan duplicate/delete handler tests cover authenticated identity propagation, visible-source rejection, and the owner/private deletion predicate. Representative database-backed cross-user rejection and non-admin administrator-route tests remain gaps.
+Workout-plan duplicate/delete handler tests cover authenticated identity propagation, visible-source rejection, and the owner/private deletion predicate. Workout-activity handler tests cover denied identity, verified owner predicates, completed-only selection, minimal disclosure, and absence of calendar-domain writes. Representative database-backed cross-user rejection and non-admin administrator-route tests remain gaps.

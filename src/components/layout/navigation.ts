@@ -5,7 +5,6 @@ import {
   Dashboard,
   MessageCircle,
   Person,
-  Settings,
   Stretching,
 } from "fitness/components/common/icons";
 
@@ -17,5 +16,4 @@ export const primaryNavigation = [
   { label: "Analytics", href: "/analytics", icon: Analytics },
   { label: "Feedback", href: "/feedback", icon: MessageCircle },
   { label: "Profile", href: "/profile", icon: Person },
-  { label: "Settings", href: "/settings", icon: Settings },
 ];

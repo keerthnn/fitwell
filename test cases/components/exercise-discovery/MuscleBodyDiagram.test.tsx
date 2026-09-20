@@ -67,6 +67,33 @@ describe("EXERCISE-010 A11Y-005 DES-004 DES-005 muscle body diagram", () => {
     expect(screen.getByText("Selected muscles: Chest")).toBeTruthy();
   });
 
+  it("EXERCISE-010 clears every selected-state signal after deselection", () => {
+    render(<Harness />);
+    const diagramRegion = screen.getByRole("button", {
+      name: "Chest muscle on front body",
+    });
+    const labeledControl = screen.getByRole("button", { name: "Chest" });
+
+    fireEvent.click(diagramRegion);
+    fireEvent.click(diagramRegion);
+
+    expect(diagramRegion.getAttribute("aria-pressed")).toBe("false");
+    expect(labeledControl.getAttribute("aria-pressed")).toBe("false");
+    expect(screen.getByText("No muscles selected")).toBeTruthy();
+  });
+
+  it("A11Y-005 limits hover highlighting to hover-capable fine pointers", () => {
+    render(<Harness />);
+
+    const css = Array.from(document.styleSheets)
+      .flatMap((sheet) => Array.from(sheet.cssRules))
+      .map((rule) => rule.cssText)
+      .join("\n");
+
+    expect(css).toContain("(hover: hover) and (pointer: fine)");
+    expect(css).toContain(".muscle-region:hover path");
+  });
+
   it("retains selection across views and supports keyboard activation", () => {
     render(<Harness />);
 

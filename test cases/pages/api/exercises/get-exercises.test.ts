@@ -118,6 +118,27 @@ describe("EXERCISE-011 EXERCISE-012 EXERCISE-013 DES-013 DES-014 exercise list A
     });
   });
 
+  it("EXERCISE-012 filters by the selected equipment union", async () => {
+    const res = responseDouble();
+
+    await handler(
+      {
+        method: "GET",
+        query: { equipments: "BARBELL,BODYWEIGHT", limit: "24" },
+      } as unknown as NextApiRequest,
+      res.response,
+    );
+
+    expect(mocks.findMany).toHaveBeenCalledWith({
+      where: {
+        isActive: true,
+        equipment: { in: ["BARBELL", "BODYWEIGHT"] },
+      },
+      orderBy: [{ name: "asc" }, { id: "asc" }],
+      take: 25,
+    });
+  });
+
   it("leaves Full Body and unknown categories reachable when browsing all", async () => {
     mocks.findMany.mockResolvedValue([
       exercise("full_1", "Burpee", "Full Body", "Full Body"),

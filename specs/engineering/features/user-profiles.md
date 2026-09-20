@@ -3,58 +3,63 @@ id: sdd-user-profiles
 title: User Profiles
 status: active
 authority: engineering
-requirements: [PROFILE-001, PROFILE-002, PROFILE-003, PROFILE-004, PROFILE-005, PROFILE-006, PROFILE-007, PROFILE-008, PROFILE-009, DATA-003, DATA-004]
+requirements: [PROFILE-001, PROFILE-002, PROFILE-003, PROFILE-004, PROFILE-005, PROFILE-006, PROFILE-007, PROFILE-008, PROFILE-009, PROFILE-010, PROFILE-011, PROFILE-012, DATA-003, DATA-004, DATA-005, SEC-001, SEC-002, SEC-004, A11Y-001, A11Y-002, A11Y-003]
 decisions: [ADR-0003, ADR-0004, ADR-0005]
-code: [src/pages/profile/, src/pages/settings.tsx, src/components/profile/ProfileForm.tsx, src/components/ThemeModeProvider.tsx, src/utils/units.ts, src/pages/api/user/]
-tests: []
-last_verified: 2026-08-23
+code: [src/pages/profile/, src/components/profile/, src/components/ThemeModeProvider.tsx, src/lib/workouts/activityCalendar.ts, src/utils/units.ts, src/utils/spec.ts, src/utils/types.ts, src/pages/api/user/]
+tests: [test cases/pages/profile/index.test.tsx, test cases/components/profile/WorkoutActivityCalendar.test.tsx, test cases/lib/workouts/activityCalendar.test.ts, test cases/pages/api/user/workout-activity.test.ts, test cases/components/layout/navigation.test.ts]
+last_verified: 2026-09-20
 ---
 
 # User profiles SDD
 
 ## Scope and goals
 
-Profiles store one member's fitness preferences and optional body measurements. The domain also exposes profile view/edit, browser theme preference, profile-only deletion API, and local application-account deletion. Authentication credentials remain in Firebase.
+Profiles store one member's fitness preferences and optional body measurements. The domain also exposes profile view/edit, a read-only completed-workout activity calendar, browser theme preference, profile-only deletion API, and local application-account deletion. Authentication credentials remain in Firebase.
 
 ## User flows
 
-- `/profile` loads the current profile and shows name, goal, experience, weekly target, units, and optional height/weight; absence links to onboarding.
+- `/profile` provides two tabs. Profile loads the current profile and workout activity independently; it shows name, goal, experience, weekly target, units, optional height/weight, profile editing, a rolling 53-week activity calendar, and sign-out. Profile absence links to onboarding without suppressing activity. Delete account contains the warning and confirmed local-account deletion action.
 - `/profile/edit` loads the profile into `ProfileForm` and saves through update.
-- `/settings` presents a red labeled sign-out action and confirmed local-account deletion in separate session and destructive-action panels. Account actions are kept in Settings rather than duplicated in the mobile More drawer.
+- Member navigation exposes Profile without a separate Settings destination. The mobile More drawer reaches the same Profile page rather than duplicating account actions.
 - Profile-only deletion has a client wrapper/API but no evident primary UI action.
 
 ## Component responsibilities
 
-`ProfileForm` owns grouped inputs, local display conversion, validation feedback, and submit state. `ThemeModeProvider` stores `light`, `dark`, or `system` in `fitwell.theme` and reacts to system color-scheme changes. `src/utils/units.ts` converts height and weight for display/input.
+`ProfileForm` owns grouped inputs, local display conversion, validation feedback, and submit state. `WorkoutActivityCalendar` renders 53 Monday-first week columns from server-provided date-only keys, uses theme success color plus a non-color check mark, labels every day state, and contains narrow-screen overflow while aligning initially to recent weeks. It is read-only and does not qualify workouts or read the browser clock. `ThemeModeProvider` stores `light`, `dark`, or `system` in `fitwell.theme` and reacts to system color-scheme changes. `src/utils/units.ts` converts height and weight for display/input.
 
 ## API usage
 
 - GET profile status and current profile.
+- GET workout activity returns effective timezone, fixed range/today keys, and unique sorted completed-date keys only.
 - POST create/update with shared profile validation.
 - DELETE profile only.
 - DELETE account with `confirm=DELETE`.
 
 ## Database usage
 
-`UserProfile` is one-to-one with `User` through unique `userId` and cascades on user removal. Body values are persisted as centimeters/kilograms; unit system records display preference. Account deletion transaction removes workouts, private plans, feedback, profile, and admin access, then anonymizes/disables/tombstones `User`.
+`UserProfile` is one-to-one with `User` through unique `userId` and cascades on user removal. Body values are persisted as centimeters/kilograms; unit system records display preference. The activity endpoint reads only the caller's `UserProfile.timezone` and `Workout.workoutDate` for owner-scoped `COMPLETED` rows in a padded interval, then filters to the exact 53-week range through the member-local current date. It does not read `UserActivityDay` or write calendar data. Account deletion transaction removes workouts, private plans, feedback, profile, and admin access, then anonymizes/disables/tombstones `User`.
 
 ## Failure handling and security
 
-All operations derive `userId` from the verified token. Create returns conflict for an existing profile; update returns not found when absent; invalid fields return details. Account deletion rejects missing confirmation and rejects deletion of the last active admin.
+All operations derive `userId` from the verified token. Activity accepts GET only, accepts no client identity/range/timezone authority, falls back to UTC for a missing or invalid stored timezone, returns an empty successful calendar when no workout qualifies, and returns a generic retryable failure otherwise. Profile and activity request states remain independent so either failure does not hide the other successful content or account actions. Create returns conflict for an existing profile; update returns not found when absent; invalid fields return details. Account deletion rejects missing confirmation and rejects deletion of the last active admin.
 
 ## Edge cases
 
 - Profile-only delete uses `delete` on unique `userId` and will surface an unhandled Prisma error if no profile exists.
 - Onboarding can update an existing profile, but its submit value sets onboarding completion.
 - Application deletion preserves Firebase identity and leaves an email placeholder based on UID.
-- No automated unit-conversion, validator, ownership, or deletion tests exist.
+- Activity date grouping is tested across ordinary, year/leap, offset, and DST boundaries; repeated completed workouts remain a single binary date and future/draft/in-progress/foreign activity does not qualify.
+- Manual authenticated responsive, zoom, theme, keyboard, and screen-reader verification remains pending for the activity calendar.
+- No automated unit-conversion, validator, or deletion tests exist outside the activity-specific ownership coverage.
 
 ## Code map
 
 | Responsibility | Code |
 | --- | --- |
-| View/edit/settings | `src/pages/profile/`, `src/pages/settings.tsx` |
+| View/edit/account actions | `src/pages/profile/` |
 | Form | `src/components/profile/ProfileForm.tsx` |
+| Workout activity view | `src/components/profile/WorkoutActivityCalendar.tsx` |
+| Workout activity API and range logic | `src/pages/api/user/workout-activity.ts`, `src/lib/workouts/activityCalendar.ts` |
 | Theme | `src/components/ThemeModeProvider.tsx`, `ThemeModeSelector.tsx` |
 | Units | `src/utils/units.ts` |
 | Validators | `src/lib/api/validators/profile.ts` |
