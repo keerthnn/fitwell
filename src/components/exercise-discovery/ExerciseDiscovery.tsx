@@ -14,7 +14,11 @@ import {
 } from "@mui/material";
 import { getExercises } from "fitness/utils/spec";
 import type { Exercise, ExerciseListQuery } from "fitness/utils/types";
-import type { MuscleGroup } from "fitness/utils/exerciseDiscovery";
+import {
+  equipmentTypes,
+  type EquipmentType,
+  type MuscleGroup,
+} from "fitness/utils/exerciseDiscovery";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import MuscleBodyDiagram, { type BodyView } from "./MuscleBodyDiagram";
 import EquipmentFilter from "fitness/components/exercise-discovery/EquipmentFilter";
@@ -34,7 +38,7 @@ export default function ExerciseDiscovery({
   const [view, setView] = useState<BodyView>("front");
   const [groups, setGroups] = useState<MuscleGroup[]>([]);
   const [search, setSearch] = useState("");
-  const [equipment, setEquipment] = useState("");
+  const [equipments, setEquipments] = useState<EquipmentType[]>([]);
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [items, setItems] = useState<Exercise[]>([]);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
@@ -53,7 +57,11 @@ export default function ExerciseDiscovery({
   }, [search]);
 
   const sortedGroups = useMemo(() => [...groups].sort(), [groups]);
-  const criteriaKey = `${mode}|${sortedGroups.join(",")}|${search.trim()}|${equipment}`;
+  const sortedEquipments = useMemo(
+    () => equipmentTypes.filter((equipment) => equipments.includes(equipment)),
+    [equipments],
+  );
+  const criteriaKey = `${mode}|${sortedGroups.join(",")}|${search.trim()}|${sortedEquipments.join(",")}`;
   const waitingForSearch = search.trim() !== debouncedSearch;
 
   const request = useCallback(
@@ -71,7 +79,11 @@ export default function ExerciseDiscovery({
           ? { categories: sortedGroups.join(",") }
           : {}),
         ...(debouncedSearch ? { search: debouncedSearch } : {}),
-        ...(equipment ? { equipment } : {}),
+        ...(sortedEquipments.length === 1
+          ? { equipment: sortedEquipments[0] }
+          : sortedEquipments.length > 1
+            ? { equipments: sortedEquipments.join(",") }
+            : {}),
         limit: "24",
         ...(cursor ? { cursor } : {}),
       };
@@ -99,7 +111,7 @@ export default function ExerciseDiscovery({
         }
       }
     },
-    [debouncedSearch, mode, sortedGroups, equipment],
+    [debouncedSearch, mode, sortedGroups, sortedEquipments],
   );
 
   useEffect(() => {
@@ -146,7 +158,7 @@ export default function ExerciseDiscovery({
             onViewChange={setView}
             onToggle={toggleGroup}
           />
-          <EquipmentFilter value={equipment} onChange={setEquipment} />
+          <EquipmentFilter value={equipments} onChange={setEquipments} />
           <Stack direction={{ xs: "column", sm: "row" }} gap={1}>
             <Button
               variant="outlined"

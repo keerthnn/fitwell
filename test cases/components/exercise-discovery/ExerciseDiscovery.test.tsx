@@ -228,7 +228,7 @@ describe("EXERCISE-012 EXERCISE-013 EXERCISE-014 EXERCISE-015 ExerciseDiscovery"
     expect(onAdd).toHaveBeenCalledWith(match);
   });
 
-  it("EXERCISE-012 equipment combines with muscles and paging and resets without changing chosen exercises", async () => {
+  it("EXERCISE-012 multiple equipment choices combine with muscles and paging and reset without changing chosen exercises", async () => {
     mocks.getExercises.mockResolvedValue({ items: [exercise("chosen", "Bench press")], nextCursor: "chosen" });
     const onAdd = vi.fn();
     renderDiscovery(["chosen"], onAdd);
@@ -248,8 +248,11 @@ describe("EXERCISE-012 EXERCISE-013 EXERCISE-014 EXERCISE-015 ExerciseDiscovery"
     fireEvent.click(screen.getByRole("button", { name: "Load more" }));
     await waitFor(() => expect(mocks.getExercises).toHaveBeenLastCalledWith({ categories: "Chest", equipment: "BARBELL", limit: "24", cursor: "chosen" }, expect.anything()));
     fireEvent.click(screen.getByRole("button", { name: "Bodyweight" }));
-    await waitFor(() => expect(mocks.getExercises).toHaveBeenLastCalledWith({ categories: "Chest", equipment: "BODYWEIGHT", limit: "24" }, expect.anything()));
+    await waitFor(() => expect(mocks.getExercises).toHaveBeenLastCalledWith({ categories: "Chest", equipments: "BARBELL,BODYWEIGHT", limit: "24" }, expect.anything()));
+    expect(screen.getByRole("button", { name: "Barbell" }).getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByRole("button", { name: "Bodyweight" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "Barbell" }));
+    await waitFor(() => expect(mocks.getExercises).toHaveBeenLastCalledWith({ categories: "Chest", equipment: "BODYWEIGHT", limit: "24" }, expect.anything()));
     fireEvent.click(screen.getByRole("button", { name: "All equipment" }));
     await screen.findByText("Bench press");
     expect(mocks.getExercises).toHaveBeenLastCalledWith({ categories: "Chest", limit: "24" }, expect.anything());

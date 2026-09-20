@@ -6,7 +6,7 @@ authority: binding-engineering
 requirements: [AUTH-005, PROFILE-001, ONBOARD-005, EXERCISE-001, EXERCISE-011, EXERCISE-012, EXERCISE-013, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
 code: [src/pages/api/]
 tests: [test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
-last_verified: 2026-08-23
+last_verified: 2026-09-20
 ---
 
 # API endpoint catalog
@@ -32,7 +32,7 @@ This inventory contains all 65 route files exposed by `src/pages/api`. `Member` 
 
 | Method and path | Access | Input/result and side effect | Requirement | Handler |
 | --- | --- | --- | --- | --- |
-| GET `/api/exercises/get-exercises` | Member | Validated search/singular-category or comma-separated category-union/equipment/movement/limit/cursor query; returns active exercises ordered by name then ID with cursor | EXERCISE-001, EXERCISE-011–013 | `src/pages/api/exercises/get-exercises.ts` |
+| GET `/api/exercises/get-exercises` | Member | Validated search, singular category or category union, singular equipment or equipment union, movement, limit, and cursor query; returns active exercises ordered by name then ID with cursor | EXERCISE-001, EXERCISE-011–013 | `src/pages/api/exercises/get-exercises.ts` |
 | GET `/api/exercises/get-exercise-by-id` | Member | `id`; returns active exercise or 404 | EXERCISE-005 | `src/pages/api/exercises/get-exercise-by-id.ts` |
 | POST `/api/admin/exercises/create` | Admin | Valid exercise body; creates exercise and audit entry; 201 | ADMIN-004 | `src/pages/api/admin/exercises/create.ts` |
 | PATCH `/api/admin/exercises/update` | Admin | `id` plus valid fields; updates exercise and audits | ADMIN-004 | `src/pages/api/admin/exercises/update.ts` |

@@ -7,7 +7,7 @@ requirements: [EXERCISE-001, EXERCISE-002, EXERCISE-003, EXERCISE-004, EXERCISE-
 decisions: [ADR-0004, ADR-0005, ADR-0006]
 code: [src/pages/exercises.tsx, src/components/exercises/, src/components/exercise-discovery/, src/utils/exerciseCatalog.ts, src/utils/exerciseDiscovery.ts, src/lib/images/assetRegistry.ts, src/pages/api/exercises/, src/pages/api/admin/exercises/, scripts/seed-exercises.mjs, scripts/verify-assets.mjs]
 tests: [test cases/components/exercise-discovery/, test cases/lib/api/validators/exercise.test.ts, test cases/pages/api/exercises/get-exercises.test.ts]
-last_verified: 2026-08-15
+last_verified: 2026-09-20
 ---
 
 # Exercise catalog SDD
@@ -28,14 +28,14 @@ Live-workout setup, member private-plan creation, and incomplete quick-entry edi
 - `ExerciseCard` presents classification/image metadata and start action.
 - `ExerciseDiscovery` owns only body view, selected group filters, search, bounded pages, current-request states, and retry. Its caller owns chosen exercises and workflow values.
 - Matching discovery rows show compact name-matched exercise thumbnails using the same `FitWellImage` and `resolveExerciseImageCandidates` pipeline as the Exercises page. A neutral fallback is reserved for a genuine image-load failure; image failures do not block selection or Add actions.
-- Below muscle controls, image-based equipment buttons offer Barbell, Dumbbell, Kettlebell, Machine, Bodyweight, Cable, and an All equipment reset. One equipment filter intersects the muscle/search criteria through the existing API parameter. Changing equipment resets result pages and invalidates old responses without changing chosen exercises. It applies to Browse all too; choosing equipment alone leaves the initial muscle-selection prompt unchanged. Buttons use existing equipment assets, accessible names, tooltips, focus outlines, and selected checkmarks.
-- `MuscleBodyDiagram` renders repository-owned anatomical SVG regions in a charcoal panel, with blue selection highlights and all-twelve labeled controls. Front/back figures appear side by side when the component has at least 480px available; narrower containers use the front/back switch. Repeated front/back and bilateral regions share one selection state; selected state uses text, checked labels, and outline in addition to color. Labeled controls retain 44px minimum heights and the diagram has visible keyboard focus.
+- Below muscle controls, image-based equipment buttons offer Barbell, Dumbbell, Kettlebell, Machine, Bodyweight, Cable, and an All equipment reset. Equipment buttons form a multiple selection whose union intersects the muscle/search criteria. One selected option retains the singular API parameter; two or more use the plural union parameter. Changing equipment resets result pages and invalidates old responses without changing chosen exercises. It applies to Browse all too; choosing equipment alone leaves the initial muscle-selection prompt unchanged. Buttons use existing equipment assets, accessible names, tooltips, focus outlines, and selected checkmarks.
+- `MuscleBodyDiagram` renders repository-owned anatomical SVG regions in a charcoal panel, with blue selection highlights and all-twelve labeled controls. Front/back figures appear side by side when the component has at least 480px available; narrower containers use the front/back switch. Repeated front/back and bilateral regions share one selection state; selected state uses text, checked labels, and outline in addition to color. Hover highlighting is limited to hover-capable fine pointers so a touch deselection cannot leave a false blue highlight. Labeled controls retain 44px minimum heights and the diagram has visible keyboard focus.
 - `FitWellImage` and asset helpers choose the approved exercise-specific WebP, followed only by an approved neutral fallback.
 - Admin `ExerciseAdminForm` supplies create/edit classification and image-path inputs.
 
 ## API usage
 
-Member GET list validates search/category/equipment/movement, limit, cursor, and an optional comma-separated union of the twelve selectable categories. Singular and plural category filters cannot be combined. Union matching uses exact broad `category` values, not primary/secondary-muscle inference, and restricts normal members to active records. Results order by name then ID and retain the bounded cursor response. GET by ID restricts inactive visibility unless the caller is an admin requesting inclusion. Admin POST/PATCH/archive/restore manage lifecycle.
+Member GET list validates search/category/equipment/movement, limit, cursor, and optional comma-separated unions for the twelve selectable categories and six equipment types. Singular and plural forms of the same filter cannot be combined. Category union matching uses exact broad `category` values, not primary/secondary-muscle inference; equipment union matching accepts any selected canonical equipment value. Normal members remain restricted to active records. Results order by name then ID and retain the bounded cursor response. GET by ID restricts inactive visibility unless the caller is an admin requesting inclusion. Admin POST/PATCH/archive/restore manage lifecycle.
 
 ## Database usage
 

@@ -46,7 +46,9 @@ export default function MuscleBodyDiagram({ selected, view, onViewChange, onTogg
           "@container (min-width: 480px)": { gridTemplateColumns: "repeat(2, minmax(0, 1fr))" },
           "& .muscle-region": { cursor: "pointer", outline: "none" },
           "& .muscle-region path": { transition: "fill 150ms ease" },
-          "& .muscle-region:hover path": { fill: "#60a5fa" },
+          "@media (hover: hover) and (pointer: fine)": {
+            "& .muscle-region:hover path": { fill: "#60a5fa" },
+          },
           "& .muscle-region:focus-visible path": { stroke: "#facc15", strokeWidth: 3 },
           "@media (prefers-reduced-motion: reduce)": { "& .muscle-region path": { transition: "none" } },
         }}>

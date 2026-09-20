@@ -119,6 +119,7 @@ export interface ExerciseListQuery {
   category?: string;
   categories?: string;
   equipment?: string;
+  equipments?: string;
   movement?: string;
   limit?: string;
   cursor?: string;

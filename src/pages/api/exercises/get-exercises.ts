@@ -17,8 +17,16 @@ export default async function handler(
   if (!validation.valid || !validation.data) {
     return res.status(400).send({ errors: validation.errors });
   }
-  const { search, equipment, category, categories, movement, limit, cursor } =
-    validation.data;
+  const {
+    search,
+    equipment,
+    equipments,
+    category,
+    categories,
+    movement,
+    limit,
+    cursor,
+  } = validation.data;
   const includeInactive = req.query.includeInactive === "true";
   const isAdmin = includeInactive
     ? Boolean(await prisma.adminAccess.findUnique({ where: { userId } }))
@@ -30,7 +38,11 @@ export default async function handler(
       ...(search
         ? { name: { contains: search, mode: "insensitive" as const } }
         : {}),
-      ...(equipment ? { equipment } : {}),
+      ...(equipments
+        ? { equipment: { in: equipments } }
+        : equipment
+          ? { equipment }
+          : {}),
       ...(categories
         ? { category: { in: categories } }
         : category
