@@ -96,6 +96,14 @@ export interface Profile {
   onboardingCompleted: boolean;
 }
 
+export interface WorkoutActivityCalendarResponse {
+  timezone: string;
+  startDate: string;
+  endDate: string;
+  todayDate: string;
+  completedDates: string[];
+}
+
 export interface Exercise {
   id: string;
   name: string;

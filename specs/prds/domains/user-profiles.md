@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: PROFILE
 engineering:
   - specs/engineering/features/user-profiles.md
-last_verified: 2026-09-19
+last_verified: 2026-09-20
 ---
 
 # User profiles PRD
@@ -52,6 +52,26 @@ A signed-in member may request deletion of local application data from the dedic
 ### PROFILE-009 — Theme preference
 
 A member may select light, dark, or system appearance. The selection persists in the browser.
+
+### PROFILE-010 — Workout activity calendar
+
+The signed-in member's Profile must show a rolling 53-week workout activity calendar ending with the
+current week and using Monday as the first day of each week. The calendar must keep future dates
+neutral and unavailable and must remain usable on supported desktop and mobile layouts.
+
+### PROFILE-011 — Qualifying workout day
+
+For each in-range date, the calendar must show one green workout state when the member owns at least
+one completed workout whose recorded workout date falls on that date in the member's profile
+timezone. If no profile timezone is available, the calendar must use UTC. Draft and in-progress
+workouts must not qualify, multiple completed workouts on one date must not create additional
+intensity, and another member's workouts must not affect the calendar.
+
+### PROFILE-012 — Activity calendar states
+
+The workout activity calendar must communicate each date and its workout/no-workout state without
+relying on color alone. It must provide meaningful loading and empty states and a retryable failure
+state without turning unavailable activity data into a successful no-workout result.
 
 ## Current exposure boundary
 

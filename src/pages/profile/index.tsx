@@ -4,24 +4,46 @@ import ConfirmDialog from "fitness/components/common/ConfirmDialog";
 import ErrorState from "fitness/components/common/ErrorState";
 import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
+import WorkoutActivityCalendar from "fitness/components/profile/WorkoutActivityCalendar";
 import { signOutUser } from "fitness/lib/authUtils";
-import { deleteAccount, getUserProfile } from "fitness/utils/spec";
-import type { Profile } from "fitness/utils/types";
+import {
+  deleteAccount,
+  getUserProfile,
+  getWorkoutActivity,
+} from "fitness/utils/spec";
+import type {
+  Profile,
+  WorkoutActivityCalendarResponse,
+} from "fitness/utils/types";
 import { formatCount } from "fitness/utils/copy";
 import { formatHeight, formatWeight } from "fitness/utils/units";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function ProfilePage() {
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>();
+  const [activity, setActivity] =
+    useState<WorkoutActivityCalendarResponse>();
   const [error, setError] = useState("");
+  const [activityError, setActivityError] = useState("");
   const [activeTab, setActiveTab] = useState(0);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const loadActivity = useCallback(() => {
+    setActivity(undefined);
+    setActivityError("");
+    void getWorkoutActivity()
+      .then(setActivity)
+      .catch(() => setActivityError("Your workout activity could not be loaded."));
+  }, []);
+
   useEffect(() => {
     void getUserProfile()
       .then(setProfile)
       .catch(() => setError("Your profile could not be loaded."));
+    void getWorkoutActivity()
+      .then(setActivity)
+      .catch(() => setActivityError("Your workout activity could not be loaded."));
   }, []);
   return (
     <AuthenticatedPage>
@@ -99,6 +121,25 @@ export default function ProfilePage() {
                     Complete onboarding
                   </Button>
                 )}
+
+                <Box>
+                  {activityError ? (
+                    <Stack gap={1.5}>
+                      <Typography variant="h6">Workout activity</Typography>
+                      <ErrorState
+                        message={activityError}
+                        onRetry={loadActivity}
+                      />
+                    </Stack>
+                  ) : activity === undefined ? (
+                    <Stack gap={1.5}>
+                      <Typography variant="h6">Workout activity</Typography>
+                      <LoadingState label="Loading workout activity" />
+                    </Stack>
+                  ) : (
+                    <WorkoutActivityCalendar data={activity} />
+                  )}
+                </Box>
 
                 <Stack gap={1.5} alignItems="flex-start">
                   <Typography variant="h6">Session</Typography>

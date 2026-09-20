@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { ThemeProvider } from "@mui/material/styles";
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import type { ReactNode } from "react";
 import ProfilePage from "fitness/pages/profile";
 import createAppTheme from "fitness/theme";
@@ -9,6 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   deleteAccount: vi.fn(),
+  getWorkoutActivity: vi.fn(),
   getUserProfile: vi.fn(),
   push: vi.fn(),
   replace: vi.fn(),
@@ -21,6 +22,7 @@ vi.mock("fitness/components/AuthenticatedPage", () => ({
 vi.mock("fitness/lib/authUtils", () => ({ signOutUser: mocks.signOutUser }));
 vi.mock("fitness/utils/spec", () => ({
   deleteAccount: mocks.deleteAccount,
+  getWorkoutActivity: mocks.getWorkoutActivity,
   getUserProfile: mocks.getUserProfile,
 }));
 vi.mock("next/router", () => ({
@@ -40,6 +42,14 @@ const profile = {
   currentWeightKg: 70,
 };
 
+const activity = {
+  timezone: "Asia/Kolkata",
+  startDate: "2025-09-15",
+  endDate: "2026-09-20",
+  todayDate: "2026-09-16",
+  completedDates: ["2026-09-14"],
+};
+
 function renderPage() {
   return render(
     <ThemeProvider theme={createAppTheme("light")}>
@@ -52,6 +62,7 @@ describe("Profile account sections", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.getUserProfile.mockResolvedValue(profile);
+    mocks.getWorkoutActivity.mockResolvedValue(activity);
     mocks.signOutUser.mockResolvedValue(undefined);
     mocks.deleteAccount.mockResolvedValue({ success: true });
   });
@@ -72,6 +83,71 @@ describe("Profile account sections", () => {
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
     await waitFor(() => expect(mocks.signOutUser).toHaveBeenCalledTimes(1));
     expect(mocks.push).toHaveBeenCalledWith("/");
+  });
+
+  it("PROFILE-010 DES-009 DES-011 renders activity in Profile before Session and never in Delete account", async () => {
+    renderPage();
+
+    const activityHeading = await screen.findByRole("heading", {
+      name: "Workout activity",
+    });
+    const sessionHeading = screen.getByRole("heading", { name: "Session" });
+    expect(mocks.getWorkoutActivity).toHaveBeenCalledTimes(1);
+    expect(
+      activityHeading.compareDocumentPosition(sessionHeading) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("tab", { name: "Delete account" }));
+    expect(
+      screen.queryByRole("heading", { name: "Workout activity" }),
+    ).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "Delete application account" }),
+    ).toBeTruthy();
+  });
+
+  it("PROFILE-012 DES-010 distinguishes empty activity from loading", async () => {
+    let resolveActivity: ((value: typeof activity) => void) | undefined;
+    mocks.getWorkoutActivity.mockReturnValue(
+      new Promise((resolve) => {
+        resolveActivity = resolve;
+      }),
+    );
+    renderPage();
+
+    expect(await screen.findByText("Keerthan K")).toBeTruthy();
+    expect(
+      screen.getByLabelText("Loading workout activity"),
+    ).toBeTruthy();
+
+    await act(async () => {
+      resolveActivity?.({ ...activity, completedDates: [] });
+    });
+    expect(
+      await screen.findByText("No completed workouts in this period."),
+    ).toBeTruthy();
+    expect(screen.queryByLabelText("Loading workout activity")).toBeNull();
+  });
+
+  it("PROFILE-012 DES-010 retries activity without reloading or hiding Profile actions", async () => {
+    mocks.getWorkoutActivity
+      .mockRejectedValueOnce(new Error("network"))
+      .mockResolvedValueOnce(activity);
+    renderPage();
+
+    expect(
+      await screen.findByText("Your workout activity could not be loaded."),
+    ).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Edit profile" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Sign out" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+
+    expect(
+      await screen.findByRole("heading", { name: "Workout activity" }),
+    ).toBeTruthy();
+    expect(mocks.getWorkoutActivity).toHaveBeenCalledTimes(2);
+    expect(mocks.getUserProfile).toHaveBeenCalledTimes(1);
   });
 
   it("PROFILE-008 isolates account deletion and requires confirmation", async () => {
@@ -111,6 +187,9 @@ describe("Profile account sections", () => {
     renderPage();
 
     expect(await screen.findByText("Your profile could not be loaded.")).toBeTruthy();
+    expect(
+      await screen.findByRole("heading", { name: "Workout activity" }),
+    ).toBeTruthy();
     expect(screen.getByRole("button", { name: "Sign out" })).toBeTruthy();
     fireEvent.click(screen.getByRole("tab", { name: "Delete account" }));
     expect(

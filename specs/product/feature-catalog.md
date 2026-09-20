@@ -3,7 +3,7 @@ id: product-feature-catalog
 title: FitWell Feature Catalog
 status: active
 authority: informational
-last_verified: 2026-09-19
+last_verified: 2026-09-20
 ---
 
 # FitWell feature catalog
@@ -30,6 +30,7 @@ last_verified: 2026-09-19
 | --- | --- | --- | --- |
 | Onboarding profile | Collects identity, body metrics, units, fitness goal, experience, and training preferences | Implemented | [Onboarding](../prds/domains/onboarding.md) |
 | Profile view and edit | Displays and updates the signed-in member's profile; Profile also contains sign-out and a separate Delete account tab | Implemented | [User profiles](../prds/domains/user-profiles.md) |
+| Profile workout activity | Shows a read-only 53-week, Monday-first calendar of the signed-in member's completed workouts by recorded date and profile timezone | Implemented; automated verification complete, manual responsive/accessibility verification pending | [User profiles](../prds/domains/user-profiles.md) |
 | Metric/imperial preference | Converts displayed profile measurements while retaining metric values for persistence | Implemented | [User profiles](../prds/domains/user-profiles.md) |
 | Theme preference | Supports light, dark, and system theme persisted in the browser | Implemented | [User profiles](../prds/domains/user-profiles.md) |
 | Application-account deletion | Deletes local member data, leaves a disabled local tombstone, and preserves the Firebase identity | Implemented; manual verification needed | [User profiles](../prds/domains/user-profiles.md) |
