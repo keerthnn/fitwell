@@ -107,7 +107,7 @@ This inventory contains all 67 route files exposed by `src/pages/api`. `Member` 
 | GET `/api/admin/admin-access/list` | Admin | Returns administrator grant records and users | ADMIN-003 | `src/pages/api/admin/admin-access/list.ts` |
 | POST `/api/admin/admin-access/grant` | Admin | Target active user ID; upserts grant and audits | ADMIN-003 | `src/pages/api/admin/admin-access/grant.ts` |
 | POST `/api/admin/admin-access/remove` | Admin | Target ID; removes grant, preserves last admin, audits | ADMIN-003 | `src/pages/api/admin/admin-access/remove.ts` |
-| GET `/api/admin/users/list` | Admin | Implemented filters; returns users and currently null cursor | ADMIN-002 | `src/pages/api/admin/users/list.ts` |
+| GET `/api/admin/users/list` | Admin | Optional `scope=total` returns non-deleted users; `scope=active` returns enabled users active since UTC midnight; returns profiles and currently null cursor | ADMIN-003 | `src/pages/api/admin/users/list.ts` |
 | GET `/api/admin/users/get-by-id` | Admin | User `id`; returns user with related detail or 404 | ADMIN-002 | `src/pages/api/admin/users/get-by-id.ts` |
 | POST `/api/admin/users/disable` | Admin | Target ID and disabled state; protects last admin; audits | ADMIN-002 | `src/pages/api/admin/users/disable.ts` |
 | POST `/api/admin/users/restore` | Admin | Target ID; clears disabled/deleted local state and audits | ADMIN-002 | `src/pages/api/admin/users/restore.ts` |

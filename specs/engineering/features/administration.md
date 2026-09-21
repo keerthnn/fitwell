@@ -32,7 +32,7 @@ Administration is the protected control surface for summaries, users, administra
 
 ## API and database usage
 
-All privileged operations use `/api/admin/*` and read or mutate `User`, `UserActivityDay`, `AdminAccess`, `AdminAuditLog`, `Exercise`, `WorkoutPlan`, `Workout`, `Feedback`, and their children. The overview reports non-deleted users separately from enabled users with authenticated activity since UTC midnight. Multi-row destructive or replacement operations use Prisma transactions where implemented. Summaries are derived by queries rather than stored snapshots.
+All privileged operations use `/api/admin/*` and read or mutate `User`, `UserActivityDay`, `AdminAccess`, `AdminAuditLog`, `Exercise`, `WorkoutPlan`, `Workout`, `Feedback`, and their children. The overview reports non-deleted users separately from enabled users with authenticated activity since UTC midnight. The user-list API exposes matching `total` and `active` scopes for clients that navigate from those counts. Multi-row destructive or replacement operations use Prisma transactions where implemented. Summaries are derived by queries rather than stored snapshots.
 
 ## Failure handling and security
 
