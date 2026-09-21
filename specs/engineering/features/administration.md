@@ -32,7 +32,7 @@ Administration is the protected control surface for summaries, users, administra
 
 ## API and database usage
 
-All privileged operations use `/api/admin/*` and read or mutate `User`, `AdminAccess`, `AdminAuditLog`, `Exercise`, `WorkoutPlan`, `Workout`, `Feedback`, and their children. Multi-row destructive or replacement operations use Prisma transactions where implemented. Summaries are derived by queries rather than stored snapshots.
+All privileged operations use `/api/admin/*` and read or mutate `User`, `UserActivityDay`, `AdminAccess`, `AdminAuditLog`, `Exercise`, `WorkoutPlan`, `Workout`, `Feedback`, and their children. The overview reports non-deleted users separately from enabled users with authenticated activity since UTC midnight. Multi-row destructive or replacement operations use Prisma transactions where implemented. Summaries are derived by queries rather than stored snapshots.
 
 ## Failure handling and security
 
@@ -44,7 +44,7 @@ Unauthenticated requests return 401, authenticated non-administrators 403, inval
 - User disablement affects local API access; the repository does not prove a corresponding Firebase Console action.
 - Account deletion keeps a local tombstone with an anonymized email.
 - Exercise and built-in plan archive/restore use flags; audit coverage is handler-selected rather than database-triggered.
-- No automated tests exist under the configured test directory.
+- Daily active-user counting has focused coverage; other administrator flows do not yet have automated tests under the configured test directory.
 
 ## Code map
 

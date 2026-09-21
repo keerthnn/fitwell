@@ -1,6 +1,7 @@
 import {
   ArrowForward,
   Barbell,
+  CalendarMonth,
   ClipboardList,
   ListAlt,
   People,
@@ -13,11 +14,12 @@ import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import DashboardStatCard from "fitness/components/dashboard/DashboardStatCard";
 import { getAdminSummary } from "fitness/utils/spec";
+import type { AdminSummary } from "fitness/utils/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminOverviewPage() {
-  const [summary, setSummary] = useState<Record<string, number>>();
+  const [summary, setSummary] = useState<AdminSummary>();
   const [error, setError] = useState("");
   useEffect(() => {
     void getAdminSummary()
@@ -26,28 +28,35 @@ export default function AdminOverviewPage() {
   }, []);
   const metrics = [
     {
-      key: "users",
-      label: "Active users",
+      key: "totalUsers" as const,
+      label: "Total users",
       helper: "accounts",
       icon: <People />,
       tone: "neutral" as const,
     },
     {
-      key: "workouts",
+      key: "activeUsers" as const,
+      label: "Active users",
+      helper: "today (UTC)",
+      icon: <CalendarMonth />,
+      tone: "neutral" as const,
+    },
+    {
+      key: "workouts" as const,
       label: "Workouts",
       helper: "all time",
       icon: <Barbell />,
       tone: "neutral" as const,
     },
     {
-      key: "exercises",
+      key: "exercises" as const,
       label: "Active exercises",
       helper: "catalogue",
       icon: <Stretching />,
       tone: "neutral" as const,
     },
     {
-      key: "workoutPlans",
+      key: "workoutPlans" as const,
       label: "Built-in plans",
       helper: "published",
       icon: <ClipboardList />,

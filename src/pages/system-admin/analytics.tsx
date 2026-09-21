@@ -11,11 +11,12 @@ import LoadingState from "fitness/components/common/LoadingState";
 import PageHeader from "fitness/components/common/PageHeader";
 import DashboardStatCard from "fitness/components/dashboard/DashboardStatCard";
 import { getAdminAnalytics } from "fitness/utils/spec";
+import type { AdminAnalyticsSummary } from "fitness/utils/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminAnalyticsPage() {
-  const [summary, setSummary] = useState<Record<string, number>>();
+  const [summary, setSummary] = useState<AdminAnalyticsSummary>();
   useEffect(() => {
     void getAdminAnalytics().then(setSummary);
   }, []);
@@ -44,7 +45,7 @@ export default function AdminAnalyticsPage() {
                 icon={<People />}
                 label="Active users"
                 value={summary.activeUsers ?? 0}
-                helper="accounts"
+                helper="today (UTC)"
                 tone="neutral"
               />
             </Grid>
@@ -63,8 +64,8 @@ export default function AdminAnalyticsPage() {
               Review the underlying activity
             </Typography>
             <Typography color="text.secondary" variant="body2" mt={0.5} mb={2}>
-              These totals include local active accounts and completed workouts
-              across all time.
+              Active users opened FitWell today. Workout and duration totals
+              include completed workouts across all time.
             </Typography>
             <Stack direction={{ xs: "column", sm: "row" }} gap={1.5}>
               {[

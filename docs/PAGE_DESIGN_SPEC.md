@@ -407,7 +407,7 @@ Mobile:
 
 **Purpose:** Show system health and direct the administrator to the most common management areas.
 
-**Composition:** Header; four stat cards for active users, workouts, active exercises, built-in plans; quick-management cards linking to Users, Exercises, Plans, and Audit logs. Avoid decorative charts until meaningful data exists.
+**Composition:** Header; five stat cards for total users, users active today, workouts, active exercises, and built-in plans; quick-management cards linking to Users, Exercises, Plans, and Audit logs. Avoid decorative charts until meaningful data exists.
 
 **Mobile:** Two-column stats, then single-column quick links.
 

@@ -1,9 +1,11 @@
 import axios from "axios";
 import type {
   AdminAccessListItem,
+  AdminAnalyticsSummary,
   AdminAuditLogListItem,
   AdminFeedbackListItem,
   AdminFeedbackThread,
+  AdminSummary,
   AdminUserDetail,
   AdminUserListItem,
   AdminWorkoutListItem,
@@ -140,7 +142,7 @@ export const getAnalytics = async (params?: Record<string, string>) =>
 export const getAdminStatus = async () =>
   (await axios.get("/api/admin/get-admin-status")).data as { isAdmin: true };
 export const getAdminSummary = async () =>
-  (await axios.get("/api/admin/dashboard/summary")).data as Record<string, number>;
+  (await axios.get("/api/admin/dashboard/summary")).data as AdminSummary;
 export const getAdminUsers = async () =>
   (await axios.get<Paginated<AdminUserListItem>>("/api/admin/users/list")).data;
 export const getAdminUser = async (id: string) =>
@@ -156,7 +158,7 @@ export const getAdminWorkouts = async () =>
     )
   ).data;
 export const getAdminAnalytics = async () =>
-  (await axios.get("/api/admin/analytics/summary")).data as Record<string, number>;
+  (await axios.get("/api/admin/analytics/summary")).data as AdminAnalyticsSummary;
 export const getAdminAccessList = async () =>
   (
     await axios.get<{ items: AdminAccessListItem[] }>(

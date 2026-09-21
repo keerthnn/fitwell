@@ -4,6 +4,21 @@ import { dateKeyInTimezone } from "./time";
 const ACTIVITY_THROTTLE_MS = 5 * 60 * 1000;
 const recentActivityWrites = new Map<string, number>();
 
+export async function countDailyActiveUsers(now = new Date()) {
+  const startOfToday = new Date(now);
+  startOfToday.setUTCHours(0, 0, 0, 0);
+
+  return prisma.user.count({
+    where: {
+      isDisabled: false,
+      deletedAt: null,
+      activityDays: {
+        some: { lastActiveAt: { gte: startOfToday } },
+      },
+    },
+  });
+}
+
 export async function recordUserActivity(userId: string, force = false) {
   const now = new Date();
   const lastWrite = recentActivityWrites.get(userId) ?? 0;

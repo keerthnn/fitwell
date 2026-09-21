@@ -39,7 +39,7 @@ The API loads owner-scoped completed workouts in range with source plan, exercis
 
 ## Admin analytics
 
-Admin summary uses validated named/custom/all-time ranges and returns completed-workout count, activity-day-based active users, and total duration. Grouping types exist in shared types; the current page/wrapper uses the default summary and does not present a series.
+Admin summary returns completed-workout count, enabled users with authenticated activity since UTC midnight, and total duration. Grouping types exist in shared types; the current page/wrapper uses the default summary and does not present a series.
 
 ## Security and failure handling
 
@@ -51,7 +51,7 @@ Personal queries use verified UID; admin analytics requires administrator access
 - Weight/volume remains kilograms in the UI.
 - Only completed sets contribute volume and personal-best weight; exercise occurrence counts still include each workout-exercise entry in a completed workout.
 - Missing duration contributes zero.
-- No formula, timezone, range, unit, or representative-data tests exist.
+- Daily active-user filtering has focused coverage. No workout formula, range, unit, or representative-data tests exist.
 
 ## Code map
 

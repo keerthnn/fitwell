@@ -23,7 +23,7 @@ Every administrator page and operation must reject a signed-in member who lacks 
 
 ### ADMIN-002 — Overview
 
-An administrator may view counts for users, workouts, active exercises, and built-in plans.
+An administrator may view separate counts for total non-deleted users and enabled users active since UTC midnight, plus workouts, active exercises, and built-in plans.
 
 ### ADMIN-003 — User management
 
@@ -55,7 +55,7 @@ An administrator may list all feedback, search/filter it, view conversations, re
 
 ### ADMIN-010 — Administrator analytics
 
-An administrator may view completed-workout count, active-user count, and total duration over a supported date range.
+An administrator may view completed-workout count, enabled-user activity since UTC midnight, and total duration over a supported date range.
 
 ### ADMIN-011 — Audit events
 

@@ -259,6 +259,20 @@ export interface AnalyticsSummary {
   workoutPlanUsage: Array<{ name: string; value: number }>;
 }
 
+export interface AdminSummary {
+  totalUsers: number;
+  activeUsers: number;
+  workouts: number;
+  exercises: number;
+  workoutPlans: number;
+}
+
+export interface AdminAnalyticsSummary {
+  completedWorkouts: number;
+  activeUsers: number;
+  durationMinutes: number;
+}
+
 export interface Paginated<T> {
   items: T[];
   nextCursor: string | null;

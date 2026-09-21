@@ -82,8 +82,8 @@ This inventory contains all 67 route files exposed by `src/pages/api`. `Member` 
 | --- | --- | --- | --- | --- |
 | GET `/api/dashboard/summary` | Member | Returns active workout, weekly goal/progress, activity streak, recent workouts, frequent exercises, and plans | DASH-001 | `src/pages/api/dashboard/summary.ts` |
 | GET `/api/analytics/summary` | Member | Preset/custom range; returns completed-workout volume, duration, frequency, bests, and plan usage | ANALYTICS-001 | `src/pages/api/analytics/summary.ts` |
-| GET `/api/admin/dashboard/summary` | Admin | Returns user, workout, exercise, and plan counts | ADMIN-007 | `src/pages/api/admin/dashboard/summary.ts` |
-| GET `/api/admin/analytics/summary` | Admin | Date range; returns cross-user aggregate analytics | ADMIN-008 | `src/pages/api/admin/analytics/summary.ts` |
+| GET `/api/admin/dashboard/summary` | Admin | Returns separate total-user and daily-active-user counts plus workout, exercise, and plan counts | ADMIN-002 | `src/pages/api/admin/dashboard/summary.ts` |
+| GET `/api/admin/analytics/summary` | Admin | Returns all-time completed-workout/duration totals and daily active users since UTC midnight | ADMIN-010 | `src/pages/api/admin/analytics/summary.ts` |
 
 ## Feedback
 
