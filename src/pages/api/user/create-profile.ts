@@ -26,6 +26,9 @@ export default async function handler(
         ? new Date(result.data.dateOfBirth)
         : null,
       userId,
+      workoutDayTargetHistory: {
+        create: { daysPerWeek: result.data.weeklyWorkoutTarget },
+      },
     },
   });
   return res.status(201).send({ success: true });

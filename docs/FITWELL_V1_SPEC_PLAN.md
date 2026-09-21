@@ -119,11 +119,11 @@ These features should not be added without a separate product specification and 
 | ID | Requirement | Status | Implementation evidence |
 | --- | --- | --- | --- |
 | PROF-01 | A new member can create a profile during onboarding. | Implemented; needs manual verification | `/onboarding`, `POST /api/user/create-profile`. |
-| PROF-02 | Onboarding collects name, optional gender/date of birth, optional body measures, goal, experience, weekly target, typical duration, units, and timezone. | Implemented | `ProfileForm`, `UserProfile`. |
+| PROF-02 | Onboarding collects name, optional gender/date of birth, optional body measures, goal, experience, weekly workout-day target, typical duration, units, and timezone. | Implemented | `ProfileForm`, `UserProfile`. |
 | PROF-03 | Completing onboarding sets `onboardingCompleted` and routes to the dashboard. | Implemented; needs manual verification | Onboarding submit flow. |
 | PROF-04 | A member can view and edit the profile. | Implemented; needs manual verification | `/profile`, `/profile/edit`. |
 | PROF-05 | Metric values are canonical in the database; imperial values are converted for display/input. | Implemented | `src/utils/units.ts`, profile form. |
-| PROF-06 | Weekly target is limited to 1–14 workouts; height to 50–300 cm; weight to 1–600 kg; duration to 1–1440 minutes. | Implemented | Runtime profile validator. |
+| PROF-06 | Weekly target is limited to 1–7 workout days; height to 50–300 cm; weight to 1–600 kg; duration to 1–1440 minutes. | Implemented | Runtime profile validator and database constraints. |
 | PROF-07 | A member can delete only the profile without deleting the application account. | API implemented; UI exposure unclear | `DELETE /api/user/delete-profile`; no primary profile action currently calls it. |
 
 ### 4.3 Dashboard
@@ -131,8 +131,8 @@ These features should not be added without a separate product specification and 
 | ID | Requirement | Status | Implementation evidence |
 | --- | --- | --- | --- |
 | DASH-01 | Dashboard greets the member using profile name, account display name, or a fallback. | Implemented | `GET /api/dashboard/summary`. |
-| DASH-02 | Dashboard shows workouts this week against weekly target. | Implemented | Completed workouts since Monday. |
-| DASH-03 | Dashboard shows current streak, completed-workout total, and total duration. | Implemented | Dashboard aggregation. |
+| DASH-02 | Dashboard shows distinct completed workout days this Monday–Sunday week against the current weekly workout-day target. | Implemented | Timezone-aware weekly goal aggregation; multiple workouts on one date count once. |
+| DASH-03 | Dashboard shows consecutive successful weekly goals, completed-workout total, and total duration. | Implemented | Historical targets apply to completed weeks; an incomplete current week remains pending. |
 | DASH-04 | Dashboard shows up to five recent completed workouts. | Implemented | Summary response and dashboard panels. |
 | DASH-05 | Dashboard surfaces the most recently updated in-progress workout. | Implemented | Active workout query and banner. |
 | DASH-06 | Dashboard shows up to four recent private plans and four frequently performed exercises. | Implemented | User-owned active plans and completed-workout exercise counts. |
@@ -378,7 +378,7 @@ A null owner alone never grants visibility.
 | --- | --- |
 | Profile names | Required; max 80 characters each. |
 | Profile body measures | Height 50–300 cm; weight 1–600 kg. |
-| Weekly target | Integer 1–14. |
+| Weekly workout-day target | Integer 1–7. |
 | Typical workout duration | Integer 1–1,440 minutes. |
 | Workout name/notes | Name required and max 120; notes max 2,000. |
 | Initial workout exercises | Up to 50 unique IDs; all must be active. |

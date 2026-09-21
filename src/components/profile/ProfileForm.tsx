@@ -215,14 +215,20 @@ export default function ProfileForm({
       </Stack>
       <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
         <TextField
+          select
           fullWidth
-          type="number"
-          label="Workouts per week"
+          label="How many days do you want to work out each week?"
           value={form.weeklyWorkoutTarget}
           onChange={(event) =>
             set("weeklyWorkoutTarget", Number(event.target.value))
           }
-        />
+        >
+          {Array.from({ length: 7 }, (_, index) => index + 1).map((days) => (
+            <MenuItem key={days} value={days}>
+              {days} {days === 1 ? "day" : "days"} per week
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           fullWidth
           type="number"

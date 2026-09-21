@@ -6,8 +6,8 @@ authority: engineering
 requirements: [ONBOARD-001, ONBOARD-002, ONBOARD-003, ONBOARD-004, ONBOARD-005, ONBOARD-006, ONBOARD-007]
 decisions: [ADR-0002, ADR-0003, ADR-0004, ADR-0005]
 code: [src/pages/onboarding.tsx, src/components/profile/ProfileForm.tsx, src/components/context.tsx, src/pages/api/user/create-profile.ts, src/pages/api/user/update-profile.ts, src/pages/api/user/get-user-profile.ts, src/pages/api/user/get-profile-status.ts]
-tests: []
-last_verified: 2026-08-15
+tests: [test cases/components/profile/ProfileForm.test.tsx, test cases/lib/api/validators/profile.test.ts, test cases/pages/api/user/profile-target-history.test.ts]
+last_verified: 2026-09-21
 ---
 
 # Onboarding SDD
@@ -26,11 +26,11 @@ Onboarding is a single authenticated profile form that creates or completes the 
 
 ## Component responsibilities
 
-The page owns loading the existing profile and choosing create versus update. `ProfileForm` owns fields, client conversion, validation display, and forces `onboardingCompleted` for onboarding submission.
+The page owns loading the existing profile and choosing create versus update. `ProfileForm` owns fields, client conversion, validation display, asks “How many days do you want to work out each week?” with a 1–7 day value, and forces `onboardingCompleted` for onboarding submission.
 
 ## API and database usage
 
-GET current profile distinguishes undefined loading, null absence, and existing data. POST create validates and conflicts if a profile already exists. POST update validates and returns not found when absent. `UserProfile.onboardingCompleted` is the redirect decision source.
+GET current profile distinguishes undefined loading, null absence, and existing data. POST create validates and creates the profile plus baseline workout-day target history atomically, and conflicts if a profile already exists. POST update validates, appends history only for a changed target within the profile transaction, and returns not found when absent. `UserProfile.onboardingCompleted` is the redirect decision source.
 
 ## Failure handling and security
 

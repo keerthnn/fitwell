@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: DASH
 engineering:
   - specs/engineering/features/dashboard.md
-last_verified: 2026-08-15
+last_verified: 2026-09-21
 ---
 
 # Dashboard PRD
@@ -23,11 +23,11 @@ The dashboard greets the member using profile name when available, then account 
 
 ### DASH-002 — Weekly progress
 
-The dashboard shows completed workouts since the start of the current week and compares them with the member's weekly workout target or the default target when no profile exists.
+The dashboard shows distinct dates with at least one completed workout in the current Monday-through-Sunday week and compares them with the member's weekly workout-day target, or the default target when no profile exists. Multiple completed workouts on one date count once. Date grouping uses the member's valid profile timezone and falls back to UTC.
 
 ### DASH-003 — Streak
 
-The dashboard shows the current consecutive-day streak calculated from days containing completed workouts.
+The dashboard shows consecutive successful weekly goals. A completed week succeeds when its distinct completed-workout dates meet the target effective for that week. The current week joins the streak immediately after reaching its target, but an incomplete current week does not break the streak carried from preceding completed weeks.
 
 ### DASH-004 — Lifetime summary
 

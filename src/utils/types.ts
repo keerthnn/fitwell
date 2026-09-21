@@ -233,9 +233,9 @@ export interface CreateWorkoutRequest {
 
 export interface DashboardSummary {
   greetingName: string;
-  workoutsThisWeek: number;
-  weeklyTarget: number;
-  currentStreak: number;
+  workoutDaysThisWeek: number;
+  weeklyWorkoutDayTarget: number;
+  weeklyGoalStreak: number;
   completedWorkouts: number;
   totalDurationMinutes: number;
   recentWorkouts: WorkoutListItem[];

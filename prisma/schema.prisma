@@ -134,7 +134,19 @@ model UserProfile {
   createdAt              DateTime        @default(now())
   updatedAt              DateTime        @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutDayTargetHistory WorkoutDayTargetHistory[]
+}
+
+model WorkoutDayTargetHistory {
+  id            String   @id @default(uuid())
+  userProfileId String
+  daysPerWeek   Int
+  effectiveAt   DateTime @default(now())
+
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@index([userProfileId, effectiveAt])
 }
 
 model Exercise {

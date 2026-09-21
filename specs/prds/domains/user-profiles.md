@@ -6,7 +6,7 @@ authority: binding-product
 requirement_prefix: PROFILE
 engineering:
   - specs/engineering/features/user-profiles.md
-last_verified: 2026-09-20
+last_verified: 2026-09-21
 ---
 
 # User profiles PRD
@@ -23,11 +23,11 @@ A member may have at most one FitWell profile.
 
 ### PROFILE-002 — Profile fields
 
-A profile requires first name, last name, unit system, fitness goal, experience level, weekly workout target, and timezone. Gender, date of birth, height, current weight, typical workout duration, and preferred workout time are optional.
+A profile requires first name, last name, unit system, fitness goal, experience level, weekly workout-day target, and timezone. Gender, date of birth, height, current weight, typical workout duration, and preferred workout time are optional. Weekly target changes are retained so completed weeks continue to use the target that applied at the time.
 
 ### PROFILE-003 — Profile validation
 
-Names must not exceed 80 characters. Weekly workout target must be an integer from 1 through 14. Height, when supplied, must be from 50 through 300 centimeters; weight from 1 through 600 kilograms; and typical duration from 1 through 1,440 minutes.
+Names must not exceed 80 characters. Weekly workout-day target must be an integer from 1 through 7. Height, when supplied, must be from 50 through 300 centimeters; weight from 1 through 600 kilograms; and typical duration from 1 through 1,440 minutes.
 
 ### PROFILE-004 — View profile
 

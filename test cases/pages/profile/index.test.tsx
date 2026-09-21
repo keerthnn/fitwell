@@ -76,6 +76,7 @@ describe("Profile account sections", () => {
       "Delete account",
     ]);
     expect(await screen.findByText("Keerthan K")).toBeTruthy();
+    expect(screen.getByText("Weekly target: 4 days")).toBeTruthy();
     expect(screen.getByRole("link", { name: "Edit profile" }).getAttribute("href")).toBe(
       "/profile/edit",
     );

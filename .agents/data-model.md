@@ -6,6 +6,7 @@ The Prisma schema lives in `prisma/schema.prisma` and uses PostgreSQL. Access th
 | --- | --- | --- |
 | `User` | Application account keyed by Firebase UID | Has one optional profile, many workouts, and optional admin access. |
 | `UserProfile` | Onboarding and fitness-profile data | One-to-one with `User`; cascades on user deletion. |
+| `WorkoutDayTargetHistory` | Effective-dated weekly workout-day targets | Belongs to `UserProfile`; cascades on profile deletion and is indexed by profile/effective time. |
 | `Workout` | A dated workout session | Belongs to a user and has many workout exercises. |
 | `Exercise` | Reusable exercise catalog entry | Used by many workout exercises; categorized by equipment and movement enums. |
 | `WorkoutExercise` | An exercise included in a workout | Joins a workout and an exercise; has ordered sets. |

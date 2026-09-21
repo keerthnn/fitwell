@@ -62,12 +62,14 @@ export default function DashboardContent({
           <DashboardStatCard
             icon={<CalendarMonth />}
             label="Weekly progress"
-            value={`${summary.workoutsThisWeek}/${summary.weeklyTarget}`}
-            helper="Workouts"
+            value={`${summary.workoutDaysThisWeek}/${summary.weeklyWorkoutDayTarget}`}
+            helper={summary.workoutDaysThisWeek === 1 ? "Workout day" : "Workout days"}
             tone="primary"
             progress={
-              summary.weeklyTarget
-                ? (summary.workoutsThisWeek / summary.weeklyTarget) * 100
+              summary.weeklyWorkoutDayTarget
+                ? (summary.workoutDaysThisWeek /
+                    summary.weeklyWorkoutDayTarget) *
+                  100
                 : 0
             }
           />
@@ -76,8 +78,8 @@ export default function DashboardContent({
           <DashboardStatCard
             icon={<LocalFireDepartment />}
             label="Current streak"
-            value={summary.currentStreak}
-            helper={summary.currentStreak === 1 ? "day" : "days"}
+            value={summary.weeklyGoalStreak}
+            helper={summary.weeklyGoalStreak === 1 ? "week" : "weeks"}
             tone="neutral"
           />
         </Grid>

@@ -205,7 +205,7 @@ Mobile:
 1. Setup heading and short reassurance.
 2. Identity group: first name, last name, optional gender, optional date of birth.
 3. Body metrics group: height, current weight, unit system.
-4. Training group: fitness goal, experience, workouts/week, typical duration.
+4. Training group: fitness goal, experience, “How many days do you want to work out each week?” (1–7), typical duration.
 5. Primary Complete setup button; no destructive or skip action in Version 1.
 
 **Desktop:** Centered 760–900 px panel; pairs of related fields share rows.
@@ -255,7 +255,7 @@ Mobile:
 
 1. Greeting header with Start workout primary action.
 2. Active workout banner when present, with Resume and contextual metadata.
-3. Four-card progress row: workouts this week, weekly target/progress, current streak, total training time or completed workouts.
+3. Four-card progress row: distinct workout days this week, weekly workout-day target/progress, weekly goal streak in weeks, total training time or completed workouts.
 4. Recent workouts section, five items maximum, with View all.
 5. Two-column lower area: Saved plans and Frequent exercises.
 

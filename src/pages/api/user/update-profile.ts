@@ -16,16 +16,32 @@ export default async function handler(
     return res
       .status(400)
       .send({ error: "Invalid profile", details: result.errors });
-  const profile = await prisma.userProfile.findUnique({ where: { userId } });
-  if (!profile) return res.status(404).send({ error: "Profile not found" });
-  await prisma.userProfile.update({
-    where: { userId },
-    data: {
-      ...result.data,
-      dateOfBirth: result.data.dateOfBirth
-        ? new Date(result.data.dateOfBirth)
-        : null,
-    },
+  const updated = await prisma.$transaction(async (transaction) => {
+    const profile = await transaction.userProfile.findUnique({
+      where: { userId },
+      select: { id: true, weeklyWorkoutTarget: true },
+    });
+    if (!profile) return false;
+
+    await transaction.userProfile.update({
+      where: { userId },
+      data: {
+        ...result.data,
+        dateOfBirth: result.data.dateOfBirth
+          ? new Date(result.data.dateOfBirth)
+          : null,
+      },
+    });
+    if (profile.weeklyWorkoutTarget !== result.data.weeklyWorkoutTarget) {
+      await transaction.workoutDayTargetHistory.create({
+        data: {
+          userProfileId: profile.id,
+          daysPerWeek: result.data.weeklyWorkoutTarget,
+        },
+      });
+    }
+    return true;
   });
+  if (!updated) return res.status(404).send({ error: "Profile not found" });
   return res.send({ success: true });
 }

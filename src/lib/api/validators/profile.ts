@@ -70,7 +70,7 @@ export function validateProfile(value: RequestInputValue) {
     input.weeklyWorkoutTarget,
     "weeklyWorkoutTarget",
     errors,
-    { min: 1, max: 14, integer: true, required: true },
+    { min: 1, max: 7, integer: true, required: true },
   );
   const typicalWorkoutDuration = numberValue(
     input.typicalWorkoutDuration,

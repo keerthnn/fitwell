@@ -88,7 +88,7 @@ export default function ProfilePage() {
                     </Typography>
                     <Typography>
                       Weekly target:{" "}
-                      {formatCount(profile.weeklyWorkoutTarget, "workout")}
+                      {formatCount(profile.weeklyWorkoutTarget, "day")}
                     </Typography>
                     <Typography>
                       Units: {profile.unitSystem.toLowerCase()}

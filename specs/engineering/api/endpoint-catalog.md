@@ -5,8 +5,8 @@ status: active
 authority: binding-engineering
 requirements: [AUTH-005, PROFILE-001, PROFILE-011, PROFILE-012, ONBOARD-005, EXERCISE-001, EXERCISE-011, EXERCISE-012, EXERCISE-013, WORKOUT-001, PLAN-001, DASH-001, ANALYTICS-001, FEEDBACK-001, ADMIN-001, SEC-002]
 code: [src/pages/api/]
-tests: [test cases/pages/api/user/workout-activity.test.ts, test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
-last_verified: 2026-09-20
+tests: [test cases/pages/api/user/workout-activity.test.ts, test cases/pages/api/user/profile-target-history.test.ts, test cases/pages/api/dashboard/summary.test.ts, test cases/pages/api/exercises/get-exercises.test.ts, test cases/pages/api/workouts/create-workout.test.ts, test cases/pages/api/workout-exercises/add-exercise.test.ts, test cases/pages/api/workout-plans/]
+last_verified: 2026-09-21
 ---
 
 # API endpoint catalog
@@ -80,7 +80,7 @@ This inventory contains all 67 route files exposed by `src/pages/api`. `Member` 
 
 | Method and path | Access | Input/result | Requirement | Handler |
 | --- | --- | --- | --- | --- |
-| GET `/api/dashboard/summary` | Member | Returns active workout, weekly goal/progress, activity streak, recent workouts, frequent exercises, and plans | DASH-001 | `src/pages/api/dashboard/summary.ts` |
+| GET `/api/dashboard/summary` | Member | Returns active workout, distinct workout days this week, weekly workout-day target, weekly goal streak, recent workouts, frequent exercises, and plans | DASH-001, DASH-002, DASH-003 | `src/pages/api/dashboard/summary.ts` |
 | GET `/api/analytics/summary` | Member | Preset/custom range; returns completed-workout volume, duration, frequency, bests, and plan usage | ANALYTICS-001 | `src/pages/api/analytics/summary.ts` |
 | GET `/api/admin/dashboard/summary` | Admin | Returns separate total-user and daily-active-user counts plus workout, exercise, and plan counts | ADMIN-002 | `src/pages/api/admin/dashboard/summary.ts` |
 | GET `/api/admin/analytics/summary` | Admin | Returns all-time completed-workout/duration totals and daily active users since UTC midnight | ADMIN-010 | `src/pages/api/admin/analytics/summary.ts` |

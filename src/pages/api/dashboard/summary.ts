@@ -1,15 +1,8 @@
 import { checkIfGetOrSetError } from "fitness/lib/api/api-utils";
 import { getUserIdOrSetError } from "fitness/lib/auth/utils";
 import prisma from "fitness/lib/prisma";
+import { calculateWeeklyGoal } from "fitness/lib/workouts/weeklyGoal";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const startOfWeek = () => {
-  const date = new Date();
-  const day = (date.getDay() + 6) % 7;
-  date.setDate(date.getDate() - day);
-  date.setHours(0, 0, 0, 0);
-  return date;
-};
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,7 +15,18 @@ export default async function handler(
   const [user, profile, completed, activeWorkout, plans, frequentExercises] =
     await Promise.all([
       prisma.user.findUnique({ where: { id: userId } }),
-      prisma.userProfile.findUnique({ where: { userId } }),
+      prisma.userProfile.findUnique({
+        where: { userId },
+        select: {
+          firstName: true,
+          timezone: true,
+          weeklyWorkoutTarget: true,
+          workoutDayTargetHistory: {
+            orderBy: { effectiveAt: "asc" },
+            select: { daysPerWeek: true, effectiveAt: true },
+          },
+        },
+      }),
       prisma.workout.findMany({
         where: { userId, status: "COMPLETED" },
         orderBy: { workoutDate: "desc" },
@@ -125,34 +129,16 @@ export default async function handler(
           sourcePlanCategory: workout.sourceWorkoutPlan?.category ?? null,
         }
       : null;
-  const completedDays = [
-    ...new Set(
-      completed.map((workout) =>
-        workout.workoutDate.toISOString().slice(0, 10),
-      ),
-    ),
-  ];
-  let currentStreak = 0;
-  const cursor = new Date();
-  while (
-    completedDays.includes(cursor.toISOString().slice(0, 10)) ||
-    (currentStreak === 0 &&
-      completedDays.includes(
-        new Date(cursor.getTime() - 86_400_000).toISOString().slice(0, 10),
-      ))
-  ) {
-    if (!completedDays.includes(cursor.toISOString().slice(0, 10)))
-      cursor.setDate(cursor.getDate() - 1);
-    currentStreak += 1;
-    cursor.setDate(cursor.getDate() - 1);
-  }
+  const weeklyGoal = calculateWeeklyGoal({
+    now: new Date(),
+    timezone: profile?.timezone,
+    currentTarget: profile?.weeklyWorkoutTarget,
+    targetHistory: profile?.workoutDayTargetHistory ?? [],
+    workoutDates: completed.map((workout) => workout.workoutDate),
+  });
   return res.status(200).send({
     greetingName: profile?.firstName ?? user?.displayName ?? "there",
-    workoutsThisWeek: completed.filter(
-      (workout) => workout.workoutDate >= startOfWeek(),
-    ).length,
-    weeklyTarget: profile?.weeklyWorkoutTarget ?? 3,
-    currentStreak,
+    ...weeklyGoal,
     completedWorkouts: completed.length,
     totalDurationMinutes: completed.reduce(
       (sum, workout) => sum + (workout.durationMinutes ?? 0),
